@@ -19,7 +19,7 @@ public class Visitante {
 	public void salidaVisitante(Visitante visitante) {
 		totalVisitantes--;
 		Administracion.removeVisitantes(visitante);
-		}
+		visitante=null;}
 	
 	public void calcularPrecioBoleta() {
 		if (edad<15) {

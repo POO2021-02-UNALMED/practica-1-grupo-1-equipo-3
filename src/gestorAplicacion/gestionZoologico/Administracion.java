@@ -14,6 +14,7 @@ public class Administracion {
 		this.caja=caja;}
 	
 	public void pagoNomina() {
+		Scanner entrada=new Scanner(System.in);
 		double pago=0;
 		double ganancias=calculoGanancias();
 		caja=caja+ganancias;
@@ -22,33 +23,54 @@ public class Administracion {
 		}
 		caja=caja-pago;
 		if (caja<0) {
-			
-		}
-		
-	}
+			int identificacion=entrada.nextInt();
+			for(Empleado empleado:empleados) {
+				if (empleado.getIdentificacion()==identificacion) {
+					despedirEmpleado(empleado);
+					break;}}}}
 	
 	public void trasladarAnimal(Animal animal) {
-		
-	}
+		removeAnimales(animal);
+		animal=null;}
 	
-	public void adquirirAnimal(Animal animal) {
-		
+	public void adquirirAnimal(Especie especie) {
+		Scanner entrada=new Scanner(System.in);
+		Habitat habitatEspecie=null;
+		for (Animal animal:animales) {
+			if (animal.getEspecie()==especie) {
+				habitatEspecie=animal.getHabitat();
+				break;}}
+		if (habitatEspecie.cantidadAnimales()<habitatEspecie.getCapacidadMaxima()) {
+			int identificacion=entrada.nextInt();
+			String genero=entrada.nextLine();
+			int edad=entrada.nextInt();
+			float peso=entrada.nextFloat();
+			String estadoA=entrada.nextLine();
+			boolean estadoS=entrada.nextBoolean();
+			boolean alimentado=entrada.nextBoolean();
+			Animal x=new Animal(identificacion,especie,null,genero,edad,peso,estadoA,estadoS,alimentado);
+			//especie.getCuidadorAsignado().get(0).moverAnimal(x,habitatEspecie);
+			}
 	}
 	
 	public double calculoGanancias() {
 		double ganancias=0;
 		for (Visitante visitante:visitantes) {
-			ganancias=ganancias+visitante.getPrecioBoleta();}
+			ganancias=ganancias+visitante.getPrecioBoleta();
+			removeVisitantes(visitante);}
 		return ganancias;}
 	
-	public void contratarEmpleado() {
-		
+	public void contratarCuidador() {
+		//Cuidador x=new Cuidador();
 	}
 	
+	public void contratarVeterinario() {
+		//Veterinario y=new Veterinario();
+	}
+
 	public void despedirEmpleado(Empleado empleado) {
 		removeEmpleados(empleado);
-		
-	}
+		empleado=null;}
 	
 	public static void addAnimales(Animal nuevo) {
 		animales.add(nuevo);}
