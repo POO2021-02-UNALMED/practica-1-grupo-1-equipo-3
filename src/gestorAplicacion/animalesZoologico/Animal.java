@@ -1,5 +1,7 @@
 package gestorAplicacion.animalesZoologico;
 
+import gestorAplicacion.gestionZoologico.Administracion;
+
 public class Animal {
 	
 	private static int totalAnimales;
@@ -24,8 +26,9 @@ public class Animal {
 		this.estadoAnimo = estadoAnimo;
 		this.estadoSalud = estadoSalud;
 		this.alimentado = alimentado;
-		habitat.getAnimalesAsociados().add(this);
 		Animal.totalAnimales++;
+		habitat.addAnimalesAsociados(this);
+		Administracion.addAnimales(this);
 		
 		
 	}
@@ -114,6 +117,10 @@ public class Animal {
 	}
 	
 	public void morir() {
+		totalAnimales--;
+		habitat.removeAnimalesAsociados(this);
+		Administracion.removeAnimales(this);
+		//this = null;
 		
 	}
 	

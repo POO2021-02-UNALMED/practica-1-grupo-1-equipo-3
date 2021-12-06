@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Habitat {
 	
-	private final int capacidadMaxima;
+	private final int CAPACIDADMAXIMA;
 	private static int totalHabitats;
 	private int identificacion;
 	private String nombre;
@@ -16,16 +16,13 @@ public class Habitat {
 		this.nombre = nombre;
 		this.ambientacion = ambientacion;
 		this.limpio = limpio;
-		this.capacidadMaxima= capacidadMaxima;
+		this.CAPACIDADMAXIMA= capacidadMaxima;
 		Habitat.totalHabitats++;
 	}
 	
-	private void setCapacidadMaxima(int capacidadMaxima){
-		this.capacidadMaxima = capacidadMaxima;
-	}
 	
 	public int getCapacidadMaxima() {
-		return capacidadMaxima;
+		return CAPACIDADMAXIMA;
 	}
 	
 	public void setIdentificacion(int identificacion) {
@@ -78,6 +75,14 @@ public class Habitat {
 	 
 	 public int cantidadAnimales() {
 		 return animalesAsociados.size();
+	 }
+	 
+	 public void addAnimalesAsociados(Animal animal) {
+		 animalesAsociados.add(animal);
+	 }
+	 
+	 public void removeAnimalesAsociados(Animal animal){
+		 animalesAsociados.remove(animalesAsociados.indexOf(animal));
 	 }
 
 }
