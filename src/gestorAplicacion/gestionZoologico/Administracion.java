@@ -45,11 +45,8 @@ public class Administracion {
 			String genero=entrada.nextLine();
 			int edad=entrada.nextInt();
 			float peso=entrada.nextFloat();
-			String estadoA=entrada.nextLine();
-			boolean estadoS=entrada.nextBoolean();
-			boolean alimentado=entrada.nextBoolean();
-			Animal x=new Animal(identificacion,especie,null,genero,edad,peso,estadoA,estadoS,alimentado);
-			//especie.getCuidadorAsignado().get(0).moverAnimal(x,habitatEspecie);
+			Animal x=new Animal(identificacion,especie,null,genero,edad,peso);
+			especie.getCuidadorAsignado().get(0).moverAnimal(x,habitatEspecie);
 			}
 	}
 	

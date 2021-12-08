@@ -11,21 +11,21 @@ public class Animal {
 	private String genero;
 	private int edad;
 	private float peso;
-	private String estadoAnimo;
+	private boolean estadoAnimo;
 	private boolean estadoSalud;
 	private boolean alimentado;
 	
 	
-	public Animal(int identificacion, Especie especie, Habitat habitat, String genero, int edad, float peso, String estadoAnimo, boolean estadoSalud, boolean alimentado) {
+	public Animal(int identificacion, Especie especie, Habitat habitat, String genero, int edad, float peso) {
 		this.identificacion = identificacion;
 		this.especie = especie;
 		this.habitat = habitat;
 		this.genero= genero;
 		this.edad = edad;
 		this.peso = peso;
-		this.estadoAnimo = estadoAnimo;
-		this.estadoSalud = estadoSalud;
-		this.alimentado = alimentado;
+		this.estadoAnimo = true;
+		this.estadoSalud = true;
+		this.alimentado = true;
 		Animal.totalAnimales++;
 		habitat.addAnimalesAsociados(this);
 		Administracion.addAnimales(this);
@@ -84,11 +84,11 @@ public class Animal {
 		return peso;
 	}
 	
-	public void setEstadoAnimo(String estadoAnimo) {
+	public void setEstadoAnimo(boolean estadoAnimo) {
 		this.estadoAnimo= estadoAnimo;
 	}
 	
-	public String getEstadoAnimo() {
+	public boolean isEstadoAnimo() {
 		return estadoAnimo;
 	}
 	

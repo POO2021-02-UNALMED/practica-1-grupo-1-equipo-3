@@ -11,11 +11,11 @@ public class Habitat {
 	private boolean limpio;
 	private ArrayList<Animal> animalesAsociados = new ArrayList<Animal>();
 	
-	public Habitat(int identificacion, String nombre, String ambientacion, boolean limpio, int capacidadMaxima) {
+	public Habitat(int identificacion, String nombre, String ambientacion, int capacidadMaxima) {
 		this.identificacion = identificacion;
 		this.nombre = nombre;
 		this.ambientacion = ambientacion;
-		this.limpio = limpio;
+		this.limpio = true;
 		this.CAPACIDADMAXIMA= capacidadMaxima;
 		Habitat.totalHabitats++;
 	}
