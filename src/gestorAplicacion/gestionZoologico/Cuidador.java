@@ -26,7 +26,7 @@ public class Cuidador extends Empleado {
 				"\nSueldo: " + this.getSueldo() + 
 				"\nEspecie asignada: " + this.getEspecieAsignada());
 	}
-/*	
+	
 	public void alimentarAnimal(Animal animal) {
 		animal.setAlimentado(true);
 	}
@@ -35,16 +35,16 @@ public class Cuidador extends Empleado {
 		animal.getHabitat().removeAnimalesAsociados(animal);
 		animal.setHabitat(lugar);
 	}
-	
+/*	
 	public String revisar(Animal animal) {
-		return animal.getEstadoAnimo;
+		return animal.isEstadoAnimo;
 	}
-	
+*/	
 	public boolean revisar(Habitat habitat) {
-		return habitat.getLimpio();
+		return habitat.isLimpio();
 	}
 
-//	En el siguiente método me parece un poco inutil, en términos de programación, mover a todos los animales para limpiar. ¿Acaso esto tiene alguna utilidad REAL para nuestra aplicación?
+/*	En el siguiente método me parece un poco inutil, en términos de programación, mover a todos los animales para limpiar. ¿Acaso esto tiene alguna utilidad REAL para nuestra aplicación?
 	public void limpiarHabitat(Habitat habitat) {
 		List<Animal> animales = habitat.getAnimalesAsociados();
 		
