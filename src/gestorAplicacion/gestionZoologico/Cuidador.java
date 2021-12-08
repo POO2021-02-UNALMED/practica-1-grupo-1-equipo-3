@@ -45,15 +45,8 @@ public class Cuidador extends Empleado {
 	}
 
 //	En el siguiente método me parece un poco inutil, en términos de programación, mover a todos los animales para limpiar. ¿Acaso esto tiene alguna utilidad REAL para nuestra aplicación?
-	public void limpiarHabitat(Habitat habitat) {
+	public void limpiarHabitat(Habitat habitat, Habitat jaulas) {
 		List<Animal> animales = habitat.getAnimalesAsociados();
-		
-		for(Habitat temp : Administracion.getHabitats()) {
-			if(temp.getNombre() == "jaulas"){
-				Habitat jaulas = temp;
-				break;
-			}
-		}
 		
 		for(Animal animal : animales) {
 			this.moverAnimal(animal, jaulas);
