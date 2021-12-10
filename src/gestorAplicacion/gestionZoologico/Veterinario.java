@@ -16,7 +16,7 @@ public class Veterinario extends Empleado{
 
     // TODO: Terminar metodo.
     public boolean revisarAnimal(Animal animal) {
-        if (animal.isEstadoSalud() == false) {return false;} 
+        if (animal.isEstadoSalud() == false) { return false;} 
         else {return true;}
     }
 

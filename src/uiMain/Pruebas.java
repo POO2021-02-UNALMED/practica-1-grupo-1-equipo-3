@@ -1,8 +1,9 @@
 package uiMain;
 
 import gestorAplicacion.*;
+import gestorAplicacion.animalesZoologico.Especie;
 
-// Esta clase se hizo temporalmente para las pruebas que tengamos que hacer del código que vamos desarrollando. Obviamente se elimina al final.
+// Esta clase se hizo temporalmente para las pruebas que tengamos que hacer del cï¿½digo que vamos desarrollando. Obviamente se elimina al final.
 public class Pruebas {
 
 	public static void main(String[] args) {
