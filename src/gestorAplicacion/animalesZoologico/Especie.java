@@ -1,8 +1,12 @@
 package gestorAplicacion.animalesZoologico;
 
+<<<<<<< Updated upstream
 import java.util.ArrayList;
 
 import gestorAplicacion.gestionZoologico.Administracion;
+=======
+import java.util.*;
+>>>>>>> Stashed changes
 import gestorAplicacion.gestionZoologico.Cuidador;
 //import gestorAplicacion.animalesZoologico.Animal;
 
@@ -18,6 +22,9 @@ public enum Especie {
     private String nombre;
     private String dieta;
     private int promedioVida;
+
+    private Map<String, Integer> dicEspecie = new HashMap<String, Integer>();
+    
     private ArrayList<Cuidador> cuidadorAsignado = new ArrayList<Cuidador>();
     private ArrayList<Animal> animales = new ArrayList<Animal>();
 
@@ -25,7 +32,17 @@ public enum Especie {
         this.nombre = nombre;
         this.dieta = dieta;
         this.promedioVida = promedioVida;
+<<<<<<< Updated upstream
         Administracion.addEspecies(this);
+=======
+        System.out.println(nombre);
+
+        dicEspecie.put("Mamifero", 0);
+        dicEspecie.put("Ave", 0);
+        dicEspecie.put("Reptil", 0);
+        dicEspecie.put("Pez", 0);
+        dicEspecie.put("Anfibio", 0);
+>>>>>>> Stashed changes
     }
 
     public ArrayList<Animal> getAnimales() {
@@ -74,6 +91,28 @@ public enum Especie {
 
     public static int getTotalespecie() {
         return TOTALESPECIE;
+    }
+
+    public Map<String, Integer> getDicEspecie() {
+        return dicEspecie;
+    }
+
+    public void setDicEspecie(Map<String, Integer> dicEspecie) {
+        this.dicEspecie = dicEspecie;
+    }
+
+    public void addEspecie(Animal animal) {
+
+        if (animal.getEspecie().nombre == "Mamifero") {
+            this.dicEspecie.put("Mamifero", dicEspecie.get("Mamifero")+1);
+        }
+        else if (animal.getEspecie().nombre == "Anfibio") {
+            this.dicEspecie.put("Anfibio", dicEspecie.get("Anfibio")+1);
+        }
+        
+
+        
+
     }
 
 }
