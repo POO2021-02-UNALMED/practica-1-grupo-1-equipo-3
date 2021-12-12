@@ -41,9 +41,5 @@ public class Veterinario extends Empleado{
 				"\nSueldo: " + this.getSueldo() + 
 				"\nEspecie asignada: " + this.getEspecialidad());
     }
-
-
-    
-
     
 }
