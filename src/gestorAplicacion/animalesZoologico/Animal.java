@@ -126,4 +126,13 @@ public class Animal implements Serializable {
 		
 	}
 	
+	public String toString() {
+		return ("Identificación: " + String.valueOf(this.getIdentificacion()) + 
+				"\nEspecie: " + this.getEspecie().getNombre() + 
+				"\nHábitat: " + this.getHabitat() + 
+				"\nGénero: " + this.getGenero() +
+				"\nEdad: " + String.valueOf(this.getEdad()) +
+				"\nPeso: " + String.valueOf(this.getPeso()));
+	}
+	
 }
