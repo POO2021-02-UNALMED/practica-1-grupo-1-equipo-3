@@ -1,6 +1,8 @@
 package gestorAplicacion.animalesZoologico;
 
 import java.util.ArrayList;
+
+import gestorAplicacion.gestionZoologico.Administracion;
 import gestorAplicacion.gestionZoologico.Cuidador;
 //import gestorAplicacion.animalesZoologico.Animal;
 
@@ -23,6 +25,7 @@ public enum Especie {
         this.nombre = nombre;
         this.dieta = dieta;
         this.promedioVida = promedioVida;
+        Administracion.addEspecies(this);
     }
 
     public ArrayList<Animal> getAnimales() {

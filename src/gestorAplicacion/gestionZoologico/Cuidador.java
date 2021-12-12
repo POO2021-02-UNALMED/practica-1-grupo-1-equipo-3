@@ -9,6 +9,7 @@ public class Cuidador extends Empleado {
 	public Cuidador(int identificacion, String nombre, int sueldo, Especie especieAsignada) {
 		super(identificacion, nombre, sueldo);
 		this.especieAsignada = especieAsignada;
+		Administracion.addCuidadores(this);
 	}
 	
 	public Especie getEspecieAsignada() {

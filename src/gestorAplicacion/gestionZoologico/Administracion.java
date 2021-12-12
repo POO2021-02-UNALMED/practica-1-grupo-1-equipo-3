@@ -9,12 +9,15 @@ public class Administracion {
 	static private List<Empleado> empleados=new ArrayList<Empleado>();
 	static private List<Visitante> visitantes=new ArrayList<Visitante>();
 	static private List<Habitat> habitats= new ArrayList<Habitat>();
+	static private List<Especie> especies= new ArrayList<Especie>();
+	static private List<Veterinario> veterinarios= new ArrayList<Veterinario>();
+	static private List<Cuidador> cuidadores= new ArrayList<Cuidador>();
+	
 
 	public Administracion(int caja) {
 		this.caja=caja;}
 	
 	public void pagoNomina() {
-		Scanner entrada=new Scanner(System.in);
 		double pago=0;
 		double ganancias=calculoGanancias();
 		caja=caja+ganancias;
@@ -75,6 +78,15 @@ public class Administracion {
 	public static void addHabitats(Habitat nuevo) {
 		habitats.add(nuevo);}
 	
+	public static void addEspecies(Especie nuevo) {
+		especies.add(nuevo);}
+	
+	public static void addVeterinarios(Veterinario nuevo) {
+		veterinarios.add(nuevo);}
+	
+	public static void addCuidadores(Cuidador nuevo) {
+		cuidadores.add(nuevo);}
+	
 	public static void removeAnimales(Animal eliminar) {
 		animales.remove(animales.indexOf(eliminar));}
 	
@@ -86,6 +98,15 @@ public class Administracion {
 	
 	public static void removeHabitats(Habitat eliminar) {
 		habitats.remove(habitats.indexOf(eliminar));}
+	
+	public static void removeEspecies(Especie eliminar) {
+		especies.remove(especies.indexOf(eliminar));}
+	
+	public static void removeVeterinarios(Veterinario eliminar) {
+		veterinarios.remove(veterinarios.indexOf(eliminar));}
+	
+	public static void removeCuidadores(Cuidador eliminar) {
+		cuidadores.remove(cuidadores.indexOf(eliminar));}
 	
 	public double getCaja() {
 		return caja;}
@@ -102,6 +123,15 @@ public class Administracion {
 	public static List<Habitat> getHabitats() {
 		return habitats;}
 	
+	public static List<Especie> getEspecies() {
+		return especies;}
+	
+	public static List<Veterinario> getVeterinarios() {
+		return veterinarios;}
+	
+	public static List<Cuidador> getCuidadores() {
+		return cuidadores;}
+	
 	public void setCaja(double nuevo) {
 		caja=nuevo;}
 	
@@ -115,4 +145,13 @@ public class Administracion {
 		visitantes=nuevo;}
 	
 	public static void setHabitats(List<Habitat> nuevo) {
-		habitats=nuevo;}}
+		habitats=nuevo;}
+	
+	public static void setEspecies(List<Especie> nuevo) {
+		especies=nuevo;}
+	
+	public static void setVeterinarios(List<Veterinario> nuevo) {
+		veterinarios=nuevo;}
+	
+	public static void setCuidadores(List<Cuidador> nuevo) {
+		cuidadores=nuevo;}}

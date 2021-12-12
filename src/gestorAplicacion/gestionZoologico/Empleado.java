@@ -9,7 +9,7 @@ public abstract class Empleado {
 		this.identificacion = identificacion;
 		this.nombre = nombre;
 		this.sueldo = sueldo;
-//		Administracion.addEmpleados(this);
+		Administracion.addEmpleados(this);
 	}
 	
 	public int getIdentificacion() {

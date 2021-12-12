@@ -1,6 +1,8 @@
 package gestorAplicacion.animalesZoologico;
 import java.util.ArrayList;
 
+import gestorAplicacion.gestionZoologico.Administracion;
+
 public class Habitat {
 	
 	private final int CAPACIDADMAXIMA;
@@ -18,6 +20,7 @@ public class Habitat {
 		this.limpio = true;
 		this.CAPACIDADMAXIMA= capacidadMaxima;
 		Habitat.totalHabitats++;
+		Administracion.addHabitats(this);
 	}
 	
 	

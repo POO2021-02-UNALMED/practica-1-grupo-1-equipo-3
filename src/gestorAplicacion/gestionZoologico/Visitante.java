@@ -16,10 +16,11 @@ public class Visitante {
 		totalVisitantes++;
 		Administracion.addVisitantes(this);}
 	
-	public void salidaVisitante(Visitante visitante) {
+	public void salidaVisitante() {
+		Visitante este=this;
 		totalVisitantes--;
-		Administracion.removeVisitantes(visitante);
-		visitante=null;}
+		Administracion.removeVisitantes(this);
+		este=null;}
 	
 	public void calcularPrecioBoleta() {
 		if (edad<15) {

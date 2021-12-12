@@ -1,9 +1,10 @@
 package gestorAplicacion.animalesZoologico;
 
+import java.io.Serializable;
 import gestorAplicacion.gestionZoologico.Administracion;
 
-public class Animal {
-	
+public class Animal implements Serializable {
+	private static final long serialVersionUID=1L;
 	private static int totalAnimales;
 	private int identificacion;
 	private Especie especie;
@@ -117,10 +118,11 @@ public class Animal {
 	}
 	
 	public void morir() {
+		Animal este=this;
 		totalAnimales--;
 		habitat.removeAnimalesAsociados(this);
 		Administracion.removeAnimales(this);
-		//this = null;
+		este = null;
 		
 	}
 	
