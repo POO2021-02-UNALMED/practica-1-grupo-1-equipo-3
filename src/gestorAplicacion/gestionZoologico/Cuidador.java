@@ -21,10 +21,10 @@ public class Cuidador extends Empleado {
 	
 	public String toString() {
 		return ("Tipo de empleado: CUIDADOR" + 
-				"\nIdentificación: " + this.getIdentificacion() + 
+				"\nIdentificación: " + String.valueOf(this.getIdentificacion()) + 
 				"\nNombre: " + this.getNombre() + 
-				"\nSueldo: " + this.getSueldo() + 
-				"\nEspecie asignada: " + this.getEspecieAsignada());
+				"\nSueldo: " + String.valueOf(this.getSueldo()) + 
+				"\nEspecie asignada: " + this.getEspecieAsignada().getNombre());
 	}
 	
 	public void alimentarAnimal(Animal animal) {
