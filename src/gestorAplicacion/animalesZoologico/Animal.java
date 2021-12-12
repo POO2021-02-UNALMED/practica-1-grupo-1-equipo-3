@@ -29,9 +29,8 @@ public class Animal implements Serializable {
 		this.alimentado = true;
 		Animal.totalAnimales++;
 		habitat.addAnimalesAsociados(this);
+		especie.addAnimales(this);
 		Administracion.addAnimales(this);
-		
-		
 	}
 	
 	public void setIdentificacion(int identificacion) {
@@ -129,7 +128,7 @@ public class Animal implements Serializable {
 	public String toString() {
 		return ("Identificación: " + String.valueOf(this.getIdentificacion()) + 
 				"\nEspecie: " + this.getEspecie().getNombre() + 
-				"\nHábitat: " + this.getHabitat() + 
+				"\nHábitat: " + this.getHabitat().getNombre() + "(" + this.getHabitat().getAmbientacion() + ")" + 
 				"\nGénero: " + this.getGenero() +
 				"\nEdad: " + String.valueOf(this.getEdad()) +
 				"\nPeso: " + String.valueOf(this.getPeso()));

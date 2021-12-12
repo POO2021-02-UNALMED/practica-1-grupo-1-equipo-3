@@ -43,6 +43,22 @@ public enum Especie {
     public void setCuidadorAsignado(ArrayList<Cuidador> cuidadorAsignado) {
         this.cuidadorAsignado = cuidadorAsignado;
     }
+    
+    public void removeAnimales(Animal eliminar) {
+    	animales.remove(animales.indexOf(eliminar));
+    }
+
+    public void addAnimales(Animal nuevo) {
+    	animales.add(nuevo);
+    }
+
+    public void removeCuidadorAsignado(Cuidador eliminar) {
+        cuidadorAsignado.remove(cuidadorAsignado.indexOf(eliminar));
+    }
+
+    public void addCuidadorAsignado(Cuidador nuevo) {
+        cuidadorAsignado.add(nuevo);
+    }
 
     public String getNombre() {
         return nombre;

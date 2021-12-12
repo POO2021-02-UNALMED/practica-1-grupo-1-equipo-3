@@ -15,25 +15,27 @@ public class FuncionalidadCuidar {
 		seleccionarAnimal();
 		seleccionarCuidador();
 		animoAnimal();
+		System.out.print("Presione Enter para continuar...");
+		Main.sc.nextLine();
 	}
 	
 	static void seleccionarAnimal() {
 		int id;
 		System.out.println("Elija primero el animal que desee revisar, ingresando su identificación.\n");
-		System.out.println("Identificación\tEspecie\tHábitat\tGénero\tEdad\tPeso");
+		System.out.println("Identificación; Especie; Hábitat; Género; Edad; Peso");
 		
 		for(Animal animal : Administracion.getAnimales()) {
-			System.out.println(String.valueOf(animal.getIdentificacion()) + "\t" + animal.getEspecie().getNombre() + "\t" + 
-							   animal.getHabitat().getNombre() + "\t" + animal.getGenero() + "\t" + 
-							   String.valueOf(animal.getEdad()) + "\t" + String.valueOf(animal.getPeso()));
+			System.out.println(String.valueOf(animal.getIdentificacion()) + "; " + animal.getEspecie().getNombre() + "; " + 
+							   animal.getHabitat().getNombre() + "; " + animal.getGenero() + "; " + 
+							   String.valueOf(animal.getEdad()) + "; " + String.valueOf(animal.getPeso()));
 		}
 		
-		System.out.print("¿Cuál animal elije? (Identificación): ");
+		System.out.print("\n¿Cuál animal elije? (Identificación): ");
 		id = Main.leerOpcion();
 		
 		for(Animal animal : Administracion.getAnimales()) {
 			if(animal.getIdentificacion() == id) { 
-				System.out.println("Animal seleccionado:");
+				System.out.println("\nAnimal seleccionado:\n");
 				System.out.println(animal.toString());
 				animalSeleccionado = animal;
 				return;
@@ -43,19 +45,19 @@ public class FuncionalidadCuidar {
 	
 	static void seleccionarCuidador() {
 		int id;
-		System.out.println("Ahora elija el cuidador que desee que revise al animal, ingresando su identificación.\n");
-		System.out.println("Identificación\tNombre\tEspecie asignada");
+		System.out.println("\nAhora elija el cuidador que desee que revise al animal, ingresando su identificación.\n");
+		System.out.println("Identificación; Nombre; Especie asignada");
 		
 		for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadorAsignado()) {
-			System.out.println(String.valueOf(cuidador.getIdentificacion()) + "\t" + cuidador.getNombre() + "\t" + cuidador.getEspecieAsignada().getNombre());
+			System.out.println(String.valueOf(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
 		}
 		
-		System.out.print("¿Cuál cuidador elije? (Identificación) ");
+		System.out.print("\n¿Cuál cuidador elije? (Identificación) ");
 		id = Main.leerOpcion();
 		
 		for(Cuidador cuidador : FuncionalidadCuidar.animalSeleccionado.getEspecie().getCuidadorAsignado()) {
 			if(cuidador.getIdentificacion() == id) { 
-				System.out.println("Cuidador seleccionado:");
+				System.out.println("\nCuidador seleccionado:\n");
 				System.out.println(cuidador.toString());
 				cuidadorSeleccionado = cuidador;
 				return;
@@ -64,13 +66,13 @@ public class FuncionalidadCuidar {
 	}
 	
 	static void animoAnimal() {
-		System.out.println("Cuidador " + cuidadorSeleccionado.getNombre() + " procede a revisar al animal con identificación " + 
+		System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a revisar al animal con identificación " + 
 							String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
 		
 		if(cuidadorSeleccionado.revisar(animalSeleccionado)) {
-			System.out.println("RESULTADO: El animal se encuentra con buen estado de ánimo.");
+			System.out.println("RESULTADO: El animal se encuentra con buen estado de ánimo.\n");
 		} else {
-			System.out.println("RESULTADO: El animal se encuentra con mal estado de ánimo.");
+			System.out.println("RESULTADO: El animal se encuentra con mal estado de ánimo.\n");
 			System.out.println("El cuidador " + cuidadorSeleccionado.getNombre() + "decide alimentar al animal para mejorar su estado de ánimo.");
 			cuidadorSeleccionado.alimentarAnimal(animalSeleccionado);
 			if(animalSeleccionado.isAlimentado() && animalSeleccionado.isEstadoSalud() && animalSeleccionado.getHabitat().isLimpio()) {

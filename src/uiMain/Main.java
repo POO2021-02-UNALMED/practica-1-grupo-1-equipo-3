@@ -1,6 +1,8 @@
 package uiMain;
 import baseDatos.*;
-import gestorAplicacion.*;
+import gestorAplicacion.animalesZoologico.*;
+import gestorAplicacion.gestionZoologico.*;
+
 import java.util.Scanner;
 
 public class Main {
@@ -10,31 +12,35 @@ public class Main {
 		return sc.nextInt();}
 	
 	public static void main(String args[]) {
+		Habitat a = new Habitat(1, "A1", "Sabana", 10);
+		Habitat b = new Habitat(2, "A2", "Jungla", 25);
+		Animal x = new Animal(1, Especie.MAMIFERO, a, "M", 5, 70);
+		Animal y = new Animal(2, Especie.MAMIFERO, a, "F", 3, 55);
+		Animal z = new Animal(3, Especie.AVE, b, "M", 2, 5);
+		Cuidador xx = new Cuidador(1, "Jorge", 750, Especie.MAMIFERO);
+		Cuidador yy = new Cuidador(2, "Johanna", 750, Especie.MAMIFERO);
+		Cuidador zz = new Cuidador(3, "Camila", 650, Especie.AVE);
+		
 		int opcion;
 		do {
-			System.out.println("¡Bienvenido al sistema gestor de tu Zoológico!");
-			System.out.println("\n");
-			System.out.println("A continuación te presentamos funcionalidades disponibles:");
-			System.out.println("\n");
+			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");
+			System.out.println("A continuación te presentamos funcionalidades disponibles:\n");
 			System.out.println("1. Mantenimiento de los habitats");
 			System.out.println("2. Curar a los animales");
 			System.out.println("3. Cuidar a los animales");
 			System.out.println("4. Gestión administrativa del Zoológico");
 			System.out.println("5. Adquisición y traslado de animales");
 			System.out.println("6. Salir del programa");
-			System.out.println("\n");
-			System.out.println("¿Cuál quieres realizar?");
-			System.out.println("\n");
+			System.out.print("\n¿Cuál quieres realizar? ");
 			opcion=leerOpcion();
-			System.out.println("\n");
-			
+			System.out.println();
 			switch(opcion) {
-				case 1: System.out.println("En proceso 1");break;
-				case 2: System.out.println("En proceso 2");break;
-				case 3: System.out.println("En proceso 3");break;
-				case 4: System.out.println("En proceso 4");break;
-				case 5: System.out.println("En proceso 5");break;
-				case 6: System.out.println("¡Gracias por haber usado nuestra aplicación!");break;}
+				case 1: System.out.println("En proceso 1\n"); break;
+				case 2: System.out.println("En proceso 2\n"); break;
+				case 3: FuncionalidadCuidar.cuidarAnimal(); break;
+				case 4: System.out.println("En proceso 4\n"); break;
+				case 5: System.out.println("En proceso 5\n"); break;
+				case 6: System.out.println("¡Gracias por haber usado nuestra aplicación!\n");break;}
 		} while(opcion!=6);
 	}
 }
