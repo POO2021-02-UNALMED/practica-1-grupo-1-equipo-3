@@ -9,7 +9,7 @@ public class Administracion {
 	static private List<Empleado> empleados=new ArrayList<Empleado>();
 	static private List<Visitante> visitantes=new ArrayList<Visitante>();
 	static private List<Habitat> habitats= new ArrayList<Habitat>();
-	
+
 	public Administracion(int caja) {
 		this.caja=caja;}
 	
@@ -21,13 +21,7 @@ public class Administracion {
 		for (Empleado empleado:empleados) {
 			pago=pago+empleado.getSueldo();
 		}
-		caja=caja-pago;
-		if (caja<0) {
-			int identificacion=entrada.nextInt();
-			for(Empleado empleado:empleados) {
-				if (empleado.getIdentificacion()==identificacion) {
-					despedirEmpleado(empleado);
-					break;}}}}
+		caja=caja-pago;}
 	
 	public void trasladarAnimal(Animal animal) {
 		removeAnimales(animal);
