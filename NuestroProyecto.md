@@ -1,4 +1,4 @@
-# Sistema gestor de Zoológico - Equipo # 3
+# Sistema gestor de Zoológico - Equipo # 3 - Grupo # 1
 ## Integrantes:  
 * David Mateo Garía Vallejo
 * José David Cardona Soto
