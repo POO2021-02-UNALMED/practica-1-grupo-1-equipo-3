@@ -87,5 +87,11 @@ public class Habitat {
 	 public void removeAnimalesAsociados(Animal animal){
 		 animalesAsociados.remove(animalesAsociados.indexOf(animal));
 	 }
+	 
+	 public String toString() {
+		String r = "Identificacion: " + identificacion  + "\nNombre: " + nombre + "\nAmbientacion: " + ambientacion + 
+		"\nEspecie del Habitat: " + animalesAsociados.get(0).getEspecie().getNombre() + "\nCapacidad: " + CAPACIDADMAXIMA;
+		return r;
+	 }
 
 }

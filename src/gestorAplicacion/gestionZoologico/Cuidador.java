@@ -57,7 +57,11 @@ public class Cuidador extends Empleado {
 		habitat.setLimpio(true);
 		
 		for(Animal animal : animales) {
+			if(animal.isAlimentado() && animal.isEstadoSalud()) {
+				animal.setEstadoAnimo(true);
+			}
 			this.moverAnimal(animal, habitat);
+			
 		}
 	}
 
