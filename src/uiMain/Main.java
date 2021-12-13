@@ -38,7 +38,7 @@ public class Main {
 				case 1: System.out.println("En proceso 1\n"); break;
 				case 2: System.out.println("En proceso 2\n"); break;
 				case 3: FuncionalidadCuidar.cuidarAnimal(); break;
-				case 4: System.out.println("En proceso 4\n"); break;
+				case 4: FuncionalidadGestion.gestionAdministrativa(); break;
 				case 5: System.out.println("En proceso 5\n"); break;
 				case 6: System.out.println("¡Gracias por haber usado nuestra aplicación!\n");break;}
 		} while(opcion!=6);
