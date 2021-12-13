@@ -4,12 +4,12 @@ public abstract class Empleado {
 	private int identificacion;
 	private String nombre;
 	private int sueldo;
+	private boolean pagado=false;
 	
 	public Empleado(int identificacion, String nombre, int sueldo) {
 		this.identificacion = identificacion;
 		this.nombre = nombre;
 		this.sueldo = sueldo;
-		Administracion.addEmpleados(this);
 	}
 	
 	public int getIdentificacion() {
@@ -35,6 +35,13 @@ public abstract class Empleado {
 	public void setSueldo(int sueldo) {
 		this.sueldo = sueldo;
 	}
+	
+	public boolean isPagado() {
+		return pagado;
+	}
+	
+	public void setPagado(boolean estado) {
+		pagado=estado;}
 	
 	public abstract String toString();
 }

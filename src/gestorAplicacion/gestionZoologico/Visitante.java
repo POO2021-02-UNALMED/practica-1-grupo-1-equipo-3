@@ -14,7 +14,8 @@ public class Visitante {
 		this.estrato=estrato;
 		this.edad=edad;
 		totalVisitantes++;
-		Administracion.addVisitantes(this);}
+		Administracion.addVisitantes(this);
+		Administracion.addVisitantesBoletas(this);}
 	
 	public void salidaVisitante() {
 		Visitante este=this;

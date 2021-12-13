@@ -4,10 +4,10 @@ import java.util.*;
 import gestorAplicacion.animalesZoologico.*;
 
 public class Administracion {
-	private double caja;
+	static private double caja;
 	static private List<Animal> animales=new ArrayList<Animal>();
-	static private List<Empleado> empleados=new ArrayList<Empleado>();
 	static private List<Visitante> visitantes=new ArrayList<Visitante>();
+	static private List<Visitante> visitantesBoletas=new ArrayList<Visitante>();
 	static private List<Habitat> habitats= new ArrayList<Habitat>();
 	static private List<Especie> especies= new ArrayList<Especie>();
 	static private List<Veterinario> veterinarios= new ArrayList<Veterinario>();
@@ -17,18 +17,26 @@ public class Administracion {
 	public Administracion(int caja) {
 		this.caja=caja;}
 	
-	public void pagoNomina() {
-		double pago=0;
-		double ganancias=calculoGanancias();
-		caja=caja+ganancias;
-		for (Empleado empleado:empleados) {
-			pago=pago+empleado.getSueldo();
-		}
-		caja=caja-pago;}
+	public static int pagoNomina() {
+		int pago=0;
+		calculoGanancias();
+		for (Veterinario veterinario:veterinarios) {
+			if (veterinario.isPagado()==false) {
+				pago=pago+veterinario.getSueldo();
+				veterinario.setPagado(true);
+			}}
+		for (Cuidador cuidador:cuidadores) {
+			if (cuidador.isPagado()==false) {
+				pago=pago+cuidador.getSueldo();
+				cuidador.setPagado(true);
+			}}
+		caja=caja-pago;
+		return pago;}
 	
 	public void trasladarAnimal(Animal animal) {
 		removeAnimales(animal);
 		animal=null;}
+	
 	
 	public void adquirirAnimal(Especie especie) {
 		Scanner entrada=new Scanner(System.in);
@@ -47,33 +55,45 @@ public class Administracion {
 			}
 	}
 	
-	public double calculoGanancias() {
+	public static double calculoGanancias() {
 		double ganancias=0;
-		for (Visitante visitante:visitantes) {
+		for (Visitante visitante:visitantesBoletas) {
 			ganancias=ganancias+visitante.getPrecioBoleta();
-			removeVisitantes(visitante);}
+			removeVisitantesBoletas(visitante);}
+		caja=caja+ganancias;
 		return ganancias;}
 	
+	
 	public void contratarCuidador() {
-		//Cuidador x=new Cuidador();
+		
 	}
 	
 	public void contratarVeterinario() {
-		//Veterinario y=new Veterinario();
+		
 	}
 
-	public void despedirEmpleado(Empleado empleado) {
-		removeEmpleados(empleado);
-		empleado=null;}
+	public static void despedirCuidador(int identificacion) {
+		for (Cuidador cuidador:cuidadores) {
+			if (cuidador.getIdentificacion()==identificacion) {
+				removeCuidadores(cuidador);
+				cuidador=null;
+				break;}}}
+	
+	public static void despedirVeterinario(int identificacion) {
+		for (Veterinario veterinario:veterinarios) {
+			if (veterinario.getIdentificacion()==identificacion) {
+				removeVeterinarios(veterinario);
+				veterinario=null;
+				break;}}}
 	
 	public static void addAnimales(Animal nuevo) {
 		animales.add(nuevo);}
 	
-	public static void addEmpleados(Empleado nuevo) {
-		empleados.add(nuevo);}
-	
 	public static void addVisitantes(Visitante nuevo) {
 		visitantes.add(nuevo);}
+	
+	public static void addVisitantesBoletas(Visitante nuevo) {
+		visitantesBoletas.add(nuevo);}
 	
 	public static void addHabitats(Habitat nuevo) {
 		habitats.add(nuevo);}
@@ -90,11 +110,11 @@ public class Administracion {
 	public static void removeAnimales(Animal eliminar) {
 		animales.remove(animales.indexOf(eliminar));}
 	
-	public static void removeEmpleados(Empleado eliminar) {
-		empleados.remove(empleados.indexOf(eliminar));}
-	
 	public static void removeVisitantes(Visitante eliminar) {
 		visitantes.remove(visitantes.indexOf(eliminar));}
+	
+	public static void removeVisitantesBoletas(Visitante eliminar) {
+		visitantesBoletas.remove(visitantesBoletas.indexOf(eliminar));}
 	
 	public static void removeHabitats(Habitat eliminar) {
 		habitats.remove(habitats.indexOf(eliminar));}
@@ -108,14 +128,11 @@ public class Administracion {
 	public static void removeCuidadores(Cuidador eliminar) {
 		cuidadores.remove(cuidadores.indexOf(eliminar));}
 	
-	public double getCaja() {
+	public static double getCaja() {
 		return caja;}
 	
 	public static List<Animal> getAnimales() {
 		return animales;}
-	
-	public static List<Empleado> getEmpleados() {
-		return empleados;}
 	
 	public static List<Visitante> getVisitantes() {
 		return visitantes;}
@@ -132,14 +149,12 @@ public class Administracion {
 	public static List<Cuidador> getCuidadores() {
 		return cuidadores;}
 	
-	public void setCaja(double nuevo) {
+	public static void setCaja(double nuevo) {
 		caja=nuevo;}
 	
 	public static void setAnimales(List<Animal> nuevo) {
 		animales=nuevo;}
 	
-	public static void setEmpleados(List<Empleado> nuevo) {
-		empleados=nuevo;}
 	
 	public static void setVisitantes(List<Visitante> nuevo) {
 		visitantes=nuevo;}
