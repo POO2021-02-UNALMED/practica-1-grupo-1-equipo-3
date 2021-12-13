@@ -15,7 +15,8 @@ public class Visitante {
 		this.edad=edad;
 		totalVisitantes++;
 		Administracion.addVisitantes(this);
-		Administracion.addVisitantesBoletas(this);}
+		Administracion.addVisitantesBoletas(this);
+		precioBoleta=calcularPrecioBoleta();}
 	
 	public void salidaVisitante() {
 		Visitante este=this;
@@ -23,7 +24,7 @@ public class Visitante {
 		Administracion.removeVisitantes(this);
 		este=null;}
 	
-	public void calcularPrecioBoleta() {
+	public double calcularPrecioBoleta() {
 		if (edad<15) {
 			precioBoleta=10000;
 			if (estrato<=3) {
@@ -33,7 +34,9 @@ public class Visitante {
 		else {
 			precioBoleta=20000;
 			if (estrato<=3) {
-				precioBoleta=precioBoleta*0.8;}}}	
+				precioBoleta=precioBoleta*0.8;}
+			}
+		return precioBoleta;}	
 	
 	public int getIdentificacion() {
 		return identificacion;}

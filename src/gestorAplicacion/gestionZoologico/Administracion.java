@@ -7,7 +7,7 @@ public class Administracion {
 	static private double caja;
 	static private List<Animal> animales=new ArrayList<Animal>();
 	static private List<Visitante> visitantes=new ArrayList<Visitante>();
-	static private List<Visitante> visitantesBoletas=new ArrayList<Visitante>();
+	static public List<Visitante> visitantesBoletas=new ArrayList<Visitante>();
 	static private List<Habitat> habitats= new ArrayList<Habitat>();
 	static private List<Especie> especies= new ArrayList<Especie>();
 	static private List<Veterinario> veterinarios= new ArrayList<Veterinario>();
@@ -19,7 +19,6 @@ public class Administracion {
 	
 	public static int pagoNomina() {
 		int pago=0;
-		calculoGanancias();
 		for (Veterinario veterinario:veterinarios) {
 			if (veterinario.isPagado()==false) {
 				pago=pago+veterinario.getSueldo();
@@ -30,7 +29,7 @@ public class Administracion {
 				pago=pago+cuidador.getSueldo();
 				cuidador.setPagado(true);
 			}}
-		caja=caja-pago;
+		caja-=pago;
 		return pago;}
 	
 	public void trasladarAnimal(Animal animal) {
@@ -58,8 +57,9 @@ public class Administracion {
 	public static double calculoGanancias() {
 		double ganancias=0;
 		for (Visitante visitante:visitantesBoletas) {
-			ganancias=ganancias+visitante.getPrecioBoleta();
-			removeVisitantesBoletas(visitante);}
+			ganancias+=visitante.getPrecioBoleta();
+			visitante=null;
+			}
 		caja=caja+ganancias;
 		return ganancias;}
 	

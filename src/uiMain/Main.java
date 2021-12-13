@@ -17,10 +17,13 @@ public class Main {
 		Animal x = new Animal(1, Especie.MAMIFERO, a, "M", 5, 70);
 		Animal y = new Animal(2, Especie.MAMIFERO, a, "F", 3, 55);
 		Animal z = new Animal(3, Especie.AVE, b, "M", 2, 5);
-		Cuidador xx = new Cuidador(1, "Jorge", 750, Especie.MAMIFERO);
-		Cuidador yy = new Cuidador(2, "Johanna", 750, Especie.MAMIFERO);
-		Cuidador zz = new Cuidador(3, "Camila", 650, Especie.AVE);
-		
+		Cuidador xx = new Cuidador(1, "Jorge", 7500, Especie.MAMIFERO);
+		Cuidador yy = new Cuidador(2, "Johanna", 7500, Especie.MAMIFERO);
+		Cuidador zz = new Cuidador(3, "Camila", 85000, Especie.AVE);
+		Visitante v1= new Visitante(1,"Jose",3,15);
+		Visitante v2= new Visitante(2,"Diego",5,30);
+		Administracion admin= new Administracion(0);
+		Veterinario vv= new Veterinario(11,"Elva",500,Especie.AVE);
 		int opcion;
 		do {
 			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");

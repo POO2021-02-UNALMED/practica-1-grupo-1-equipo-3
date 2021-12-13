@@ -36,7 +36,7 @@ public class Veterinario extends Empleado{
     @Override
     public String toString() {
         return ("Tipo de empleado: VETERINARIO" + 
-				"\nIdentificaciÃ³n: " + this.getIdentificacion() + 
+				"\nIdentificación: " + this.getIdentificacion() + 
 				"\nNombre: " + this.getNombre() + 
 				"\nSueldo: " + this.getSueldo() + 
 				"\nEspecie asignada: " + this.getEspecialidad());
