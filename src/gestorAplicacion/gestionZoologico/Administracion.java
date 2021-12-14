@@ -9,7 +9,7 @@ public class Administracion {
 	static private List<Visitante> visitantes=new ArrayList<Visitante>();
 	static public List<Visitante> visitantesBoletas=new ArrayList<Visitante>();
 	static private List<Habitat> habitats= new ArrayList<Habitat>();
-	static private List<Especie> especies= new ArrayList<Especie>();
+	static private List<Especie> especies= new ArrayList<Especie>(Arrays.asList(Especie.MAMIFERO, Especie.AVE, Especie.REPTIL, Especie.PEZ, Especie.ANFIBIO));
 	static private List<Veterinario> veterinarios= new ArrayList<Veterinario>();
 	static private List<Cuidador> cuidadores= new ArrayList<Cuidador>();
 	
@@ -32,26 +32,13 @@ public class Administracion {
 		caja-=pago;
 		return pago;}
 	
-	public void trasladarAnimal(Animal animal) {
-		removeAnimales(animal);
-		animal=null;}
+	public static void trasladarAnimal(Animal animal) {
+		animal.morir();}
 	
 	
-	public void adquirirAnimal(Especie especie) {
-		Scanner entrada=new Scanner(System.in);
-		Habitat habitatEspecie=null;
-		for (Animal animal:animales) {
-			if (animal.getEspecie()==especie) {
-				habitatEspecie=animal.getHabitat();
-				break;}}
-		if (habitatEspecie.cantidadAnimales()<habitatEspecie.getCapacidadMaxima()) {
-			int identificacion=entrada.nextInt();
-			String genero=entrada.nextLine();
-			int edad=entrada.nextInt();
-			float peso=entrada.nextFloat();
-			Animal x=new Animal(identificacion,especie,null,genero,edad,peso);
-			especie.getCuidadorAsignado().get(0).moverAnimal(x,habitatEspecie);
-			}
+	public static void adquirirAnimal(int identificacion, Especie especie, Habitat habitatEspecie, String genero, int edad, float peso) {
+		Animal animalAdquirido=new Animal(identificacion,especie,null,genero,edad,peso);
+		especie.getCuidadorAsignado().get(0).moverAnimal(animalAdquirido,habitatEspecie);
 	}
 	
 	public static double calculoGanancias() {

@@ -42,8 +42,14 @@ public class Main {
 				case 2: FuncionalidadCurar.curarAnimal(); break;
 				case 3: FuncionalidadCuidar.cuidarAnimal(); break;
 				case 4: FuncionalidadGestion.gestionAdministrativa(); break;
-				case 5: System.out.println("En proceso 5\n"); break;
-				case 6: System.out.println("¡Gracias por haber usado nuestra aplicación!\n");break;}
+				case 5: FuncionalidadAdquisicionTraslado.adquisicionTraslado(); break;
+				case 6: {
+					System.out.println("¡Gracias por haber usado nuestra aplicación!\n"); 
+					System.out.print("Presione Enter para continuar...");
+					Main.sc.nextLine();
+					break;
+				}
+				default: System.out.println("Opción incorrecta. Solo opciones del 1 al 6."); break;}
 		} while(opcion!=6);
 	}
 }

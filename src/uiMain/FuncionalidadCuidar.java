@@ -38,9 +38,10 @@ public class FuncionalidadCuidar {
 				System.out.println("\nAnimal seleccionado:\n");
 				System.out.println(animal.toString());
 				animalSeleccionado = animal;
-				return;
+				break;
 			}
 		}
+		return;
 	}
 	
 	static void seleccionarCuidador() {
@@ -60,9 +61,10 @@ public class FuncionalidadCuidar {
 				System.out.println("\nCuidador seleccionado:\n");
 				System.out.println(cuidador.toString());
 				cuidadorSeleccionado = cuidador;
-				return;
+				break;
 			}
 		}
+		return;
 	}
 	
 	static void animoAnimal() {
