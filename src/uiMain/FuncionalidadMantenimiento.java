@@ -17,8 +17,7 @@ public class FuncionalidadMantenimiento {
 		seleccionarHabitat();
 		seleccionarCuidador();
 		limpiezaHabitat();
-		System.out.println("Presione Enter para continuar...");
-		Main.sc.nextLine();
+		Main.continuar();
 	}
 	
 	static void seleccionarHabitat() {

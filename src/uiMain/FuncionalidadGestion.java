@@ -19,7 +19,8 @@ public class FuncionalidadGestion {
 		//Se muestra el dinero con el que cuenta el zoológico en el banco
 		System.out.println("\nEn total el zoológico dispone de "+Administracion.getCaja()+"$ de presupuesto en el banco.");
 		//Se invoca el método pagarEmpelados con el cual se cambia el estado de pagado de los empleados para asi indicar que ya se les pagó
-		pagarEmpleados();}
+		pagarEmpleados();
+		Main.continuar();}
 	
 	static void pagarEmpleados() {
 		boolean estado=false;

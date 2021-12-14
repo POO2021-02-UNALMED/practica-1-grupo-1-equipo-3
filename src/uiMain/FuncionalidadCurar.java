@@ -21,8 +21,7 @@ public class FuncionalidadCurar {
         seleccionarVeterinario();
         saludAnimal();
 		seleccionarHabitat();
-		System.out.print("Presione Enter para continuar...");
-		Main.sc.nextLine();
+		Main.continuar();
 	}
 
     static void seleccionarAnimal() {

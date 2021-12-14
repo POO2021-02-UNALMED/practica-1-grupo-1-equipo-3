@@ -23,21 +23,23 @@ public class FuncionalidadAdquisicionTraslado {
 		switch(opcion) {
 			case 1: {
 				seleccionarEspecie("adquirir");
-				seleccionarHabitat();
-				ingresarAnimal();
+				boolean habitatsDisponibles = seleccionarHabitat();
+				if(habitatsDisponibles) ingresarAnimal();
 				break;
 			}
 			case 2: {
 				seleccionarEspecie("trasladar");
-				seleccionarAnimal();
-				Administracion.trasladarAnimal(animalSeleccionado);
-				System.out.print("\nANIMAL TRASLADADO EXITOSAMENTE");
+				boolean animalesDisponibles = seleccionarAnimal();
+				if(animalesDisponibles) {
+					Administracion.trasladarAnimal(animalSeleccionado);
+					System.out.println("\nANIMAL TRASLADADO EXITOSAMENTE\n");
+				}
 				break;
 			}
 			default: System.out.println("Opción incorrecta. Solo opciones 1 y 2."); break;
 		}
-		System.out.print("Presione Enter para continuar...");
-		Main.sc.nextLine();
+		Main.continuar();
+		return;
 	}
 	
 	static void seleccionarEspecie(String accion) {
@@ -54,7 +56,7 @@ public class FuncionalidadAdquisicionTraslado {
 		opcion = Main.leerOpcion();
 		
 		System.out.println("\nEspecie seleccionada:\n");
-		especieSeleccionada = Administracion.getEspecies().get(opcion+1);
+		especieSeleccionada = Administracion.getEspecies().get(opcion-1);
 		System.out.println("Nombre: " + especieSeleccionada.getNombre() +
 							"\nDieta: " + especieSeleccionada.getDieta() +
 							"\nPromedio de vida: " + String.valueOf(especieSeleccionada.getPromedioVida()));
@@ -64,7 +66,7 @@ public class FuncionalidadAdquisicionTraslado {
 	static boolean seleccionarHabitat() {
 		int id;
 		int habitats = 0;
-		System.out.println("Ahora elija el hábitat donde el animal que desea adquirir será depositado, ingresando su identificación:");
+		System.out.println("\nAhora elija el hábitat donde el animal que desea adquirir será depositado, ingresando su identificación:");
 		System.out.println("(Los hábitats listados corresponden únicamente a hábitats donde la especie de dicho animal puede ser depositada)\n");
 		System.out.println("Identificación; Nombre; Ambientación; Capacidad actual; Capacidad máxima");
 		
@@ -74,6 +76,7 @@ public class FuncionalidadAdquisicionTraslado {
 					System.out.println(String.valueOf(habitat.getIdentificacion()) + "; " + habitat.getNombre() + "; " + 
 							   habitat.getAmbientacion() + "; " + String.valueOf(habitat.cantidadAnimales()) + "; " +
 							   String.valueOf(habitat.getCapacidadMaxima()));
+					habitats++;
 					break;
 				}
 			}
@@ -103,9 +106,10 @@ public class FuncionalidadAdquisicionTraslado {
 		}
 	}
 	
-	static void seleccionarAnimal() {
+	static boolean seleccionarAnimal() {
 		int id;
-		System.out.println("Ahora elija el animal que desee trasladar, ingresando su identificación.\n");
+		int animales = 0;
+		System.out.println("\nAhora elija el animal que desee trasladar, ingresando su identificación.\n");
 		System.out.println("Identificación; Especie; Hábitat; Género; Edad; Peso");
 		
 		for(Animal animal : Administracion.getAnimales()) {
@@ -113,21 +117,29 @@ public class FuncionalidadAdquisicionTraslado {
 				System.out.println(String.valueOf(animal.getIdentificacion()) + "; " + animal.getEspecie().getNombre() + "; " + 
 						   animal.getHabitat().getNombre() + "; " + animal.getGenero() + "; " + 
 						   String.valueOf(animal.getEdad()) + "; " + String.valueOf(animal.getPeso()));
+				animales++;
 			}
 		}
 		
-		System.out.print("\n¿Cuál animal elije? (Identificación): ");
-		id = Main.leerOpcion();
+		if(animales == 0) {
+			System.out.println("\nNo se ha encontrado ningún animal de la especie solicitada para trasladar.");
+			System.out.println("TRASLADO CANCELADO\n");
+			return false;
+		} else {
 		
-		for(Animal animal : Administracion.getAnimales()) {
-			if(animal.getIdentificacion() == id) { 
-				System.out.println("\nAnimal seleccionado:\n");
-				System.out.println(animal.toString());
-				animalSeleccionado = animal;
-				break;
+			System.out.print("\n¿Cuál animal elije? (Identificación): ");
+			id = Main.leerOpcion();
+			
+			for(Animal animal : Administracion.getAnimales()) {
+				if(animal.getIdentificacion() == id) { 
+					System.out.println("\nAnimal seleccionado:\n");
+					System.out.println(animal.toString());
+					animalSeleccionado = animal;
+					break;
+				}
 			}
+			return true;
 		}
-		return;
 	}
 	
 	static void ingresarAnimal() {
@@ -135,7 +147,7 @@ public class FuncionalidadAdquisicionTraslado {
 		System.out.print("Identificación (Número): ");
 		int identificacion=Main.sc.nextInt();
 		System.out.print("Género (M o H): ");
-		String genero=Main.sc.nextLine();
+		String genero=Main.sc.next();
 		System.out.print("Edad (Número): ");
 		int edad=Main.sc.nextInt();
 		System.out.print("Peso (Número): ");

@@ -20,7 +20,7 @@ public class Administracion {
 	static private List<Animal> animales=new ArrayList<Animal>();
 	static private List<Visitante> visitantes=new ArrayList<Visitante>(); 
 	static private List<Habitat> habitats= new ArrayList<Habitat>();
-	static private List<Especie> especies= new ArrayList<Especie>(Arrays.asList(Especie.MAMIFERO, Especie.AVE, Especie.REPTIL, Especie.PEZ, Especie.ANFIBIO));
+	static private List<Especie> especies= new ArrayList<Especie>();
 	static private List<Veterinario> veterinarios= new ArrayList<Veterinario>();
 	static private List<Cuidador> cuidadores= new ArrayList<Cuidador>();
 	
@@ -62,8 +62,7 @@ public class Administracion {
 	 hábitat por un cuidador.
 	 No posee retorno. */
 	public static void adquirirAnimal(int identificacion, Especie especie, Habitat habitatEspecie, String genero, int edad, float peso) {
-		Animal animalAdquirido=new Animal(identificacion,especie,null,genero,edad,peso);
-		especie.getCuidadorAsignado().get(0).moverAnimal(animalAdquirido,habitatEspecie);}
+		Animal animalAdquirido=new Animal(identificacion,especie,habitatEspecie,genero,edad,peso);}
 	
 	/*Este método no recibe parámetros y su función es la de calcular la ganancia por días del zoológico.
 	 Para esto recorrera la lista de visitantes, obtendra el valor de precioBoleta y se lo sumará a una variable

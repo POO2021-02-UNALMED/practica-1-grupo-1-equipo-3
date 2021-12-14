@@ -15,8 +15,8 @@ public class FuncionalidadCuidar {
 		seleccionarAnimal();
 		seleccionarCuidador();
 		animoAnimal();
-		System.out.print("Presione Enter para continuar...");
-		Main.sc.nextLine();
+		Main.continuar();
+		return;
 	}
 	
 	static void seleccionarAnimal() {

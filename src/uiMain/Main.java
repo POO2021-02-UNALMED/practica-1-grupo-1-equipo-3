@@ -11,9 +11,17 @@ public class Main {
 	static int leerOpcion() {
 		return sc.nextInt();}
 	
+	static void continuar(){
+		System.out.println("Presione \"ENTER\" para continuar...");
+		Scanner continuar = new Scanner(System.in);
+		continuar.nextLine();
+	}
+	
 	public static void main(String args[]) {
 		Habitat a = new Habitat(1, "A1", "Sabana", 10);
 		Habitat b = new Habitat(2, "A2", "Jungla", 25);
+		Habitat jaulas = new Habitat(0, "0", "Artificial", 999);
+		Habitat veterinaria = new Habitat(0, "V", "Veterinaria", 99);
 		Animal x = new Animal(1, Especie.MAMIFERO, a, "M", 5, 70);
 		Animal y = new Animal(2, Especie.MAMIFERO, a, "F", 3, 55);
 		Animal z = new Animal(3, Especie.AVE, b, "M", 2, 5);
@@ -45,8 +53,7 @@ public class Main {
 				case 5: FuncionalidadAdquisicionTraslado.adquisicionTraslado(); break;
 				case 6: {
 					System.out.println("¡Gracias por haber usado nuestra aplicación!\n"); 
-					System.out.print("Presione Enter para continuar...");
-					Main.sc.nextLine();
+					continuar();
 					break;
 				}
 				default: System.out.println("Opción incorrecta. Solo opciones del 1 al 6."); break;}
