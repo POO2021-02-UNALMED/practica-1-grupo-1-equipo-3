@@ -19,7 +19,7 @@ public class Main {
 		Animal z = new Animal(3, Especie.AVE, b, "M", 2, 5);
 		Cuidador xx = new Cuidador(1, "Jorge", 7500, Especie.MAMIFERO);
 		Cuidador yy = new Cuidador(2, "Johanna", 7500, Especie.MAMIFERO);
-		Cuidador zz = new Cuidador(3, "Camila", 85000, Especie.AVE);
+		Cuidador zz = new Cuidador(3, "Camila", 200200, Especie.AVE);
 		Visitante v1= new Visitante(1,"Jose",3,15);
 		Visitante v2= new Visitante(2,"Diego",5,30);
 		Administracion admin= new Administracion(0);

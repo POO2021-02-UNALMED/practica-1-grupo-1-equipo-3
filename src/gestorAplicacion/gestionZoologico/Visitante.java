@@ -1,3 +1,10 @@
+//CLASE CREADA POR JOSÉ DAVID CARDONA
+
+/*La clase visitante se crea con el fin de saber quienes son las personas que ingresan a visitar el zoológico. Se cuenta con el atributo
+ identificacion, nombre, estrato socioeconómico, edad, precio boleta, el atributo estático totalVisitantes que lleva cuentas del número
+ de visitantes que han ingresado el zoológico y el atributo pagado para saber si ya pagó su boleta (Necesario en el método calcularGanancias
+ de la clase Administracion para no sumar varias veces el precio de la boleta de un mismo visitante)*/
+
 package gestorAplicacion.gestionZoologico;
 
 public class Visitante {
@@ -7,23 +14,31 @@ public class Visitante {
 	private int edad;
 	private double precioBoleta;
 	private static int totalVisitantes;
+	private boolean pagado=false;
 
+	/*Constructor de la clase Visitante que recibe como parámetros la identificación, el nombre, el estrato y la edad del visitante.*/
 	public Visitante(int identificacion, String nombre, int estrato, int edad) {
 		this.identificacion=identificacion;
 		this.nombre=nombre;
 		this.estrato=estrato;
 		this.edad=edad;
-		totalVisitantes++;
-		Administracion.addVisitantes(this);
-		Administracion.addVisitantesBoletas(this);
-		precioBoleta=calcularPrecioBoleta();}
+		totalVisitantes++;  //Cada que se crea un objeto visitante, se suma en una unidad el atributo totalVisitantes
+		Administracion.addVisitantes(this); //Cada que se crea un objeto visitante, se agrega al atributo visitantes de la clase adminitracion. Necesario para el calculo de ganancias
+		precioBoleta=calcularPrecioBoleta();} //El atributo de precio boleta está dado por el método calcularPrecioBoleta
 	
+	/*Este método no recibe parámetros y su función es la destrucción del objeto visitante que lo invocó con el proposito de indicar que salió
+	 del zoológico. Elimina a ese objeto de la lista de visitantes solo cuando halla pagado el precio de su boleta.
+	 No tiene ningún retorno.*/
 	public void salidaVisitante() {
-		Visitante este=this;
-		totalVisitantes--;
-		Administracion.removeVisitantes(this);
-		este=null;}
+		if (pagado==true) {
+			Visitante este=this;
+			Administracion.removeVisitantes(this);
+			este=null;}
+		}
 	
+	/*Este metodo no recibe parámetros y su función es la de calcular el atributo precioBoleta del visitante. Para esto es tenido en cuenta el
+	 estrato y la edad; Dependiendo de los valores en estos dos parámetros, el precio variará.
+	 Tiene como retorno el valor de precioBoleta */ 
 	public double calcularPrecioBoleta() {
 		if (edad<15) {
 			precioBoleta=10000;
@@ -38,6 +53,7 @@ public class Visitante {
 			}
 		return precioBoleta;}	
 	
+	// DE ACÁ PARA ABAJO ESÁN LOS MÉTODOS GET Y SET
 	public int getIdentificacion() {
 		return identificacion;}
 	
@@ -56,6 +72,9 @@ public class Visitante {
 	public static int getTotalVisitantes() {
 		return totalVisitantes;}
 	
+	public boolean isPagado() {
+		return pagado;}
+	
 	public void setIdentificacion(int nuevo) {
 		identificacion=nuevo;}
 	
@@ -72,5 +91,8 @@ public class Visitante {
 		precioBoleta=nuevo;}
 	
 	public static void setTotalVisitantes(int nuevo) {
-		totalVisitantes=nuevo;}}
+		totalVisitantes=nuevo;}
+	
+	public void setPagado(boolean nuevo) {
+		pagado=nuevo;}}
 
