@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import gestorAplicacion.gestionZoologico.Administracion;
 import gestorAplicacion.gestionZoologico.Cuidador;
 //import gestorAplicacion.animalesZoologico.Animal;
+import gestorAplicacion.gestionZoologico.Veterinario;
 
 public enum Especie {
 
@@ -20,9 +21,10 @@ public enum Especie {
 
     //private Map<String, Integer> dicEspecie = new HashMap<String, Integer>();
     
+    private ArrayList<Veterinario> veterinarioAsignado = new ArrayList<Veterinario>();
     private ArrayList<Cuidador> cuidadorAsignado = new ArrayList<Cuidador>();
     private ArrayList<Animal> animales = new ArrayList<Animal>();
-
+    
     private Especie(String nombre, String dieta, int promedioVida) {
         this.nombre = nombre;
         this.dieta = dieta;
@@ -85,6 +87,22 @@ public enum Especie {
 
     public static int getTotalespecie() {
         return TOTALESPECIE;
+    }
+
+    public ArrayList<Veterinario> getVeterinarioAsignado() {
+        return veterinarioAsignado;
+    }
+
+    public void setVeterinarioAsignado(ArrayList<Veterinario> veterinarioAsignado) {
+        this.veterinarioAsignado = veterinarioAsignado;
+    }
+
+    public void removeVeterinarioAsignado(Veterinario eliminar) {
+        veterinarioAsignado.remove(veterinarioAsignado.indexOf(eliminar));
+    }
+
+    public void addVeterinarioAsignado(Veterinario nuevo) {
+        veterinarioAsignado.add(nuevo);
     }
 
     /*
