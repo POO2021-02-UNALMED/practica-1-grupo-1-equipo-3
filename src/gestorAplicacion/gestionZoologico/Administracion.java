@@ -60,6 +60,7 @@ public class Administracion {
 			ganancias+=visitante.getPrecioBoleta();
 			visitante=null;
 			}
+		visitantesBoletas.clear();
 		caja=caja+ganancias;
 		return ganancias;}
 	

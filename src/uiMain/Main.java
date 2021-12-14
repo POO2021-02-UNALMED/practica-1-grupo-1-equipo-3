@@ -38,8 +38,8 @@ public class Main {
 			opcion=leerOpcion();
 			System.out.println();
 			switch(opcion) {
-				case 1: System.out.println("En proceso 1\n"); break;
-				case 2: System.out.println("En proceso 2\n"); break;
+				case 1: FuncionalidadMantenimiento.mantenimientoHabitat(); break;
+				case 2: FuncionalidadCurar.curarAnimal(); break;
 				case 3: FuncionalidadCuidar.cuidarAnimal(); break;
 				case 4: FuncionalidadGestion.gestionAdministrativa(); break;
 				case 5: System.out.println("En proceso 5\n"); break;

@@ -22,8 +22,8 @@ public class FuncionalidadCurar {
 
     static void seleccionarAnimal() {
 		int id;
-		System.out.println("Elija primero el animal que desee revisar, ingresando su identificaci贸n.\n");
-		System.out.println("Identificaci贸n; Especie; H谩bitat; G茅nero; Edad; Peso");
+		System.out.println("Elija primero el animal que desee revisar, ingresando su identificaci髇.\n");
+		System.out.println("Identificaci髇; Especie; H醔itat; G閚ero; Edad; Peso");
 		
 		for(Animal animal : Administracion.getAnimales()) {
 			System.out.println(String.valueOf(animal.getIdentificacion()) + "; " + animal.getEspecie().getNombre() + "; " + 
@@ -31,7 +31,7 @@ public class FuncionalidadCurar {
 							   String.valueOf(animal.getEdad()) + "; " + String.valueOf(animal.getPeso()));
 		}
 		
-		System.out.print("\n驴Cu谩l animal elije? (Identificaci贸n): ");
+		System.out.print("\n緾u醠 animal elije? (Identificaci髇): ");
 		id = Main.leerOpcion();
 		
 		for(Animal animal : Administracion.getAnimales()) {
@@ -46,14 +46,14 @@ public class FuncionalidadCurar {
 
     static void seleccionarVeterinario() {
 		int id;
-		System.out.println("\nAhora elija el veterinario que desee que revise al animal, ingresando su identificaci贸n.\n");
-		System.out.println("Identificaci贸n; Nombre; Especie asignada");
+		System.out.println("\nAhora elija el veterinario que desee que revise al animal, ingresando su identificaci髇.\n");
+		System.out.println("Identificaci髇; Nombre; Especie asignada");
 		
 		for(Veterinario veterinario : animalSeleccionado.getEspecie().getVeterinarioAsignado()) {
 			System.out.println(String.valueOf(veterinario.getIdentificacion()) + "; " + veterinario.getNombre() + "; " + veterinario.getEspecialidad().getNombre());
 		}
 		
-		System.out.print("\n驴Cu谩l veterinario elije? (Identificaci贸n) ");
+		System.out.print("\n緾u醠 veterinario elije? (Identificaci髇) ");
 		id = Main.leerOpcion();
 		
 		for(Veterinario veterinario : FuncionalidadCurar.animalSeleccionado.getEspecie().getVeterinarioAsignado()) {
@@ -67,13 +67,13 @@ public class FuncionalidadCurar {
 	}
 
     static void saludAnimal() {
-		System.out.println("\nVeterinario " + veterinarioSeleccionado.getNombre() + " procede a revisar al animal con identificaci贸n " + String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
+		System.out.println("\nVeterinario " + veterinarioSeleccionado.getNombre() + " procede a revisar al animal con identificaci髇 " + String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
 		
 		if(veterinarioSeleccionado.revisarAnimal(animalSeleccionado)) {
 			System.out.println("RESULTADO: El animal se encuentra con buen estado de salud.\n");
 		} else {
 			System.out.println("RESULTADO: El animal se encuentra con mal estado de salud.\n");
-			System.out.println("El veterinario " + veterinarioSeleccionado.getNombre() + "decide hacer curaci贸n al animal para mejorar su estado de salud.");
+			System.out.println("El veterinario " + veterinarioSeleccionado.getNombre() + "decide hacer curaci髇 al animal para mejorar su estado de salud.");
 			veterinarioSeleccionado.curarAnimal(animalSeleccionado);
 			if(animalSeleccionado.isAlimentado() && animalSeleccionado.isEstadoSalud() && animalSeleccionado.getHabitat().isLimpio()) {
 				animalSeleccionado.setEstadoAnimo(true);
@@ -81,8 +81,8 @@ public class FuncionalidadCurar {
 			if(veterinarioSeleccionado.revisarAnimal(animalSeleccionado)) {
 				System.out.println("Curar al animal ha dado buen resultado y este ahora se encuentra con buen estado de salud.");
 			} else {
-				System.out.println("Curar al animal no ha mejorado su estado de 谩nimo.");
-				System.out.println("Puede solicitar que se haga mantenimineto a su h谩bitat.");
+				System.out.println("Curar al animal no ha mejorado su estado de 醤imo.");
+				System.out.println("Puede solicitar que se haga mantenimineto a su h醔itat o que los alimenten.");
 			}
 		}
 		return;
