@@ -56,10 +56,8 @@ public class Administracion {
 	public static void trasladarAnimal(Animal animal) {
 		animal.morir();}
 	
-	/*Este método tiene como parámetro la especie de un animal que se quiere adquirir. Antes de esto debera de comprobar
-	 que el hábitat de la especie tenga capacidad para recibir un nuevo animal. En caso de que si tenga capacidad, se 
-	 creará un objeto Animal con las características que ingrese el usuario, y posteriormente sera movido a su respectivo
-	 hábitat por un cuidador.
+	/*Este método tiene como parámetros una identificación, la especie, el hábitat de la especie, el género, la edad y el peso
+	 del animal que se queiere adquirir y su función es la de crear un objeto animal con las anteriores características.
 	 No posee retorno. */
 	public static void adquirirAnimal(int identificacion, Especie especie, Habitat habitatEspecie, String genero, int edad, float peso) {
 		Animal animalAdquirido=new Animal(identificacion,especie,habitatEspecie,genero,edad,peso);}
