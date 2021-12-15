@@ -7,7 +7,11 @@
 
 package gestorAplicacion.gestionZoologico;
 
-public class Visitante {
+import java.io.Serializable;
+
+public class Visitante implements Serializable {
+	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
+	private static final long serialVersionUID=1L;
 	private int identificacion;
 	private String nombre;
 	private int estrato;

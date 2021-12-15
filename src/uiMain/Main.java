@@ -1,5 +1,5 @@
 package uiMain;
-import baseDatos.*;
+import baseDatos.Serializador;
 import gestorAplicacion.animalesZoologico.*;
 import gestorAplicacion.gestionZoologico.*;
 
@@ -11,6 +11,15 @@ public class Main {
 	static int leerOpcion() {
 		return sc.nextInt();}
 	
+	/* El método salirDelSistema() permite guardar en los archivos las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
+	 * del objeto admin del tipo Administracion. */
+	private static void salirDelSistema() {
+		System.out.println("¡Gracias por haber usado nuestra aplicación! Vuelva pronto.\n");
+		Serializador.serializar();
+		continuar();
+		System.exit(0);
+	}
+	
 	static void continuar(){
 		System.out.println("Presione \"ENTER\" para continuar...");
 		Scanner continuar = new Scanner(System.in);
@@ -18,7 +27,7 @@ public class Main {
 	}
 	
 	public static void main(String args[]) {
-		Habitat a = new Habitat(1, "A1", "Sabana", 10);
+/*		Habitat a = new Habitat(1, "A1", "Sabana", 10);
 		Habitat b = new Habitat(2, "A2", "Jungla", 25);
 		Habitat jaulas = new Habitat(0, "0", "Artificial", 999);
 		Habitat veterinaria = new Habitat(0, "V", "Veterinaria", 99);
@@ -30,8 +39,8 @@ public class Main {
 		Cuidador zz = new Cuidador(3, "Camila", 200200, Especie.AVE);
 		Visitante v1= new Visitante(1,"Jose",3,15);
 		Visitante v2= new Visitante(2,"Diego",5,30);
-		Administracion admin= new Administracion(0);
 		Veterinario vv= new Veterinario(11,"Elva",500,Especie.AVE);
+*/		Administracion admin = new Administracion(0);
 		int opcion;
 		do {
 			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");
@@ -51,11 +60,7 @@ public class Main {
 				case 3: FuncionalidadCuidar.cuidarAnimal(); break;
 				case 4: FuncionalidadGestion.gestionAdministrativa(); break;
 				case 5: FuncionalidadAdquisicionTraslado.adquisicionTraslado(); break;
-				case 6: {
-					System.out.println("¡Gracias por haber usado nuestra aplicación!\n"); 
-					continuar();
-					break;
-				}
+				case 6: salirDelSistema(); break;
 				default: System.out.println("Opción incorrecta. Solo opciones del 1 al 6."); break;}
 		} while(opcion!=6);
 	}

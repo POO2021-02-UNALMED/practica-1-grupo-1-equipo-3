@@ -1,10 +1,12 @@
 package gestorAplicacion.animalesZoologico;
+
 import java.util.ArrayList;
-
 import gestorAplicacion.gestionZoologico.Administracion;
+import java.io.Serializable;
 
-public class Habitat {
-	
+public class Habitat implements Serializable {
+	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
+	private static final long serialVersionUID=1L;
 	private final int CAPACIDADMAXIMA;
 	private static int totalHabitats;
 	private int identificacion;

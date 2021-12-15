@@ -3,17 +3,19 @@ package gestorAplicacion.animalesZoologico;
 import java.util.ArrayList;
 import gestorAplicacion.gestionZoologico.Administracion;
 import gestorAplicacion.gestionZoologico.Cuidador;
-//import gestorAplicacion.animalesZoologico.Animal;
 import gestorAplicacion.gestionZoologico.Veterinario;
+import java.io.Serializable;
 
-public enum Especie {
+public enum Especie implements Serializable{
 
     MAMIFERO("Mamifero", "omnivoro", 40), 
     AVE("Ave", "granivoro", 25), 
     REPTIL("Reptil", "carnivoro", 35),
     PEZ("Pez", "omnivoro", 30),
     ANFIBIO("Anfibio", "insectivoro", 15);
-
+	
+	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
+	private static final long serialVersionUID=1L;
     private static final int TOTALESPECIE = 5;
     private String nombre;
     private String dieta;

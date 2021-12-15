@@ -12,6 +12,8 @@ import gestorAplicacion.animalesZoologico.*;
 import java.util.*;
 
 public class Cuidador extends Empleado {
+	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
+	private static final long serialVersionUID=1L;
 	private Especie especieAsignada;
 	
 	/* Constructor de la clase Cuidador: Recibe como parámetros los atributos identificación, nombre, sueldo 

@@ -15,7 +15,12 @@ import java.util.*;
 import gestorAplicacion.animalesZoologico.*;
 import gestorAplicacion.gestionZoologico.*;
 
-public class Administracion {
+import java.io.Serializable;
+import baseDatos.Deserializador;
+
+public class Administracion implements Serializable {
+	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
+	private static final long serialVersionUID = 1L;
 	static private double caja;
 	static private List<Animal> animales=new ArrayList<Animal>();
 	static private List<Visitante> visitantes=new ArrayList<Visitante>(); 
@@ -27,7 +32,11 @@ public class Administracion {
 	/*Constructor de la clase Administración: Recibe como parámetro el atributo caja, el cual corresponde 
 	al dinero con el que cuenta el zoológico en el banco.*/
 	public Administracion(int caja) {
-		this.caja=caja;}
+		this.caja=caja;
+		/* La siguiente línea permite cargar las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
+		 * al objeto Administracion creado. */
+		Deserializador.deserializar();
+	}
 
 	/*Este método no recibe parámetros y su función es la de calcular el pago total para todos los empleados
 	del zoológico. Esto lo hace recorriendo las listas de trabajadores que hay (veterinarios, cuidadores) luego

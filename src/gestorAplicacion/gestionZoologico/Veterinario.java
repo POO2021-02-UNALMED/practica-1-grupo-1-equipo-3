@@ -2,10 +2,10 @@ package gestorAplicacion.gestionZoologico;
 
 import gestorAplicacion.animalesZoologico.Animal;
 import gestorAplicacion.animalesZoologico.Especie;
-//import java.util.*;
 
-public class Veterinario extends Empleado{
-
+public class Veterinario extends Empleado {
+	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
+	private static final long serialVersionUID=1L;
     private Especie especialidad;
 
 
@@ -16,7 +16,6 @@ public class Veterinario extends Empleado{
         Administracion.addVeterinarios(this);
     }
 
-    // TODO: Terminar metodo.
     public boolean revisarAnimal(Animal animal) {
         if (animal.isEstadoSalud() == false) { return false;} 
         else {return true;}

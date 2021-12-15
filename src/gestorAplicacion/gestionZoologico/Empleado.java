@@ -10,7 +10,11 @@
 
 package gestorAplicacion.gestionZoologico;
 
-public abstract class Empleado {
+import java.io.Serializable;
+
+public abstract class Empleado implements Serializable {
+	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
+	private static final long serialVersionUID=1L;
 	private int identificacion;
 	private String nombre;
 	private int sueldo;
