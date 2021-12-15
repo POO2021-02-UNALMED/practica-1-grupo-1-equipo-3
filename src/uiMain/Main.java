@@ -27,10 +27,9 @@ public class Main {
 	}
 	
 	public static void main(String args[]) {
-/*		Habitat a = new Habitat(1, "A1", "Sabana", 10);
+		Administracion admin = new Administracion(0);
+		Habitat a = new Habitat(1, "A1", "Sabana", 10);
 		Habitat b = new Habitat(2, "A2", "Jungla", 25);
-		Habitat jaulas = new Habitat(0, "0", "Artificial", 999);
-		Habitat veterinaria = new Habitat(0, "V", "Veterinaria", 99);
 		Animal x = new Animal(1, Especie.MAMIFERO, a, "M", 5, 70);
 		Animal y = new Animal(2, Especie.MAMIFERO, a, "F", 3, 55);
 		Animal z = new Animal(3, Especie.AVE, b, "M", 2, 5);
@@ -40,7 +39,6 @@ public class Main {
 		Visitante v1= new Visitante(1,"Jose",3,15);
 		Visitante v2= new Visitante(2,"Diego",5,30);
 		Veterinario vv= new Veterinario(11,"Elva",500,Especie.AVE);
-*/		Administracion admin = new Administracion(0);
 		int opcion;
 		do {
 			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");

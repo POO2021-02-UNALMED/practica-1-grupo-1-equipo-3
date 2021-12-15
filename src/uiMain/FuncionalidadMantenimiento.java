@@ -47,7 +47,7 @@ public class FuncionalidadMantenimiento {
 	static void seleccionarCuidador() {
 		int id;
 		System.out.println("Ahora elija el cuidador que desee que revise el habitat, ingresando su identificación.\n");
-		System.out.println("Identificación; Nombre; Especie Asginada");
+		System.out.println("Identificación; Nombre; Especie Asignada");
 		
 		for(Cuidador cuidador: habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadorAsignado() ) {
 			System.out.println(cuidador.getIdentificacion() + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
