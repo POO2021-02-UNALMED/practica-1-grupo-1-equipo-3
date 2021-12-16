@@ -88,7 +88,7 @@ public class Administracion implements Serializable {
 	/*Este método recibe como parámetros la identificación, el nombre, el sueldo y la especie del cuidador que se quiere
 	 contratar y su función es la creación de un objeto cuidador con las características de los parámetros.
 	 Tiene como retorno el objeto Cuidador creado.*/
-	public Cuidador contratarCuidador(int identificacion, String nombre, int sueldo, Especie especieAsignada) {
+	public static Cuidador contratarCuidador(int identificacion, String nombre, int sueldo, Especie especieAsignada) {
 		Cuidador nuevo=new Cuidador(identificacion,nombre,sueldo,especieAsignada);
 		return nuevo;}
 	
@@ -96,7 +96,7 @@ public class Administracion implements Serializable {
 	 que se quiere contratar y su función es la creación de un objeto veterinario con las características de los 
 	 parámetros.
 	 Tiene como retorno el objeto veterinario creado.*/
-	public Veterinario contratarVeterinario(int identificacion, String nombre, int sueldo, Especie especialidad) {
+	public static Veterinario contratarVeterinario(int identificacion, String nombre, int sueldo, Especie especialidad) {
 		Veterinario nuevo=new Veterinario(identificacion,nombre,sueldo,especialidad);
 		return nuevo;}
 
