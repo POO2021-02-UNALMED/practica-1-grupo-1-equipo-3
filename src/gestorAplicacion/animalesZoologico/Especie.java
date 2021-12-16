@@ -10,8 +10,9 @@ que se encuentran en el zoológico.
 
 package gestorAplicacion.animalesZoologico;
 
-import gestorAplicacion.gestionZoologico.Administracion;
+import gestorAplicacion.gestionZoologico.*;
 import gestorAplicacion.gestionZoologico.Entidad;
+import java.util.ArrayList;
 
 public enum Especie implements Entidad {
 
@@ -27,7 +28,6 @@ public enum Especie implements Entidad {
     private String dieta;
     private int promedioVida;
 
-<<<<<<< HEAD
     private ArrayList<Veterinario> veterinariosAsignados = new ArrayList<Veterinario>();
     private ArrayList<Cuidador> cuidadoresAsignados = new ArrayList<Cuidador>();
     private ArrayList<Animal> animales = new ArrayList<Animal>();
@@ -37,10 +37,6 @@ public enum Especie implements Entidad {
     enum es una clase especial que limita la creación de objetos a los especificados en su clase 
     (por eso su constructor es privado, pero estos objetos pueden tener atributos como cualquier otra clase.
     */
-=======
-    //private Map<String, Integer> dicEspecie = new HashMap<String, Integer>();
-    
->>>>>>> 104d205c54cf185e099df86248672e9d4bb3c8f2
     private Especie(String nombre, String dieta, int promedioVida) {
         this.nombre = nombre;
         this.dieta = dieta;
@@ -58,7 +54,6 @@ public enum Especie implements Entidad {
 				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida()));
 	}
 
-<<<<<<< HEAD
     // Se crear los métodos set y get de la clase especie. 
     public ArrayList<Animal> getAnimales() {
         return animales;
@@ -92,8 +87,6 @@ public enum Especie implements Entidad {
         cuidadoresAsignados.add(nuevo);
     }
 
-=======
->>>>>>> 104d205c54cf185e099df86248672e9d4bb3c8f2
     public String getNombre() {
         return nombre;
     }
@@ -109,7 +102,6 @@ public enum Especie implements Entidad {
     public static int getTotalEspecies() {
         return TOTALESPECIE;
     }
-<<<<<<< HEAD
 
     public ArrayList<Veterinario> getVeterinariosAsignados() {
         return veterinariosAsignados;
@@ -126,6 +118,4 @@ public enum Especie implements Entidad {
     public void addVeterinarioAsignado(Veterinario nuevo) {
         veterinariosAsignados.add(nuevo);
     }
-=======
->>>>>>> 104d205c54cf185e099df86248672e9d4bb3c8f2
 }
