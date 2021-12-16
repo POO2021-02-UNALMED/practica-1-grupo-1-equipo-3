@@ -34,8 +34,8 @@ public class Main implements Serializable {
 	public static void main(String args[]) {
 		/* La siguiente línea permite cargar las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
 		 * al objeto Administracion creado. */
-		Deserializador.deserializar();
-/*		Administracion admin = new Administracion();
+//		Deserializador.deserializar();
+		Administracion admin = new Administracion();
 		Habitat a = new Habitat("A1", "Sabana", 10);
 		Habitat b = new Habitat("A2", "Jungla", 25);
 		Cuidador xx = new Cuidador("Jorge", 7500, Especie.MAMIFERO);
@@ -47,7 +47,7 @@ public class Main implements Serializable {
 		Animal z = new Animal(Especie.AVE, b, "M", 2, 5);
 		Visitante v1= new Visitante("Jose",3,15);
 		Visitante v2= new Visitante("Diego",5,30);
-*/		int opcion;
+		int opcion;
 		do {
 			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");
 			System.out.println("A continuación te presentamos funcionalidades disponibles:\n");

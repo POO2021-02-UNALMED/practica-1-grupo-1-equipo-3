@@ -133,11 +133,9 @@ public class FuncionalidadCurar {
 	}
 
     static void saludAnimal() {
-
 		System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificación " + String.valueOf(animalSeleccionado.getIdentificacion()) + " a la veterinaria.");
 		cuidadorSeleccionado.moverAnimal(animalSeleccionado, veterinaria);
-
-		System.out.println("\nVeterinario " + veterinarioSeleccionado.getNombre() + " procede a revisar al animal con identificación " + String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
+		System.out.println("Veterinario " + veterinarioSeleccionado.getNombre() + " procede a revisar al animal con identificación " + String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
 		
 		if(veterinarioSeleccionado.revisar(animalSeleccionado)) {
 			System.out.println("RESULTADO: El animal se encuentra con buen estado de salud.\n");
