@@ -53,7 +53,7 @@ public class FuncionalidadAdquisicionTraslado {
 				break;
 			}
 			// En caso que el usuario haya seleccionado una opción que no corresponda, se le informa.
-			default: System.out.println("Opción incorrecta. Solo opciones 1 y 2."); break;
+			default: System.out.println("OPCIÓN INCORRECTA: Solo opciones 1 y 2."); break;
 		}
 		/* El método continuar() de la clase Main es usado para que el usuario tenga tiempo de leer las salidas proporcionadas por la funcionalidad
 		 * Este método evita que se repita inmediatamente el ciclo de elegir la funcionalidad a realizar, esto por medio de esperar la acción del usuario */
@@ -101,6 +101,9 @@ public class FuncionalidadAdquisicionTraslado {
 		/* Con la variable "habitats" se contará, como ya se dijo, si hay por lo menos un hábitat de la especie seleccionada por el usuario
 		 * para depositar en dicho hábitat al animal a adquirir. */
 		int habitats = 0;
+		/* En la variable "identificaciones" se almacenarán las identificaciones de los animales listados, esto para verificar que el usuario
+		 * eligió una identificación válida. */
+		List<Integer> identificaciones = new ArrayList<Integer>();
 		System.out.println("\nAhora elija el hábitat donde el animal que desea adquirir será depositado, ingresando su identificación:");
 		System.out.println("(Los hábitats listados corresponden únicamente a hábitats donde la especie de dicho animal puede ser depositada)\n");
 		System.out.println("Identificación; Nombre; Ambientación; Capacidad Animales / Capacidad máxima");
@@ -116,8 +119,9 @@ public class FuncionalidadAdquisicionTraslado {
 					System.out.println(String.valueOf(habitat.getIdentificacion()) + "; " + habitat.getNombre() + "; " + 
 							   habitat.getAmbientacion() + "; " + String.valueOf(habitat.cantidadAnimales()) + " / " +
 							   String.valueOf(habitat.getCapacidadMaxima()));
-					// Como se dijo, se van contando los hábitats que cumplen con la verificación de especie.
+					// Como se dijo, se van contando los cuidadores que son listados, además de almacenar sus identificaciones.
 					habitats++;
+					identificaciones.add(habitat.getIdentificacion());
 					break;
 				}
 			}
@@ -135,15 +139,26 @@ public class FuncionalidadAdquisicionTraslado {
 			System.out.print("\n¿Cuál hábitat elije? (Identificación): ");
 			id = Main.leerOpcion();
 			
-			// Con el siguiente for se vuelve a recorrer el listado de todos los hábitats.
-			for(Habitat habitat : Administracion.getHabitats()) {
-				/* En caso que la identificación de un hábitat corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
-				 * del hábitat seleccionado y se asigna dicho hábitat al atributo estático "habitatSeleccionado", necesario para la adquisición. */
-				if(habitat.getIdentificacion() == id) { 
-					System.out.println("\nHábitat seleccionado:\n");
-					System.out.println(habitat.info());
-					habitatSeleccionado = habitat;
-					break;
+			boolean estado = true;
+			// A través del siguiente while se le solicita al usuario la identificación tantas veces como sea necesario hasta que esta sea correcta.
+			while(estado) {
+				if(identificaciones.contains(id)==false) {
+					System.out.println("\nIDENTIFICACIÓN INCORRECTA: Ingrese una válida.");
+					System.out.print("\n¿Cuál hábitat elije? (Identificación): ");
+					id = Main.leerOpcion();
+				} else {
+					// Con el siguiente for se vuelve a recorrer el listado de todos los hábitats.
+					for(Habitat habitat : Administracion.getHabitats()) {
+						/* En caso que la identificación de un hábitat corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
+						 * del hábitat seleccionado y se asigna dicho hábitat al atributo estático "habitatSeleccionado", necesario para la adquisición. */
+						if(habitat.getIdentificacion() == id) { 
+							System.out.println("\nHábitat seleccionado:\n");
+							System.out.println(habitat.info());
+							habitatSeleccionado = habitat;
+							estado = false;
+							break;
+						}
+					}
 				}
 			}
 			// Se retorna true para la verificación en la clase adquisicionTraslado(), como se dijo anteriormente.

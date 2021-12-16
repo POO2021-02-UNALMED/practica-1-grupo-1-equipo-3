@@ -13,12 +13,96 @@ import gestorAplicacion.gestionZoologico.*;
 
 public class FuncionalidadGestion {
 	static void gestionAdministrativa() {
-		//Inicialmente se muestran los visitantes que ha tenido el zoológico en el día, y luego invoca el método calculoGanancias() donde muestra las ganancias obtenidas por la entrada de los visitantes, y se suman esas ganancias a la caja.
-		System.out.println("El zoológico ha recibido a "+Visitante.getTotalVisitantes()+" visitantes en el día de hoy, y ha obtenido ganancias por un total de "+Administracion.calculoGanancias()+"$.");
-		//Se muestra el dinero con el que cuenta el zoológico en el banco
-		System.out.println("\nEn total el zoológico dispone de "+Administracion.getCaja()+"$ de presupuesto en el banco.");
-		//Se invoca el método pagarEmpelados con el cual se cambia el estado de pagado de los empleados para asi indicar que ya se les pagó
-		pagarEmpleados();
+		int opcion;
+		System.out.println("Primero elija qué desea hacer:\n");
+		System.out.println("1. Calcular ganancias");
+		System.out.println("2. Contratar empleado");
+		System.out.println("3. Despedir empleado");
+		System.out.println("4. Crear hábitat");
+		System.out.println("5. Borrar hábitat");
+		System.out.println("6. Consultar datos");
+		System.out.print("\n¿Cuál opción quiere realizar? ");
+		opcion = Main.leerOpcion();
+		System.out.println();
+		switch(opcion) {
+			case 1: {
+				//Inicialmente se muestran los visitantes que ha tenido el zoológico en el día, y luego invoca el método calculoGanancias() donde muestra las ganancias obtenidas por la entrada de los visitantes, y se suman esas ganancias a la caja.
+				System.out.println("El zoológico ha recibido a "+Visitante.getTotalVisitantes()+" visitantes en el día de hoy, y ha obtenido ganancias por un total de "+Administracion.calculoGanancias()+"$.");
+				//Se muestra el dinero con el que cuenta el zoológico en el banco
+				System.out.println("\nEn total el zoológico dispone de "+Administracion.getCaja()+"$ de presupuesto en el banco.");
+				//Se invoca el método pagarEmpelados con el cual se cambia el estado de pagado de los empleados para asi indicar que ya se les pagó
+				pagarEmpleados();
+				break;
+			}
+			case 2: {
+				System.out.println("Ahora elija qué desea hacer:\n");
+				System.out.println("1. Contratar cuidador");
+				System.out.println("2. Contratar veterinario");
+				opcion = Main.leerOpcion();
+				System.out.println();
+				switch(opcion) {
+					case 1: {
+						
+					}
+					case 2: {
+						
+					}
+					default: System.out.println("OPCIÓN INCORRECTA: Solo opciones 1 y 2."); break;
+				}
+			}
+			case 3: {
+				System.out.println("Ahora elija qué desea hacer:\n");
+				System.out.println("1. Despedir cuidador");
+				System.out.println("2. Despedir veterinario");
+				opcion = Main.leerOpcion();
+				System.out.println();
+				switch(opcion) {
+					case 1: {
+						
+					}
+					case 2: {
+						
+					}
+					default: System.out.println("OPCIÓN INCORRECTA: Solo opciones 1 y 2."); break;
+				}
+			}
+			case 4: {
+				
+			}
+			case 5: {
+				
+			}
+			case 6: {
+				System.out.println("Ahora elija qué desea hacer:\n");
+				System.out.println("1. Consultar datos animales");
+				System.out.println("2. Consultar datos hábitats");
+				System.out.println("3. Consultar datos cuidadores");
+				System.out.println("4. Consultar datos veterinarios");
+				System.out.println("5. Consultar datos visitantes");
+				System.out.print("\n¿Cuál opción quiere realizar? ");
+				opcion = Main.leerOpcion();
+				System.out.println();
+				switch(opcion) {
+					case 1: {
+					
+					}
+					case 2: {
+						
+					}
+					case 3: {
+						
+					}
+					case 4: {
+						
+					}
+					case 5: {
+						
+					}
+					default: System.out.println("OPCIÓN INCORRECTA: Solo opciones del 1 al 5."); break;
+				}
+			}
+			default: System.out.println("OPCIÓN INCORRECTA: Solo opciones del 1 al 6."); break;
+		}
 		Main.continuar();
 	}
 	
