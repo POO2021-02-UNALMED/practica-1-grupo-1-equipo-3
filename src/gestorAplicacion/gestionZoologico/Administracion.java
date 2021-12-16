@@ -103,8 +103,12 @@ public class Administracion implements Serializable {
 		for (Cuidador cuidador:cuidadores) {
 			if (cuidador.getIdentificacion()==identificacion) {
 				removeCuidadores(cuidador);
+				cuidador.getEspecieAsignada().removeCuidadorAsignado(cuidador);
 				cuidador=null;
-				break;}}}
+				break;
+			}
+		}
+	}
 	
 	/*Este método tiene como parámetro la idetificación de un veterinario, y su función es la de despedir al veterinario
 	 que tenga la identificación dada. Esto implica que el objeto quede apuntando a null y sea eliminado de las listas
@@ -114,6 +118,7 @@ public class Administracion implements Serializable {
 		for (Veterinario veterinario:veterinarios) {
 			if (veterinario.getIdentificacion()==identificacion) {
 				removeVeterinarios(veterinario);
+				veterinario.getEspecialidad().removeVeterinarioAsignado(veterinario);
 				veterinario=null;
 				break;}}}
 	

@@ -134,6 +134,7 @@ public class Animal implements Serializable, Entidad {
 		Animal este=this;
 		totalAnimales--;
 		habitat.removeAnimalesAsociados(this);
+		especie.removeAnimales(this);
 		Administracion.removeAnimales(this);
 		este = null;
 		

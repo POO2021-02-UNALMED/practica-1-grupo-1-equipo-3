@@ -37,17 +37,17 @@ public class FuncionalidadMantenimiento {
 			
 		}
 		
-		System.out.println("Cuál habitat elije(Identificacion)");
+		System.out.print("\n¿Cuál hábitat elije? (Identificacion) ");
 		id = Main.leerOpcion();
 		
 		while(id == 0) {
-			System.out.println("Por favor SELECCIONE otro habitat");
+			System.out.print("Por favor SELECCIONE otro hábitat ");
 			id = Main.leerOpcion();
 		}
 		
 		for(Habitat habitat: Administracion.getHabitats()) {
 			if(id == habitat.getIdentificacion()) {
-				System.out.println("\nHabitat seleccionado:\n");
+				System.out.println("\nHábitat seleccionado:\n");
 				System.out.println(habitat.info());
 				habitatSeleccionado = habitat;
 				return;
@@ -57,7 +57,7 @@ public class FuncionalidadMantenimiento {
 
 	static void seleccionarCuidador() {
 		int id;
-		System.out.println("Ahora elija el cuidador que desee que revise el habitat, ingresando su identificación.\n");
+		System.out.println("\nAhora elija el cuidador que desee que revise el habitat, ingresando su identificación.\n");
 		System.out.println("Identificación; Nombre; Especie Asignada");
 
 		for (Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadoresAsignados()) {
@@ -65,7 +65,7 @@ public class FuncionalidadMantenimiento {
 					+ cuidador.getEspecieAsignada().getNombre());
 		}
 
-		System.out.println("¿Cuál cuidador elige? (Identficación) ");
+		System.out.print("\n¿Cuál cuidador elige? (Identificación) ");
 		id = Main.leerOpcion();
 
 		for (Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadoresAsignados()) {
@@ -74,25 +74,23 @@ public class FuncionalidadMantenimiento {
 				System.out.println(cuidador.info());
 				cuidadorSeleccionado = cuidador;
 				return;
-
 			}
 		}
-
 	}
 
 	static void limpiezaHabitat() {
 		ArrayList<Integer> idAnimalesTristes = new ArrayList<Integer>();
 
-		System.out.println("Cuidador " + cuidadorSeleccionado.getNombre()
-				+ "procede a revisar el habitat con identficacion: " + habitatSeleccionado.getIdentificacion() + ".");
+		System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre()
+				+ " procede a revisar el habitat con identficacion " + habitatSeleccionado.getIdentificacion() + ".");
 
 		if (cuidadorSeleccionado.revisar(habitatSeleccionado)) {
-			System.out.println("RESULTADO: El habitat se encuentra en buen estado.");
+			System.out.println("RESULTADO: El habitat se encuentra en buen estado.\n");
 		}
 
 		else {
 			System.out.println("El cuidador " + cuidadorSeleccionado.getNombre()
-					+ "decide sacar a todos los animales para hacerle mantenimiento al habitat");
+					+ " decide sacar a todos los animales para hacer mantenimiento al habitat");
 			cuidadorSeleccionado.limpiarHabitat(habitatSeleccionado, jaula);
 
 			for (Animal animal : habitatSeleccionado.getAnimalesAsociados()) {
@@ -102,19 +100,15 @@ public class FuncionalidadMantenimiento {
 			}
 
 			if (idAnimalesTristes.size() == 0) {
-				System.out.println(
-						"Hacerle mantenimiento al habitat ha dado buenos resultados, no hay animales tristes en este.");
+				System.out.println("Hacerle mantenimiento al habitat ha dado buenos resultados, no hay animales tristes en este.");
 			} else {
-				System.out.println(
-						"Los animales con los siguientes números de identificacion no han mejorado sus estados de ánimo: ");
+				System.out.println("Los animales con los siguientes números de identificacion no han mejorado sus estados de ánimo: ");
 				for (int id : idAnimalesTristes) {
 					System.out.println(id);
 				}
-				System.out.println("Puede solicitar alimentarlos o que los revise el veterinario");
+				System.out.println("Puede solicitar alimentarlos o que los revise un veterinario");
 			}
-
 		}
 		return;
 	}
-
 }
