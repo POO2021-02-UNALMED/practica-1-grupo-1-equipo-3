@@ -11,7 +11,7 @@ package gestorAplicacion.gestionZoologico;
 import gestorAplicacion.animalesZoologico.*;
 import java.util.*;
 
-public class Cuidador extends Empleado implements Entidad {
+public class Cuidador extends Empleado {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
 	private Especie especieAsignada;
