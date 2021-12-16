@@ -25,7 +25,9 @@ public class Cuidador extends Empleado {
 	 * de los métodos addCuidadorAsignado de la clase Especie y addCuidadores de la clase Administracion. 
 	 */
 	public Cuidador(String nombre, int sueldo, Especie especieAsignada) {
-		super(Administracion.getCuidadores().size() + 1, nombre, sueldo);
+		super((Administracion.getCuidadores().isEmpty()) ? 1 : 
+				Administracion.getCuidadores().get(Administracion.getCuidadores().size() - 1).getIdentificacion() + 1, 
+				nombre, sueldo);
 		this.especieAsignada = especieAsignada;
 		Administracion.addCuidadores(this);
 	}

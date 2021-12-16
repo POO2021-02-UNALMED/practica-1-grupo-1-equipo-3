@@ -19,7 +19,11 @@ public class Animal implements Serializable, Entidad {
 	private boolean alimentado;
 	
 	public Animal(Especie especie, Habitat habitat, String genero, int edad, float peso) {
-		this.identificacion = Administracion.getAnimales().size() + 1;
+		if(Administracion.getAnimales().isEmpty()) {
+			this.identificacion = 1;
+		} else {
+			this.identificacion = Administracion.getAnimales().get(Administracion.getAnimales().size() - 1).getIdentificacion() + 1;
+		}
 		this.especie = especie;
 		this.habitat = habitat;
 		this.genero= genero;

@@ -22,7 +22,11 @@ public class Visitante implements Serializable, Entidad {
 
 	/*Constructor de la clase Visitante que recibe como parámetros la identificación, el nombre, el estrato y la edad del visitante.*/
 	public Visitante(String nombre, int estrato, int edad) {
-		this.identificacion=Administracion.getVisitantes().size() + 1;
+		if(Administracion.getVisitantes().isEmpty()) {
+			this.identificacion = 1;
+		} else {
+			this.identificacion = Administracion.getVisitantes().get(Administracion.getVisitantes().size() - 1).getIdentificacion() + 1;
+		}
 		this.nombre=nombre;
 		this.estrato=estrato;
 		this.edad=edad;

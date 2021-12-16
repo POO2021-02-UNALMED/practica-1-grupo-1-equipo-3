@@ -17,7 +17,11 @@ public class Habitat implements Serializable, Entidad {
 	private ArrayList<Animal> animalesAsociados = new ArrayList<Animal>();
 	
 	public Habitat(String nombre, String ambientacion, int capacidadMaxima) {
-		this.identificacion = Administracion.getHabitats().size() + 1;
+		if(Administracion.getHabitats().isEmpty()) {
+			this.identificacion = 1;
+		} else {
+			this.identificacion = Administracion.getHabitats().get(Administracion.getHabitats().size() - 1).getIdentificacion() + 1;
+		}
 		this.nombre = nombre;
 		this.ambientacion = ambientacion;
 		this.limpio = true;
