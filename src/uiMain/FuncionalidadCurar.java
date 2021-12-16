@@ -144,7 +144,6 @@ public class FuncionalidadCurar {
 			System.out.println("Cuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificación " + 
 								String.valueOf(animalSeleccionado.getIdentificacion()) + " de regreso a su hábitat.");
 			cuidadorSeleccionado.moverAnimal(animalSeleccionado, habitatSeleccionado);
-			System.out.println("REVISIÓN FINALIZADA.\n");
 		} else {
 			System.out.println("RESULTADO: El animal se encuentra con mal estado de salud.\n");
 			System.out.println("El veterinario " + veterinarioSeleccionado.getNombre() + "decide hacer curación al animal para mejorar su estado de salud.");
@@ -157,13 +156,13 @@ public class FuncionalidadCurar {
 				System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificación " + 
 						String.valueOf(animalSeleccionado.getIdentificacion()) + " de regreso a su hábitat.");
 				cuidadorSeleccionado.moverAnimal(animalSeleccionado, habitatSeleccionado);
-				System.out.println("REVISIÓN FINALIZADA.\n");
 			} else {
 				System.out.println("Curar al animal no ha mejorado su estado de ánimo.");
 				System.out.println("Puede solicitar que se haga mantenimineto a su hábitat o que los alimenten.");
 				System.out.println("El animal estará en revisión preventiva.");
 			}
 		}
+		System.out.println("REVISIÓN FINALIZADA\n");
 		return;
 	}
     
