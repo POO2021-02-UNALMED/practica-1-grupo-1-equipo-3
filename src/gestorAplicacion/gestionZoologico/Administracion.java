@@ -103,7 +103,6 @@ public class Administracion implements Serializable {
 		for (Cuidador cuidador:cuidadores) {
 			if (cuidador.getIdentificacion()==identificacion) {
 				removeCuidadores(cuidador);
-				cuidador.getEspecieAsignada().removeCuidadorAsignado(cuidador);
 				cuidador=null;
 				break;
 			}
@@ -118,7 +117,6 @@ public class Administracion implements Serializable {
 		for (Veterinario veterinario:veterinarios) {
 			if (veterinario.getIdentificacion()==identificacion) {
 				removeVeterinarios(veterinario);
-				veterinario.getEspecialidad().removeVeterinarioAsignado(veterinario);
 				veterinario=null;
 				break;}}}
 	

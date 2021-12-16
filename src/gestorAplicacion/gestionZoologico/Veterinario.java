@@ -12,7 +12,6 @@ public class Veterinario extends Empleado {
     public Veterinario(int identificacion, String nombre, int sueldo, Especie especialidad) {
         super(identificacion, nombre, sueldo);
         this.especialidad = especialidad;
-        especialidad.addVeterinarioAsignado(this);
         Administracion.addVeterinarios(this);
     }
     

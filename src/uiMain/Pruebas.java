@@ -20,7 +20,7 @@ public class Pruebas {
 		Animal obj6 = new Animal(12345, Especie.PEZ, obj1, "genero", 10, 2);
 
 		System.out.println(obj2.getEspecie());
-		System.out.println(Especie.getTotalespecie());
+		System.out.println(Especie.getTotalEspecies());
 
 		/*
 		Especie.ANFIBIO.addEspecie(obj2);

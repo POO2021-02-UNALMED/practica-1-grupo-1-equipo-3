@@ -13,68 +13,83 @@ public class FuncionalidadMantenimiento {
 	static Habitat jaula = new Habitat(0, "Jaula", "Ninguna", 75);
 
 	static void mantenimientoHabitat() {
-		seleccionarHabitat();
-		seleccionarCuidador();
-		limpiezaHabitat();
+		boolean habitatsDisponibles = seleccionarHabitat();
+		if(habitatsDisponibles) {
+			boolean cuidadoresDisponibles = seleccionarCuidador();
+			if(cuidadoresDisponibles) limpiezaHabitat();
+		}
 		Main.continuar();
 	}
 
-	static void seleccionarHabitat() {
+	static boolean seleccionarHabitat() {
 		int id;
+		int habitats = 0;
 		System.out.println("Elija primero el habitat que desee revisar, ingresando su identificación.\n");
 		System.out.println("Identificacion; Nombre; Ambientacion; Especie del Habitat; Cantidad Animales; Capacidad Maxima");
 		
 		for(Habitat habitat: Administracion.getHabitats()) {
-			if(habitat.getAnimalesAsociados().size() == 0) {
-				System.out.println(habitat.getIdentificacion() + "; " + habitat.getNombre() + "; " + 
-			    habitat.getAmbientacion() + "; No aplica; 0; " + habitat.getCapacidadMaxima() + " (Por favor NO SELECCIONAR este habitat)");
-							
-			}else {
+			if(habitat.getAnimalesAsociados().size() != 0) {
 				System.out.println(habitat.getIdentificacion() + "; " + habitat.getNombre() + "; " + 
 					    habitat.getAmbientacion() + "; " + habitat.getAnimalesAsociados().get(0).getEspecie().getNombre() + "; " 
 					    + habitat.cantidadAnimales() + "; " + habitat.getCapacidadMaxima());
+				habitats++;
 			}
 			
 		}
 		
-		System.out.print("\n¿Cuál hábitat elije? (Identificacion) ");
-		id = Main.leerOpcion();
-		
-		while(id == 0) {
-			System.out.print("Por favor SELECCIONE otro hábitat ");
+		if(habitats == 0) {
+			System.out.println("\nNo se ha encontrado ningún hábitat para revisar.");
+			System.out.println("MANTENIMIENTO CANCELADO\n");
+			return false;
+		} else {
+			System.out.print("\n¿Cuál hábitat elije? (Identificacion) ");
 			id = Main.leerOpcion();
-		}
-		
-		for(Habitat habitat: Administracion.getHabitats()) {
-			if(id == habitat.getIdentificacion()) {
-				System.out.println("\nHábitat seleccionado:\n");
-				System.out.println(habitat.info());
-				habitatSeleccionado = habitat;
-				return;
+			
+			while(id == 0) {
+				System.out.print("Por favor SELECCIONE otro hábitat ");
+				id = Main.leerOpcion();
 			}
+			
+			for(Habitat habitat: Administracion.getHabitats()) {
+				if(id == habitat.getIdentificacion()) {
+					System.out.println("\nHábitat seleccionado:\n");
+					System.out.println(habitat.info());
+					habitatSeleccionado = habitat;
+					
+				}
+			}
+			return true;
 		}
 	}
 
-	static void seleccionarCuidador() {
+	static boolean seleccionarCuidador() {
 		int id;
-		System.out.println("\nAhora elija el cuidador que desee que revise el habitat, ingresando su identificación.\n");
+		int cuidadores = 0;
+		System.out.println("\nAhora elija el cuidador que desee que revise el hábitat, ingresando su identificación.\n");
 		System.out.println("Identificación; Nombre; Especie Asignada");
 
-		for (Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadoresAsignados()) {
-			System.out.println(cuidador.getIdentificacion() + "; " + cuidador.getNombre() + "; "
-					+ cuidador.getEspecieAsignada().getNombre());
+		for (Cuidador cuidador : Administracion.getCuidadores()) {
+			System.out.println(cuidador.getIdentificacion() + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
+			cuidadores++;
 		}
-
-		System.out.print("\n¿Cuál cuidador elige? (Identificación) ");
-		id = Main.leerOpcion();
-
-		for (Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadoresAsignados()) {
-			if (cuidador.getIdentificacion() == id) {
-				System.out.println("Cuidador seleccionado: \n");
-				System.out.println(cuidador.info());
-				cuidadorSeleccionado = cuidador;
-				return;
+		
+		if(cuidadores == 0) {
+			System.out.println("\nNo se ha encontrado ningún cuidador para que revise el hábitat.");
+			System.out.println("MANTENIMIENTO CANCELADO\n");
+			return false;
+		} else {
+			System.out.print("\n¿Cuál cuidador elige? (Identificación) ");
+			id = Main.leerOpcion();
+	
+			for (Cuidador cuidador : Administracion.getCuidadores()) {
+				if (cuidador.getIdentificacion() == id) {
+					System.out.println("Cuidador seleccionado: \n");
+					System.out.println(cuidador.info());
+					cuidadorSeleccionado = cuidador;
+					break;
+				}
 			}
+			return true;
 		}
 	}
 
