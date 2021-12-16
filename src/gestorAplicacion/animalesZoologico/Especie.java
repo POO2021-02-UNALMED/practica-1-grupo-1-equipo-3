@@ -1,3 +1,13 @@
+// CLASE CREADA POR Juan José Monsalve Marín
+
+/*
+La clase “Especie”  de tipo Enum se crea con el fin de definir los 5 únicos posibles objetos que se podrán crear de esta clase, 
+los cuales son MAMIFERO, AVE, REPTIL, PEZ y ANFIBIO cada uno de estos objetos cuenta con tres atributos. 
+Nombre de tipo String que corresponde al nombre de la especie, dieta de tipo String que corresponde a la dieta 
+de la especie que se encuentra en el zoológico y promedioVida que corresponde al promedio de los animales de esa especie 
+que se encuentran en el zoológico.   
+*/
+
 package gestorAplicacion.animalesZoologico;
 
 import java.util.ArrayList;
@@ -10,6 +20,7 @@ import java.io.Serializable;
 
 public enum Especie implements Serializable, Entidad {
 
+    // Se generan los 5 diferentes objetos de esta clase con sus respectivos atributos.
     MAMIFERO("Mamifero", "omnivoro", 40), 
     AVE("Ave", "granivoro", 25), 
     REPTIL("Reptil", "carnivoro", 35),
@@ -23,31 +34,25 @@ public enum Especie implements Serializable, Entidad {
     private String dieta;
     private int promedioVida;
 
-    //private Map<String, Integer> dicEspecie = new HashMap<String, Integer>();
-    
     private ArrayList<Veterinario> veterinariosAsignados = new ArrayList<Veterinario>();
     private ArrayList<Cuidador> cuidadoresAsignados = new ArrayList<Cuidador>();
     private ArrayList<Animal> animales = new ArrayList<Animal>();
     
+
+    /* 
+    enum es una clase especial que limita la creación de objetos a los especificados en su clase 
+    (por eso su constructor es privado, pero estos objetos pueden tener atributos como cualquier otra clase.
+    */
     private Especie(String nombre, String dieta, int promedioVida) {
         this.nombre = nombre;
         this.dieta = dieta;
         this.promedioVida = promedioVida;
         Administracion.addEspecies(this);
-
-        /*
-        dicEspecie.put("Mamifero", 0);
-        dicEspecie.put("Ave", 0);
-        dicEspecie.put("Reptil", 0);
-        dicEspecie.put("Pez", 0);
-        dicEspecie.put("Anfibio", 0);
-        */
-
     }
     
-    /* El m�todo info() es implementado de la interfaz Entidad y definido aqu�. Sirve para generar el String que ser� 
+    /* El m�todo info() es implementado de la interfaz Entidad y definido aqu�. Sirve para generar el String que ser� 
 	 * usado para imprimir por consola los datos de la especie en caso de ser requeridos en alguna de las funcionalidades 
-	 * de la aplicaci�n.
+	 * de la aplicaci�n.
 	 */
     public String info() {
 		return ("Nombre: " + this.getNombre() +
@@ -55,6 +60,7 @@ public enum Especie implements Serializable, Entidad {
 				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida()));
 	}
 
+    // Se crear los métodos set y get de la clase especie. 
     public ArrayList<Animal> getAnimales() {
         return animales;
     }
@@ -118,53 +124,4 @@ public enum Especie implements Serializable, Entidad {
     public void addVeterinarioAsignado(Veterinario nuevo) {
         veterinariosAsignados.add(nuevo);
     }
-
-    /*
-    public Map<String, Integer> getDicEspecie() {
-        return dicEspecie;
-    }
-
-    public void setDicEspecie(Map<String, Integer> dicEspecie) {
-        this.dicEspecie = dicEspecie;
-    }
-
-    public void addEspecie(Animal animal) {
-
-        if (animal.getEspecie().nombre == "Mamifero") {
-            this.dicEspecie.put("Mamifero", dicEspecie.get("Mamifero")+1);
-        }
-        else if (animal.getEspecie().nombre == "Ave") {
-            this.dicEspecie.put("Ave", dicEspecie.get("Ave")+1);
-        }
-        else if (animal.getEspecie().nombre == "Reptil") {
-            this.dicEspecie.put("Reptil", dicEspecie.get("Reptil")+1);
-        }
-        else if (animal.getEspecie().nombre == "Pez") {
-            this.dicEspecie.put("Pez", dicEspecie.get("Pez")+1);
-        }
-        else if (animal.getEspecie().nombre == "Anfibio") {
-            this.dicEspecie.put("Anfibio", dicEspecie.get("Anfibio")+1);
-        }
-        
-    }
-
-    public void removeEspecie(Animal animal) {
-
-        if (animal.getEspecie().nombre == "Mamifero") {
-            this.dicEspecie.put("Mamifero", dicEspecie.get("Mamifero")-1);
-        }
-        else if (animal.getEspecie().nombre == "Ave") {
-            this.dicEspecie.put("Ave", dicEspecie.get("Ave")-1);
-        }
-        else if (animal.getEspecie().nombre == "Reptil") {
-            this.dicEspecie.put("Reptil", dicEspecie.get("Reptil")-1);
-        }
-        else if (animal.getEspecie().nombre == "Pez") {
-            this.dicEspecie.put("Pez", dicEspecie.get("Pez")-1);
-        }
-        else if (animal.getEspecie().nombre == "Anfibio") {
-            this.dicEspecie.put("Anfibio", dicEspecie.get("Anfibio")-1);
-        }
-    }
-    */
 }
