@@ -63,16 +63,6 @@ public class Serializador {
 				} catch(IOException excepcion) {
 					excepcion.printStackTrace();
 				}
-			} else if(archivo.getAbsolutePath().contains("especies")) {
-				try {
-					fos = new FileOutputStream(archivo);
-					oos = new ObjectOutputStream(fos);
-					oos.writeObject(Administracion.getEspecies());
-				} catch(FileNotFoundException excepcion) {
-					excepcion.printStackTrace();
-				} catch(IOException excepcion) {
-					excepcion.printStackTrace();
-				}
 			} else if(archivo.getAbsolutePath().contains("habitats")) {
 				try {
 					fos = new FileOutputStream(archivo);

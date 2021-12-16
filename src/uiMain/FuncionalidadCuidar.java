@@ -90,12 +90,14 @@ public class FuncionalidadCuidar {
 		System.out.println("\nAhora elija el cuidador que desee que revise al animal, ingresando su identificación.\n");
 		System.out.println("Identificación; Nombre; Especie asignada");
 		
-		/* Con el siguiente for se obtienen cada uno de los cuidadores almacenandos en la lista de cuidadores asignados para la especie del 
-		 * animal a revisar. */
-		for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadoresAsignados()) {
-			// Esto se hace para imprimir los datos de cada uno de los cuidadores por pantalla para que el usuario seleccione el que va a revisar al animal.
-			System.out.println(String.valueOf(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
-			cuidadores++;
+		// Con el siguiente for se obtienen cada uno de los cuidadores almacenandos en la lista de cuidadores de la clase Administracion.
+		for(Cuidador cuidador : Administracion.getCuidadores()) {
+			/* Con el if se buscan los cuidadores que puedan revisar al animal de acuerdo a su especie, esto para imprimir los datos de cada 
+			 * uno de estos cuidadores por pantalla para que el usuario seleccione el que va a revisar al animal. */
+			if(cuidador.getEspecieAsignada() == animalSeleccionado.getEspecie()) {
+				System.out.println(String.valueOf(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
+				cuidadores++;
+			}
 		}
 		
 		// En caso que no haya ni un solo cuidadores que pueda revisar al animal, se le informa al usuario y la revisión queda cancelada.
@@ -110,8 +112,8 @@ public class FuncionalidadCuidar {
 			System.out.print("\n¿Cuál cuidador elije? (Identificación) ");
 			id = Main.leerOpcion();
 			
-			// Con el siguiente for se vuelve a recorrer el listado de todos los cuidadores asignados para la especie del animal a revisar.
-			for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadoresAsignados()) {
+			// Con el siguiente for se vuelve a recorrer el listado de todos los cuidadores en la lista de cuidadores de la clase Administracion.
+			for(Cuidador cuidador : Administracion.getCuidadores()) {
 				/* En caso que la identificación de un cuidador corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
 				 * del cuidador seleccionado y se asigna dicho cuidador al atributo estático "cuidadorSeleccionado", necesario para la revisión. */
 				if(cuidador.getIdentificacion() == id) { 

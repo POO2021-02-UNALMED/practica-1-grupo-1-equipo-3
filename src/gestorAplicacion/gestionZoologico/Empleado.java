@@ -13,13 +13,13 @@ package gestorAplicacion.gestionZoologico;
 import gestorAplicacion.animalesZoologico.Animal;
 import java.io.Serializable;
 
-public abstract class Empleado implements Serializable {
+public abstract class Empleado implements Serializable, Entidad {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
-	private int identificacion;
-	private String nombre;
-	private int sueldo;
-	private boolean pagado=false;
+	protected int identificacion;
+	protected String nombre;
+	protected int sueldo;
+	protected boolean pagado=false;
 	
 	
 	/* Constructor de la clase Empleado: Recibe como parámetros los atributos identificación, nombre 

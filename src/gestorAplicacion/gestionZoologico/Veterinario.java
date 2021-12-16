@@ -13,19 +13,24 @@ package gestorAplicacion.gestionZoologico;
 import gestorAplicacion.animalesZoologico.Animal;
 import gestorAplicacion.animalesZoologico.Especie;
 
-public class Veterinario extends Empleado implements Entidad {
+public class Veterinario extends Empleado {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
     private Especie especialidad;
 
+<<<<<<< HEAD
     /*  
     Constructor de la clase Veterinario: recibe como parámetros los atributos identificación, nombre y sueldo 
     los cuales hereda de la clase empleado. Por su parte recibe el parámetro especialidad de tipo especie.
     */
     public Veterinario(int identificacion, String nombre, int sueldo, Especie especialidad) {
         super(identificacion, nombre, sueldo);
+=======
+
+    public Veterinario(String nombre, int sueldo, Especie especialidad) {
+        super(Administracion.getVeterinarios().size() + 1, nombre, sueldo);
+>>>>>>> 104d205c54cf185e099df86248672e9d4bb3c8f2
         this.especialidad = especialidad;
-        especialidad.addVeterinarioAsignado(this);
         Administracion.addVeterinarios(this);
     }
     

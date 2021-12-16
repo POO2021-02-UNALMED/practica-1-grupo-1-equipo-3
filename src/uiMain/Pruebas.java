@@ -1,6 +1,5 @@
 package uiMain;
 
-import gestorAplicacion.*;
 import gestorAplicacion.animalesZoologico.Animal;
 import gestorAplicacion.animalesZoologico.Especie;
 import gestorAplicacion.animalesZoologico.Habitat;
@@ -11,16 +10,16 @@ public class Pruebas {
 	public static void main(String[] args) {
 
 		// -------------------pruebas juan j---------------------
-		Habitat obj1 = new Habitat(123, "nombre", "ambientacion", 100);
+		Habitat obj1 = new Habitat("nombre", "ambientacion", 100);
 
-		Animal obj2 = new Animal(12345, Especie.ANFIBIO, obj1, "genero", 10, 2);
-		Animal obj3 = new Animal(12345, Especie.AVE, obj1, "genero", 10, 2);
-		Animal obj4 = new Animal(12345, Especie.MAMIFERO, obj1, "genero", 10, 2);
-		Animal obj5 = new Animal(12345, Especie.REPTIL, obj1, "genero", 10, 2);
-		Animal obj6 = new Animal(12345, Especie.PEZ, obj1, "genero", 10, 2);
+		Animal obj2 = new Animal(Especie.ANFIBIO, obj1, "genero", 10, 2);
+		Animal obj3 = new Animal(Especie.AVE, obj1, "genero", 10, 2);
+		Animal obj4 = new Animal(Especie.MAMIFERO, obj1, "genero", 10, 2);
+		Animal obj5 = new Animal(Especie.REPTIL, obj1, "genero", 10, 2);
+		Animal obj6 = new Animal(Especie.PEZ, obj1, "genero", 10, 2);
 
 		System.out.println(obj2.getEspecie());
-		System.out.println(Especie.getTotalespecie());
+		System.out.println(Especie.getTotalEspecies());
 
 		/*
 		Especie.ANFIBIO.addEspecie(obj2);

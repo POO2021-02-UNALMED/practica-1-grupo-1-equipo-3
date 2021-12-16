@@ -10,15 +10,10 @@ que se encuentran en el zoológico.
 
 package gestorAplicacion.animalesZoologico;
 
-import java.util.ArrayList;
-
 import gestorAplicacion.gestionZoologico.Administracion;
 import gestorAplicacion.gestionZoologico.Entidad;
-import gestorAplicacion.gestionZoologico.Cuidador;
-import gestorAplicacion.gestionZoologico.Veterinario;
-import java.io.Serializable;
 
-public enum Especie implements Serializable, Entidad {
+public enum Especie implements Entidad {
 
     // Se generan los 5 diferentes objetos de esta clase con sus respectivos atributos.
     MAMIFERO("Mamifero", "omnivoro", 40), 
@@ -27,13 +22,12 @@ public enum Especie implements Serializable, Entidad {
     PEZ("Pez", "omnivoro", 30),
     ANFIBIO("Anfibio", "insectivoro", 15);
 	
-	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
-	private static final long serialVersionUID=1L;
     private static final int TOTALESPECIE = 5;
     private String nombre;
     private String dieta;
     private int promedioVida;
 
+<<<<<<< HEAD
     private ArrayList<Veterinario> veterinariosAsignados = new ArrayList<Veterinario>();
     private ArrayList<Cuidador> cuidadoresAsignados = new ArrayList<Cuidador>();
     private ArrayList<Animal> animales = new ArrayList<Animal>();
@@ -43,6 +37,10 @@ public enum Especie implements Serializable, Entidad {
     enum es una clase especial que limita la creación de objetos a los especificados en su clase 
     (por eso su constructor es privado, pero estos objetos pueden tener atributos como cualquier otra clase.
     */
+=======
+    //private Map<String, Integer> dicEspecie = new HashMap<String, Integer>();
+    
+>>>>>>> 104d205c54cf185e099df86248672e9d4bb3c8f2
     private Especie(String nombre, String dieta, int promedioVida) {
         this.nombre = nombre;
         this.dieta = dieta;
@@ -60,6 +58,7 @@ public enum Especie implements Serializable, Entidad {
 				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida()));
 	}
 
+<<<<<<< HEAD
     // Se crear los métodos set y get de la clase especie. 
     public ArrayList<Animal> getAnimales() {
         return animales;
@@ -93,6 +92,8 @@ public enum Especie implements Serializable, Entidad {
         cuidadoresAsignados.add(nuevo);
     }
 
+=======
+>>>>>>> 104d205c54cf185e099df86248672e9d4bb3c8f2
     public String getNombre() {
         return nombre;
     }
@@ -105,9 +106,10 @@ public enum Especie implements Serializable, Entidad {
         return promedioVida;
     }
 
-    public static int getTotalespecie() {
+    public static int getTotalEspecies() {
         return TOTALESPECIE;
     }
+<<<<<<< HEAD
 
     public ArrayList<Veterinario> getVeterinariosAsignados() {
         return veterinariosAsignados;
@@ -124,4 +126,6 @@ public enum Especie implements Serializable, Entidad {
     public void addVeterinarioAsignado(Veterinario nuevo) {
         veterinariosAsignados.add(nuevo);
     }
+=======
+>>>>>>> 104d205c54cf185e099df86248672e9d4bb3c8f2
 }

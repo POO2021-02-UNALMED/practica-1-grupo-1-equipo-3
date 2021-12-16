@@ -59,18 +59,6 @@ public class Deserializador {
 				} catch(ClassNotFoundException excepcion) {
 					excepcion.printStackTrace();
 				}
-			} else if(archivo.getAbsolutePath().contains("especies")) {
-				try {
-					fis = new FileInputStream(archivo);
-					ois = new ObjectInputStream(fis);
-					Administracion.setEspecies((List<Especie>) ois.readObject());
-				} catch(FileNotFoundException excepcion) {
-					excepcion.printStackTrace();
-				} catch(IOException excepcion) {
-					excepcion.printStackTrace();
-				} catch(ClassNotFoundException excepcion) {
-					excepcion.printStackTrace();
-				}
 			} else if(archivo.getAbsolutePath().contains("habitats")) {
 				try {
 					fis = new FileInputStream(archivo);
