@@ -38,13 +38,18 @@ public class Main implements Serializable {
 		Administracion admin = new Administracion();
 		Habitat a = new Habitat("A1", "Sabana", 10);
 		Habitat b = new Habitat("A2", "Jungla", 25);
+		a.setLimpio(true);
 		Cuidador xx = new Cuidador("Jorge", 7500, Especie.MAMIFERO);
 		Cuidador yy = new Cuidador("Johanna", 7500, Especie.MAMIFERO);
 		Cuidador zz = new Cuidador("Camila", 200200, Especie.AVE);
 		Veterinario vv= new Veterinario("Elva",500,Especie.AVE);
 		Animal x = new Animal(Especie.MAMIFERO, a, "M", 5, 70);
+		x.setEstadoAnimo(false);
 		Animal y = new Animal(Especie.MAMIFERO, a, "F", 3, 55);
+		y.setEstadoAnimo(false);
 		Animal z = new Animal(Especie.AVE, b, "M", 2, 5);
+		z.setEstadoAnimo(false);
+		z.setAlimentado(false);
 		Visitante v1= new Visitante("Jose",3,15);
 		Visitante v2= new Visitante("Diego",5,30);
 		int opcion;
