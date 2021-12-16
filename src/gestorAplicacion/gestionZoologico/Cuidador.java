@@ -11,7 +11,7 @@ package gestorAplicacion.gestionZoologico;
 import gestorAplicacion.animalesZoologico.*;
 import java.util.*;
 
-public class Cuidador extends Empleado implements Entidad {
+public class Cuidador extends Empleado {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
 	private Especie especieAsignada;
@@ -27,7 +27,6 @@ public class Cuidador extends Empleado implements Entidad {
 	public Cuidador(int identificacion, String nombre, int sueldo, Especie especieAsignada) {
 		super(identificacion, nombre, sueldo);
 		this.especieAsignada = especieAsignada;
-		especieAsignada.addCuidadorAsignado(this);
 		Administracion.addCuidadores(this);
 	}
 	
@@ -58,6 +57,7 @@ public class Cuidador extends Empleado implements Entidad {
 	public void moverAnimal(Animal animal, Habitat lugar) {
 		animal.getHabitat().removeAnimalesAsociados(animal);
 		animal.setHabitat(lugar);
+		lugar.addAnimalesAsociados(animal);
 	}
 	
 	/* Este método revisar() es heredado de la clase abstracta padre Empleado y definido aquí, además que aplica la 

@@ -33,7 +33,17 @@ public class Serializador {
 		}
 		
 		for(File archivo : archivos) {
-			if (archivo.getAbsolutePath().contains("animales")) {
+			if (archivo.getAbsolutePath().contains("administracion")) {
+				try {
+					fos = new FileOutputStream(archivo);
+					oos = new ObjectOutputStream(fos);
+					oos.writeObject(Administracion.getCaja());
+				} catch(FileNotFoundException excepcion) {
+					excepcion.printStackTrace();
+				} catch(IOException excepcion) {
+					excepcion.printStackTrace();
+				}
+			} else if (archivo.getAbsolutePath().contains("animales")) {
 				try {
 					fos = new FileOutputStream(archivo);
 					oos = new ObjectOutputStream(fos);

@@ -3,7 +3,7 @@ package gestorAplicacion.gestionZoologico;
 import gestorAplicacion.animalesZoologico.Animal;
 import gestorAplicacion.animalesZoologico.Especie;
 
-public class Veterinario extends Empleado implements Entidad {
+public class Veterinario extends Empleado {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
     private Especie especialidad;
@@ -12,7 +12,6 @@ public class Veterinario extends Empleado implements Entidad {
     public Veterinario(int identificacion, String nombre, int sueldo, Especie especialidad) {
         super(identificacion, nombre, sueldo);
         this.especialidad = especialidad;
-        especialidad.addVeterinarioAsignado(this);
         Administracion.addVeterinarios(this);
     }
     

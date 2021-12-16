@@ -13,29 +13,24 @@ package gestorAplicacion.gestionZoologico;
 
 import java.util.*;
 import gestorAplicacion.animalesZoologico.*;
-import gestorAplicacion.gestionZoologico.*;
 
 import java.io.Serializable;
-import baseDatos.Deserializador;
 
 public class Administracion implements Serializable {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID = 1L;
 	static private double caja;
 	static private List<Animal> animales=new ArrayList<Animal>();
-	static private List<Visitante> visitantes=new ArrayList<Visitante>(); 
-	static private List<Habitat> habitats= new ArrayList<Habitat>();
-	static private List<Especie> especies= new ArrayList<Especie>();
-	static private List<Veterinario> veterinarios= new ArrayList<Veterinario>();
 	static private List<Cuidador> cuidadores= new ArrayList<Cuidador>();
+	static private List<Especie> especies= new ArrayList<Especie>();
+	static private List<Habitat> habitats= new ArrayList<Habitat>();
+	static private List<Veterinario> veterinarios= new ArrayList<Veterinario>();
+	static private List<Visitante> visitantes=new ArrayList<Visitante>(); 
 	
 	/*Constructor de la clase Administración: Recibe como parámetro el atributo caja, el cual corresponde 
 	al dinero con el que cuenta el zoológico en el banco.*/
 	public Administracion(int caja) {
-		this.caja=caja;
-		/* La siguiente línea permite cargar las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
-		 * al objeto Administracion creado. */
-		Deserializador.deserializar();
+		Administracion.caja=caja;
 	}
 
 	/*Este método no recibe parámetros y su función es la de calcular el pago total para todos los empleados
@@ -69,7 +64,7 @@ public class Administracion implements Serializable {
 	 del animal que se queiere adquirir y su función es la de crear un objeto animal con las anteriores características.
 	 No posee retorno. */
 	public static void adquirirAnimal(int identificacion, Especie especie, Habitat habitatEspecie, String genero, int edad, float peso) {
-		Animal animalAdquirido=new Animal(identificacion,especie,habitatEspecie,genero,edad,peso);}
+		Animal animalAdquirido = new Animal(identificacion,especie,habitatEspecie,genero,edad,peso);}
 	
 	/*Este método no recibe parámetros y su función es la de calcular la ganancia por días del zoológico.
 	 Para esto recorrera la lista de visitantes, obtendra el valor de precioBoleta y se lo sumará a una variable
@@ -109,7 +104,10 @@ public class Administracion implements Serializable {
 			if (cuidador.getIdentificacion()==identificacion) {
 				removeCuidadores(cuidador);
 				cuidador=null;
-				break;}}}
+				break;
+			}
+		}
+	}
 	
 	/*Este método tiene como parámetro la idetificación de un veterinario, y su función es la de despedir al veterinario
 	 que tenga la identificación dada. Esto implica que el objeto quede apuntando a null y sea eliminado de las listas

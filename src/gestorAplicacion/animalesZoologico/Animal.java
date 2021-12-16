@@ -30,7 +30,6 @@ public class Animal implements Serializable, Entidad {
 		this.alimentado = true;
 		Animal.totalAnimales++;
 		habitat.addAnimalesAsociados(this);
-		especie.addAnimales(this);
 		Administracion.addAnimales(this);
 	}
 	
