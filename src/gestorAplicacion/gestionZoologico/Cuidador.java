@@ -57,6 +57,7 @@ public class Cuidador extends Empleado {
 	public void moverAnimal(Animal animal, Habitat lugar) {
 		animal.getHabitat().removeAnimalesAsociados(animal);
 		animal.setHabitat(lugar);
+		lugar.addAnimalesAsociados(animal);
 	}
 	
 	/* Este método revisar() es heredado de la clase abstracta padre Empleado y definido aquí, además que aplica la 
