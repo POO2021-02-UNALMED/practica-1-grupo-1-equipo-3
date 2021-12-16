@@ -30,8 +30,12 @@ public class Administracion implements Serializable {
 	/*Constructor de la clase Administración: Recibe como parámetro el atributo caja, el cual corresponde 
 	al dinero con el que cuenta el zoológico en el banco.*/
 	public Administracion(int caja) {
-		Administracion.caja=caja;
-	}
+		Administracion.caja=caja;}
+	
+	/*Sobrecarga del constructor de la clase Administracion. Se usa el this(0) para invocar el contrsuctor incial y de esa forma asignarle 0
+	 a la caja*/
+	public Administracion() {
+		this(0);}
 
 	/*Este método no recibe parámetros y su función es la de calcular el pago total para todos los empleados
 	del zoológico. Esto lo hace recorriendo las listas de trabajadores que hay (veterinarios, cuidadores) luego
