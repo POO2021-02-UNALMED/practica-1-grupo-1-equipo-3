@@ -1,4 +1,4 @@
-// CLASE CREADA POR JUAN JOSE MONSALVE MARAN
+// CLASE CREADA POR JUAN JOSE MONSALVE MARÍN
 
 /* 
 La clase Veterinario se crea con la finalidad de definir los diferentes atributos y metodos de los objetos de tipo veterinario. 
@@ -36,7 +36,7 @@ public class Veterinario extends Empleado {
 	 */
     public String info() {
         return ("Tipo de empleado: VETERINARIO" + 
-				"\nIdentificaciï¿½n: " + String.valueOf(this.getIdentificacion()) + 
+				"\nIdentificación: " + String.valueOf(this.getIdentificacion()) + 
 				"\nNombre: " + this.getNombre() + 
 				"\nSueldo: " + String.valueOf(this.getSueldo()) + 
 				"\nEspecie asignada: " + this.getEspecialidad().getNombre());
