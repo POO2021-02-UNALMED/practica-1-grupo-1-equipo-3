@@ -66,7 +66,7 @@ public class FuncionalidadAdquisicionTraslado {
 		int habitats = 0;
 		System.out.println("\nAhora elija el hábitat donde el animal que desea adquirir será depositado, ingresando su identificación:");
 		System.out.println("(Los hábitats listados corresponden únicamente a hábitats donde la especie de dicho animal puede ser depositada)\n");
-		System.out.println("Identificación; Nombre; Ambientación; Capacidad actual; Capacidad máxima");
+		System.out.println("Identificación; Nombre; Ambientación; Cantidad Animales; Capacidad Máxima");
 		
 		for(Habitat habitat : Administracion.getHabitats()) {
 			for(Animal animal : habitat.getAnimalesAsociados()) {

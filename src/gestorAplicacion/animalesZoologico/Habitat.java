@@ -34,8 +34,8 @@ public class Habitat implements Serializable, Entidad {
 		return ("Identificación: " + String.valueOf(this.getIdentificacion()) +
 				"\nNombre: " + this.getNombre() +
 				"\nAmbientación: " + this.getAmbientacion() +
-				"\nCapacidad actual / Capacidad máxima: " + String.valueOf(this.cantidadAnimales()) +
-				" / " + String.valueOf(this.getCapacidadMaxima()));
+				"\nCantidad de Animales actual: " + String.valueOf(this.cantidadAnimales()) +
+				"\nCapcidad Maxima : " + String.valueOf(this.getCapacidadMaxima()));
 	}
 	
 	public int getCapacidadMaxima() {
@@ -102,10 +102,11 @@ public class Habitat implements Serializable, Entidad {
 		 animalesAsociados.remove(animalesAsociados.indexOf(animal));
 	 }
 	 
-	 public String toString() {
-		String r = "Identificacion: " + identificacion  + "\nNombre: " + nombre + "\nAmbientacion: " + ambientacion + 
-		"\nEspecie del Habitat: " + animalesAsociados.get(0).getEspecie().getNombre() + "\nCapacidad: " + CAPACIDADMAXIMA;
-		return r;
-	 }
+	/* public String toString() {
+	*	String r = "Identificacion: " + identificacion  + "\nNombre: " + nombre + "\nAmbientacion: " + ambientacion + 
+	*	"\nEspecie del Habitat: " + animalesAsociados.get(0).getEspecie().getNombre() + "\nCapacidad: " + CAPACIDADMAXIMA;
+	*	return r;
+	 *}
+	 */
 
 }
