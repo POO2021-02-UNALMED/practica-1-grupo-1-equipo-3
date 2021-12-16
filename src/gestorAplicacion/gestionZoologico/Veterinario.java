@@ -1,10 +1,10 @@
-// CLASE CREADA POR JUAN JOSÉ MONSALVE MARÍN
+// CLASE CREADA POR JUAN JOSE MONSALVE MARAN
 
 /* 
-La clase Veterinario se crea con la finalidad de definir los diferentes atributos y métodos de los objetos de tipo veterinario. 
+La clase Veterinario se crea con la finalidad de definir los diferentes atributos y metodos de los objetos de tipo veterinario. 
 En esta clase se define el atributo "especialidad" el cual corresponde a la especie que cada veterinario esta especializado 
-en tratar. Se definen los métodos de revisar(), el cual se encarga de verificar el estado de salud de los animales del 
-zoológico y se define el método curarAnimal() el cual se encarga de que se implementen los cuidados y procedimientos 
+en tratar. Se definen los metodos de revisar(), el cual se encarga de verificar el estado de salud de los animales del 
+zoologico y se define el metodo curarAnimal() el cual se encarga de que se implementen los cuidados y procedimientos 
 necesarios para curar al animal. Esta clase hereda de la clase Empleado
 */
 
@@ -19,8 +19,8 @@ public class Veterinario extends Empleado {
     private Especie especialidad;
 
     /*  
-    Constructor de la clase Veterinario: recibe como parámetros los atributos identificación, nombre y sueldo 
-    los cuales hereda de la clase empleado. Por su parte recibe el parámetro especialidad de tipo especie.
+    Constructor de la clase Veterinario: recibe como paremetros los atributos identificacion, nombre y sueldo 
+    los cuales hereda de la clase empleado. Por su parte recibe el parametro especialidad de tipo especie.
     */
     public Veterinario(String nombre, int sueldo, Especie especialidad) {
     	super((Administracion.getVeterinarios().isEmpty()) ? 1 : 
@@ -30,21 +30,21 @@ public class Veterinario extends Empleado {
         Administracion.addVeterinarios(this);
     }
     
-    /* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
+    /* El metodo info() es implementado de la interfaz Entidad y definido aqui. Sirve para generar el String que sera 
 	 * usado para imprimir por consola los datos del veterinario en caso de ser requeridos en alguna de las funcionalidades 
-	 * de la aplicación.
+	 * de la aplicacion.
 	 */
     public String info() {
         return ("Tipo de empleado: VETERINARIO" + 
-				"\nIdentificación: " + String.valueOf(this.getIdentificacion()) + 
+				"\nIdentificaciï¿½n: " + String.valueOf(this.getIdentificacion()) + 
 				"\nNombre: " + this.getNombre() + 
 				"\nSueldo: " + String.valueOf(this.getSueldo()) + 
 				"\nEspecie asignada: " + this.getEspecialidad().getNombre());
     }
     
     /*
-    El método revisar(Animal animal) es el método encargado de verificar el estado de saludo de los animales del zoológico. 
-    Este método admite como parámetro un objeto de tipo Animal y con este verifica el estado de salud de los animales.  
+    El metodo revisar(Animal animal) es el metodo encargado de verificar el estado de saludo de los animales del zoologico. 
+    Este metodo admite como parametro un objeto de tipo Animal y con este verifica el estado de salud de los animales.  
     */
     public boolean revisar(Animal animal) {
         if (animal.isEstadoSalud() == false) { return false;} 
@@ -52,14 +52,14 @@ public class Veterinario extends Empleado {
     }
     
     /*
-    El método curarAnimal(Animal animal) se encarga de cambiar el estado de salud de un animal  del zoológico cuando se encuentra enfermo (false), 
-    luego de que un veterinario realice todos los procedimientos necesarios para curar al animal. Este método admite como parÃámetro un objeto de tipo animal.  
+    El metodo curarAnimal(Animal animal) se encarga de cambiar el estado de salud de un animal  del zoologico cuando se encuentra enfermo (false), 
+    luego de que un veterinario realice todos los procedimientos necesarios para curar al animal. Este metodo admite como parametro un objeto de tipo animal.  
     */
     public void curarAnimal(Animal animal) {
         animal.setEstadoSalud(true);
     }
     
-    // De aquí en adelante se definen los métodos set y get del atributo "especialidad".
+    // De aqui en adelante se definen los metodos set y get del atributo "especialidad".
     public Especie getEspecialidad() {
         return especialidad;
     }

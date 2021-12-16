@@ -1,11 +1,11 @@
-// CLASE CREADA POR JUAN JOSÉ MONSALVE MARÍN
+// CLASE CREADA POR JUAN JOSE MONSALVE MARIN
 
 /*
-La clase Especie de tipo Enum se crea con el fin de definir los 5 únicos posibles objetos que se podrán crear de esta clase, 
+La clase Especie de tipo Enum se crea con el fin de definir los 5 unicos posibles objetos que se podran crear de esta clase, 
 los cuales son MAMIFERO, AVE, REPTIL, PEZ y ANFIBIO, donde cada uno de estos objetos cuenta con tres atributos. 
 Nombre de tipo String que corresponde al nombre de la especie, dieta de tipo String que corresponde a la dieta 
-de la especie que se encuentra en el zoológico y promedioVida que corresponde al promedio de los animales de esa especie 
-que se encuentran en el zoológico.   
+de la especie que se encuentra en el zoologico y promedioVida que corresponde al promedio de los animales de esa especie 
+que se encuentran en el zoologico.   
 */
 
 package gestorAplicacion.animalesZoologico;
@@ -28,7 +28,7 @@ public enum Especie implements Entidad {
     private int promedioVida;
 
     /* 
-    Enum es una clase especial que limita la creación de objetos a los especificados en su clase 
+    Enum es una clase especial que limita la creacion de objetos a los especificados en su clase 
     (por eso su constructor es privado), pero estos objetos pueden tener atributos como cualquier otra clase.
     */
     private Especie(String nombre, String dieta, int promedioVida) {
@@ -38,9 +38,9 @@ public enum Especie implements Entidad {
         Administracion.addEspecies(this);
     }
     
-    /* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
+    /* El metodo info() es implementado de la interfaz Entidad y definido aqui. Sirve para generar el String que sera 
 	 * usado para imprimir por consola los datos de la especie en caso de ser requeridos en alguna de las funcionalidades 
-	 * de la aplicación.
+	 * de la aplicacion.
 	 */
     public String info() {
 		return ("Nombre: " + this.getNombre() +
@@ -48,7 +48,43 @@ public enum Especie implements Entidad {
 				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida()));
 	}
 
+<<<<<<< Updated upstream
     // De aquí en adelante se definen los métodos set y get de la clase especie. 
+=======
+    // De aqui en adelante se definen los metodos set y get de la clase especie. 
+    public ArrayList<Animal> getAnimales() {
+        return animales;
+    }
+
+    public void setAnimales(ArrayList<Animal> animales) {
+        this.animales = animales;
+    }
+
+    public ArrayList<Cuidador> getCuidadoresAsignados() {
+        return cuidadoresAsignados;
+    }
+
+    public void setCuidadoresAsignados(ArrayList<Cuidador> cuidadoresAsignados) {
+        this.cuidadoresAsignados = cuidadoresAsignados;
+    }
+    
+    public void removeAnimales(Animal eliminar) {
+    	animales.remove(animales.indexOf(eliminar));
+    }
+
+    public void addAnimales(Animal nuevo) {
+    	animales.add(nuevo);
+    }
+
+    public void removeCuidadorAsignado(Cuidador eliminar) {
+        cuidadoresAsignados.remove(cuidadoresAsignados.indexOf(eliminar));
+    }
+
+    public void addCuidadorAsignado(Cuidador nuevo) {
+        cuidadoresAsignados.add(nuevo);
+    }
+
+>>>>>>> Stashed changes
     public String getNombre() {
         return nombre;
     }
