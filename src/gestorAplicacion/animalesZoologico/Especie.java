@@ -50,38 +50,6 @@ public enum Especie implements Entidad {
 	}
 
     // De aquí en adelante se definen los métodos set y get de la clase especie. 
-    public ArrayList<Animal> getAnimales() {
-        return animales;
-    }
-
-    public void setAnimales(ArrayList<Animal> animales) {
-        this.animales = animales;
-    }
-
-    public ArrayList<Cuidador> getCuidadoresAsignados() {
-        return cuidadoresAsignados;
-    }
-
-    public void setCuidadoresAsignados(ArrayList<Cuidador> cuidadoresAsignados) {
-        this.cuidadoresAsignados = cuidadoresAsignados;
-    }
-    
-    public void removeAnimales(Animal eliminar) {
-    	animales.remove(animales.indexOf(eliminar));
-    }
-
-    public void addAnimales(Animal nuevo) {
-    	animales.add(nuevo);
-    }
-
-    public void removeCuidadorAsignado(Cuidador eliminar) {
-        cuidadoresAsignados.remove(cuidadoresAsignados.indexOf(eliminar));
-    }
-
-    public void addCuidadorAsignado(Cuidador nuevo) {
-        cuidadoresAsignados.add(nuevo);
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -96,21 +64,5 @@ public enum Especie implements Entidad {
 
     public static int getTotalEspecies() {
         return TOTALESPECIE;
-    }
-
-    public ArrayList<Veterinario> getVeterinariosAsignados() {
-        return veterinariosAsignados;
-    }
-
-    public void setVeterinariosAsignados(ArrayList<Veterinario> veterinariosAsignados) {
-        this.veterinariosAsignados = veterinariosAsignados;
-    }
-
-    public void removeVeterinarioAsignado(Veterinario eliminar) {
-        veterinariosAsignados.remove(veterinariosAsignados.indexOf(eliminar));
-    }
-
-    public void addVeterinarioAsignado(Veterinario nuevo) {
-        veterinariosAsignados.add(nuevo);
     }
 }
