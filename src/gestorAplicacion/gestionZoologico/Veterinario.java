@@ -1,3 +1,13 @@
+// CLASE CREADA POR JUAN JOSÉ MONSALVE MARÍN
+
+/* 
+La clase Veterinario se crea con la finalidad de definir los diferentes atributos y métodos de los objetos de tipo veterinario. 
+En esta clase se define el atributo "especialidad" el cual corresponde a la especie que cada veterinario esta especializado 
+en tratar. Se definen los métodos de revisar(), el cual se encarga de verificar el estado de salud de los animales del 
+zoológico y se define el método curarAnimal() el cual se encarga de que se implementen los cuidados y procedimientos 
+necesarios para curar al animal. Esta clase hereda de la clase Empleado
+*/
+
 package gestorAplicacion.gestionZoologico;
 
 import gestorAplicacion.animalesZoologico.Animal;
@@ -8,7 +18,10 @@ public class Veterinario extends Empleado {
 	private static final long serialVersionUID=1L;
     private Especie especialidad;
 
-
+    /*  
+    Constructor de la clase Veterinario: recibe como parámetros los atributos identificación, nombre y sueldo 
+    los cuales hereda de la clase empleado. Por su parte recibe el parámetro especialidad de tipo especie.
+    */
     public Veterinario(String nombre, int sueldo, Especie especialidad) {
     	super((Administracion.getVeterinarios().isEmpty()) ? 1 : 
 				Administracion.getVeterinarios().get(Administracion.getVeterinarios().size() - 1).getIdentificacion() + 1, 
@@ -28,16 +41,25 @@ public class Veterinario extends Empleado {
 				"\nSueldo: " + String.valueOf(this.getSueldo()) + 
 				"\nEspecie asignada: " + this.getEspecialidad().getNombre());
     }
-
+    
+    /*
+    El método revisar(Animal animal) es el método encargado de verificar el estado de saludo de los animales del zoológico. 
+    Este método admite como parámetro un objeto de tipo Animal y con este verifica el estado de salud de los animales.  
+    */
     public boolean revisar(Animal animal) {
         if (animal.isEstadoSalud() == false) { return false;} 
         else {return true;}
     }
-
+    
+    /*
+    El método curarAnimal(Animal animal) se encarga de cambiar el estado de salud de un animal  del zoológico cuando se encuentra enfermo (false), 
+    luego de que un veterinario realice todos los procedimientos necesarios para curar al animal. Este método admite como parÃámetro un objeto de tipo animal.  
+    */
     public void curarAnimal(Animal animal) {
         animal.setEstadoSalud(true);
     }
-
+    
+    // De aquí en adelante se definen los métodos set y get del atributo "especialidad".
     public Especie getEspecialidad() {
         return especialidad;
     }

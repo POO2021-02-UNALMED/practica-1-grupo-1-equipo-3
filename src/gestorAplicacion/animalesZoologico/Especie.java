@@ -1,11 +1,11 @@
-// CLASE CREADA POR Juan Jos√© Monsalve Mar√≠n
+// CLASE CREADA POR JUAN JOS… MONSALVE MARÕN
 
 /*
-La clase ‚ÄúEspecie‚Äù  de tipo Enum se crea con el fin de definir los 5 √∫nicos posibles objetos que se podr√°n crear de esta clase, 
-los cuales son MAMIFERO, AVE, REPTIL, PEZ y ANFIBIO cada uno de estos objetos cuenta con tres atributos. 
+La clase Especie de tipo Enum se crea con el fin de definir los 5 ˙nicos posibles objetos que se podr·n crear de esta clase, 
+los cuales son MAMIFERO, AVE, REPTIL, PEZ y ANFIBIO, donde cada uno de estos objetos cuenta con tres atributos. 
 Nombre de tipo String que corresponde al nombre de la especie, dieta de tipo String que corresponde a la dieta 
-de la especie que se encuentra en el zool√≥gico y promedioVida que corresponde al promedio de los animales de esa especie 
-que se encuentran en el zool√≥gico.   
+de la especie que se encuentra en el zoolÛgico y promedioVida que corresponde al promedio de los animales de esa especie 
+que se encuentran en el zoolÛgico.   
 */
 
 package gestorAplicacion.animalesZoologico;
@@ -28,14 +28,9 @@ public enum Especie implements Entidad {
     private String dieta;
     private int promedioVida;
 
-    private ArrayList<Veterinario> veterinariosAsignados = new ArrayList<Veterinario>();
-    private ArrayList<Cuidador> cuidadoresAsignados = new ArrayList<Cuidador>();
-    private ArrayList<Animal> animales = new ArrayList<Animal>();
-    
-
     /* 
-    enum es una clase especial que limita la creaci√≥n de objetos a los especificados en su clase 
-    (por eso su constructor es privado, pero estos objetos pueden tener atributos como cualquier otra clase.
+    Enum es una clase especial que limita la creaciÛn de objetos a los especificados en su clase 
+    (por eso su constructor es privado), pero estos objetos pueden tener atributos como cualquier otra clase.
     */
     private Especie(String nombre, String dieta, int promedioVida) {
         this.nombre = nombre;
@@ -44,9 +39,9 @@ public enum Especie implements Entidad {
         Administracion.addEspecies(this);
     }
     
-    /* El mÔøΩtodo info() es implementado de la interfaz Entidad y definido aquÔøΩ. Sirve para generar el String que serÔøΩ 
+    /* El mÈtodo info() es implementado de la interfaz Entidad y definido aquÌ. Sirve para generar el String que ser· 
 	 * usado para imprimir por consola los datos de la especie en caso de ser requeridos en alguna de las funcionalidades 
-	 * de la aplicaciÔøΩn.
+	 * de la aplicaciÛn.
 	 */
     public String info() {
 		return ("Nombre: " + this.getNombre() +
@@ -54,7 +49,7 @@ public enum Especie implements Entidad {
 				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida()));
 	}
 
-    // Se crear los m√©todos set y get de la clase especie. 
+    // De aquÌ en adelante se definen los mÈtodos set y get de la clase especie. 
     public ArrayList<Animal> getAnimales() {
         return animales;
     }
