@@ -1,11 +1,16 @@
 package uiMain;
-import baseDatos.Serializador;
+
 import gestorAplicacion.animalesZoologico.*;
 import gestorAplicacion.gestionZoologico.*;
+import java.io.Serializable;
+import baseDatos.Deserializador;
+import baseDatos.Serializador;
 
 import java.util.Scanner;
 
-public class Main {
+public class Main implements Serializable {
+	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
+	private static final long serialVersionUID = 1L;
 	static Scanner sc= new Scanner(System.in);
 	
 	static int leerOpcion() {
@@ -27,7 +32,10 @@ public class Main {
 	}
 	
 	public static void main(String args[]) {
-		Administracion admin = new Administracion(0);
+		/* La siguiente línea permite cargar las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
+		 * al objeto Administracion creado. */
+		Deserializador.deserializar();
+/*		Administracion admin = new Administracion(0);
 		Habitat a = new Habitat(1, "A1", "Sabana", 10);
 		Habitat b = new Habitat(2, "A2", "Jungla", 25);
 		Animal x = new Animal(1, Especie.MAMIFERO, a, "M", 5, 70);
@@ -39,7 +47,7 @@ public class Main {
 		Visitante v1= new Visitante(1,"Jose",3,15);
 		Visitante v2= new Visitante(2,"Diego",5,30);
 		Veterinario vv= new Veterinario(11,"Elva",500,Especie.AVE);
-		int opcion;
+*/		int opcion;
 		do {
 			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");
 			System.out.println("A continuación te presentamos funcionalidades disponibles:\n");

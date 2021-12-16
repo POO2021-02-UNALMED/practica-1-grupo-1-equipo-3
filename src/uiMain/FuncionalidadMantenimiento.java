@@ -60,7 +60,7 @@ public class FuncionalidadMantenimiento {
 		System.out.println("Ahora elija el cuidador que desee que revise el habitat, ingresando su identificación.\n");
 		System.out.println("Identificación; Nombre; Especie Asignada");
 
-		for (Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadorAsignado()) {
+		for (Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadoresAsignados()) {
 			System.out.println(cuidador.getIdentificacion() + "; " + cuidador.getNombre() + "; "
 					+ cuidador.getEspecieAsignada().getNombre());
 		}
@@ -68,7 +68,7 @@ public class FuncionalidadMantenimiento {
 		System.out.println("¿Cuál cuidador elige? (Identficación) ");
 		id = Main.leerOpcion();
 
-		for (Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadorAsignado()) {
+		for (Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadoresAsignados()) {
 			if (cuidador.getIdentificacion() == id) {
 				System.out.println("Cuidador seleccionado: \n");
 				System.out.println(cuidador.info());

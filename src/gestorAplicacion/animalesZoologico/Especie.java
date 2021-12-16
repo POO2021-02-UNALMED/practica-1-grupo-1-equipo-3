@@ -25,8 +25,8 @@ public enum Especie implements Serializable, Entidad {
 
     //private Map<String, Integer> dicEspecie = new HashMap<String, Integer>();
     
-    private ArrayList<Veterinario> veterinarioAsignado = new ArrayList<Veterinario>();
-    private ArrayList<Cuidador> cuidadorAsignado = new ArrayList<Cuidador>();
+    private ArrayList<Veterinario> veterinariosAsignados = new ArrayList<Veterinario>();
+    private ArrayList<Cuidador> cuidadoresAsignados = new ArrayList<Cuidador>();
     private ArrayList<Animal> animales = new ArrayList<Animal>();
     
     private Especie(String nombre, String dieta, int promedioVida) {
@@ -63,12 +63,12 @@ public enum Especie implements Serializable, Entidad {
         this.animales = animales;
     }
 
-    public ArrayList<Cuidador> getCuidadorAsignado() {
-        return cuidadorAsignado;
+    public ArrayList<Cuidador> getCuidadoresAsignados() {
+        return cuidadoresAsignados;
     }
 
-    public void setCuidadorAsignado(ArrayList<Cuidador> cuidadorAsignado) {
-        this.cuidadorAsignado = cuidadorAsignado;
+    public void setCuidadoresAsignados(ArrayList<Cuidador> cuidadoresAsignados) {
+        this.cuidadoresAsignados = cuidadoresAsignados;
     }
     
     public void removeAnimales(Animal eliminar) {
@@ -80,11 +80,11 @@ public enum Especie implements Serializable, Entidad {
     }
 
     public void removeCuidadorAsignado(Cuidador eliminar) {
-        cuidadorAsignado.remove(cuidadorAsignado.indexOf(eliminar));
+        cuidadoresAsignados.remove(cuidadoresAsignados.indexOf(eliminar));
     }
 
     public void addCuidadorAsignado(Cuidador nuevo) {
-        cuidadorAsignado.add(nuevo);
+        cuidadoresAsignados.add(nuevo);
     }
 
     public String getNombre() {
@@ -103,20 +103,20 @@ public enum Especie implements Serializable, Entidad {
         return TOTALESPECIE;
     }
 
-    public ArrayList<Veterinario> getVeterinarioAsignado() {
-        return veterinarioAsignado;
+    public ArrayList<Veterinario> getVeterinariosAsignados() {
+        return veterinariosAsignados;
     }
 
-    public void setVeterinarioAsignado(ArrayList<Veterinario> veterinarioAsignado) {
-        this.veterinarioAsignado = veterinarioAsignado;
+    public void setVeterinariosAsignados(ArrayList<Veterinario> veterinariosAsignados) {
+        this.veterinariosAsignados = veterinariosAsignados;
     }
 
     public void removeVeterinarioAsignado(Veterinario eliminar) {
-        veterinarioAsignado.remove(veterinarioAsignado.indexOf(eliminar));
+        veterinariosAsignados.remove(veterinariosAsignados.indexOf(eliminar));
     }
 
     public void addVeterinarioAsignado(Veterinario nuevo) {
-        veterinarioAsignado.add(nuevo);
+        veterinariosAsignados.add(nuevo);
     }
 
     /*

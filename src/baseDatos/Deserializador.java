@@ -23,7 +23,19 @@ public class Deserializador {
 		ObjectInputStream ois;
 		
 		for(File archivo : archivos) {
-			if(archivo.getAbsolutePath().contains("animales")) {
+			if(archivo.getAbsolutePath().contains("administracion")) {
+				try {
+					fis = new FileInputStream(archivo);
+					ois = new ObjectInputStream(fis);
+					Administracion.setCaja((double) ois.readObject());
+				} catch(FileNotFoundException excepcion) {
+					excepcion.printStackTrace();
+				} catch(IOException excepcion) {
+					excepcion.printStackTrace();
+				} catch(ClassNotFoundException excepcion) {
+					excepcion.printStackTrace();
+				}
+			} else if(archivo.getAbsolutePath().contains("animales")) {
 				try {
 					fis = new FileInputStream(archivo);
 					ois = new ObjectInputStream(fis);

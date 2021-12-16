@@ -53,14 +53,14 @@ public class FuncionalidadCurar {
 		System.out.println("\nAhora elija el veterinario que desee que revise al animal, ingresando su identificación.\n");
 		System.out.println("Identificación; Nombre; Especie asignada");
 		
-		for(Veterinario veterinario : animalSeleccionado.getEspecie().getVeterinarioAsignado()) {
+		for(Veterinario veterinario : animalSeleccionado.getEspecie().getVeterinariosAsignados()) {
 			System.out.println(String.valueOf(veterinario.getIdentificacion()) + "; " + veterinario.getNombre() + "; " + veterinario.getEspecialidad().getNombre());
 		}
 		
 		System.out.print("\n¿Cuál veterinario elije? (Identificación) ");
 		id = Main.leerOpcion();
 		
-		for(Veterinario veterinario : FuncionalidadCurar.animalSeleccionado.getEspecie().getVeterinarioAsignado()) {
+		for(Veterinario veterinario : FuncionalidadCurar.animalSeleccionado.getEspecie().getVeterinariosAsignados()) {
 			if(veterinario.getIdentificacion() == id) { 
 				System.out.println("\nVeterinario seleccionado:\n");
 				System.out.println(veterinario.info());
@@ -75,14 +75,14 @@ public class FuncionalidadCurar {
 		System.out.println("\nElija el cuidador que desee que traslade al animal, ingresando su identificación.\n");
 		System.out.println("Identificación; Nombre; Especie asignada");
 		
-		for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadorAsignado()) {
+		for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadoresAsignados()) {
 			System.out.println(String.valueOf(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
 		}
 		
 		System.out.print("\n¿Cuál cuidador elije? (Identificación) ");
 		id = Main.leerOpcion();
 		
-		for(Cuidador cuidador : FuncionalidadCurar.animalSeleccionado.getEspecie().getCuidadorAsignado()) {
+		for(Cuidador cuidador : FuncionalidadCurar.animalSeleccionado.getEspecie().getCuidadoresAsignados()) {
 			if(cuidador.getIdentificacion() == id) { 
 				System.out.println("\nCuidador seleccionado:\n");
 				System.out.println(cuidador.info());

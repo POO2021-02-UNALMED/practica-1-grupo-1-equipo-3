@@ -92,7 +92,7 @@ public class FuncionalidadCuidar {
 		
 		/* Con el siguiente for se obtienen cada uno de los cuidadores almacenandos en la lista de cuidadores asignados para la especie del 
 		 * animal a revisar. */
-		for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadorAsignado()) {
+		for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadoresAsignados()) {
 			// Esto se hace para imprimir los datos de cada uno de los cuidadores por pantalla para que el usuario seleccione el que va a revisar al animal.
 			System.out.println(String.valueOf(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
 			cuidadores++;
@@ -111,7 +111,7 @@ public class FuncionalidadCuidar {
 			id = Main.leerOpcion();
 			
 			// Con el siguiente for se vuelve a recorrer el listado de todos los cuidadores asignados para la especie del animal a revisar.
-			for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadorAsignado()) {
+			for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadoresAsignados()) {
 				/* En caso que la identificación de un cuidador corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
 				 * del cuidador seleccionado y se asigna dicho cuidador al atributo estático "cuidadorSeleccionado", necesario para la revisión. */
 				if(cuidador.getIdentificacion() == id) { 
