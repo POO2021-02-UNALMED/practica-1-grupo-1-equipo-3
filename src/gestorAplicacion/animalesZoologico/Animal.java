@@ -1,9 +1,10 @@
 package gestorAplicacion.animalesZoologico;
 
 import gestorAplicacion.gestionZoologico.Administracion;
+import gestorAplicacion.gestionZoologico.Entidad;
 import java.io.Serializable;
 
-public class Animal implements Serializable {
+public class Animal implements Serializable, Entidad {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
 	private static int totalAnimales;
@@ -16,7 +17,6 @@ public class Animal implements Serializable {
 	private boolean estadoAnimo;
 	private boolean estadoSalud;
 	private boolean alimentado;
-	
 	
 	public Animal(int identificacion, Especie especie, Habitat habitat, String genero, int edad, float peso) {
 		this.identificacion = identificacion;
@@ -32,6 +32,19 @@ public class Animal implements Serializable {
 		habitat.addAnimalesAsociados(this);
 		especie.addAnimales(this);
 		Administracion.addAnimales(this);
+	}
+	
+	/* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
+	 * usado para imprimir por consola los datos del animal en caso de ser requeridos en alguna de las funcionalidades 
+	 * de la aplicación.
+	 */
+	public String info() {
+		return ("Identificación: " + String.valueOf(this.getIdentificacion()) + 
+				"\nEspecie: " + this.getEspecie().getNombre() + 
+				"\nHábitat: " + this.getHabitat().getNombre() + "(" + this.getHabitat().getAmbientacion() + ")" + 
+				"\nGénero: " + this.getGenero() +
+				"\nEdad: " + String.valueOf(this.getEdad()) +
+				"\nPeso: " + String.valueOf(this.getPeso()));
 	}
 	
 	public void setIdentificacion(int identificacion) {
@@ -125,14 +138,4 @@ public class Animal implements Serializable {
 		este = null;
 		
 	}
-	
-	public String toString() {
-		return ("Identificación: " + String.valueOf(this.getIdentificacion()) + 
-				"\nEspecie: " + this.getEspecie().getNombre() + 
-				"\nHábitat: " + this.getHabitat().getNombre() + "(" + this.getHabitat().getAmbientacion() + ")" + 
-				"\nGénero: " + this.getGenero() +
-				"\nEdad: " + String.valueOf(this.getEdad()) +
-				"\nPeso: " + String.valueOf(this.getPeso()));
-	}
-	
 }

@@ -11,7 +11,7 @@ package gestorAplicacion.gestionZoologico;
 import gestorAplicacion.animalesZoologico.*;
 import java.util.*;
 
-public class Cuidador extends Empleado {
+public class Cuidador extends Empleado implements Entidad {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
 	private Especie especieAsignada;
@@ -31,11 +31,11 @@ public class Cuidador extends Empleado {
 		Administracion.addCuidadores(this);
 	}
 	
-	/* El método toString() es heredado de la clase abstracta padre Empleado y definido aquí. Sirve para generar el
-	 * String que será usado para imprimir por consola los datos del cuidador en caso de ser requerido en alguna de las
-	 * funcionalidades de la aplicación.
+	/* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
+	 * usado para imprimir por consola los datos del cuidador en caso de ser requeridos en alguna de las funcionalidades 
+	 * de la aplicación.
 	 */
-	public String toString() {
+	public String info() {
 		return ("Tipo de empleado: CUIDADOR" + 
 				"\nIdentificación: " + String.valueOf(this.getIdentificacion()) + 
 				"\nNombre: " + this.getNombre() + 
@@ -60,8 +60,9 @@ public class Cuidador extends Empleado {
 		animal.setHabitat(lugar);
 	}
 	
-	/* Este método revisar() aplica la sobrecarga de métodos. La siguiente es la primera definición del método, que
-	 * recibe como parámetro un objeto tipo Animal y que en base a ese objeto retorna su atributo "estadoAnimo".
+	/* Este método revisar() es heredado de la clase abstracta padre Empleado y definido aquí, además que aplica la 
+	 * sobrecarga de métodos. La siguiente es la primera definición del método, que recibe como parámetro un objeto 
+	 * tipo Animal y que en base a ese objeto retorna su atributo "estadoAnimo".
 	 */
 	public boolean revisar(Animal animal) {
 		return animal.isEstadoAnimo();

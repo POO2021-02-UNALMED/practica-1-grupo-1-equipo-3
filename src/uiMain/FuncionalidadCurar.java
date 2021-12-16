@@ -26,8 +26,8 @@ public class FuncionalidadCurar {
 
     static void seleccionarAnimal() {
 		int id;
-		System.out.println("Elija primero el animal que desee revisar, ingresando su identificaciï¿½n.\n");
-		System.out.println("Identificaciï¿½n; Especie; Hï¿½bitat; Gï¿½nero; Edad; Peso");
+		System.out.println("Elija primero el animal que desee revisar, ingresando su identificación.\n");
+		System.out.println("Identificación; Especie; Hábitat; Género; Edad; Peso");
 		
 		for(Animal animal : Administracion.getAnimales()) {
 			System.out.println(String.valueOf(animal.getIdentificacion()) + "; " + animal.getEspecie().getNombre() + "; " + 
@@ -35,13 +35,13 @@ public class FuncionalidadCurar {
 							   String.valueOf(animal.getEdad()) + "; " + String.valueOf(animal.getPeso()));
 		}
 		
-		System.out.print("\nï¿½Cuï¿½l animal elije? (Identificaciï¿½n): ");
+		System.out.print("\n¿Cuál animal elije? (Identificación): ");
 		id = Main.leerOpcion();
 		
 		for(Animal animal : Administracion.getAnimales()) {
 			if(animal.getIdentificacion() == id) { 
 				System.out.println("\nAnimal seleccionado:\n");
-				System.out.println(animal.toString());
+				System.out.println(animal.info());
 				animalSeleccionado = animal;
 				return;
 			}
@@ -50,20 +50,20 @@ public class FuncionalidadCurar {
 
     static void seleccionarVeterinario() {
 		int id;
-		System.out.println("\nAhora elija el veterinario que desee que revise al animal, ingresando su identificaciï¿½n.\n");
-		System.out.println("Identificaciï¿½n; Nombre; Especie asignada");
+		System.out.println("\nAhora elija el veterinario que desee que revise al animal, ingresando su identificación.\n");
+		System.out.println("Identificación; Nombre; Especie asignada");
 		
 		for(Veterinario veterinario : animalSeleccionado.getEspecie().getVeterinarioAsignado()) {
 			System.out.println(String.valueOf(veterinario.getIdentificacion()) + "; " + veterinario.getNombre() + "; " + veterinario.getEspecialidad().getNombre());
 		}
 		
-		System.out.print("\nï¿½Cuï¿½l veterinario elije? (Identificaciï¿½n) ");
+		System.out.print("\n¿Cuál veterinario elije? (Identificación) ");
 		id = Main.leerOpcion();
 		
 		for(Veterinario veterinario : FuncionalidadCurar.animalSeleccionado.getEspecie().getVeterinarioAsignado()) {
 			if(veterinario.getIdentificacion() == id) { 
 				System.out.println("\nVeterinario seleccionado:\n");
-				System.out.println(veterinario.toString());
+				System.out.println(veterinario.info());
 				veterinarioSeleccionado = veterinario;
 				return;
 			}
@@ -72,20 +72,20 @@ public class FuncionalidadCurar {
 
 	static void seleccionarCuidador() {
 		int id;
-		System.out.println("\nElija el cuidador que desee que traslade al animal, ingresando su identificaciÃ³n.\n");
-		System.out.println("IdentificaciÃ³n; Nombre; Especie asignada");
+		System.out.println("\nElija el cuidador que desee que traslade al animal, ingresando su identificación.\n");
+		System.out.println("Identificación; Nombre; Especie asignada");
 		
 		for(Cuidador cuidador : animalSeleccionado.getEspecie().getCuidadorAsignado()) {
 			System.out.println(String.valueOf(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
 		}
 		
-		System.out.print("\nÂ¿CuÃ¡l cuidador elije? (IdentificaciÃ³n) ");
+		System.out.print("\n¿Cuál cuidador elije? (Identificación) ");
 		id = Main.leerOpcion();
 		
 		for(Cuidador cuidador : FuncionalidadCurar.animalSeleccionado.getEspecie().getCuidadorAsignado()) {
 			if(cuidador.getIdentificacion() == id) { 
 				System.out.println("\nCuidador seleccionado:\n");
-				System.out.println(cuidador.toString());
+				System.out.println(cuidador.info());
 				cuidadorSeleccionado = cuidador;
 				return;
 			}
@@ -94,7 +94,7 @@ public class FuncionalidadCurar {
 
 	static void seleccionarHabitat() {
 		int id;
-		System.out.println("Elija el habitat que desee regresar al animal, ingresando su identificaciÃ³n.\n");
+		System.out.println("Elija el habitat que desee regresar al animal, ingresando su identificación.\n");
 		System.out.println("Identificacion; Nombre; Ambientacion; Especie del Habitat; Capacidad");
 		
 		for(Habitat habitat: Administracion.getHabitats()) {
@@ -103,13 +103,13 @@ public class FuncionalidadCurar {
 		    + habitat.getCapacidadMaxima());
 		}
 		
-		System.out.println("Â¿CuÃ¡l habitat elije? (Identificacion)");
+		System.out.println("¿Cuál habitat elije? (Identificación)");
 		id = Main.leerOpcion();
 		
 		for(Habitat habitat: Administracion.getHabitats()) {
 			if(id == habitat.getIdentificacion()) {
-				System.out.println("\nHabitat seleccionado:\n");
-				System.out.println(habitat.toString());
+				System.out.println("\nHábitat seleccionado:\n");
+				System.out.println(habitat.info());
 				habitatSeleccionado = habitat;
 				return;
 			}
@@ -118,26 +118,26 @@ public class FuncionalidadCurar {
 
     static void saludAnimal() {
 
-		System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificaciÃ³n " + String.valueOf(animalSeleccionado.getIdentificacion()) + "a la veterinaria.");
+		System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificación " + String.valueOf(animalSeleccionado.getIdentificacion()) + "a la veterinaria.");
 		cuidadorSeleccionado.moverAnimal(animalSeleccionado, veterinaria);
 
-		System.out.println("\nVeterinario " + veterinarioSeleccionado.getNombre() + " procede a revisar al animal con identificaciï¿½n " + String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
+		System.out.println("\nVeterinario " + veterinarioSeleccionado.getNombre() + " procede a revisar al animal con identificación " + String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
 		
-		if(veterinarioSeleccionado.revisarAnimal(animalSeleccionado)) {
+		if(veterinarioSeleccionado.revisar(animalSeleccionado)) {
 			System.out.println("RESULTADO: El animal se encuentra con buen estado de salud.\n");
 		} else {
 			System.out.println("RESULTADO: El animal se encuentra con mal estado de salud.\n");
-			System.out.println("El veterinario " + veterinarioSeleccionado.getNombre() + "decide hacer curaciï¿½n al animal para mejorar su estado de salud.");
+			System.out.println("El veterinario " + veterinarioSeleccionado.getNombre() + "decide hacer curación al animal para mejorar su estado de salud.");
 			veterinarioSeleccionado.curarAnimal(animalSeleccionado);
 			if(animalSeleccionado.isAlimentado() && animalSeleccionado.isEstadoSalud() && animalSeleccionado.getHabitat().isLimpio()) {
 				animalSeleccionado.setEstadoAnimo(true);
 			}
-			if(veterinarioSeleccionado.revisarAnimal(animalSeleccionado)) {
+			if(veterinarioSeleccionado.revisar(animalSeleccionado)) {
 				System.out.println("Curar al animal ha dado buen resultado y este ahora se encuentra con buen estado de salud.");
 			} else {
-				System.out.println("Curar al animal no ha mejorado su estado de ï¿½nimo.");
-				System.out.println("Puede solicitar que se haga mantenimineto a su hï¿½bitat o que los alimenten.");
-				System.out.println("El animal estarÃ¡ en revisiÃ³n preventiva.");
+				System.out.println("Curar al animal no ha mejorado su estado de ánimo.");
+				System.out.println("Puede solicitar que se haga mantenimineto a su hábitat o que los alimenten.");
+				System.out.println("El animal estará en revisión preventiva.");
 			}
 		}
 		return;

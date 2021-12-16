@@ -57,9 +57,7 @@ public class FuncionalidadAdquisicionTraslado {
 		
 		System.out.println("\nEspecie seleccionada:\n");
 		especieSeleccionada = Administracion.getEspecies().get(opcion-1);
-		System.out.println("Nombre: " + especieSeleccionada.getNombre() +
-							"\nDieta: " + especieSeleccionada.getDieta() +
-							"\nPromedio de vida: " + String.valueOf(especieSeleccionada.getPromedioVida()));
+		System.out.println(especieSeleccionada.info());
 		return;
 	}
 	
@@ -93,11 +91,7 @@ public class FuncionalidadAdquisicionTraslado {
 			for(Habitat habitat : Administracion.getHabitats()) {
 				if(habitat.getIdentificacion() == id) { 
 					System.out.println("\nHábitat seleccionado:\n");
-					System.out.println("Identificación: " + String.valueOf(habitat.getIdentificacion()) +
-										"\nNombre: " + habitat.getNombre() +
-										"\nAmbientación: " + habitat.getAmbientacion() +
-										"\nCapacidad actual / Capacidad máxima: " + String.valueOf(habitat.cantidadAnimales()) +
-										" / " + String.valueOf(habitat.getCapacidadMaxima()));
+					System.out.println(habitat.info());
 					habitatSeleccionado = habitat;
 					break;
 				}
@@ -133,7 +127,7 @@ public class FuncionalidadAdquisicionTraslado {
 			for(Animal animal : Administracion.getAnimales()) {
 				if(animal.getIdentificacion() == id) { 
 					System.out.println("\nAnimal seleccionado:\n");
-					System.out.println(animal.toString());
+					System.out.println(animal.info());
 					animalSeleccionado = animal;
 					break;
 				}

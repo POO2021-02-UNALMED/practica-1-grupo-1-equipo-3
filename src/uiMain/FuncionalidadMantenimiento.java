@@ -37,7 +37,7 @@ public class FuncionalidadMantenimiento {
 		for(Habitat habitat: Administracion.getHabitats()) {
 			if(id == habitat.getIdentificacion()) {
 				System.out.println("\nHabitat seleccionado:\n");
-				System.out.println(habitat.toString());
+				System.out.println(habitat.info());
 				habitatSeleccionado = habitat;
 				return;
 			}
@@ -59,7 +59,7 @@ public class FuncionalidadMantenimiento {
 		for(Cuidador cuidador : habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getCuidadorAsignado()) {
 			if(cuidador.getIdentificacion() == id) {
 				System.out.println("Cuidador seleccionado: \n");
-				System.out.println(cuidador.toString());
+				System.out.println(cuidador.info());
 				cuidadorSeleccionado = cuidador;
 				return;
 				

@@ -36,7 +36,7 @@ public class FuncionalidadCuidar {
 		for(Animal animal : Administracion.getAnimales()) {
 			if(animal.getIdentificacion() == id) { 
 				System.out.println("\nAnimal seleccionado:\n");
-				System.out.println(animal.toString());
+				System.out.println(animal.info());
 				animalSeleccionado = animal;
 				break;
 			}
@@ -59,7 +59,7 @@ public class FuncionalidadCuidar {
 		for(Cuidador cuidador : FuncionalidadCuidar.animalSeleccionado.getEspecie().getCuidadorAsignado()) {
 			if(cuidador.getIdentificacion() == id) { 
 				System.out.println("\nCuidador seleccionado:\n");
-				System.out.println(cuidador.toString());
+				System.out.println(cuidador.info());
 				cuidadorSeleccionado = cuidador;
 				break;
 			}

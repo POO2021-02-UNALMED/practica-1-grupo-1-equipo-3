@@ -1,12 +1,14 @@
 package gestorAplicacion.animalesZoologico;
 
 import java.util.ArrayList;
+
 import gestorAplicacion.gestionZoologico.Administracion;
+import gestorAplicacion.gestionZoologico.Entidad;
 import gestorAplicacion.gestionZoologico.Cuidador;
 import gestorAplicacion.gestionZoologico.Veterinario;
 import java.io.Serializable;
 
-public enum Especie implements Serializable{
+public enum Especie implements Serializable, Entidad {
 
     MAMIFERO("Mamifero", "omnivoro", 40), 
     AVE("Ave", "granivoro", 25), 
@@ -42,6 +44,16 @@ public enum Especie implements Serializable{
         */
 
     }
+    
+    /* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
+	 * usado para imprimir por consola los datos de la especie en caso de ser requeridos en alguna de las funcionalidades 
+	 * de la aplicación.
+	 */
+    public String info() {
+		return ("Nombre: " + this.getNombre() +
+				"\nDieta: " + this.getDieta() +
+				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida()));
+	}
 
     public ArrayList<Animal> getAnimales() {
         return animales;

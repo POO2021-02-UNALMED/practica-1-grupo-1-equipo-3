@@ -10,6 +10,7 @@
 
 package gestorAplicacion.gestionZoologico;
 
+import gestorAplicacion.animalesZoologico.Animal;
 import java.io.Serializable;
 
 public abstract class Empleado implements Serializable {
@@ -32,7 +33,7 @@ public abstract class Empleado implements Serializable {
 	}
 	
 	// Método abstracto declarado para ser definido por las clases Cuidador y Veterinario, que lo heredan.
-	public abstract String toString();
+	protected abstract boolean revisar(Animal animal);
 	
 	// DE ACÁ PARA ABAJO ESTÁN LOS MÉTODOS GET Y SET
 	public int getIdentificacion() {

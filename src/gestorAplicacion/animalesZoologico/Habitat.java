@@ -2,9 +2,10 @@ package gestorAplicacion.animalesZoologico;
 
 import java.util.ArrayList;
 import gestorAplicacion.gestionZoologico.Administracion;
+import gestorAplicacion.gestionZoologico.Entidad;
 import java.io.Serializable;
 
-public class Habitat implements Serializable {
+public class Habitat implements Serializable, Entidad {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
 	private final int CAPACIDADMAXIMA;
@@ -25,6 +26,17 @@ public class Habitat implements Serializable {
 		Administracion.addHabitats(this);
 	}
 	
+	/* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
+	 * usado para imprimir por consola los datos del hábitat en caso de ser requeridos en alguna de las funcionalidades 
+	 * de la aplicación.
+	 */
+	public String info() {
+		return ("Identificación: " + String.valueOf(this.getIdentificacion()) +
+				"\nNombre: " + this.getNombre() +
+				"\nAmbientación: " + this.getAmbientacion() +
+				"\nCapacidad actual / Capacidad máxima: " + String.valueOf(this.cantidadAnimales()) +
+				" / " + String.valueOf(this.getCapacidadMaxima()));
+	}
 	
 	public int getCapacidadMaxima() {
 		return CAPACIDADMAXIMA;

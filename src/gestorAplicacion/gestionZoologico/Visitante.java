@@ -9,7 +9,7 @@ package gestorAplicacion.gestionZoologico;
 
 import java.io.Serializable;
 
-public class Visitante implements Serializable {
+public class Visitante implements Serializable, Entidad {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
 	private int identificacion;
@@ -29,6 +29,18 @@ public class Visitante implements Serializable {
 		totalVisitantes++;  //Cada que se crea un objeto visitante, se suma en una unidad el atributo totalVisitantes
 		Administracion.addVisitantes(this); //Cada que se crea un objeto visitante, se agrega al atributo visitantes de la clase adminitracion. Necesario para el calculo de ganancias
 		precioBoleta=calcularPrecioBoleta();} //El atributo de precio boleta está dado por el método calcularPrecioBoleta
+	
+	/* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
+	 * usado para imprimir por consola los datos del visitante en caso de ser requeridos en alguna de las funcionalidades 
+	 * de la aplicación.
+	 */
+	public String info() {
+        return ("Identificación: " + String.valueOf(this.getIdentificacion()) + 
+				"\nNombre: " + this.getNombre() + 
+				"\nEstrado: " + String.valueOf(this.getEstrato()) + 
+				"\nEdad: " + String.valueOf(this.getEdad()) +
+				"\nPrecio de boleta: " + String.valueOf(this.getPrecioBoleta()));
+    }
 	
 	/*Este método no recibe parámetros y su función es la destrucción del objeto visitante que lo invocó con el proposito de indicar que salió
 	 del zoológico. Elimina a ese objeto de la lista de visitantes solo cuando halla pagado el precio de su boleta.

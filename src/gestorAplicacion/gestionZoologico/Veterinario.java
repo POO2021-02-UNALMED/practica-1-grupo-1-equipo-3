@@ -3,7 +3,7 @@ package gestorAplicacion.gestionZoologico;
 import gestorAplicacion.animalesZoologico.Animal;
 import gestorAplicacion.animalesZoologico.Especie;
 
-public class Veterinario extends Empleado {
+public class Veterinario extends Empleado implements Entidad {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
 	private static final long serialVersionUID=1L;
     private Especie especialidad;
@@ -15,8 +15,20 @@ public class Veterinario extends Empleado {
         especialidad.addVeterinarioAsignado(this);
         Administracion.addVeterinarios(this);
     }
+    
+    /* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
+	 * usado para imprimir por consola los datos del veterinario en caso de ser requeridos en alguna de las funcionalidades 
+	 * de la aplicación.
+	 */
+    public String info() {
+        return ("Tipo de empleado: VETERINARIO" + 
+				"\nIdentificación: " + String.valueOf(this.getIdentificacion()) + 
+				"\nNombre: " + this.getNombre() + 
+				"\nSueldo: " + String.valueOf(this.getSueldo()) + 
+				"\nEspecie asignada: " + this.getEspecialidad().getNombre());
+    }
 
-    public boolean revisarAnimal(Animal animal) {
+    public boolean revisar(Animal animal) {
         if (animal.isEstadoSalud() == false) { return false;} 
         else {return true;}
     }
@@ -31,15 +43,5 @@ public class Veterinario extends Empleado {
 
     public void setEspecialidad(Especie especialidad) {
         this.especialidad = especialidad;
-    }
-
-    @Override
-    public String toString() {
-        return ("Tipo de empleado: VETERINARIO" + 
-				"\nIdentificaciï¿½n: " + this.getIdentificacion() + 
-				"\nNombre: " + this.getNombre() + 
-				"\nSueldo: " + this.getSueldo() + 
-				"\nEspecie asignada: " + this.getEspecialidad());
-    }
-    
+    }    
 }

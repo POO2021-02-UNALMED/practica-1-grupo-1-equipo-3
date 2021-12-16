@@ -36,9 +36,9 @@ public class FuncionalidadGestion {
 			//Es necesario despedir a un empleado y para esto se muestran los empleados con lo que cuenta el zoológico.
 			System.out.println("\nEs necesario despedir a alguno de nuestros empleados. A continuación le mostraremos la nómina de empleados:");
 			for (Cuidador cuidador:Administracion.getCuidadores()) {
-				System.out.println("\n"+cuidador.toString());}
+				System.out.println("\n"+cuidador.info());}
 			for (Veterinario veterinario:Administracion.getVeterinarios()) {
-				System.out.println("\n"+veterinario.toString());}
+				System.out.println("\n"+veterinario.info());}
 			System.out.println("\n¿Se ha decidido por uno de los empleados? A continuación ingrese el número de identificación del empleado que desea despedir:");
 			//Se pide al usuario que ingrese la identificación del empleado al que se va a despedir
 			while (estado==false){
