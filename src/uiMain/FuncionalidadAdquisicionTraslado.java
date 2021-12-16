@@ -11,6 +11,10 @@
 package uiMain;
 
 import gestorAplicacion.gestionZoologico.Administracion;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import gestorAplicacion.animalesZoologico.*;
 
 public class FuncionalidadAdquisicionTraslado {
@@ -74,12 +78,21 @@ public class FuncionalidadAdquisicionTraslado {
 		System.out.print("\n¿Cuál opción de especie elije? ");
 		opcion = Main.leerOpcion();
 		
-		System.out.println("\nEspecie seleccionada:\n");
-		/* Ya que las especies fueron enumeradas en el orden de la lista de especies (empezando desde el 1), entonces la posición de la
-		 * especie seleccionada en esa lista corresponderá a la opción del usuario menos 1. */
-		especieSeleccionada = Administracion.getEspecies().get(opcion-1);
-		System.out.println(especieSeleccionada.info());
-		return;
+		// A través del siguiente while se le solicita al usuario la opción tantas veces como sea necesario hasta que esta sea correcta.
+		while(true) {
+			if(opcion < 1 || opcion > 5) {
+				System.out.println("\nOPCIÓN INCORRECTA: Opciones solo del 1 al 5");
+				System.out.print("\n¿Cuál opción de especie elije? ");
+				opcion = Main.leerOpcion();
+			} else {
+				System.out.println("\nEspecie seleccionada:\n");
+				/* Ya que las especies fueron enumeradas en el orden de la lista de especies (empezando desde el 1), entonces la posición de la
+				 * especie seleccionada en esa lista corresponderá a la opción del usuario menos 1. */
+				especieSeleccionada = Administracion.getEspecies().get(opcion-1);
+				System.out.println(especieSeleccionada.info());
+				break;
+			}
+		}
 	}
 	
 	// A través del método seleccionarHabitat() se obtiene el hábitat donde el animal a adquirir será depositado.
@@ -144,6 +157,9 @@ public class FuncionalidadAdquisicionTraslado {
 		/* Con la variable "animales" se contará, como ya se dijo, si hay por lo menos un animal de la especie seleccionada por el usuario
 		 * para trasladar. */
 		int animales = 0;
+		/* En la variable "identificaciones" se almacenarán las identificaciones de los animales listados, esto para verificar que el usuario
+		 * eligió una identificación válida. */
+		List<Integer> identificaciones = new ArrayList<Integer>();
 		System.out.println("\nAhora elija el animal que desee trasladar, ingresando su identificación.\n");
 		System.out.println("Identificación; Especie; Hábitat; Género; Edad; Peso");
 		
@@ -155,8 +171,9 @@ public class FuncionalidadAdquisicionTraslado {
 				System.out.println(String.valueOf(animal.getIdentificacion()) + "; " + animal.getEspecie().getNombre() + "; " + 
 						   animal.getHabitat().getNombre() + "; " + animal.getGenero() + "; " + 
 						   String.valueOf(animal.getEdad()) + "; " + String.valueOf(animal.getPeso()));
-				// Como se dijo, se van contando los animales que cumplen con la verificación de especie.
+				// Como se dijo, se van contando los animales que son listados, además de almacenar sus identificaciones.
 				animales++;
+				identificaciones.add(animal.getIdentificacion());
 			}
 		}
 		
@@ -172,15 +189,26 @@ public class FuncionalidadAdquisicionTraslado {
 			System.out.print("\n¿Cuál animal elije? (Identificación): ");
 			id = Main.leerOpcion();
 			
-			// Con el siguiente for se vuelve a recorrer el listado de todos los animales.
-			for(Animal animal : Administracion.getAnimales()) {
-				/* En caso que la identificación de un animal corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
-				 * del animal seleccionado y se asigna dicho animal al atributo estático "animalSeleccionado", necesario para el traslado. */
-				if(animal.getIdentificacion() == id) { 
-					System.out.println("\nAnimal seleccionado:\n");
-					System.out.println(animal.info());
-					animalSeleccionado = animal;
-					break;
+			boolean estado = true;
+			// A través del siguiente while se le solicita al usuario la identificación tantas veces como sea necesario hasta que esta sea correcta.
+			while(estado) {
+				if(identificaciones.contains(id)==false) {
+					System.out.println("\nIDENTIFICACIÓN INCORRECTA: Ingrese una válida.");
+					System.out.print("\n¿Cuál animal elije? (Identificación): ");
+					id = Main.leerOpcion();
+				} else {
+					// Con el siguiente for se vuelve a recorrer el listado de todos los animales.
+					for(Animal animal : Administracion.getAnimales()) {
+						/* En caso que la identificación de un animal corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
+						 * del animal seleccionado y se asigna dicho animal al atributo estático "animalSeleccionado", necesario para el traslado. */
+						if(animal.getIdentificacion() == id) { 
+							System.out.println("\nAnimal seleccionado:\n");
+							System.out.println(animal.info());
+							animalSeleccionado = animal;
+							estado = false;
+							break;
+						}
+					}
 				}
 			}
 			// Se retorna true para la verificación en la clase adquisicionTraslado(), como se dijo anteriormente.

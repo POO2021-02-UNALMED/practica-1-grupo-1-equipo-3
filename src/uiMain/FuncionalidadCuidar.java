@@ -10,6 +10,7 @@
 
 package uiMain;
 
+import java.util.*;
 import gestorAplicacion.gestionZoologico.Administracion;
 import gestorAplicacion.gestionZoologico.Cuidador;
 import gestorAplicacion.animalesZoologico.Animal;
@@ -40,6 +41,9 @@ public class FuncionalidadCuidar {
 		int id;
 		// Con la variable "animales" se contará, como ya se dijo, si hay por lo menos un animal para revisar.
 		int animales = 0;
+		/* En la variable "identificaciones" se almacenarán las identificaciones de los animales listados, esto para verificar que el usuario
+		 * eligió una identificación válida. */
+		List<Integer> identificaciones = new ArrayList<Integer>();
 		System.out.println("Elija primero el animal que desee revisar, ingresando su identificación.\n");
 		System.out.println("Identificación; Especie; Hábitat; Género; Edad; Peso");
 		
@@ -49,8 +53,9 @@ public class FuncionalidadCuidar {
 			System.out.println(String.valueOf(animal.getIdentificacion()) + "; " + animal.getEspecie().getNombre() + "; " + 
 							   animal.getHabitat().getNombre() + "; " + animal.getGenero() + "; " + 
 							   String.valueOf(animal.getEdad()) + "; " + String.valueOf(animal.getPeso()));
-			// Como se dijo, se van contando los animales que son listados.
+			// Como se dijo, se van contando los animales que son listados, además de almacenar sus identificaciones.
 			animales++;
+			identificaciones.add(animal.getIdentificacion());
 		}
 		
 		// En caso que no haya ni un solo animal para revisar, se le informa al usuario y la revisión queda cancelada.
@@ -65,15 +70,26 @@ public class FuncionalidadCuidar {
 			System.out.print("\n¿Cuál animal elije? (Identificación): ");
 			id = Main.leerOpcion();
 			
-			// Con el siguiente for se vuelve a recorrer el listado de todos los animales.
-			for(Animal animal : Administracion.getAnimales()) {
-				/* En caso que la identificación de un animal corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
-				 * del animal seleccionado y se asigna dicho animal al atributo estático "animalSeleccionado", necesario para la revisión. */
-				if(animal.getIdentificacion() == id) { 
-					System.out.println("\nAnimal seleccionado:\n");
-					System.out.println(animal.info());
-					animalSeleccionado = animal;
-					break;
+			boolean estado = true;
+			// A través del siguiente while se le solicita al usuario la identificación tantas veces como sea necesario hasta que esta sea correcta.
+			while(estado) {
+				if(identificaciones.contains(id)==false) {
+					System.out.println("\nIDENTIFICACIÓN INCORRECTA: Ingrese una válida.");
+					System.out.print("\n¿Cuál animal elije? (Identificación): ");
+					id = Main.leerOpcion();
+				} else {
+					// Con el siguiente for se vuelve a recorrer el listado de todos los animales.
+					for(Animal animal : Administracion.getAnimales()) {
+						/* En caso que la identificación de un animal corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
+						 * del animal seleccionado y se asigna dicho animal al atributo estático "animalSeleccionado", necesario para la revisión. */
+						if(animal.getIdentificacion() == id) { 
+							System.out.println("\nAnimal seleccionado:\n");
+							System.out.println(animal.info());
+							animalSeleccionado = animal;
+							estado = false;
+							break;
+						}
+					}
 				}
 			}
 			// Se retorna true para la verificación en la clase cuidarAnimal(), como se dijo anteriormente.
@@ -87,6 +103,9 @@ public class FuncionalidadCuidar {
 		/* Con la variable "cuidadores" se contará, como ya se dijo, si hay por lo menos un cuidador especializado en la especie del animal
 		 * seleccionado por el usuario para revisar a animal. */
 		int cuidadores = 0;
+		/* En la variable "identificaciones" se almacenarán las identificaciones de los animales listados, esto para verificar que el usuario
+		 * eligió una identificación válida. */
+		List<Integer> identificaciones = new ArrayList<Integer>();
 		System.out.println("\nAhora elija el cuidador que desee que revise al animal, ingresando su identificación.\n");
 		System.out.println("Identificación; Nombre; Especie asignada");
 		
@@ -96,7 +115,9 @@ public class FuncionalidadCuidar {
 			 * uno de estos cuidadores por pantalla para que el usuario seleccione el que va a revisar al animal. */
 			if(cuidador.getEspecieAsignada() == animalSeleccionado.getEspecie()) {
 				System.out.println(String.valueOf(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
+				// Como se dijo, se van contando los cuidadores que son listados, además de almacenar sus identificaciones.
 				cuidadores++;
+				identificaciones.add(cuidador.getIdentificacion());
 			}
 		}
 		
@@ -112,15 +133,26 @@ public class FuncionalidadCuidar {
 			System.out.print("\n¿Cuál cuidador elije? (Identificación) ");
 			id = Main.leerOpcion();
 			
-			// Con el siguiente for se vuelve a recorrer el listado de todos los cuidadores en la lista de cuidadores de la clase Administracion.
-			for(Cuidador cuidador : Administracion.getCuidadores()) {
-				/* En caso que la identificación de un cuidador corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
-				 * del cuidador seleccionado y se asigna dicho cuidador al atributo estático "cuidadorSeleccionado", necesario para la revisión. */
-				if(cuidador.getIdentificacion() == id) { 
-					System.out.println("\nCuidador seleccionado:\n");
-					System.out.println(cuidador.info());
-					cuidadorSeleccionado = cuidador;
-					break;
+			boolean estado = true;
+			// A través del siguiente while se le solicita al usuario la identificación tantas veces como sea necesario hasta que esta sea correcta.
+			while(estado) {
+				if(identificaciones.contains(id)==false) {
+					System.out.println("\nIDENTIFICACIÓN INCORRECTA: Ingrese una válida.");
+					System.out.print("\n¿Cuál cuidador elije? (Identificación) ");
+					id = Main.leerOpcion();
+				} else {
+					// Con el siguiente for se vuelve a recorrer el listado de todos los cuidadores en la lista de cuidadores de la clase Administracion.
+					for(Cuidador cuidador : Administracion.getCuidadores()) {
+						/* En caso que la identificación de un cuidador corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
+						 * del cuidador seleccionado y se asigna dicho cuidador al atributo estático "cuidadorSeleccionado", necesario para la revisión. */
+						if(cuidador.getIdentificacion() == id) { 
+							System.out.println("\nCuidador seleccionado:\n");
+							System.out.println(cuidador.info());
+							cuidadorSeleccionado = cuidador;
+							estado = false;
+							break;
+						}
+					}
 				}
 			}
 			// Se retorna true para la verificación en la clase cuidarAnimal(), como se dijo anteriormente.

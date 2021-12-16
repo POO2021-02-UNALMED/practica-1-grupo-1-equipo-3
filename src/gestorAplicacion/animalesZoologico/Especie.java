@@ -48,43 +48,7 @@ public enum Especie implements Entidad {
 				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida()));
 	}
 
-<<<<<<< Updated upstream
-    // De aquí en adelante se definen los métodos set y get de la clase especie. 
-=======
     // De aqui en adelante se definen los metodos set y get de la clase especie. 
-    public ArrayList<Animal> getAnimales() {
-        return animales;
-    }
-
-    public void setAnimales(ArrayList<Animal> animales) {
-        this.animales = animales;
-    }
-
-    public ArrayList<Cuidador> getCuidadoresAsignados() {
-        return cuidadoresAsignados;
-    }
-
-    public void setCuidadoresAsignados(ArrayList<Cuidador> cuidadoresAsignados) {
-        this.cuidadoresAsignados = cuidadoresAsignados;
-    }
-    
-    public void removeAnimales(Animal eliminar) {
-    	animales.remove(animales.indexOf(eliminar));
-    }
-
-    public void addAnimales(Animal nuevo) {
-    	animales.add(nuevo);
-    }
-
-    public void removeCuidadorAsignado(Cuidador eliminar) {
-        cuidadoresAsignados.remove(cuidadoresAsignados.indexOf(eliminar));
-    }
-
-    public void addCuidadorAsignado(Cuidador nuevo) {
-        cuidadoresAsignados.add(nuevo);
-    }
-
->>>>>>> Stashed changes
     public String getNombre() {
         return nombre;
     }
