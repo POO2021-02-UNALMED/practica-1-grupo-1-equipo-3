@@ -191,8 +191,6 @@ public class FuncionalidadAdquisicionTraslado {
 	// A través del método ingresarAnimal() el usuario ingresa los atributos del animal a adquirir.
 	static void ingresarAnimal() {
 		System.out.println("\nPor último, ingrese los datos del animal que se va a adquirir:\n");
-		System.out.print("Identificación (Número): ");
-		int identificacion=Main.sc.nextInt();
 		System.out.print("Género (M o H): ");
 		String genero=Main.sc.next();
 		System.out.print("Edad (Número): ");
@@ -201,7 +199,7 @@ public class FuncionalidadAdquisicionTraslado {
 		float peso=Main.sc.nextFloat();
 		/* Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
 		 * en base a los atributos que el usuario ingresó. */
-		Administracion.adquirirAnimal(identificacion, especieSeleccionada, habitatSeleccionado, genero, edad, peso);
+		Administracion.adquirirAnimal(especieSeleccionada, habitatSeleccionado, genero, edad, peso);
 		System.out.println("\nANIMAL ADQUIRIDO EXITOSAMENTE\n");
 	}
 }

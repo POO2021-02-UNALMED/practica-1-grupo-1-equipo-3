@@ -10,7 +10,7 @@ public class FuncionalidadMantenimiento {
 
 	static Habitat habitatSeleccionado;
 	static Cuidador cuidadorSeleccionado;
-	static Habitat jaula = new Habitat(0, "Jaula", "Ninguna", 75);
+	static Habitat jaula = new Habitat("Jaulas");
 
 	static void mantenimientoHabitat() {
 		boolean habitatsDisponibles = seleccionarHabitat();

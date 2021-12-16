@@ -9,7 +9,7 @@ public class FuncionalidadCurar {
 	static Cuidador cuidadorSeleccionado;
 	static Veterinario veterinarioSeleccionado;
 	static Habitat habitatSeleccionado;
-	static Habitat veterinaria = new Habitat(100, "veterinaria", "Ninguna", 10);
+	static Habitat veterinaria = new Habitat("Veterinaria");
 
     static String leerString() {
 		return Main.sc.nextLine();

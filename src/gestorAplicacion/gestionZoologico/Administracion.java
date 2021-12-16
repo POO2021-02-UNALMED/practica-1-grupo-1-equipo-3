@@ -13,7 +13,6 @@ package gestorAplicacion.gestionZoologico;
 
 import java.util.*;
 import gestorAplicacion.animalesZoologico.*;
-
 import java.io.Serializable;
 
 public class Administracion implements Serializable {
@@ -67,8 +66,8 @@ public class Administracion implements Serializable {
 	/*Este método tiene como parámetros una identificación, la especie, el hábitat de la especie, el género, la edad y el peso
 	 del animal que se queiere adquirir y su función es la de crear un objeto animal con las anteriores características.
 	 No posee retorno. */
-	public static void adquirirAnimal(int identificacion, Especie especie, Habitat habitatEspecie, String genero, int edad, float peso) {
-		Animal animalAdquirido = new Animal(identificacion,especie,habitatEspecie,genero,edad,peso);}
+	public static void adquirirAnimal(Especie especie, Habitat habitatEspecie, String genero, int edad, float peso) {
+		Animal animalAdquirido = new Animal(especie,habitatEspecie,genero,edad,peso);}
 	
 	/*Este método no recibe parámetros y su función es la de calcular la ganancia por días del zoológico.
 	 Para esto recorrera la lista de visitantes, obtendra el valor de precioBoleta y se lo sumará a una variable
@@ -87,16 +86,16 @@ public class Administracion implements Serializable {
 	/*Este método recibe como parámetros la identificación, el nombre, el sueldo y la especie del cuidador que se quiere
 	 contratar y su función es la creación de un objeto cuidador con las características de los parámetros.
 	 Tiene como retorno el objeto Cuidador creado.*/
-	public static Cuidador contratarCuidador(int identificacion, String nombre, int sueldo, Especie especieAsignada) {
-		Cuidador nuevo=new Cuidador(identificacion,nombre,sueldo,especieAsignada);
+	public static Cuidador contratarCuidador(String nombre, int sueldo, Especie especieAsignada) {
+		Cuidador nuevo=new Cuidador(nombre,sueldo,especieAsignada);
 		return nuevo;}
 	
 	/*Este método recibe como parámetros la identificación, el nombre, el sueldo y la especialidad del veterinario 
 	 que se quiere contratar y su función es la creación de un objeto veterinario con las características de los 
 	 parámetros.
 	 Tiene como retorno el objeto veterinario creado.*/
-	public static Veterinario contratarVeterinario(int identificacion, String nombre, int sueldo, Especie especialidad) {
-		Veterinario nuevo=new Veterinario(identificacion,nombre,sueldo,especialidad);
+	public static Veterinario contratarVeterinario(String nombre, int sueldo, Especie especialidad) {
+		Veterinario nuevo=new Veterinario(nombre,sueldo,especialidad);
 		return nuevo;}
 
 	/*Este método tiene como parámetro la idetificación de un cuidador, y su función es la de despedir el cuidador

@@ -24,8 +24,8 @@ public class Cuidador extends Empleado {
 	 * con el objeto único de tipo Administracion, esto a través de las listas que estas clases manejan y por medio
 	 * de los métodos addCuidadorAsignado de la clase Especie y addCuidadores de la clase Administracion. 
 	 */
-	public Cuidador(int identificacion, String nombre, int sueldo, Especie especieAsignada) {
-		super(identificacion, nombre, sueldo);
+	public Cuidador(String nombre, int sueldo, Especie especieAsignada) {
+		super(Administracion.getCuidadores().size() + 1, nombre, sueldo);
 		this.especieAsignada = especieAsignada;
 		Administracion.addCuidadores(this);
 	}

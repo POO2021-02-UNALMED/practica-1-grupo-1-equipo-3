@@ -35,18 +35,18 @@ public class Main implements Serializable {
 		/* La siguiente línea permite cargar las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
 		 * al objeto Administracion creado. */
 		Deserializador.deserializar();
-/*		Administracion admin = new Administracion(0);
-		Habitat a = new Habitat(1, "A1", "Sabana", 10);
-		Habitat b = new Habitat(2, "A2", "Jungla", 25);
-		Cuidador xx = new Cuidador(1, "Jorge", 7500, Especie.MAMIFERO);
-		Cuidador yy = new Cuidador(2, "Johanna", 7500, Especie.MAMIFERO);
-		Cuidador zz = new Cuidador(3, "Camila", 200200, Especie.AVE);
-		Veterinario vv= new Veterinario(11,"Elva",500,Especie.AVE);
-		Animal x = new Animal(1, Especie.MAMIFERO, a, "M", 5, 70);
-		Animal y = new Animal(2, Especie.MAMIFERO, a, "F", 3, 55);
-		Animal z = new Animal(3, Especie.AVE, b, "M", 2, 5);
-		Visitante v1= new Visitante(1,"Jose",3,15);
-		Visitante v2= new Visitante(2,"Diego",5,30);
+/*		Administracion admin = new Administracion();
+		Habitat a = new Habitat("A1", "Sabana", 10);
+		Habitat b = new Habitat("A2", "Jungla", 25);
+		Cuidador xx = new Cuidador("Jorge", 7500, Especie.MAMIFERO);
+		Cuidador yy = new Cuidador("Johanna", 7500, Especie.MAMIFERO);
+		Cuidador zz = new Cuidador("Camila", 200200, Especie.AVE);
+		Veterinario vv= new Veterinario("Elva",500,Especie.AVE);
+		Animal x = new Animal(Especie.MAMIFERO, a, "M", 5, 70);
+		Animal y = new Animal(Especie.MAMIFERO, a, "F", 3, 55);
+		Animal z = new Animal(Especie.AVE, b, "M", 2, 5);
+		Visitante v1= new Visitante("Jose",3,15);
+		Visitante v2= new Visitante("Diego",5,30);
 */		int opcion;
 		do {
 			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");

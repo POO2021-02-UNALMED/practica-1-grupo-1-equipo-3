@@ -16,14 +16,18 @@ public class Habitat implements Serializable, Entidad {
 	private boolean limpio;
 	private ArrayList<Animal> animalesAsociados = new ArrayList<Animal>();
 	
-	public Habitat(int identificacion, String nombre, String ambientacion, int capacidadMaxima) {
-		this.identificacion = identificacion;
+	public Habitat(String nombre, String ambientacion, int capacidadMaxima) {
+		this.identificacion = Administracion.getHabitats().size() + 1;
 		this.nombre = nombre;
 		this.ambientacion = ambientacion;
 		this.limpio = true;
 		this.CAPACIDADMAXIMA= capacidadMaxima;
 		Habitat.totalHabitats++;
 		Administracion.addHabitats(this);
+	}
+	
+	public Habitat(String nombre) {
+		this(nombre, "Ninguna", 999);
 	}
 	
 	/* El método info() es implementado de la interfaz Entidad y definido aquí. Sirve para generar el String que será 
