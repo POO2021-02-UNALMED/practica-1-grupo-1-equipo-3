@@ -14,6 +14,7 @@ import gestorAplicacion.gestionZoologico.Administracion;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.InputMismatchException;
 
 import gestorAplicacion.animalesZoologico.*;
 
@@ -236,10 +237,37 @@ public class FuncionalidadAdquisicionTraslado {
 		System.out.println("\nPor último, ingrese los datos del animal que se va a adquirir:\n");
 		System.out.print("Género (M o H): ");
 		String genero=Main.sc.next();
-		System.out.print("Edad (Número): ");
+		while(true) {
+			if(genero.equals("M") || genero.equals("H")) {
+				break;
+			} else {
+				System.out.println("\nGÉNERO INCORRECTO: Ingrese M o H\n");
+				System.out.print("Género (M o H): ");
+				genero=Main.sc.next();
+			}
+		}
+		System.out.print("Edad en años (Número): ");
 		int edad=Main.sc.nextInt();
-		System.out.print("Peso (Número): ");
+		while(true) {
+			if(edad < 0) {
+				System.out.println("\nEDAD INCORRECTA: Ingrese un número positivo\n");
+				System.out.print("Edad en años (Número): ");
+				edad=Main.sc.nextInt();
+			} else {
+				break;
+			}
+		}
+		System.out.print("Peso en Kg (Número): ");
 		float peso=Main.sc.nextFloat();
+		while(true) {
+			if(peso < 0.0) {
+				System.out.println("\nPESO INCORRECTO: Ingrese un número positivo\n");
+				System.out.print("Peso en Kg (Número): ");
+				peso=Main.sc.nextFloat();
+			} else {
+				break;
+			}
+		}
 		/* Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
 		 * en base a los atributos que el usuario ingresó. */
 		Administracion.adquirirAnimal(especieSeleccionada, habitatSeleccionado, genero, edad, peso);

@@ -45,7 +45,7 @@ public enum Especie implements Entidad {
     public String info() {
 		return ("Nombre: " + this.getNombre() +
 				"\nDieta: " + this.getDieta() +
-				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida()));
+				"\nPromedio de vida: " + String.valueOf(this.getPromedioVida() + " años"));
 	}
 
     // De aqui en adelante se definen los metodos set y get de la clase especie. 
