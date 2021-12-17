@@ -86,15 +86,13 @@ public class Cuidador extends Empleado {
 	 * a los animales a dicho hábitat.
 	 */
 	public void limpiarHabitat(Habitat habitat, Habitat jaulas) {
-		List<Animal> animales = habitat.getAnimalesAsociados();
-		
-		for(Animal animal : animales) {
-			this.moverAnimal(animal, jaulas);
-		}
-		
+		while (habitat.getAnimalesAsociados().isEmpty()==false) {
+		for(Animal animal : habitat.getAnimalesAsociados()) {
+			moverAnimal(animal, jaulas);
+		}}
 		habitat.setLimpio(true);
-		
-		for(Animal animal : animales) {
+		while (jaulas.getAnimalesAsociados().isEmpty()==false) {
+		for(Animal animal : jaulas.getAnimalesAsociados()) {
 			/* El siguiente if se encarga, para cada animal, de cambiar su atributo de "estadoAnimo" a true en caso que los dos 
 			 * atributos de esta clase necesarios para este cambio se encuentren en true, o sea, "alimentado" y "estadoSalud".
 			 * Otro atributo requerido para esto es el atributo "limpio" relacionado con el hábitat con que dicho animal está
@@ -104,7 +102,7 @@ public class Cuidador extends Empleado {
 				animal.setEstadoAnimo(true);
 			}
 			this.moverAnimal(animal, habitat);
-		}
+		}}
 	}
 	
 	// DE ACÁ PARA ABAJO ESTÁN LOS MÉTODOS GET Y SET
