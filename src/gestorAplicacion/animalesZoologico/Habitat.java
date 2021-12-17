@@ -52,11 +52,24 @@ public class Habitat implements Serializable, Entidad {
 	 * de la aplicación.
 	 */
 	public String info() {
-		return ("Identificación: " + String.valueOf(this.getIdentificacion()) +
-				"\nNombre: " + this.getNombre() +
-				"\nAmbientación: " + this.getAmbientacion() +
-				"\nCantidad de Animales actual: " + String.valueOf(this.cantidadAnimales()) +
-				"\nCapacidad máxima : " + String.valueOf(this.getCapacidadMaxima())) + " animales";
+		String retorno;
+		if (animalesAsociados.isEmpty()==true) {
+			retorno="Identificación: " + String.valueOf(this.getIdentificacion()) +
+					"\nNombre: " + this.getNombre() +
+					"\nAmbientación: " + this.getAmbientacion() +
+					"\nCantidad de Animales actual: " + String.valueOf(this.cantidadAnimales()) +
+					"\nCapacidad máxima : " + String.valueOf(this.getCapacidadMaxima()) + " animales";
+			return retorno;
+			} else {
+				retorno="Identificación: " + String.valueOf(this.getIdentificacion()) +
+						"\nNombre: " + this.getNombre() +
+						"\nAmbientación: " + this.getAmbientacion() +
+						"\nCantidad de Animales actual: " + String.valueOf(this.cantidadAnimales()) +
+						"\nCapacidad máxima : " + String.valueOf(this.getCapacidadMaxima()) + " animales"+
+						"\nEspecie que lo habita: "+animalesAsociados.get(0).getEspecie().getNombre();
+				return retorno;
+				
+			}
 	}
 	
 	public int getCapacidadMaxima() {
