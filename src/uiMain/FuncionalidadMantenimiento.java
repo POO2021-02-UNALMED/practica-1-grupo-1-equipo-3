@@ -71,7 +71,9 @@ public class FuncionalidadMantenimiento {
 			for(Habitat habitat: Administracion.getHabitats()) {
 				if(id == habitat.getIdentificacion()) { // En este if se encuentra el habitat con el mismo # de identificacion al que escogio el usuario.
 					System.out.println("\nHábitat seleccionado:\n");
-					System.out.println(habitat.info()); // Se imprime la informacion del habitat.
+					System.out.println(habitat.info());
+					System.out.println("La especie que habita el hábitat es la de: "+habitat.getAnimalesAsociados().get(0).getEspecie().getNombre());
+					// Se imprime la informacion del habitat.
 					habitatSeleccionado = habitat; // Se asigna el habitat escogido al atributo estatico habitatSeleccionado para usos futuros. 
 					break;
 				}
