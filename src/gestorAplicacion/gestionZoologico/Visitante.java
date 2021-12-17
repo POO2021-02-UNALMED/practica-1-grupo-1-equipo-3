@@ -41,7 +41,7 @@ public class Visitante implements Serializable, Entidad {
 	public String info() {
         return ("Identificación: " + String.valueOf(this.getIdentificacion()) + 
 				"\nNombre: " + this.getNombre() + 
-				"\nEstrado: " + String.valueOf(this.getEstrato()) + 
+				"\nEstrato: " + String.valueOf(this.getEstrato()) + 
 				"\nEdad: " + String.valueOf(this.getEdad()) +
 				"\nPrecio de boleta: " + String.valueOf(this.getPrecioBoleta()));
     }
