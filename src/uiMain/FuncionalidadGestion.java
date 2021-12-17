@@ -41,6 +41,7 @@ public class FuncionalidadGestion {
 				System.out.println("\n"+veterinario.info());
 			}
 			System.out.println("\n¿Se ha decidido por uno de los empleados? Elija una de las siguientes opciones: ");
+			System.out.println();
 			System.out.println("1. Despedir a un Cuidador");
 			System.out.println("2. Despedir a un Veterinario");
 			opcion = Main.leerOpcion();
@@ -73,7 +74,6 @@ public class FuncionalidadGestion {
 				if (cuidador.getIdentificacion()==id) {
 					Administracion.despedirCuidador(id);
 					System.out.println(cuidador.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedid@.");
-					System.out.println();
 					System.out.println("\nCon esto el zoógico se recuperará económicamente.");
 					System.out.println("\n...");
 					estado=true;
@@ -99,7 +99,6 @@ public class FuncionalidadGestion {
 				if (veterinario.getIdentificacion()==id) {
 					Administracion.despedirVeterinario(id);
 					System.out.println(veterinario.getNombre()+" hacia parte de la nómina de veterinarios del zoológico. Ha sido despedid@.");
-					System.out.println();
 					System.out.println("\nCon esto el zoógico se recuperará económicamente.");
 					System.out.println("\n...");
 					estado=true;

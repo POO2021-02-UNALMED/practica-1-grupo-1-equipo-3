@@ -103,6 +103,11 @@ public class FuncionalidadOtras {
 		System.out.println("Ahora ingrese el sueldo del cuidador (NÚMERO ENTERO):");
 		sueldo=Main.leerOpcion();
 		System.out.println();
+		System.out.println("A continuácion se muestran las especies para que posteriormente sea ingresado el nombre de la especie.");
+		for (Especie especie:Administracion.getEspecies()) {
+			System.out.println("\n"+especie.info());
+		}
+		System.out.println();
 		System.out.println("Por último ingrese el nombre de la especie de la que se va a encargar el cuidador:");
 		nombreEspecialidad=Main.sc.next();
 		System.out.println();
@@ -129,6 +134,11 @@ public class FuncionalidadOtras {
 		System.out.println();
 		System.out.println("Ahora ingrese el sueldo del veterinario (NÚMERO ENTERO):");
 		sueldo=Main.leerOpcion();
+		System.out.println();
+		System.out.println("A continuácion se muestran las especies para que posteriormente sea ingresado el nombre de la especie.");
+		for (Especie especie:Administracion.getEspecies()) {
+			System.out.println("\n"+especie.info());
+		}
 		System.out.println();
 		System.out.println("Por último ingrese el nombre de la especie de la cual el veterinario está especializado:");
 		nombreEspecialidad=Main.sc.next();
