@@ -54,10 +54,13 @@ public class Main implements Serializable {
 		a3.setAlimentado(false);
 		a4.setEstadoSalud(false);
 		Animal a5 = new Animal(Especie.PEZ,d,"M",2,20);
-		Animal a6 = new Animal(Especie.PEZ,d,"F",1,20);
+		Animal a6 = new Animal(Especie.PEZ,d,"M",1,15);
+		Animal a7 = new Animal(Especie.PEZ,d,"F",1,20);
 		d.setLimpio(false);
 		a5.setEstadoAnimo(false);
 		a6.setEstadoAnimo(false);
+		a7.setEstadoAnimo(false);
+		a7.setAlimentado(false);
 		a5.setAlimentado(false);
 		a6.setEstadoSalud(false);
 		Cuidador c1 = new Cuidador("Jorge", 7500, Especie.MAMIFERO);

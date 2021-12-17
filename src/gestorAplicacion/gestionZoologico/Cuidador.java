@@ -91,13 +91,13 @@ public class Cuidador extends Empleado {
 	 * a los animales a dicho hábitat.
 	 */
 	public void limpiarHabitat(Habitat habitat, Habitat jaulas) {
-		List<Animal> animalesOriginal = habitat.getAnimalesAsociados();
 		
-		for(Animal animal : animalesOriginal) {
+		for(Animal animal : habitat.getAnimalesAsociados()) {
 			this.moverMantenimiento(animal, jaulas);
 		}
 		
 		habitat.setLimpio(true);
+		habitat.getAnimalesAsociados().clear();
 		
 		for(Animal animal : jaulas.getAnimalesAsociados()) {
 			/* El siguiente if se encarga, para cada animal, de cambiar su atributo de "estadoAnimo" a true en caso que los dos 
