@@ -22,7 +22,7 @@ public class Main implements Serializable {
 	 * del objeto admin del tipo Administracion. */
 	private static void salirDelSistema() {
 		System.out.println("¡Gracias por haber usado nuestra aplicación! Vuelva pronto.\n");
-		Serializador.serializar();
+//		Serializador.serializar();
 		System.exit(0);
 	}
 	
