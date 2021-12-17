@@ -48,7 +48,7 @@ public class FuncionalidadGestion {
 					identificaciones.add(cuidador.getIdentificacion());
 					if (cuidador.getIdentificacion()==identificacion) {
 						Administracion.despedirCuidador(identificacion);
-						System.out.println(cuidador.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedido.");
+						System.out.println(cuidador.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedid@.");
 						estado=true;
 						break;
 					}
@@ -58,14 +58,14 @@ public class FuncionalidadGestion {
 					identificaciones.add(veterinario.getIdentificacion());
 					if (veterinario.getIdentificacion()==identificacion) {
 						Administracion.despedirVeterinario(identificacion);
-						System.out.println(veterinario.getNombre()+" hacia parte de la nómina de veterinarios del zoológico. Ha sido despedido.");
+						System.out.println(veterinario.getNombre()+" hacia parte de la nómina de veterinarios del zoológico. Ha sido despedid@.");
 						estado=true;
 						break;
 					}
 				}
 				//En caso de que se ingrese una identificacion que no corresponde a algun empelado de la nomina,volverá a pedir la identificación hasta que se ingrese una correcta
 				if (identificaciones.contains(identificacion)==false) {
-					System.out.println("\nNinguno de nuestros empleados tiene esa identificación. Por favor vuelva a ingresar una válida.");
+					System.out.println("\nNinguno de nuestros empleados tiene esa identificación. Por favor vuelva a ingresar una identificación válida.");
 				}
 			}
 			System.out.println("\nCon esto el zoógico se recuperará económicamente.");

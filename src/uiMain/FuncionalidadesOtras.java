@@ -1,6 +1,10 @@
 package uiMain;
 
 import gestorAplicacion.gestionZoologico.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import gestorAplicacion.animalesZoologico.*;
 
 public class FuncionalidadesOtras {
@@ -41,10 +45,10 @@ public class FuncionalidadesOtras {
 				System.out.println();
 				switch(opcion) {
 					case 1: {
-						
+						despedirCuidador();break;
 					}
 					case 2: {
-						
+						despedirVeterinario();break;
 					}
 					default: System.out.println("OPCIÓN INCORRECTA: Solo opciones 1 y 2."); break;
 				}
@@ -138,4 +142,60 @@ public class FuncionalidadesOtras {
 		System.out.println("Estas son las características del nuevo veterinario:\n");
 		System.out.println(nuevo.info());
 	}
+	
+	static void despedirCuidador() {
+		int id;
+		boolean estado=false;
+		List<Integer> identificaciones= new ArrayList<Integer>();
+		System.out.println("A continuación le mostraremos la nómina de cuidadores del zoológico:");
+		for (Cuidador cuidador:Administracion.getCuidadores()) {
+			System.out.println("\n"+cuidador.info());
+		}
+		System.out.println("¿Ya se decidio por el cuidador que quiere despedir? A continuación ingrese el número de identificación del cuidador:" );
+		while (estado==false){
+			id=Main.sc.nextInt();
+			for (Cuidador cuidador:Administracion.getCuidadores()) {
+				identificaciones.add(cuidador.getIdentificacion());
+				if (cuidador.getIdentificacion()==id) {
+					Administracion.despedirCuidador(id);
+					System.out.println(cuidador.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedid@.");
+					estado=true;
+					break;
+				}
+			}
+			//En caso de que se ingrese una identificacion que no corresponde a algun empelado de la nomina,volverá a pedir la identificación hasta que se ingrese una correcta
+			if (identificaciones.contains(id)==false) {
+				System.out.println("\nNinguno de nuestros empleados tiene esa identificación. Por favor vuelva a ingresar una identificación válida.");
+			}
+		}
+	}
+	
+	static void despedirVeterinario() {
+		int id;
+		boolean estado=false;
+		List<Integer> identificaciones= new ArrayList<Integer>();
+		System.out.println("A continuación le mostraremos la nómina de veterinarios del zoológico:");
+		for (Veterinario veterinario:Administracion.getVeterinarios()) {
+			System.out.println("\n"+veterinario.info());
+		}
+		System.out.println("¿Ya se decidio por el veterinario que quiere despedir? A continuación ingrese el número de identificación del veterinario:" );
+		while (estado==false){
+			id=Main.sc.nextInt();
+			for (Veterinario veterinario:Administracion.getVeterinarios()) {
+				identificaciones.add(veterinario.getIdentificacion());
+				if (veterinario.getIdentificacion()==id) {
+					Administracion.despedirVeterinario(id);
+					System.out.println(veterinario.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedid@.");
+					estado=true;
+					break;
+				}
+			}
+			//En caso de que se ingrese una identificacion que no corresponde a algun empelado de la nomina,volverá a pedir la identificación hasta que se ingrese una correcta
+			if (identificaciones.contains(id)==false) {
+				System.out.println("\nNinguno de nuestros empleados tiene esa identificación. Por favor vuelva a ingresar una identificación válida.");
+			}
+		}
+	}
+	
+	
 }
