@@ -30,6 +30,7 @@ public class FuncionalidadCuidar {
 			boolean cuidadoresDisponibles = seleccionarCuidador();
 			if(cuidadoresDisponibles) animoAnimal();
 		}
+		System.out.println();
 		/* El método continuar() de la clase Main es usado para que el usuario tenga tiempo de leer las salidas proporcionadas por la funcionalidad
 		 * Este método evita que se repita inmediatamente el ciclo de elegir la funcionalidad a realizar, esto por medio de esperar la acción del usuario */
 		Main.continuar();
@@ -172,7 +173,7 @@ public class FuncionalidadCuidar {
 		 * a través del método animentarAnimal(...). */
 		} else {
 			System.out.println("RESULTADO: El animal se encuentra con mal estado de ánimo.\n");
-			System.out.println("El cuidador " + cuidadorSeleccionado.getNombre() + "decide alimentar al animal para mejorar su estado de ánimo.");
+			System.out.println("El cuidador " + cuidadorSeleccionado.getNombre() + " decide alimentar al animal para mejorar su estado de ánimo.");
 			cuidadorSeleccionado.alimentarAnimal(animalSeleccionado);
 			/* El estado de ánimo depende de su alimentación, su estado de salud y de la limpieza de su hábitat. El siguiente if cambia el estado
 			 * de ánimo del animal a bueno (true) en caso que estos tres factores también sean buenos (true). */
