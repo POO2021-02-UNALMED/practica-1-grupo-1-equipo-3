@@ -55,8 +55,8 @@ public class Animal implements Serializable, Entidad {
 				"\nEspecie: " + this.getEspecie().getNombre() + 
 				"\nHábitat: " + this.getHabitat().getNombre() + "(" + this.getHabitat().getAmbientacion() + ")" + 
 				"\nGénero: " + this.getGenero() +
-				"\nEdad: " + String.valueOf(this.getEdad()) +
-				"\nPeso: " + String.valueOf(this.getPeso()));
+				"\nEdad: " + String.valueOf(this.getEdad()) + " años" +
+				"\nPeso: " + String.valueOf(this.getPeso())) + " Kg";
 	}
 	
 	public void setIdentificacion(int identificacion) {
