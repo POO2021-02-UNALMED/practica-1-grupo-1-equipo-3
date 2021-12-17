@@ -1,3 +1,15 @@
+// CLASE CREADA POR Juan Jose Monsalve Marin
+
+/*
+ En esta clase realiza la funcionalidad de curar de los animales 
+ Primero se debe de identificar el cuidador que moverá a los animales, el animal que será trasladado a la 
+ veterinaria y el veterinario tratante que atenderá al animal. Todo esto se hace después de que un cuidador 
+ allá revisando el animal y se percatara de que el estado de animo del animal no cambio después de alimentarlo. 
+ esto ultimo se realiza en la clase "FuncionalidadCuidar"
+
+ Son necesarias las clases animal, veterinario y cuidador.  
+*/
+
 package uiMain;
 
 import gestorAplicacion.animalesZoologico.*;
@@ -14,7 +26,8 @@ public class FuncionalidadCurar {
     static String leerString() {
 		return Main.sc.nextLine();
 	}
-
+    
+ // A traves del metodo seleccionarAnimal() se obtiene el animal que sera revisado.
     static void curarAnimal() {
 		boolean animalesDisponibles = seleccionarAnimal();
 		if(animalesDisponibles) {
