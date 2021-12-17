@@ -62,6 +62,11 @@ public class Cuidador extends Empleado {
 		lugar.addAnimalesAsociados(animal);
 	}
 	
+	public void moverMantenimiento(Animal animal,Habitat lugar) {
+		animal.setHabitat(lugar);
+		lugar.addAnimalesAsociados(animal);
+	}
+	
 	/* Este método revisar() es heredado de la clase abstracta padre Empleado y definido aquí, además que aplica la 
 	 * sobrecarga de métodos. La siguiente es la primera definición del método, que recibe como parámetro un objeto 
 	 * tipo Animal y que en base a ese objeto retorna su atributo "estadoAnimo".
@@ -86,12 +91,14 @@ public class Cuidador extends Empleado {
 	 * a los animales a dicho hábitat.
 	 */
 	public void limpiarHabitat(Habitat habitat, Habitat jaulas) {
-		while (habitat.getAnimalesAsociados().isEmpty()==false) {
-		for(Animal animal : habitat.getAnimalesAsociados()) {
-			moverAnimal(animal, jaulas);
-		}}
+		List<Animal> animalesOriginal = habitat.getAnimalesAsociados();
+		
+		for(Animal animal : animalesOriginal) {
+			this.moverMantenimiento(animal, jaulas);
+		}
+		
 		habitat.setLimpio(true);
-		while (jaulas.getAnimalesAsociados().isEmpty()==false) {
+		
 		for(Animal animal : jaulas.getAnimalesAsociados()) {
 			/* El siguiente if se encarga, para cada animal, de cambiar su atributo de "estadoAnimo" a true en caso que los dos 
 			 * atributos de esta clase necesarios para este cambio se encuentren en true, o sea, "alimentado" y "estadoSalud".
@@ -102,7 +109,8 @@ public class Cuidador extends Empleado {
 				animal.setEstadoAnimo(true);
 			}
 			this.moverAnimal(animal, habitat);
-		}}
+		}
+		jaulas.getAnimalesAsociados().clear();
 	}
 	
 	// DE ACÁ PARA ABAJO ESTÁN LOS MÉTODOS GET Y SET
