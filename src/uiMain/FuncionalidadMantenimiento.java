@@ -23,8 +23,9 @@ public class FuncionalidadMantenimiento {
 			//Por medio de la variable "cuidadoresDisponibles" se verificara que haya por lo menos un cuidador pueda revisar el habitat
 			boolean cuidadoresDisponibles = seleccionarCuidador(); //Por medio de la variable "cuidadoresDisponibles" se verificara que haya por lo menos un cuidador pueda revisar el habitat.
 			//En caso de que no haya cuidadores se cancela el mantenimiento.
-			if(cuidadoresDisponibles) limpiezaHabitat(); 
+			if(cuidadoresDisponibles) limpiezaHabitat(); 	
 		}
+		System.out.println();
 		/* El método continuar() de la clase Main es usado para que el usuario tenga tiempo de leer las salidas proporcionadas por la funcionalidad
 		 * Este método evita que se repita inmediatamente el ciclo de elegir la funcionalidad a realizar, esto por medio de esperar la acción del usuario */
 		Main.continuar();
