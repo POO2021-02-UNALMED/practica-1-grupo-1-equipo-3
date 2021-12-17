@@ -123,6 +123,10 @@ public class Administracion implements Serializable {
 				veterinario=null;
 				break;}}}
 	
+	public static Habitat construirHabitat(String nombre, String ambientacion, int capacidad) {
+		Habitat nuevo=new Habitat(nombre,ambientacion,capacidad);
+		return nuevo;}
+	
 	/*Este método tiene como parámetro un objeto animal y su función es agregarlo a la lista de atributo animales.
 	 No posee retorno.*/
 	public static void addAnimales(Animal nuevo) {

@@ -73,7 +73,7 @@ public class Main implements Serializable {
 				case 3: FuncionalidadCuidar.cuidarAnimal(); break;
 				case 4: FuncionalidadGestion.gestionAdministrativa(); break;
 				case 5: FuncionalidadAdquisicionTraslado.adquisicionTraslado(); break;
-				case 6: FuncionalidadesOtras.funcionalidades(); break;
+				case 6: FuncionalidadOtras.funcionalidades(); break;
 				case 7: salirDelSistema(); break;
 				default: System.out.println("Opción incorrecta. Solo opciones del 1 al 7."); break;}
 		} while(opcion!=7);

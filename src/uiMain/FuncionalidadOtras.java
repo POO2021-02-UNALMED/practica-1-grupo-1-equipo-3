@@ -7,7 +7,7 @@ import java.util.List;
 
 import gestorAplicacion.animalesZoologico.*;
 
-public class FuncionalidadesOtras {
+public class FuncionalidadOtras {
 	static void funcionalidades() {
 		int opcion;
 		System.out.println("Primero elija qué desea hacer:\n");
@@ -55,7 +55,7 @@ public class FuncionalidadesOtras {
 				
 			}
 			case 3: {
-				
+				crearHabitat();break;
 			}
 			case 4: {
 				System.out.println("Ahora elija qué desea hacer:\n");
@@ -195,6 +195,27 @@ public class FuncionalidadesOtras {
 				System.out.println("\nNinguno de nuestros empleados tiene esa identificación. Por favor vuelva a ingresar una identificación válida.");
 			}
 		}
+	}
+	
+	static void crearHabitat() {
+		String nombre;
+		String ambientacion;
+		int capacidad;
+		Habitat nuevoHabitat;
+		System.out.println("Iniciaremos la construcción de un nuevo hábitat.\n");
+		System.out.println("A continuación ingrese el nombre del hábitat:");
+		nombre=Main.leerString();
+		System.out.println("Ahora ingresela ambientación que va a tener el hábitat:");
+		ambientacion=Main.leerString();
+		System.out.println("Por último ingrese la capacidad máxima de animales que puede albergar:");
+		capacidad=Main.leerOpcion();
+		System.out.println("\n...");
+		nuevoHabitat=Administracion.construirHabitat(nombre, ambientacion, capacidad);
+		System.out.println("¡Se ha construido el nuevo hábitat!\n");
+		System.out.println("Este posee las siguientes características:");
+		System.out.println("\n"+nuevoHabitat.info());
+		
+		
 	}
 	
 	
