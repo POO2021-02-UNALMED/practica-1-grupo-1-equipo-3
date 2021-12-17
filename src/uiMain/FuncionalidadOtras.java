@@ -100,7 +100,7 @@ public class FuncionalidadOtras {
 		System.out.println("Ingrese el nombre del cuidador al que quiere contratar:");
 		nombre=Main.leerString();
 		System.out.println();
-		System.out.println("Ahora ingrese el sueldo del cuidador:");
+		System.out.println("Ahora ingrese el sueldo del cuidador (NÚMERO ENTERO):");
 		sueldo=Main.leerOpcion();
 		System.out.println();
 		System.out.println("Por último ingrese el nombre de la especie de la que se va a encargar el cuidador:");
@@ -127,7 +127,7 @@ public class FuncionalidadOtras {
 		System.out.println("Ingrese el nombre del veterinario al que quiere contratar:");
 		nombre=Main.leerString();
 		System.out.println();
-		System.out.println("Ahora ingrese el sueldo del veterinario:");
+		System.out.println("Ahora ingrese el sueldo del veterinario (NÚMERO ENTERO):");
 		sueldo=Main.leerOpcion();
 		System.out.println();
 		System.out.println("Por último ingrese el nombre de la especie de la cual el veterinario está especializado:");
