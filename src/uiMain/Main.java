@@ -16,10 +16,10 @@ public class Main implements Serializable {
 	static int leerOpcion() {
 		return sc.nextInt();}
 	
-	/* El método salirDelSistema() permite guardar en los archivos las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
+	/* El mï¿½todo salirDelSistema() permite guardar en los archivos las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
 	 * del objeto admin del tipo Administracion. */
 	private static void salirDelSistema() {
-		System.out.println("¡Gracias por haber usado nuestra aplicación! Vuelva pronto.\n");
+		System.out.println("ï¿½Gracias por haber usado nuestra aplicaciï¿½n! Vuelva pronto.\n");
 		Serializador.serializar();
 		continuar();
 		System.exit(0);
@@ -32,7 +32,7 @@ public class Main implements Serializable {
 	}
 	
 	public static void main(String args[]) {
-		/* La siguiente línea permite cargar las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
+		/* La siguiente lï¿½nea permite cargar las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
 		 * al objeto Administracion creado. */
 //		Deserializador.deserializar();
 		Administracion admin = new Administracion();
@@ -53,16 +53,17 @@ public class Main implements Serializable {
 		Visitante v1= new Visitante("Jose",3,15);
 		Visitante v2= new Visitante("Diego",5,30);
 		int opcion;
+		z.setEstadoSalud(false);
 		do {
-			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");
-			System.out.println("A continuación te presentamos funcionalidades disponibles:\n");
+			System.out.println("\nï¿½Bienvenido al sistema gestor de tu Zoolï¿½gico!\n");
+			System.out.println("A continuaciï¿½n te presentamos funcionalidades disponibles:\n");
 			System.out.println("1. Mantenimiento de los habitats");
 			System.out.println("2. Curar a los animales");
 			System.out.println("3. Cuidar a los animales");
-			System.out.println("4. Gestión administrativa del Zoológico");
-			System.out.println("5. Adquisición y traslado de animales");
+			System.out.println("4. Gestiï¿½n administrativa del Zoolï¿½gico");
+			System.out.println("5. Adquisiciï¿½n y traslado de animales");
 			System.out.println("6. Salir del programa");
-			System.out.print("\n¿Cuál quieres realizar? ");
+			System.out.print("\nï¿½Cuï¿½l quieres realizar? ");
 			opcion=leerOpcion();
 			System.out.println();
 			switch(opcion) {
@@ -72,7 +73,7 @@ public class Main implements Serializable {
 				case 4: FuncionalidadGestion.gestionAdministrativa(); break;
 				case 5: FuncionalidadAdquisicionTraslado.adquisicionTraslado(); break;
 				case 6: salirDelSistema(); break;
-				default: System.out.println("Opción incorrecta. Solo opciones del 1 al 6."); break;}
+				default: System.out.println("Opciï¿½n incorrecta. Solo opciones del 1 al 6."); break;}
 		} while(opcion!=6);
 	}
 }
