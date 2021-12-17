@@ -11,10 +11,10 @@ public class FuncionalidadOtras {
 	static void funcionalidades() {
 		int opcion;
 		System.out.println("Primero elija qué desea hacer:\n");
-		System.out.println("1. Contratar empleado");
-		System.out.println("2. Despedir empleado");
-		System.out.println("3. Crear hábitat");
-		System.out.println("4. Consultar datos");
+		System.out.println("1. Contratar a un empleado");
+		System.out.println("2. Despedir a un empleado");
+		System.out.println("3. Construcción de un nuevo hábitat");
+		System.out.println("4. Consultar datos del zoológico");
 		System.out.print("\n¿Cuál opción quiere realizar? ");
 		opcion = Main.leerOpcion();
 		System.out.println();
@@ -58,7 +58,7 @@ public class FuncionalidadOtras {
 				crearHabitat();break;
 			}
 			case 4: {
-				System.out.println("Ahora elija qué desea hacer:\n");
+				System.out.println("Puede elegir entre:\n");
 				System.out.println("1. Consultar datos animales");
 				System.out.println("2. Consultar datos hábitats");
 				System.out.println("3. Consultar datos cuidadores");
@@ -69,19 +69,19 @@ public class FuncionalidadOtras {
 				System.out.println();
 				switch(opcion) {
 					case 1: {
-					
+						animales();break;
 					}
 					case 2: {
-						
+						habitats();break;
 					}
 					case 3: {
-						
+						cuidadores();break;
 					}
 					case 4: {
-						
+						veterinarios();break;
 					}
 					case 5: {
-						
+						visitantes();break;
 					}
 					default: System.out.println("OPCIÓN INCORRECTA: Solo opciones del 1 al 5."); break;
 				}
@@ -115,6 +115,7 @@ public class FuncionalidadOtras {
 		System.out.println("¡"+nuevo.getNombre()+" ya hace parte de la nomina de cuidadores del zoológico!\n");
 		System.out.println("Estas son las características del nuevo cuidador:\n");
 		System.out.println(nuevo.info());
+		System.out.println();
 	}
 	
 	static void contratarVeterinario() {
@@ -141,6 +142,7 @@ public class FuncionalidadOtras {
 		System.out.println("¡"+nuevo.getNombre()+" ya hace parte de la nomina de veterinarios del zoológico!\n");
 		System.out.println("Estas son las características del nuevo veterinario:\n");
 		System.out.println(nuevo.info());
+		System.out.println();
 	}
 	
 	static void despedirCuidador() {
@@ -159,6 +161,7 @@ public class FuncionalidadOtras {
 				if (cuidador.getIdentificacion()==id) {
 					Administracion.despedirCuidador(id);
 					System.out.println(cuidador.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedid@.");
+					System.out.println();
 					estado=true;
 					break;
 				}
@@ -186,6 +189,7 @@ public class FuncionalidadOtras {
 				if (veterinario.getIdentificacion()==id) {
 					Administracion.despedirVeterinario(id);
 					System.out.println(veterinario.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedid@.");
+					System.out.println();
 					estado=true;
 					break;
 				}
@@ -205,18 +209,65 @@ public class FuncionalidadOtras {
 		System.out.println("Iniciaremos la construcción de un nuevo hábitat.\n");
 		System.out.println("A continuación ingrese el nombre del hábitat:");
 		nombre=Main.leerString();
+		System.out.println();
 		System.out.println("Ahora ingresela ambientación que va a tener el hábitat:");
 		ambientacion=Main.leerString();
+		System.out.println();
 		System.out.println("Por último ingrese la capacidad máxima de animales que puede albergar:");
 		capacidad=Main.leerOpcion();
 		System.out.println("\n...");
 		nuevoHabitat=Administracion.construirHabitat(nombre, ambientacion, capacidad);
-		System.out.println("¡Se ha construido el nuevo hábitat!\n");
+		System.out.println("\n¡Se ha construido el nuevo hábitat!\n");
 		System.out.println("Este posee las siguientes características:");
 		System.out.println("\n"+nuevoHabitat.info());
-		
-		
+		System.out.println();
 	}
+	
+	static void animales() {
+		System.out.println("Este es el listado de animales con los que cuenta el zoológico:");
+		for (Animal animal:Administracion.getAnimales()) {
+			System.out.println();
+			System.out.println(animal.info());
+		}
+		System.out.println();
+	}
+		
+	static void habitats() {
+		System.out.println("Este es el listado de hábitats con los que cuenta el zoológico:");
+		for (Habitat habitat:Administracion.getHabitats()) {
+			System.out.println();
+			System.out.println(habitat.info());
+		}
+		System.out.println();
+	}
+	
+	static void cuidadores() {
+		System.out.println("Este es la nómina de cuidadores del zoológico:");
+		for (Cuidador cuidador:Administracion.getCuidadores()) {
+			System.out.println();
+			System.out.println(cuidador.info());
+		}
+		System.out.println();
+	}
+	
+	static void veterinarios() {
+		System.out.println("Este es la nómina de veterinarios del zoológico:");
+		for (Veterinario veterinario:Administracion.getVeterinarios()) {
+			System.out.println();
+			System.out.println(veterinario.info());
+		}
+		System.out.println();
+	}
+	
+	static void visitantes() {
+		System.out.println("Este es el listado de personas que han visitado el zoológico en el día de hoy:");
+		for (Visitante visitante:Administracion.getVisitantes()) {
+			System.out.println();
+			System.out.println(visitante.info());
+		}
+		System.out.println();
+	}
+	
 	
 	
 }
