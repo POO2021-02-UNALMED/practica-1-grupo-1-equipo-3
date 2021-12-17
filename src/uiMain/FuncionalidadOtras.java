@@ -84,7 +84,7 @@ public class FuncionalidadOtras {
 						visitantes();break;
 					}
 					default: System.out.println("OPCIÓN INCORRECTA: Solo opciones del 1 al 5."); break;
-				}
+				}break;
 			}
 			default: System.out.println("OPCIÓN INCORRECTA: Solo opciones del 1 al 6."); break;
 		}
@@ -103,7 +103,7 @@ public class FuncionalidadOtras {
 		System.out.println("Ahora ingrese el sueldo del cuidador:");
 		sueldo=Main.leerOpcion();
 		System.out.println();
-		System.out.println("Ahora ingrese el nombre de la especie de la que se va a encargar el cuidador:");
+		System.out.println("Por último ingrese el nombre de la especie de la que se va a encargar el cuidador:");
 		nombreEspecialidad=Main.sc.next();
 		System.out.println();
 		for (Especie especie:Administracion.getEspecies()) {
@@ -130,7 +130,7 @@ public class FuncionalidadOtras {
 		System.out.println("Ahora ingrese el sueldo del veterinario:");
 		sueldo=Main.leerOpcion();
 		System.out.println();
-		System.out.println("Ahora ingrese el nombre de la especie de la cual el veterinario está especializado:");
+		System.out.println("Por último ingrese el nombre de la especie de la cual el veterinario está especializado:");
 		nombreEspecialidad=Main.sc.next();
 		System.out.println();
 		for (Especie especie:Administracion.getEspecies()) {
@@ -168,7 +168,7 @@ public class FuncionalidadOtras {
 			}
 			//En caso de que se ingrese una identificacion que no corresponde a algun empelado de la nomina,volverá a pedir la identificación hasta que se ingrese una correcta
 			if (identificaciones.contains(id)==false) {
-				System.out.println("\nNinguno de nuestros empleados tiene esa identificación. Por favor vuelva a ingresar una identificación válida.");
+				System.out.println("\nNinguno de nuestros cuidadores tiene esa identificación. Por favor vuelva a ingresar una identificación válida.");
 			}
 		}
 	}
@@ -188,7 +188,7 @@ public class FuncionalidadOtras {
 				identificaciones.add(veterinario.getIdentificacion());
 				if (veterinario.getIdentificacion()==id) {
 					Administracion.despedirVeterinario(id);
-					System.out.println(veterinario.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedid@.");
+					System.out.println(veterinario.getNombre()+" hacia parte de la nómina de veterinarios del zoológico. Ha sido despedid@.");
 					System.out.println();
 					estado=true;
 					break;
@@ -196,7 +196,7 @@ public class FuncionalidadOtras {
 			}
 			//En caso de que se ingrese una identificacion que no corresponde a algun empelado de la nomina,volverá a pedir la identificación hasta que se ingrese una correcta
 			if (identificaciones.contains(id)==false) {
-				System.out.println("\nNinguno de nuestros empleados tiene esa identificación. Por favor vuelva a ingresar una identificación válida.");
+				System.out.println("\nNinguno de nuestros veterinarios tiene esa identificación. Por favor vuelva a ingresar una identificación válida.");
 			}
 		}
 	}
