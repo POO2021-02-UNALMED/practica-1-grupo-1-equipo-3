@@ -13,12 +13,25 @@ import gestorAplicacion.gestionZoologico.*;
 
 public class FuncionalidadGestion {
 	static void gestionAdministrativa() {
+		if (Administracion.calculoGanancias()==0 && Administracion.pagoNomina()==0) {
+			System.out.println("Ya fueron calculadas las ganancias por el día de hoy, y todos nuestro empleados han recibido su paga.");
+			System.out.println();
+			Main.continuar();
+		} else {
 		//Inicialmente se muestran los visitantes que ha tenido el zoológico en el día, y luego invoca el método calculoGanancias() donde muestra las ganancias obtenidas por la entrada de los visitantes, y se suman esas ganancias a la caja.
-		System.out.println("El zoológico ha recibido a "+Visitante.getTotalVisitantes()+" visitantes en el día de hoy, y ha obtenido ganancias por un total de "+Administracion.calculoGanancias()+"$.");
+		System.out.println("El zoológico ha recibido a "+Visitante.getTotalVisitantes()+" visitantes en el día de hoy, y ha obtenido ganancias por un total de "+sumaBoletas()+"$.");
 		//Se muestra el dinero con el que cuenta el zoológico en el banco
 		System.out.println("\nEn total el zoológico dispone de "+Administracion.getCaja()+"$ de presupuesto en el banco.");
 		//Se invoca el método pagarEmpelados con el cual se cambia el estado de pagado de los empleados para asi indicar que ya se les pagó
-		pagarEmpleados();
+		pagarEmpleados();}
+	
+	}
+	static double sumaBoletas() {
+		double respuesta=0;
+		for (Visitante visi:Administracion.getVisitantes()) {
+			respuesta+=visi.getPrecioBoleta();
+		}
+		return respuesta;
 	}
 	static void pagarEmpleados() {
 		boolean estado=false;
@@ -44,6 +57,8 @@ public class FuncionalidadGestion {
 			System.out.println();
 			System.out.println("1. Despedir a un Cuidador");
 			System.out.println("2. Despedir a un Veterinario");
+			System.out.println();
+			System.out.println("Ingrese su opción: ");
 			opcion = Main.leerOpcion();
 			System.out.println();
 			switch(opcion) {
@@ -59,6 +74,8 @@ public class FuncionalidadGestion {
 			
 		} else { //En caso de que la caja no haya quedado negativa, no pasará nada
 			System.out.println("\nLe hemos pagado a todos los empleados. El nuevo presupuesto que dispone el zoológico en el banco es de "+Administracion.getCaja()+"$.");
+			System.out.println();
+			Main.continuar();
 		}
 	}
 	
@@ -75,7 +92,8 @@ public class FuncionalidadGestion {
 					Administracion.despedirCuidador(id);
 					System.out.println(cuidador.getNombre()+" hacia parte de la nómina de cuidadores del zoológico. Ha sido despedid@.");
 					System.out.println("\nCon esto el zoógico se recuperará económicamente.");
-					System.out.println("\n...");
+					System.out.println();
+					Main.continuar();
 					estado=true;
 					break;
 				}
@@ -100,7 +118,8 @@ public class FuncionalidadGestion {
 					Administracion.despedirVeterinario(id);
 					System.out.println(veterinario.getNombre()+" hacia parte de la nómina de veterinarios del zoológico. Ha sido despedid@.");
 					System.out.println("\nCon esto el zoógico se recuperará económicamente.");
-					System.out.println("\n...");
+					System.out.println();
+					Main.continuar();
 					estado=true;
 					break;
 				}

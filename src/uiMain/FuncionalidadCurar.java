@@ -259,6 +259,8 @@ public class FuncionalidadCurar {
 			
 			if (animalSeleccionado.isEstadoAnimo()==false) {
 				System.out.println("El estado de animo para est animal sigue siendo malo. Puede solicitar mantenimiento de habitat o alimentación del animal.");
+			} else {
+				System.out.println("El animal se encuentra con un buen estado de ánimo.");
 			}
 			
 		/* En caso que el animal estï¿½ con mal estado de salud, se le informarï¿½ al usuario y el veterinario seleccionado procederï¿½ a curar al animal
