@@ -118,6 +118,7 @@ public class FuncionalidadAdquisicionTraslado {
 				}
 				if (habitat.getNombre().equals("Jaulas")){
 					continue;
+		
 				}
 				System.out.println(String.valueOf(habitat.getIdentificacion()) + "; " + habitat.getNombre() + "; " + 
 						   habitat.getAmbientacion() + "; " + String.valueOf(habitat.cantidadAnimales()) + " / " +

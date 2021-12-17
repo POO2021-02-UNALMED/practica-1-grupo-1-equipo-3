@@ -37,11 +37,11 @@ public class Main implements Serializable {
 		 * al objeto Administracion creado. */
 //		Deserializador.deserializar();
 		Administracion admin = new Administracion();
-		Habitat a = new Habitat("Mamiferos", "Pradera", 4);
-		Habitat b = new Habitat("Aves", "Jungla", 5);
-		Habitat c= new Habitat("Reptiles", "Pantano", 2);
-		Habitat d= new Habitat("Peces", "Rio", 3);
-		Habitat e= new Habitat("Anfibios","Pantano",2);
+		Habitat a = new Habitat("H1", "Pradera", 4);
+		Habitat b = new Habitat("H2", "Jungla", 5);
+		Habitat c= new Habitat("H3", "Pantano", 3);
+		Habitat d= new Habitat("H5", "Rio", 3);
+		Habitat e= new Habitat("H6","Pantano",2);
 		c.setLimpio(false);
 		Animal a1 = new Animal(Especie.REPTIL, c, "M", 5, 70);
 		Animal a2 = new Animal(Especie.REPTIL, c, "F", 4, 65);
@@ -62,6 +62,7 @@ public class Main implements Serializable {
 		a7.setEstadoAnimo(false);
 		a7.setAlimentado(false);
 		a5.setAlimentado(false);
+		a5.setEstadoSalud(false);
 		a6.setEstadoSalud(false);
 		Cuidador c1 = new Cuidador("Jorge", 7000, Especie.MAMIFERO);
 		Cuidador c2 = new Cuidador("Johanna", 1000, Especie.AVE);
