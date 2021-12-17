@@ -279,9 +279,9 @@ public class FuncionalidadCurar {
 				animalSeleccionado.setEstadoAnimo(true);
 			}
 			if (animalSeleccionado.isEstadoAnimo()) {
-				System.out.println("Curar la salud del animal ha dado buenos resultados. El animal ya no se encuentra triste");
+				System.out.println("Curar la salud del animal ha dado buenos resultados. El animal ya no se encuentra triste.");
 			} else {
-				System.out.println("El estado de animo para est animal sigue siendo malo. Puede solicitar mantenimiento de habitat o alimentación del animal.");
+				System.out.println("El estado de animo para este animal sigue siendo malo. Puede solicitar mantenimiento de habitat o alimentación del animal.");
 			}}
 		System.out.println("REVISIÓN FINALIZADA\n");
 		return;
