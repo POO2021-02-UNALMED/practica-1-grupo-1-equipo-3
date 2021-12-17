@@ -61,7 +61,8 @@ public class Main implements Serializable {
 			System.out.println("3. Cuidar a los animales");
 			System.out.println("4. Gestión administrativa del Zoológico");
 			System.out.println("5. Adquisición y traslado de animales");
-			System.out.println("6. Salir del programa");
+			System.out.println("6. Otras funcionalidades");
+			System.out.println("7. Salir del programa");
 			System.out.print("\n¿Cuál quieres realizar? ");
 			opcion=leerOpcion();
 			System.out.println();
@@ -71,7 +72,8 @@ public class Main implements Serializable {
 				case 3: FuncionalidadCuidar.cuidarAnimal(); break;
 				case 4: FuncionalidadGestion.gestionAdministrativa(); break;
 				case 5: FuncionalidadAdquisicionTraslado.adquisicionTraslado(); break;
-				case 6: salirDelSistema(); break;
+				case 6: FuncionalidadesOtras.funcionalidades(); break;
+				case 7: salirDelSistema(); break;
 				default: System.out.println("Opción incorrecta. Solo opciones del 1 al 6."); break;}
 		} while(opcion!=6);
 	}
