@@ -22,7 +22,7 @@ public class Main implements Serializable {
 	 * del objeto admin del tipo Administracion. */
 	private static void salirDelSistema() {
 		System.out.println("¡Gracias por haber usado nuestra aplicación! Vuelva pronto.\n");
-//		Serializador.serializar();
+		Serializador.serializar();
 		System.exit(0);
 	}
 	
@@ -35,8 +35,9 @@ public class Main implements Serializable {
 	public static void main(String args[]) {
 		/* La siguiente línea permite cargar las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
 		 * al objeto Administracion creado. */
-//		Deserializador.deserializar();
-		Administracion admin = new Administracion();
+		Deserializador.deserializar();
+		// A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
+/*		Administracion admin = new Administracion();
 		Habitat a = new Habitat("H1", "Pradera", 4);
 		Habitat b = new Habitat("H2", "Jungla", 5);
 		Habitat c= new Habitat("H3", "Pantano", 3);
@@ -74,7 +75,7 @@ public class Main implements Serializable {
 		Visitante vi1= new Visitante("Jose",3,15);
 		Visitante vi2= new Visitante("Diego",5,30);
 		Visitante vi3= new Visitante("Valeria",6,30);
-		int opcion;
+*/		int opcion;
 		do {
 			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");
 			System.out.println("A continuación te presentamos funcionalidades disponibles:\n");
