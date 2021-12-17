@@ -1,3 +1,5 @@
+//CLASE CREADA POR MATEO CARVAJAL.
+
 package gestorAplicacion.animalesZoologico;
 
 import gestorAplicacion.gestionZoologico.Administracion;
@@ -18,6 +20,13 @@ public class Animal implements Serializable, Entidad {
 	private boolean estadoSalud;
 	private boolean alimentado;
 	
+	/*Constructor de la clase Animal: Recibe como parametros los atributos especie, habitat, 
+	 * genero, edad y pesoque corresponden respectivamente a la especie, habitat, genero, 
+	 * edad y peso del animal a crear. A los atributos estadoAnimo, estadoSalud, alimentado
+	 * y identificacion se les asigna un valor automaticamente. El objeto creado va a ser 
+	 * añadido a la lista de animales de la administracion mediante el medoto estatico 
+	 * de la clase Adminsitracion addAnimalesAsociados(). Ademas se le sumara 1 al atributo
+	 * totalAnimales para lleavr la cuenta de los animales que hay dentro del zoologico.*/
 	public Animal(Especie especie, Habitat habitat, String genero, int edad, float peso) {
 		if(Administracion.getAnimales().isEmpty()) {
 			this.identificacion = 1;
@@ -133,6 +142,7 @@ public class Animal implements Serializable, Entidad {
 		return totalAnimales;
 	}
 	
+	/*Este metodo elimina todas las referencias que pueden haber del objeto tipo animal y resta uno al atributo totalAnimales*/
 	public void morir() {
 		Animal este=this;
 		totalAnimales--;
