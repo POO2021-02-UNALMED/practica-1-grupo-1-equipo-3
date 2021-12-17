@@ -37,6 +37,7 @@ public class FuncionalidadGestion {
 		boolean estado=false;
 		int identificacion=0;
 		int opcion=0;
+		List<Empleado> empleados=new ArrayList<Empleado>();
 		List<Integer> identificaciones= new ArrayList<Integer>();
 		//Se invoca el método pagoNomina de la clase administración el cual calcula cual es el monto toal a pagar, y luego este se le resta a lo que tiene el zoológico en el banco. Además cambia el atributo pagado de los empelados para así saber que ya se les pagó
 		System.out.println("\nEs tiempo de pagarle a nuestros empleados. El total a pagar es de "+Administracion.pagoNomina()+"$.");
@@ -48,10 +49,13 @@ public class FuncionalidadGestion {
 			//Es necesario despedir a un empleado y para esto se muestran los empleados con lo que cuenta el zoológico.
 			System.out.println("\nEs necesario despedir a alguno de nuestros empleados. A continuación le mostraremos la nómina de empleados:");
 			for (Cuidador cuidador:Administracion.getCuidadores()) {
-				System.out.println("\n"+cuidador.info());
+				empleados.add(cuidador);
 			}
 			for (Veterinario veterinario:Administracion.getVeterinarios()) {
-				System.out.println("\n"+veterinario.info());
+				empleados.add(veterinario);
+			}
+			for (Empleado empleado:empleados) {
+				System.out.println("\n"+empleado.info());
 			}
 			System.out.println("\n¿Se ha decidido por uno de los empleados? Elija una de las siguientes opciones: ");
 			System.out.println();

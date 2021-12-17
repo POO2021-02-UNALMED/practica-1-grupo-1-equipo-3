@@ -43,16 +43,19 @@ public class Administracion implements Serializable {
 	Tiene como retorno el valor total de pago a empleados.*/
 	public static int pagoNomina() {
 		int pago=0;
+		List<Empleado> empleados=new ArrayList<Empleado>();
 		for (Veterinario veterinario:veterinarios) {
-			if (veterinario.isPagado()==false) { //Se usa este condicional para no sumar varias veces el sueldo de un veterinario (En caso de invocar el método dos veces seguidas)
-				pago=pago+veterinario.getSueldo();
-				veterinario.setPagado(true);
-			}}
+			empleados.add(veterinario);
+			}
 		for (Cuidador cuidador:cuidadores) {
-			if (cuidador.isPagado()==false) { //Se usa este condicional para no sumar varias veces el sueldo de un cuidador (En caso de invocar el método dos veces seguidas)
-				pago=pago+cuidador.getSueldo();
-				cuidador.setPagado(true);
-			}}
+			empleados.add(cuidador);
+			}
+		for (Empleado emple:empleados) {
+			if (emple.isPagado()==false) {
+				pago+=emple.getSueldo();//Se emplea ligadura dinámica. Entra por método de Veterrinario y Cuidador y no por el de Empleado.
+				emple.setPagado(true);
+			}
+		}
 		caja-=pago;
 		return pago;}
 	
