@@ -35,6 +35,12 @@ public abstract class Empleado implements Serializable, Entidad {
 	// Método abstracto declarado para ser definido por las clases Cuidador y Veterinario, que lo heredan.
 	protected abstract boolean revisar(Animal animal);
 	
+	public String info() {
+		return "\nIdentificación: " + String.valueOf(this.getIdentificacion()) + 
+				"\nNombre: " + this.getNombre() + 
+				"\nSueldo: " + String.valueOf(this.getSueldo());
+	}
+	
 	// DE ACÁ PARA ABAJO ESTÁN LOS MÉTODOS GET Y SET
 	public int getIdentificacion() {
 		return this.identificacion;
