@@ -56,7 +56,7 @@ public class Habitat implements Serializable, Entidad {
 				"\nNombre: " + this.getNombre() +
 				"\nAmbientación: " + this.getAmbientacion() +
 				"\nCantidad de Animales actual: " + String.valueOf(this.cantidadAnimales()) +
-				"\nCapacidad máxima : " + String.valueOf(this.getCapacidadMaxima()));
+				"\nCapacidad máxima : " + String.valueOf(this.getCapacidadMaxima())) + " animales";
 	}
 	
 	public int getCapacidadMaxima() {
