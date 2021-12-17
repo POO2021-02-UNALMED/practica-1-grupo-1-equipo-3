@@ -21,7 +21,6 @@ public class Main implements Serializable {
 	private static void salirDelSistema() {
 		System.out.println("¡Gracias por haber usado nuestra aplicación! Vuelva pronto.\n");
 		Serializador.serializar();
-		continuar();
 		System.exit(0);
 	}
 	
