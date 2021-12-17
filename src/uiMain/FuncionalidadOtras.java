@@ -34,7 +34,7 @@ public class FuncionalidadOtras {
 						contratarVeterinario();break;
 					}
 					default: System.out.println("OPCIÓN INCORRECTA: Solo opciones 1 y 2."); break;
-				}
+				}break;
 			}
 			case 2: {
 				System.out.println("Puede elegir entre:\n");
@@ -51,7 +51,7 @@ public class FuncionalidadOtras {
 						despedirVeterinario();break;
 					}
 					default: System.out.println("OPCIÓN INCORRECTA: Solo opciones 1 y 2."); break;
-				}
+				}break;
 				
 			}
 			case 3: {
