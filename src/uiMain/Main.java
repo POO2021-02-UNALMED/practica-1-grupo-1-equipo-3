@@ -16,6 +16,8 @@ public class Main implements Serializable {
 	static int leerOpcion() {
 		return sc.nextInt();}
 	
+	static String leerString() {
+		return sc.next();}
 	/* El método salirDelSistema() permite guardar en los archivos las listas de animales, visitantes, habitat, especies, veterinarios y cuidadores
 	 * del objeto admin del tipo Administracion. */
 	private static void salirDelSistema() {
