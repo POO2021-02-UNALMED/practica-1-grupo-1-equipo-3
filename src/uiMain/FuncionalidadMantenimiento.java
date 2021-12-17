@@ -91,10 +91,11 @@ public class FuncionalidadMantenimiento {
 
 		//Con el siguiente for se imprime la informacion de los cuidadores que pueden escoger el usario.
 		for (Cuidador cuidador : Administracion.getCuidadores()) {
+			if (cuidador.getEspecieAsignada().getNombre().equals(habitatSeleccionado.getAnimalesAsociados().get(0).getEspecie().getNombre())) {
 			System.out.println(cuidador.getIdentificacion() + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre());
 			cuidadores++; // Se cuentan los cuidadores que se esten listando.
 			idCuidadores.add(cuidador.getIdentificacion()); // Se agreagan las identificaciones de los cuidadores que se esten listando.
-		}
+		}}
 		
 		if(cuidadores == 0) { // En caso de que no haya cuidadores se le informara al usuario que se cancela el mantenimiento.
 			System.out.println("\nNo se ha encontrado ningún cuidador para que revise el hábitat.");
