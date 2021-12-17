@@ -62,7 +62,7 @@ public class FuncionalidadMantenimiento {
 			
 			
 			while(idHabitats.contains(id) == false) { // Ciclo while que le pedira al usuario que elige una identificacion correcta en caso que de que este escoja una erronea.
-				System.out.println("IDENTIFICACION INCORRECTA: Ingrese una valida")
+				System.out.println("IDENTIFICACION INCORRECTA: Ingrese una valida");
 				System.out.print("\nPor favor seleccione un hábitat: ");
 				id = Main.leerOpcion(); // Se le pide al usuario que elija otra identificacion.
 			}
