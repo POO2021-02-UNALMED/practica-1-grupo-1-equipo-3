@@ -52,7 +52,6 @@ public class Main implements Serializable {
 		a3.setEstadoAnimo(false);
 		a4.setEstadoAnimo(false);
 		a3.setAlimentado(false);
-		a3.setEstadoSalud(false);
 		a4.setEstadoSalud(false);
 		Animal a5 = new Animal(Especie.PEZ,d,"M",2,20);
 		Animal a6 = new Animal(Especie.PEZ,d,"M",1,15);
@@ -66,13 +65,14 @@ public class Main implements Serializable {
 		a6.setEstadoSalud(false);
 		Cuidador c1 = new Cuidador("Jorge", 7000, Especie.MAMIFERO);
 		Cuidador c2 = new Cuidador("Johanna", 1000, Especie.AVE);
-		Cuidador c3 = new Cuidador("Camila", 1000, Especie.REPTIL);
+		Cuidador c3 = new Cuidador("Camila", 100000, Especie.REPTIL);
 		Cuidador c4 = new Cuidador("David", 10000, Especie.PEZ);
 		Cuidador c5 = new Cuidador("Juan", 5000, Especie.ANFIBIO);
 		Veterinario v1= new Veterinario("Elva",10000,Especie.ANFIBIO);
 		Veterinario v2= new Veterinario("Francisco",12000,Especie.PEZ);
 		Visitante vi1= new Visitante("Jose",3,15);
 		Visitante vi2= new Visitante("Diego",5,30);
+		Visitante vi3= new Visitante("Valeria",6,30);
 		int opcion;
 		do {
 			System.out.println("\n¡Bienvenido al sistema gestor de tu Zoológico!\n");

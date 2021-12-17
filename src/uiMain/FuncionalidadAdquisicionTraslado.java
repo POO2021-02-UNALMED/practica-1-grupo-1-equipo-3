@@ -112,7 +112,24 @@ public class FuncionalidadAdquisicionTraslado {
 		
 		// Con el siguiente for se obtienen cada uno de los hábitats almacenandos en la lista de habitats de la clase Administración.
 		for(Habitat habitat : Administracion.getHabitats()) {
+			if (habitat.getAnimalesAsociados().isEmpty()) {
+				if (habitat.getNombre().equals("Veterinaria")){
+					continue;
+				}
+				if (habitat.getNombre().equals("Jaulas")){
+					continue;
+				}
+				System.out.println(String.valueOf(habitat.getIdentificacion()) + "; " + habitat.getNombre() + "; " + 
+						   habitat.getAmbientacion() + "; " + String.valueOf(habitat.cantidadAnimales()) + " / " +
+						   String.valueOf(habitat.getCapacidadMaxima()));
+				// Como se dijo, se van contando los cuidadores que son listados, además de almacenar sus identificaciones.
+				habitats++;
+				identificaciones.add(habitat.getIdentificacion());
+				break;
+			 
+			}
 			// Ahora, con el siguiente for, se obtiene cada uno de los animales asociados a cada uno de los hábitats obtenidos con el anterior for.
+			
 			for(Animal animal : habitat.getAnimalesAsociados()) {
 				/* Todo esto se hace para buscar de manera efectiva los hábitats que puedan contener la especie del animal que se va a adquirir,
 				 * para luego imprimir los datos de cada uno de estos hábitats por pantalla para que el usuario seleccione uno. */
