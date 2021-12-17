@@ -148,8 +148,9 @@ public class FuncionalidadMantenimiento {
 			                                                                       Esto con el fin de notificarle al usuario que todavia hay animales con el estado de animo malo*/
 				                                                               
 				if (animal.isEstadoAnimo() == false) {
+					if (idAnimalesTristes.contains(animal.getIdentificacion())==false){
 					idAnimalesTristes.add(animal.getIdentificacion()); //Se añaden las identificaciones de los animales con estado de animo malo a la lista idAnimalesTristes.
-				}
+				}}
 			}
 
 			if (idAnimalesTristes.size() == 0) { //En caso que no haya ningun animal con estado de animo malo, se le notifica al usuario que el mantenimiento ha sido todo un exito y se termina la funcionalidad.

@@ -108,7 +108,7 @@ public class Cuidador extends Empleado {
 			if(animal.isAlimentado() && animal.isEstadoSalud()) {
 				animal.setEstadoAnimo(true);
 			}
-			this.moverAnimal(animal, habitat);
+			this.moverMantenimiento(animal, habitat);
 		}
 		jaulas.getAnimalesAsociados().clear();
 	}
