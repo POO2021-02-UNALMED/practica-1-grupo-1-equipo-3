@@ -2,9 +2,9 @@
 
 /*
  En esta clase realiza la funcionalidad de curar de los animales 
- Primero se debe de identificar el cuidador que moverá a los animales, el animal que será trasladado a la 
- veterinaria y el veterinario tratante que atenderá al animal. Todo esto se hace después de que un cuidador 
- allá revisando el animal y se percatara de que el estado de animo del animal no cambio después de alimentarlo. 
+ Primero se debe de identificar el cuidador que moverï¿½ a los animales, el animal que serï¿½ trasladado a la 
+ veterinaria y el veterinario tratante que atenderï¿½ al animal. Todo esto se hace despuï¿½s de que un cuidador 
+ allï¿½ revisando el animal y se percatara de que el estado de animo del animal no cambio despuï¿½s de alimentarlo. 
  esto ultimo se realiza en la clase "FuncionalidadCuidar"
 
  Son necesarias las clases animal, veterinario y cuidador.  
@@ -45,8 +45,8 @@ public class FuncionalidadCurar {
     static boolean seleccionarAnimal() {
 		int id;
 		int animales = 0;
-		System.out.println("Elija primero el animal que desee revisar, ingresando su identificación.\n");
-		System.out.println("Identificación; Especie; Hábitat; Género; Edad; Peso");
+		System.out.println("Elija primero el animal que desee revisar, ingresando su identificaciï¿½n.\n");
+		System.out.println("Identificaciï¿½n; Especie; Hï¿½bitat; Gï¿½nero; Edad; Peso");
 		
 		for(Animal animal : Administracion.getAnimales()) {
 			System.out.println(String.valueOf(animal.getIdentificacion()) + "; " + animal.getEspecie().getNombre() + "; " + 
@@ -56,14 +56,14 @@ public class FuncionalidadCurar {
 		}
 		
 		if(animales == 0) {
-			System.out.println("\nNo se ha encontrado ningún animal para revisar.");
-			System.out.println("REVISIÓN CANCELADA\n");
-			// Se retorna false para la verificación en la clase cuidarAnimal(), como se dijo anteriormente.
+			System.out.println("\nNo se ha encontrado ningï¿½n animal para revisar.");
+			System.out.println("REVISIï¿½N CANCELADA\n");
+			// Se retorna false para la verificaciï¿½n en la clase cuidarAnimal(), como se dijo anteriormente.
 			return false;
-		/* En caso que haya por lo menos un animal para revisar, se le solicitará al usuario que elija el animal de
-		 * acuerdo a la identificación de este. Recordar que los animales ya fueron listados con el for anterior. */
+		/* En caso que haya por lo menos un animal para revisar, se le solicitarï¿½ al usuario que elija el animal de
+		 * acuerdo a la identificaciï¿½n de este. Recordar que los animales ya fueron listados con el for anterior. */
 		} else {
-			System.out.print("\n¿Cuál animal elije? (Identificación): ");
+			System.out.print("\nï¿½Cuï¿½l animal elije? (Identificaciï¿½n): ");
 			id = Main.leerOpcion();
 			
 			for(Animal animal : Administracion.getAnimales()) {
@@ -82,8 +82,8 @@ public class FuncionalidadCurar {
     static boolean seleccionarVeterinario() {
 		int id;
 		int veterinarios = 0;
-		System.out.println("\nAhora elija el veterinario que desee que revise al animal, ingresando su identificación.\n");
-		System.out.println("Identificación; Nombre; Especie asignada");
+		System.out.println("\nAhora elija el veterinario que desee que revise al animal, ingresando su identificaciï¿½n.\n");
+		System.out.println("Identificaciï¿½n; Nombre; Especie asignada");
 		
 		for(Veterinario veterinario : Administracion.getVeterinarios()) {
 			if(veterinario.getEspecialidad() == animalSeleccionado.getEspecie()) {
@@ -93,11 +93,11 @@ public class FuncionalidadCurar {
 		}
 		
 		if(veterinarios == 0) {
-			System.out.println("\nNo se ha encontrado ningún veterinario para revisar al animal.");
-			System.out.println("REVISIÓN CANCELADA\n");
+			System.out.println("\nNo se ha encontrado ningï¿½n veterinario para revisar al animal.");
+			System.out.println("REVISIï¿½N CANCELADA\n");
 			return false;
 		} else {
-			System.out.print("\n¿Cuál veterinario elije? (Identificación) ");
+			System.out.print("\nï¿½Cuï¿½l veterinario elije? (Identificaciï¿½n) ");
 			id = Main.leerOpcion();
 			
 			for(Veterinario veterinario : Administracion.getVeterinarios()) {
@@ -115,8 +115,8 @@ public class FuncionalidadCurar {
 	static boolean seleccionarCuidador() {
 		int id;
 		int cuidadores = 0;
-		System.out.println("\nElija el cuidador que desee que traslade al animal, ingresando su identificación.\n");
-		System.out.println("Identificación; Nombre; Especie asignada");
+		System.out.println("\nElija el cuidador que desee que traslade al animal, ingresando su identificaciï¿½n.\n");
+		System.out.println("Identificaciï¿½n; Nombre; Especie asignada");
 		
 		for(Cuidador cuidador : Administracion.getCuidadores()) {
 			if(cuidador.getEspecieAsignada() == animalSeleccionado.getEspecie()) {
@@ -126,11 +126,11 @@ public class FuncionalidadCurar {
 		}
 		
 		if(cuidadores == 0) {
-			System.out.println("\nNo se ha encontrado ningún cuidador para trasladar al animal.");
-			System.out.println("REVISIÓN CANCELADA\n");
+			System.out.println("\nNo se ha encontrado ningï¿½n cuidador para trasladar al animal.");
+			System.out.println("REVISIï¿½N CANCELADA\n");
 			return false;
 		} else {
-			System.out.print("\n¿Cuál cuidador elije? (Identificación) ");
+			System.out.print("\nï¿½Cuï¿½l cuidador elije? (Identificaciï¿½n) ");
 			id = Main.leerOpcion();
 			
 			for(Cuidador cuidador : Administracion.getCuidadores()) {
@@ -146,34 +146,34 @@ public class FuncionalidadCurar {
 	}
 
     static void saludAnimal() {
-		System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificación " + String.valueOf(animalSeleccionado.getIdentificacion()) + " a la veterinaria.");
+		System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificaciï¿½n " + String.valueOf(animalSeleccionado.getIdentificacion()) + " a la veterinaria.");
 		cuidadorSeleccionado.moverAnimal(animalSeleccionado, veterinaria);
-		System.out.println("Veterinario " + veterinarioSeleccionado.getNombre() + " procede a revisar al animal con identificación " + String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
+		System.out.println("Veterinario " + veterinarioSeleccionado.getNombre() + " procede a revisar al animal con identificaciï¿½n " + String.valueOf(animalSeleccionado.getIdentificacion()) + ".");
 		
 		if(veterinarioSeleccionado.revisar(animalSeleccionado)) {
 			System.out.println("RESULTADO: El animal se encuentra con buen estado de salud.\n");
-			System.out.println("Cuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificación " + 
-								String.valueOf(animalSeleccionado.getIdentificacion()) + " de regreso a su hábitat.");
+			System.out.println("Cuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificaciï¿½n " + 
+								String.valueOf(animalSeleccionado.getIdentificacion()) + " de regreso a su hï¿½bitat.");
 			cuidadorSeleccionado.moverAnimal(animalSeleccionado, habitatSeleccionado);
 		} else {
 			System.out.println("RESULTADO: El animal se encuentra con mal estado de salud.\n");
-			System.out.println("El veterinario " + veterinarioSeleccionado.getNombre() + "decide hacer curación al animal para mejorar su estado de salud.");
+			System.out.println("El veterinario " + veterinarioSeleccionado.getNombre() + "decide hacer curaciï¿½n al animal para mejorar su estado de salud.");
 			veterinarioSeleccionado.curarAnimal(animalSeleccionado);
 			if(animalSeleccionado.isAlimentado() && animalSeleccionado.isEstadoSalud() && animalSeleccionado.getHabitat().isLimpio()) {
 				animalSeleccionado.setEstadoAnimo(true);
 			}
 			if(veterinarioSeleccionado.revisar(animalSeleccionado)) {
 				System.out.println("Curar al animal ha dado buen resultado y este ahora se encuentra con buen estado de salud.");
-				System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificación " + 
-						String.valueOf(animalSeleccionado.getIdentificacion()) + " de regreso a su hábitat.");
+				System.out.println("\nCuidador " + cuidadorSeleccionado.getNombre() + " procede a mover al animal con identificaciï¿½n " + 
+						String.valueOf(animalSeleccionado.getIdentificacion()) + " de regreso a su hï¿½bitat.");
 				cuidadorSeleccionado.moverAnimal(animalSeleccionado, habitatSeleccionado);
 			} else {
-				System.out.println("Curar al animal no ha mejorado su estado de ánimo.");
-				System.out.println("Puede solicitar que se haga mantenimineto a su hábitat o que los alimenten.");
-				System.out.println("El animal estará en revisión preventiva.");
+				System.out.println("Curar al animal no ha mejorado su estado de ï¿½nimo.");
+				System.out.println("Puede solicitar que se haga mantenimineto a su hï¿½bitat o que los alimenten.");
+				System.out.println("El animal estarï¿½ en revisiï¿½n preventiva.");
 			}
 		}
-		System.out.println("REVISIÓN FINALIZADA\n");
+		System.out.println("REVISIï¿½N FINALIZADA\n");
 		return;
 	}
     
