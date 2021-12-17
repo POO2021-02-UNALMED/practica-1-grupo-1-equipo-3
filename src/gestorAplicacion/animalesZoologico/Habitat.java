@@ -1,9 +1,12 @@
-package gestorAplicacion.animalesZoologico;
+//CLASE CREADA POR MATEO CARVAJAL.
 
+package gestorAplicacion.animalesZoologico;
 import java.util.ArrayList;
 import gestorAplicacion.gestionZoologico.Administracion;
 import gestorAplicacion.gestionZoologico.Entidad;
 import java.io.Serializable;
+
+
 
 public class Habitat implements Serializable, Entidad {
 	// Se requiere del atributo serialVersionUID por usar la interface Serializable.
@@ -16,6 +19,15 @@ public class Habitat implements Serializable, Entidad {
 	private boolean limpio;
 	private ArrayList<Animal> animalesAsociados = new ArrayList<Animal>();
 	
+	
+	/* El constructor de la clase Hábitat: Recibe como parámetro los atributos nombre, ambientación 
+	 * y capacidad máxima, los cuales corresponden respectivamente al nombre, ambientación 
+	 * y capacidad máxima del hábitat a crear. A los atributo limpio e identificación se les asigna
+	 * un valor automáticamente. El objeto creado va a ser añadido a la lista de hábitats de la 
+	 * administración mediante el método  estático addHabitats de la clase 	Administración y se le suma 1 al 
+	 * atributo cantidadHabitats para llevar la cuenta del número de hábitats del zoológico. Aunque no es asignado
+	 * a nada el atributo animalesAsociados corresponde a los animales que viven dentro del habitat.
+	 *  */
 	public Habitat(String nombre, String ambientacion, int capacidadMaxima) {
 		if(Administracion.getHabitats().isEmpty()) {
 			this.identificacion = 1;
@@ -30,6 +42,7 @@ public class Habitat implements Serializable, Entidad {
 		Administracion.addHabitats(this);
 	}
 	
+	//Sobrecarga del constructor de Habitat. Especial para la creacion del habitat "Jaula".
 	public Habitat(String nombre) {
 		this(nombre, "Ninguna", 999);
 	}
@@ -98,14 +111,17 @@ public class Habitat implements Serializable, Entidad {
 		 return totalHabitats;
 	 }
 	 
+	 //Método con el cual se retorna el número de animales que vieven dentro del habitat.
 	 public int cantidadAnimales() {
 		 return animalesAsociados.size();
 	 }
 	 
+	 //Método con el cual se agrega objetos tipo Animal a la lista correspondiente al atributo animalesAsociados.
 	 public void addAnimalesAsociados(Animal animal) {
 		 animalesAsociados.add(animal);
 	 }
 	 
+	 //Método con el cual se elimina objetos tipo Animal de la lista correspondiente al atributo animalesAsociados.
 	 public void removeAnimalesAsociados(Animal animal){
 		 animalesAsociados.remove(animalesAsociados.indexOf(animal));
 	 }
