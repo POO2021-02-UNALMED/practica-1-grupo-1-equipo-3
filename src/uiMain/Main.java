@@ -23,7 +23,6 @@ public class Main implements Serializable {
 	private static void salirDelSistema() {
 		System.out.println("¡Gracias por haber usado nuestra aplicación! Vuelva pronto.\n");
 		Serializador.serializar();
-		continuar();
 		System.exit(0);
 	}
 	
@@ -74,9 +73,9 @@ public class Main implements Serializable {
 				case 3: FuncionalidadCuidar.cuidarAnimal(); break;
 				case 4: FuncionalidadGestion.gestionAdministrativa(); break;
 				case 5: FuncionalidadAdquisicionTraslado.adquisicionTraslado(); break;
-				case 6: FuncionalidadesOtras.funcionalidades(); break;
+				case 6: System.out.println("\nAÚN EN PROCESO\n");; break;
 				case 7: salirDelSistema(); break;
-				default: System.out.println("Opción incorrecta. Solo opciones del 1 al 6."); break;}
-		} while(opcion!=6);
+				default: System.out.println("Opción incorrecta. Solo opciones del 1 al 7."); break;}
+		} while(opcion!=7);
 	}
 }
