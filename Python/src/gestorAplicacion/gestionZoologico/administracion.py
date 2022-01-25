@@ -257,4 +257,3 @@ class Administracion:
     @classmethod
     def setCuidadores(cls,nuevo):
         cls._cuidadores=nuevo
-
