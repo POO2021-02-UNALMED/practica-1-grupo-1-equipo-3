@@ -6,6 +6,7 @@
 # métodos necesarios para implementar las funcionalidades que requieran de algún cuidador. 
 
 from empleado import Empleado
+from administracion import Administracion
 
 class Cuidador(Empleado):
 	
