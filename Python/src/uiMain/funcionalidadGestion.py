@@ -75,7 +75,6 @@ class FuncionalidadGestion():
     @classmethod
     #Este método tiene como finalidad despedir a un cuidador de la nómina de cuidadores
     def despedirCuidador(cls):
-        id=0
         while(True):
             id=input("A continuación ingrese el número de identificación del cuidador: ")
             for cuidador in Administracion.getCuidadores():
