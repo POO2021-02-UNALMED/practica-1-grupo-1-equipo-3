@@ -58,10 +58,5 @@ class Especie(Enum):
     def getTotalEspecies(self):
         return self.TOTALESPECIE
     
-"""
-if __name__ == '__main__':
-    obj1 = Especie.ANFIBIO
-    print(obj1.promedioVida)
-    print(obj1.info())
-"""
+
     
