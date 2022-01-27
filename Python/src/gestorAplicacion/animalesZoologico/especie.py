@@ -8,11 +8,13 @@ de la especie que se encuentra en el zoologico y promedioVida que corresponde al
 que se encuentran en el zoologico.   
 """
 
-# from gestorAplicacion.animalesZoologico import *
-# from gestorAplicacion.gestionZoologico import *
+#from gestorAplicacion.animalesZoologico import *
+#from gestorAplicacion.gestionZoologico import *
 from enum import Enum
 
 class Especie(Enum):
+
+    #_TOTALESPECIE = 5
 
     # Se generan los 5 diferentes objetos de esta clase con sus respectivos atributos.
     MAMIFERO = ("Mamifero", "omnivoro", 40)
@@ -21,33 +23,29 @@ class Especie(Enum):
     PEZ = ("Pez", "omnivoro", 30)
     ANFIBIO = ("Anfibio", "insectivoro", 15)
 
-    #TOTALESPECIE = 5
-
     """
     Enum es una clase especial que limita la creacion de objetos a los especificados en su clase 
     (por eso su constructor es privado), pero estos objetos pueden tener atributos como cualquier otra clase.
-    
-
+    """
     def __init__(self, nombre, dieta, promedioVida):
         self.nombre = nombre
         self.dieta = dieta
         self.promedioVida = promedioVida
 
-    """
+    
     """
     El metodo info() es implementado de la interfaz Entidad y definido aqui. Sirve para generar el String que sera 
 	 * usado para imprimir por consola los datos de la especie en caso de ser requeridos en alguna de las funcionalidades 
 	 * de la aplicacion.
-	
-
-
-    def info():
-        return ("Nombre: " + self.getNombre() +
-				"\nDieta: " + self.getDieta() +
-				"\nPromedio de vida: " + str((self.getPromedioVida()) + " años"))
     """
-    # De aqui en adelante se definen los metodos set y get de la clase especie.
-    
+    def info(self):
+        cadena = ("Nombre: " + self.getNombre() + 
+        "\nDieta: " + self.getDieta() + 
+        "\nPromedio de vida: " + str(self.getPromedioVida()) + " años")
+        
+        return cadena
+
+    # De aqui en adelante se definen los metodos get de la clase especie.
     def getNombre(self):
         return self.nombre
 
@@ -57,11 +55,13 @@ class Especie(Enum):
     def getPromedioVida(self):
         return self.promedioVida
 
-    
     def getTotalEspecies(self):
         return self.TOTALESPECIE
     
-
+"""
 if __name__ == '__main__':
     obj1 = Especie.ANFIBIO
-    print(obj1.getNombre)
+    print(obj1.promedioVida)
+    print(obj1.info())
+"""
+    
