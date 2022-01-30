@@ -9,9 +9,9 @@ los veterinarios con los que cuenta el zoológico), y cuidadores (Nómina de tod
 los que cuenta el zoológico). Hay que tener en cuenta que solo puede exisir un objeto de esta clase
 pues la aplicación está diseñada para la administración de un solo zoológico."""
 
-from animalesZoologico.animal import Animal
-from animalesZoologico.especie import Especie
-from animalesZoologico.habitat import Habitat
+from ..animalesZoologico.animal import Animal
+from ..animalesZoologico.especie import Especie
+from ..animalesZoologico.habitat import Habitat
 from cuidador import Cuidador
 from empleado import Empleado
 from veterinario import Veterinario

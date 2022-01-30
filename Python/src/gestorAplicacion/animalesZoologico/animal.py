@@ -10,7 +10,7 @@ class Animal():
         if (not Administracion.getAnimales()):
             self._identificacion = 1
         else:
-            self._identificacion = Administracion.getAnimales[-1].getIdentificacion() + 1    
+            self._identificacion = Administracion.getAnimales[-1].getIdentificacion() + 1
         
         self._especie = especie
         self._habitat = habitat
