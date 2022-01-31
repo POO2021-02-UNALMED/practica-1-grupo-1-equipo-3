@@ -4,5 +4,5 @@
 # Las clases que implementan esta interfaz son: Cuidador, Veterinario, Visitante, Animal, Especie y Habitat. */
 
 class Entidad:
-    def info():
+    def info(self):
         pass

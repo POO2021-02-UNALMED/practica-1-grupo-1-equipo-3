@@ -9,11 +9,63 @@ from funcionalidadAdquisicion import Adquisicion
 from funcionalidadTraslado import Traslado
 #from funcionalidadGestion import Gestion
 #from funcionalidadOtras import Otras
+from gestorAplicacion.administracion import Administracion
+from gestorAplicacion.animal import Animal
+from gestorAplicacion.cuidador import Cuidador
+from gestorAplicacion.especie import Especie
+from gestorAplicacion.habitat import Habitat
+from gestorAplicacion.veterinario import Veterinario
+from gestorAplicacion.visitante import Visitante
+
+#A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
+admin = Administracion()
+a = Habitat("H1", "Pradera", 2)
+b = Habitat("H2", "Jungla", 1)
+c= Habitat("H3", "Pantano", 3)
+d= Habitat("H5", "Rio", 3)
+e= Habitat("H6","Pantano",2)
+c.setLimpio(False)
+a1 = Animal(Especie.REPTIL, c, "Macho", 5, 70)
+a2 = Animal(Especie.REPTIL, c, "Hembra", 4, 65)
+a1.setEstadoAnimo(False)
+a2.setEstadoAnimo(False)
+a3 = Animal(Especie.ANFIBIO,e,"Macho",2,20)
+a4 = Animal(Especie.ANFIBIO,e,"Hembra",2,15)
+a3.setEstadoAnimo(False)
+a4.setEstadoAnimo(False)
+a3.setAlimentado(False)
+a4.setEstadoSalud(False)
+a5 = Animal(Especie.PEZ,d,"Macho",2,20)
+a6 = Animal(Especie.PEZ,d,"Macho",1,15)
+a7 = Animal(Especie.PEZ,d,"Hembra",1,20)
+d.setLimpio(False)
+a5.setEstadoAnimo(False)
+a6.setEstadoAnimo(False)
+a7.setEstadoAnimo(False)
+a7.setAlimentado(False)
+a5.setAlimentado(False)
+a5.setEstadoSalud(False)
+a6.setEstadoSalud(False)
+a8 = Animal(Especie.ANFIBIO,b,"Hembra",1,20)
+c1 = Cuidador("Jorge", 7000, Especie.MAMIFERO)
+c2 = Cuidador("Johanna", 1000, Especie.AVE)
+c3 = Cuidador("Camila", 100000, Especie.REPTIL)
+c4 = Cuidador("David", 10000, Especie.PEZ)
+c5 = Cuidador("Juan", 5000, Especie.ANFIBIO)
+v1 = Veterinario("Elva",10000,Especie.ANFIBIO)
+v2 = Veterinario("Francisco",12000,Especie.PEZ)
+vi1 = Visitante("Jose",3,15)
+vi2 = Visitante("Diego",5,30)
+vi3 = Visitante("Valeria",6,30)
 
 ventana = Tk()
 ventana.title("Sistema gestor de zoológico")
+ventana.geometry("+100+100")
 ventana.resizable(False, False)
 ventana.option_add("*tearOff", FALSE)
+ventana.iconbitmap("../Imagenes/Z.ico")
+ventana.grid_columnconfigure(0, weight=1)
+ventana.grid_columnconfigure(1, weight=1)
 
 def ocultarTodo():
     ventanaInicio.pack_forget()
@@ -39,7 +91,7 @@ def cambiarImagen(e):
     posicionImagen += 1
     if posicionImagen == 6:
         posicionImagen = 1
-    FotoAnimal=(Image.open("../../Fotos/Animales/" + str(posicionImagen) + ".jpg")).resize((400,400), Image.ANTIALIAS)
+    FotoAnimal=(Image.open("../Imagenes/Animales/" + str(posicionImagen) + ".jpg")).resize((400,400), Image.ANTIALIAS)
     FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
     LabelFotoAnimal.configure(image=FotoAnimal)
     LabelFotoAnimal.image=FotoAnimal
@@ -51,13 +103,13 @@ def cambiarVida(e):
     if posicionVida == 4:
         posicionVida = 0
     ListaFotos=["David","Jose","Juan","Mateo"]
-    Foto1 =(Image.open("../Fotos/" + ListaFotos[posicionVida] + "/1.jpg")).resize((200,200), Image.ANTIALIAS)
+    Foto1 =(Image.open("../Imagenes/" + ListaFotos[posicionVida] + "/1.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto1 = ImageTk.PhotoImage(Foto1)
-    Foto2 =(Image.open("../Fotos/" + ListaFotos[posicionVida] + "/2.jpg")).resize((200,200), Image.ANTIALIAS)
+    Foto2 =(Image.open("../Imagenes/" + ListaFotos[posicionVida] + "/2.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto2 = ImageTk.PhotoImage(Foto2)
-    Foto3 =(Image.open("../Fotos/" + ListaFotos[posicionVida] + "/3.jpg")).resize((200,200), Image.ANTIALIAS)
+    Foto3 =(Image.open("../Imagenes/" + ListaFotos[posicionVida] + "/3.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto3 = ImageTk.PhotoImage(Foto3)
-    Foto4 =(Image.open("../Fotos/" + ListaFotos[posicionVida] + "/4.jpg")).resize((200,200), Image.ANTIALIAS)
+    Foto4 =(Image.open("../Imagenes/" + ListaFotos[posicionVida] + "/4.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto4 = ImageTk.PhotoImage(Foto4)
     LabelFoto1.configure(image=Foto1)
     LabelFoto1.image=Foto1
@@ -202,15 +254,15 @@ CuerpoVida = Label(master=P5, text=VidaDavid, font="Helvetica 12",
 PieVida = Label(master=P5, text="Clic sobre la biografía para cambiar de autor",
                 font="Helvetica 8 italic", fg="blue")
 
-FotoAnimal=(Image.open("../Fotos/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
+FotoAnimal=(Image.open("../Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
 FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
-Foto1 =(Image.open("../Fotos/David/1.jpg")).resize((200,200), Image.ANTIALIAS)
+Foto1 =(Image.open("../Imagenes/David/1.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto1 = ImageTk.PhotoImage(Foto1)
-Foto2 =(Image.open("../Fotos/David/2.jpg")).resize((200,200), Image.ANTIALIAS)
+Foto2 =(Image.open("../Imagenes/David/2.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto2 = ImageTk.PhotoImage(Foto2)
-Foto3 =(Image.open("../Fotos/David/3.jpg")).resize((200,200), Image.ANTIALIAS)
+Foto3 =(Image.open("../Imagenes/David/3.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto3 = ImageTk.PhotoImage(Foto3)
-Foto4 =(Image.open("../Fotos/David/4.jpg")).resize((200,200), Image.ANTIALIAS)
+Foto4 =(Image.open("../Imagenes/David/4.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto4 = ImageTk.PhotoImage(Foto4)
 
 LabelFotoAnimal = Label(master=P4, image=FotoAnimal, borderwidth=5, relief="ridge")
@@ -242,8 +294,7 @@ LabelFotoAnimal.bind("<Enter>", cambiarImagen)
 
 # COMPONENTES DE LA VENTANA DEL USUARIO:
 
-tutorial = """
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis nisl sit amet diam convallis, 
+tutorial = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis nisl sit amet diam convallis, 
 vitae malesuada est sodales. In at lectus eget orci pellentesque euismod. Curabitur justo lacus, volutpat 
 nec arcu eget, placerat porttitor enim. In lorem arcu, malesuada sed vulputate at, tempus sit amet felis. 
 Etiam sed odio sed erat ornare auctor non non enim. Pellentesque non eros ut sapien ornare maximus. Ut et 
@@ -260,18 +311,18 @@ info.pack(fill=BOTH, padx=10, pady=10)
 
 # FUNCIONALIDAD DE MANTENIMIENTO:
 
-#ventanaMantenimiento = Mantenimiento()
-#ventanaMantenimiento.pack_forget()
+ventanaMantenimiento = Frame() # Mantenimiento()
+ventanaMantenimiento.pack_forget()
 
 # FUNCIONALIDAD DE CURAR:
 
-#ventanaCurar = Curar()
-#ventanaCurar.pack_forget()
+ventanaCurar = Frame() # Curar()
+ventanaCurar.pack_forget()
 
 # FUNCIONALIDAD DE CUIDAR:
 
-#ventanaCuidar = Cuidar()
-#ventanaCuidar.pack_forget()
+ventanaCuidar = Frame() # Cuidar()
+ventanaCuidar.pack_forget()
 
 # FUNCIONALIDAD DE ADQUISICIÓN Y TRASLADO:
 
@@ -283,12 +334,12 @@ ventanaTraslado.pack_forget()
 
 # FUNCIONALIDAD DE GESTIÓN:
 
-#ventanaGestion = Gestion()
-#ventanaGestion.pack_forget()
+ventanaGestion = Frame() # Gestion()
+ventanaGestion.pack_forget()
 
 # OTRAS FUNCIONALIDADES:
 
-#ventanaOtras = Otras()
-#ventanaOtras.pack_forget()
+ventanaOtras = Frame() # Otras()
+ventanaOtras.pack_forget()
 
 ventana.mainloop()

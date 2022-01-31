@@ -4,12 +4,11 @@ class Animal():
     _totalAnimales = 0
 
     def __init__(self, especie, habitat, genero, edad, peso):
-        from administracion import Administracion
-
+        from gestorAplicacion.administracion import Administracion
         if (not Administracion.getAnimales()):
             self._identificacion = 1
         else:
-            self._identificacion = Administracion.getAnimales[-1].getIdentificacion() + 1
+            self._identificacion = Administracion.getAnimales()[-1].getIdentificacion() + 1
         
         self._especie = especie
         self._habitat = habitat
@@ -87,7 +86,7 @@ class Animal():
         return self._alimentado
 
     def morir(self):
-        from administracion import Administracion
+        from gestorAplicacion.administracion import Administracion
         Animal._totalAnimales -= 1
         self._habitat.removeAnimalesAsociados(self)
         Administracion.removeAnimales(self)

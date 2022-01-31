@@ -8,7 +8,7 @@ zoologico y se define el metodo curarAnimal() el cual se encarga de que se imple
 necesarios para curar al animal. Esta clase hereda de la clase Empleado
 """
 
-from empleado import Empleado
+from gestorAplicacion.empleado import Empleado
 
 class Veterinario(Empleado):
 
@@ -22,8 +22,12 @@ class Veterinario(Empleado):
 	de los métodos addCuidadorAsignado de la clase Especie y addVeterinarios de la clase Administracion. 
     """
     def __init__(self, nombre, sueldo, especieAsignada):
-        from administracion import Administracion
-        super.__init__([1 if len(Administracion.getVeterinarios())==0 else Administracion.getVeterinarios()[-1].getIdentificacion() + 1], nombre, sueldo);
+        from gestorAplicacion.administracion import Administracion
+        if len(Administracion.getCuidadores())==0:
+            identificacion = 1
+        else:
+            identificacion = Administracion.getCuidadores()[-1].getIdentificacion() + 1
+        super().__init__(identificacion, nombre, sueldo);
         self._especieAsignada = especieAsignada
         Administracion.addVeterinarios(self)
 

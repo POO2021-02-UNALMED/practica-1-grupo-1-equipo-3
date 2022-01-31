@@ -19,30 +19,29 @@ class FieldFrame(Frame):
         for i in range(1, len(criterios)+1):
             labelCriterio = Label(master=self, text=criterios[i-1], font="Helvetica 10", anchor=W)
             labelCriterio.grid(column=0, row=i, padx=20, pady=10, sticky=W)
-            if not combobox[i-1]:
+            if combobox[i-1] == False:
                 if valores==None:
-                    entryValor = Entry(master=self, font="Helvetica 10", bd=5)
+                    entryValor = Entry(master=self, font="Helvetica 10", bd=5, width=30)
                     entryValor.grid(column=1, row=i, padx=20, pady=10, sticky=E)
-                    componentes.append(entryValor)
+                    self.componentes.append(entryValor)
                     if not habilitado[i-1]:
                         entryValor.configure(state=DISABLED)
                 else:
-                    entryValor = Entry(master=self, font="Helvetica 10", bd=5)
+                    entryValor = Entry(master=self, font="Helvetica 10", bd=5, width=30)
                     entryValor.grid(column=1, row=i, padx=20, pady=10, sticky=E)
                     entryValor.insert(0, valores[i-1])
-                    componentes.append(entryValor)
+                    self.componentes.append(entryValor)
                     if not habilitado[i-1]:
                         entryValor.configure(state=DISABLED)
             else:
-                comboboxValor = ttk.Combobox(master=self, values=combobox[i-1])
-                componentes.append(entryValor)
+                comboboxValor = ttk.Combobox(master=self, values=combobox[i-1], font="Helvetica 10", state="readonly", width=28)
+                comboboxValor.grid(column=1, row=i, padx=20, pady=10, sticky=E)
+                self.componentes.append(comboboxValor)
     
-    @staticmethod
     def getValue(self, criterio):
         indice = self.criterios.index(criterio)
         return self.componentes[indice].get()
     
-    @staticmethod
     def getComponente(self, criterio):
         indice = self.criterios.index(criterio)
         return self.componentes[indice]

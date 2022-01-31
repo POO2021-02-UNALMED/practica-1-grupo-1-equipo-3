@@ -9,11 +9,13 @@ los veterinarios con los que cuenta el zoológico), y cuidadores (Nómina de tod
 los que cuenta el zoológico). Hay que tener en cuenta que solo puede exisir un objeto de esta clase
 pues la aplicación está diseñada para la administración de un solo zoológico."""
 
+from gestorAplicacion.especie import Especie
+
 class Administracion:
     _caja=None #Es el dinero con el que cuenta el zoologico en el banco
     _animales=[] #Es una lista de todos los animales que tiene el zoológico
     _cuidadores=[] #Es una lista de todos los cuidadores que tiene el zoológico
-    _especies=[] #Es una lista de todas las especies que tiene el zoológico
+    _especies=[Especie.MAMIFERO, Especie.AVE, Especie.REPTIL, Especie.PEZ, Especie.ANFIBIO] #Es una lista de todas las especies que tiene el zoológico
     _habitats=[] #Es una lista de todos los habitats que tiene el zoológico
     _veterinarios=[] #Es una lista de todos los veterinarios que tiene el zoológico
     _visitantes=[] #Es una lista de todos los visitantes que tiene el zoológico
@@ -22,7 +24,7 @@ class Administracion:
 #Constructor de la clase Administración: Recibe como parámetro el atributo caja, el cual corresponde 
 #al dinero con el que cuenta el zoológico en el banco.
      
-    def __init__(self,caja):
+    def __init__(self,caja=0):
         Administracion._caja=caja
 
 #Este método no recibe parámetros y su función es la de calcular el pago total para todos los empleados
@@ -59,7 +61,7 @@ class Administracion:
 #No posee retorno. 
     
     def adquirirAnimal(self,especie,habitatEspecie,genero,edad,peso):
-        from animal import Animal
+        from gestorAplicacion.animal import Animal
         Animal(especie,habitatEspecie,genero,edad,peso) #Crea un objeto animal
 	
 #Este método no recibe parámetros y su función es la de calcular la ganancia por días del zoológico.
@@ -83,7 +85,7 @@ class Administracion:
 #Tiene como retorno el objeto Cuidador creado.*/
     
     def contratarCuidador(self,nombre,sueldo,especieAsignada):
-        from cuidador import Cuidador
+        from gestorAplicacion.cuidador import Cuidador
         return Cuidador(nombre,sueldo,especieAsignada)
 	
 #Este método recibe como parámetros la identificación, el nombre, el sueldo y la especialidad del veterinario 
@@ -92,7 +94,7 @@ class Administracion:
 #Tiene como retorno el objeto veterinario creado.
 	
     def contratarVeterinario(self,nombre,sueldo,especialidad):
-        from veterinario import Veterinario
+        from gestorAplicacion.veterinario import Veterinario
         return Veterinario(nombre,sueldo,especialidad)
 
 #Este método tiene como parámetro la idetificación de un cuidador, y su función es la de despedir el cuidador
@@ -126,7 +128,7 @@ class Administracion:
 #Tiene como retorno el objeto hábitat creado.
     
     def construirHabitat(self,nombre,ambientacion,capacidad):
-        from habitat import Habitat
+        from gestorAplicacion.habitat import Habitat
         return Habitat(nombre,ambientacion,capacidad)
 
 #Este método tiene como parámetro un objeto animal y su función es agregarlo a la lista de atributo animales.

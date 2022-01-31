@@ -7,7 +7,7 @@
 # La clase es definida como abstracta pues define el método abstracto toString(), método necesario
 # para visualizar los datos del empleado. 
 
-from entidad import Entidad
+from gestorAplicacion.entidad import Entidad
 
 class Empleado(Entidad):
 	
@@ -21,33 +21,33 @@ class Empleado(Entidad):
         self.sueldo = sueldo
 	
 	# Método abstracto declarado para ser definido por las clases Cuidador y Veterinario, que lo heredan.
-    def revisar(animal):
+    def revisar(self, animal):
         pass
 	
-    def info(): #//Para la ligadura dinámica
+    def info(self): #//Para la ligadura dinámica
         return "\nIdentificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre() + "\nSueldo: " + str(self.getSueldo())
 	
 	# DE ACÁ PARA ABAJO ESTÁN LOS MÉTODOS GET Y SET
-    def getIdentificacion():
+    def getIdentificacion(self):
         return self.identificacion
 	
-    def setIdentificacion(identificacion):
+    def setIdentificacion(self, identificacion):
         self.identificacion = identificacion
 	
-    def getNombre():
+    def getNombre(self):
         return self.nombre
 	
-    def setNombre(nombre):
+    def setNombre(self, nombre):
         self.nombre = nombre
 	
-    def getSueldo():
+    def getSueldo(self):
         return self.sueldo
 	
-    def setSueldo(sueldo):
+    def setSueldo(self, sueldo):
         self.sueldo = sueldo
 	
-    def isPagado():
+    def isPagado(self):
         return self.pagado
 	
-    def setPagado(estado):
+    def setPagado(self, estado):
         self.pagado=estado
