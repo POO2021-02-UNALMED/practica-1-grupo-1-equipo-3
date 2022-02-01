@@ -63,7 +63,7 @@ ventana.title("Sistema gestor de zoológico")
 ventana.geometry("+100+100")
 ventana.resizable(False, False)
 ventana.option_add("*tearOff", FALSE)
-ventana.iconbitmap("../Imagenes/Z.ico")
+#ventana.iconbitmap("../Imagenes/Z.ico")
 ventana.grid_columnconfigure(0, weight=1)
 ventana.grid_columnconfigure(1, weight=1)
 

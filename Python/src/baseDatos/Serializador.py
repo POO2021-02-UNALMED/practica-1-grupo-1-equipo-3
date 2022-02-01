@@ -1,5 +1,3 @@
-"""from cmath import pi
-from http.cookiejar import FileCookieJar"""
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.animal import Animal
 from gestorAplicacion.cuidador import Cuidador
@@ -8,7 +6,6 @@ from gestorAplicacion.veterinario import Veterinario
 from gestorAplicacion.visitante import Visitante
 import pickle
 
-"""from src.gestorAplicacion import administracion"""
 
 class Serializador():
     def serializar():

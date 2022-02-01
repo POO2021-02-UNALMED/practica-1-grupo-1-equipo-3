@@ -6,9 +6,15 @@ fue necesario sacar un prestamo. Será necesario despedir a un empleado para que
  
 Son necesarias las clases Veterinario, Cuidador, Visitante y Administración."""
 
-from gestorAplicacion.gestionZoologico import *
-from gestorAplicacion.gestionZoologico.administracion import Administracion
-from gestorAplicacion.gestionZoologico.visitante import Visitante
+from tkinter import *
+from gestorAplicacion.administracion import Administracion
+from gestorAplicacion.animal import Animal
+from gestorAplicacion.cuidador import Cuidador
+from gestorAplicacion.habitat import Habitat
+from gestorAplicacion.veterinario import Veterinario
+from gestorAplicacion.visitante import Visitante
+
+
 class FuncionalidadGestion():
 
     @classmethod
