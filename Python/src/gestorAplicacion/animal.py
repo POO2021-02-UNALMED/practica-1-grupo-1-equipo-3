@@ -20,6 +20,7 @@ class Animal():
         self._alimentado = True
         Animal._totalAnimales += 1
         Administracion.addAnimales(self)
+        habitat.addAnimalesAsociados(self)
 
     
     def info(self):

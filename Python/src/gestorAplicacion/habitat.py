@@ -16,6 +16,7 @@ class Habitat:
         self._animalesAsociados = []
         Habitat._totalHabitats += 1
         Administracion.addHabitats(self)
+        
 
     
     def info(self):

@@ -2,7 +2,7 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
-#from funcionalidadMantenimiento import Mantenimiento
+from funcionalidadMantenimiento import Mantenimiento
 #from funcionalidadCurar import Curar
 #from funcionalidadCuidar import Cuidar
 from funcionalidadAdquisicion import Adquisicion
@@ -311,7 +311,7 @@ info.pack(fill=BOTH, padx=10, pady=10)
 
 # FUNCIONALIDAD DE MANTENIMIENTO:
 
-ventanaMantenimiento = Frame() # Mantenimiento()
+ventanaMantenimiento =  Mantenimiento()
 ventanaMantenimiento.pack_forget()
 
 # FUNCIONALIDAD DE CURAR:

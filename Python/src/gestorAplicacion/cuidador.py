@@ -68,7 +68,7 @@ class Cuidador(Empleado):
 		
         for animal in habitat.getAnimalesAsociados():
             self.moverAnimal(animal, jaulas)   
-        habitat.setLimpio(True);
+        habitat.setLimpio(True)
 		
         for animal in jaulas.getAnimalesAsociados():
 			# El siguiente if se encarga, para cada animal, de cambiar su atributo de "estadoAnimo" a true en caso que los dos 
@@ -81,7 +81,7 @@ class Cuidador(Empleado):
 	
 	# DE ACÁ PARA ABAJO ESTÁN LOS MÉTODOS GET Y SET
     def getEspecieAsignada(self):
-        return self.especieAsignada
+        return self._especieAsignada
 	
     def setEspecieAsignada(self, especieAsignada):
         self._especieAsignada = especieAsignada
