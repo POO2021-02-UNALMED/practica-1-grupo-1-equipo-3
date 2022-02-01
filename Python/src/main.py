@@ -91,7 +91,7 @@ def cambiarImagen(e):
     posicionImagen += 1
     if posicionImagen == 6:
         posicionImagen = 1
-    FotoAnimal=(Image.open("../Imagenes/Animales/" + str(posicionImagen) + ".jpg")).resize((400,400), Image.ANTIALIAS)
+    FotoAnimal=(Image.open("Imagenes/Animales/" + str(posicionImagen) + ".jpg")).resize((400,400), Image.ANTIALIAS)
     FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
     LabelFotoAnimal.configure(image=FotoAnimal)
     LabelFotoAnimal.image=FotoAnimal
@@ -103,13 +103,13 @@ def cambiarVida(e):
     if posicionVida == 4:
         posicionVida = 0
     ListaFotos=["David","Jose","Juan","Mateo"]
-    Foto1 =(Image.open("../Imagenes/" + ListaFotos[posicionVida] + "/1.jpg")).resize((200,200), Image.ANTIALIAS)
+    Foto1 =(Image.open("Imagenes/" + ListaFotos[posicionVida] + "/1.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto1 = ImageTk.PhotoImage(Foto1)
-    Foto2 =(Image.open("../Imagenes/" + ListaFotos[posicionVida] + "/2.jpg")).resize((200,200), Image.ANTIALIAS)
+    Foto2 =(Image.open("Imagenes/" + ListaFotos[posicionVida] + "/2.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto2 = ImageTk.PhotoImage(Foto2)
-    Foto3 =(Image.open("../Imagenes/" + ListaFotos[posicionVida] + "/3.jpg")).resize((200,200), Image.ANTIALIAS)
+    Foto3 =(Image.open("Imagenes/" + ListaFotos[posicionVida] + "/3.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto3 = ImageTk.PhotoImage(Foto3)
-    Foto4 =(Image.open("../Imagenes/" + ListaFotos[posicionVida] + "/4.jpg")).resize((200,200), Image.ANTIALIAS)
+    Foto4 =(Image.open("Imagenes/" + ListaFotos[posicionVida] + "/4.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto4 = ImageTk.PhotoImage(Foto4)
     LabelFoto1.configure(image=Foto1)
     LabelFoto1.image=Foto1
@@ -254,15 +254,15 @@ CuerpoVida = Label(master=P5, text=VidaDavid, font="Helvetica 12",
 PieVida = Label(master=P5, text="Clic sobre la biografía para cambiar de autor",
                 font="Helvetica 8 italic", fg="blue")
 
-FotoAnimal=(Image.open("../Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
+FotoAnimal=(Image.open("Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
 FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
-Foto1 =(Image.open("../Imagenes/David/1.jpg")).resize((200,200), Image.ANTIALIAS)
+Foto1 =(Image.open("Imagenes/David/1.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto1 = ImageTk.PhotoImage(Foto1)
-Foto2 =(Image.open("../Imagenes/David/2.jpg")).resize((200,200), Image.ANTIALIAS)
+Foto2 =(Image.open("Imagenes/David/2.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto2 = ImageTk.PhotoImage(Foto2)
-Foto3 =(Image.open("../Imagenes/David/3.jpg")).resize((200,200), Image.ANTIALIAS)
+Foto3 =(Image.open("Imagenes/David/3.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto3 = ImageTk.PhotoImage(Foto3)
-Foto4 =(Image.open("../Imagenes/David/4.jpg")).resize((200,200), Image.ANTIALIAS)
+Foto4 =(Image.open("Imagenes/David/4.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto4 = ImageTk.PhotoImage(Foto4)
 
 LabelFotoAnimal = Label(master=P4, image=FotoAnimal, borderwidth=5, relief="ridge")
