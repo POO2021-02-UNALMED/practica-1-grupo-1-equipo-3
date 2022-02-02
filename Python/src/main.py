@@ -2,8 +2,9 @@
 from tkinter import *
 from tkinter import messagebox
 from PIL import Image, ImageTk
+#from Python.src.funcionalidadCurar import Curar
 from funcionalidadMantenimiento import Mantenimiento
-#from funcionalidadCurar import Curar
+from funcionalidadCurar import Curar
 from funcionalidadCuidar import Cuidar
 from funcionalidadAdquisicion import Adquisicion
 from funcionalidadTraslado import Traslado
@@ -392,7 +393,7 @@ ventanaMantenimiento.pack_forget()
 
 # FUNCIONALIDAD DE CURAR:
 
-ventanaCurar = Frame() # Curar()
+ventanaCurar = Curar() # Curar()
 ventanaCurar.pack_forget()
 
 # FUNCIONALIDAD DE CUIDAR:
