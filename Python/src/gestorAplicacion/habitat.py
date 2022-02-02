@@ -38,12 +38,12 @@ class Habitat(Entidad):
     #Metodo info() heredado de la interfaz Entidad.
     def info(self):
         if(not self._animalesAsociados):
-            cadena = ("Identificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre() + "\nAmbientación: " + self.getAmbientacion() + 
+            cadena = ("\nIdentificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre() + "\nAmbientación: " + self.getAmbientacion() + 
             "\nCantidad de Animales actual: " + str(self.cantidadAnimales()) + "\nCapacidad máxima: " + str(self.getCapacidadMaxima()) + " animales")
         else:
-            cadena = ("Identificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre()  +"\nAmbientación: " + self.getAmbientacion() + 
-            "\nCantidad de Animales actual: " + str(self.cantidadAnimales()) + "\nCapacidad máxima: " + str(self.getCapacidadMaxima() + " animales" + 
-            "\nEspecie que lo habita: " + self.getAnimalesAsociados()[0].getEspecie().getNombre()))
+            cadena = ("\nIdentificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre()  +"\nAmbientación: " + self.getAmbientacion() + 
+            "\nCantidad de Animales actual: " + str(self.cantidadAnimales()) + "\nCapacidad máxima: " + str(self.getCapacidadMaxima()) + " animales" + 
+            "\nEspecie que lo habita: " + self.getAnimalesAsociados()[0].getEspecie().getNombre())
         
         return cadena
     
@@ -96,3 +96,10 @@ class Habitat(Entidad):
     #Metodo para quitar animales de la lista del atributo animalesAsociados
     def removeAnimalesAsociados(self,animal):
         self._animalesAsociados.remove(animal)
+
+    @classmethod
+    def getTotalHabitats(cls):
+        return cls._totalHabitats
+    
+    def setTotalHabitats(cls,nuevo):
+        cls._totalHabitats=nuevo

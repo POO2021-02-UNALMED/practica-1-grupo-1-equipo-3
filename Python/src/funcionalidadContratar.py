@@ -99,7 +99,7 @@ Posteriormente llene el formulario con los datos del nuevo empleado."""
             try:
                 nuevo=Administracion.contratarVeterinario(nombre,sueldo,especie)
                 mensaje=str("¡"+str(nombre)+" ya hace parte de la nomina de veterinarios del zoológico!\n"+
-                "\nEstos son los datos del nuevo veterinario: \n"+"\n"+nuevo.info())
+                "\nEstos son los datos del nuevo veterinario: \n"+nuevo.info())
                 messagebox.showinfo(title="Información",
                                 message=mensaje)
                 Contratar.borrar(dialogos)
@@ -111,7 +111,7 @@ Posteriormente llene el formulario con los datos del nuevo empleado."""
             try:
                 nuevo=Administracion.contratarCuidador(nombre,sueldo,especie)
                 mensaje=str("¡"+str(nombre)+" ya hace parte de la nomina de cuidadores del zoológico!\n"+
-                "\nEstos son los datos del nuevo cuidador: \n"+"\n"+nuevo.info())
+                "\nEstos son los datos del nuevo cuidador: \n"+nuevo.info())
                 messagebox.showinfo(title="Información",
                                 message=mensaje)
                 Contratar.borrar(dialogos)

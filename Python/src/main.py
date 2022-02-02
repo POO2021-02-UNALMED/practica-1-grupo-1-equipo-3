@@ -13,6 +13,7 @@ from funcionalidadContratar import Contratar
 from funcionalidadConstruir import Construir
 from funcionalidadDatosTrabajadores import Trabajador
 from funcionalidadDatosAnimales import Animales
+from funcionalidadDatosHabitats import Habitats
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.animal import Animal
 from gestorAplicacion.cuidador import Cuidador
@@ -85,6 +86,7 @@ def ocultarTodo():
     ventanaConstruir.pack_forget()
     ventanaTrabajador.pack_forget()
     ventanaAnimales.pack_forget()
+    ventanaHabitats.pack_forget()
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
@@ -199,6 +201,10 @@ def animales():
     ocultarTodo()
     ventanaAnimales.pack()
 
+def habitats():
+    ocultarTodo()
+    ventanaHabitats.pack()
+
 def consultar():
     ocultarTodo()
  
@@ -264,7 +270,7 @@ menuConsultas= Menu(menuOtras, font="Helvetica 12")
 menuOtras.add_cascade(menu=menuConsultas, label="Consultar datos del zoológico")
 menuConsultas.add_command(label="Nómina de empleados", command=trabajador)
 menuConsultas.add_command(label="Animales actuales", command=animales)
-menuConsultas.add_command(label="Hábitats actuales", command=consultar)
+menuConsultas.add_command(label="Hábitats actuales", command=habitats)
 menuConsultas.add_command(label="Visitantes recibidos", command=consultar)
 
 
@@ -395,5 +401,9 @@ ventanaTrabajador.pack_forget()
 
 ventanaAnimales = Animales()
 ventanaAnimales.pack_forget()
+
+ventanaHabitats = Habitats()
+ventanaHabitats.pack_forget()
+
 
 ventana.mainloop()
