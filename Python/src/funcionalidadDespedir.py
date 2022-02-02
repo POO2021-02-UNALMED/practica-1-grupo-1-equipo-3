@@ -94,20 +94,20 @@ de nuestros empleados. Este será despedido."""
         identificacion = dialogos.getValue("Identificación")
         nombre = dialogos.getValue("Nombre") 
         if profesion=="Veterinario":
-            mensaje=str(str(nombre)+" hacia parte de la nomina de veterinarios del zoológico. Ha sido despedid@.")
             try:
-                Administracion.despedirVeterinario(identificacion)
+                Administracion.despedirVeterinario(int(identificacion))
+                mensaje=str(str(nombre)+" hacia parte de la nomina de veterinarios del zoológico. Ha sido despedid@.")
                 messagebox.showinfo(title="Información",
                                 message=mensaje)
                 Despedir.borrar(dialogos)
             except:
                 error = "Seleccione una identificación"
-            messagebox.showerror(title="Error",
+                messagebox.showerror(title="Error",
                                     message=error) 
         else:
             try:
                 mensaje=str(nombre+" hacia parte de la nomina de cuidadores del zoológico. Ha sido despedid@.")
-                Administracion.despedirCuidador(identificacion)
+                Administracion.despedirCuidador(int(identificacion))
                 messagebox.showinfo(title="Información",
                                 message=mensaje)
                 Despedir.borrar(dialogos)

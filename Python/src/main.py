@@ -98,11 +98,9 @@ def borrarTodo():
     ventanaAdquision.borrar()
     #ventanaTraslado.borrar()
     #ventanaGestion.borrar()
-    #ventanaDespedir.borrar()
+    ventanaDespedir.borrar()
     #ventanaContratar.borrar()
     #ventanaConstruir.borrar()
-    #ventanaTrabajador.borrar()
-    #ventanaAnimales.borrar()
 
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
