@@ -7,6 +7,8 @@ fue necesario sacar un prestamo. Será necesario despedir a un empleado para que
 Son necesarias las clases Veterinario, Cuidador, Visitante y Administración."""
 
 from tkinter import *
+from fieldFrame import FieldFrame
+from tkinter import messagebox
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.animal import Animal
 from gestorAplicacion.cuidador import Cuidador
@@ -15,9 +17,22 @@ from gestorAplicacion.veterinario import Veterinario
 from gestorAplicacion.visitante import Visitante
 
 
-class FuncionalidadGestion():
+class Gestion(Frame):
 
-    @classmethod
+    def __init__(self):
+        super().__init__()
+        nombre = Label(master=self, text="Gestión administrativa", font="Helvetica 12 bold")
+        info = """Nos encargaremos de pagarle a cada uno de nuestros empleados, su respectivo sueldo. 
+Para ello calcularemos las ganancias que hemos generado el día de hoy, y se lo sumaremos al presupuesto 
+que posee el zoológico en el banco. En caso de que no tengamos dinero suficiente para pagarle a los 
+empleados, será necesario que despida a uno de estos para así recuperarnos económicamente."""
+        descripcion = Label(master=self, text=info, font="Helvetica 10")
+        nombre.pack(fill=BOTH, padx=10, pady=10)
+        descripcion.pack(fill=BOTH, padx=10, pady=10)
+
+
+
+"""    @classmethod
     def sumaBoletas(cls):
         #Este método es usado para saber cuantas ganancias le han generado al zoológico los visitantes en un día
         respuesta=0
@@ -107,3 +122,4 @@ class FuncionalidadGestion():
                     break
             #En caso de no encontrar a alguien con esa identificación, se repetirá el proceso
             print("\nNinguno de nuestros veterinarios tiene esa identificación. Por favor ingrese una identificación válida.")
+"""

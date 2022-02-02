@@ -8,8 +8,6 @@ de la especie que se encuentra en el zoologico y promedioVida que corresponde al
 que se encuentran en el zoologico.   
 """
 
-#from gestorAplicacion.animalesZoologico import *
-#from gestorAplicacion.gestionZoologico import *
 from enum import Enum
 
 class Especie(Enum):

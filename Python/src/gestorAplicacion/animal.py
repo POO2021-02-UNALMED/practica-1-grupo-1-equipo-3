@@ -4,7 +4,9 @@ class Animal():
     _totalAnimales = 0
 
     def __init__(self, especie, habitat, genero, edad, peso):
-        from gestorAplicacion.administracion import Administracion
+        from administracion import Administracion
+        from especie import Especie
+
         if (not Administracion.getAnimales()):
             self._identificacion = 1
         else:
@@ -24,6 +26,7 @@ class Animal():
 
     
     def info(self):
+        from especie import Especie
         cadena = ("Identificacion: " + str(self.getIdentificacion()) + "\nEspecie: " + self.getEspecie().getNombre() + 
         "\nHábitat: " + self.getHabitat().getNombre() + "(" + self.getHabitat().getAmbientacion() + ")" + "\nGénero: " + 
         self.getGenero() + "\nEdad: " + str(self.getEdad()) + "años" + "\nPeso: " + str(self.getPeso()))
@@ -38,15 +41,19 @@ class Animal():
         return self._identificacion
         
     def setEspecie(self, especie):
+        from especie import Especie
         self._especie = especie
 
     def getEspecie(self):
+        from especie import Especie
         return self._especie
 
     def setHabitat(self, habitat):
+        from habitat import Habitat
         self._habitat = habitat
 
     def getHabitat(self):
+        from habitat import Habitat
         return self._habitat
 
     def setGenero(self, genero):
@@ -87,7 +94,7 @@ class Animal():
         return self._alimentado
 
     def morir(self):
-        from gestorAplicacion.administracion import Administracion
+        from administracion import Administracion
         Animal._totalAnimales -= 1
         self._habitat.removeAnimalesAsociados(self)
         Administracion.removeAnimales(self)

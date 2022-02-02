@@ -7,8 +7,8 @@ from funcionalidadMantenimiento import Mantenimiento
 #from funcionalidadCuidar import Cuidar
 from funcionalidadAdquisicion import Adquisicion
 from funcionalidadTraslado import Traslado
-#from funcionalidadGestion import Gestion
-#from funcionalidadOtras import Otras
+from funcionalidadGestion import Gestion
+from funcionalidadDespedir import Despedir
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.animal import Animal
 from gestorAplicacion.cuidador import Cuidador
@@ -76,7 +76,7 @@ def ocultarTodo():
     ventanaAdquision.pack_forget()
     ventanaTraslado.pack_forget()
     ventanaGestion.pack_forget()
-    ventanaOtras.pack_forget()   
+    ventanaDespedir.pack_forget()
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
@@ -93,8 +93,8 @@ def cambiarImagen(e):
         posicionImagen = 1
     FotoAnimal=(Image.open("Imagenes/Animales/" + str(posicionImagen) + ".jpg")).resize((400,400), Image.ANTIALIAS)
     FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
-    LabelFotoAnimal.configure(image=FotoAnimal)
-    LabelFotoAnimal.image=FotoAnimal
+    """LabelFotoAnimal.configure(image=FotoAnimal)
+    LabelFotoAnimal.image=FotoAnimal"""
 
 posicionVida=0
 def cambiarVida(e):
@@ -111,14 +111,14 @@ def cambiarVida(e):
     Foto3 = ImageTk.PhotoImage(Foto3)
     Foto4 =(Image.open("Imagenes/" + ListaFotos[posicionVida] + "/4.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto4 = ImageTk.PhotoImage(Foto4)
-    LabelFoto1.configure(image=Foto1)
+    """LabelFoto1.configure(image=Foto1)
     LabelFoto1.image=Foto1
     LabelFoto2.configure(image=Foto2)
     LabelFoto2.image=Foto2
     LabelFoto3.configure(image=Foto3)
     LabelFoto3.image=Foto3
     LabelFoto4.configure(image=Foto4)
-    LabelFoto4.image=Foto4
+    LabelFoto4.image=Foto4"""
     if posicionVida==0:
         CuerpoVida.config(text=VidaDavid)
     elif posicionVida==1:
@@ -171,9 +171,18 @@ def gestion():
     ocultarTodo()
     ventanaGestion.pack()
 
-def otras():
+def contratar():
     ocultarTodo()
-    ventanaOtras.pack()
+    
+def despedir():
+    ocultarTodo()
+    ventanaDespedir.pack()
+
+def construir():
+    ocultarTodo()
+
+def consultar():
+    ocultarTodo()
  
 def aplicacion():
     descripcion = "En el sistema gestor de zoológico podrá administrar todo lo que tiene que ver con su zoológico: Calcular las ganancias del día; pagar a sus empleados; llevar conteo de los visitantes, de los animales, de los empleados, de las especies, y de los hábitats."
@@ -226,7 +235,16 @@ menuProcesos.add_cascade(menu=menuAdquisicionTraslado, label="Adquisición y tra
 menuAdquisicionTraslado.add_command(label="Adquirir animales", command=adquisicion)
 menuAdquisicionTraslado.add_command(label="Trasladar animales", command=traslado)
 menuProcesos.add_command(label="Gestión administrativa", command=gestion)
-menuProcesos.add_command(label="Otras funcionalidades", command=otras)
+
+menuOtras = Menu(menuProcesos, font="Helvetica 12")
+menuProcesos.add_cascade(menu=menuOtras, label="Otras funcionalidades")
+menuOtras.add_command(label="Contratar un empleado", command=contratar)
+menuOtras.add_command(label="Despedir un empleado",command=despedir)
+menuOtras.add_command(label="Construir un habitat", command=construir)
+menuOtras.add_command(label="Consultar datos del zoológico", command=consultar)
+
+
+
 menuAyuda = Menu(menuVentanaUsuario, font="Helvetica 12")
 menuVentanaUsuario.add_cascade(menu=menuAyuda, label="Ayuda")
 menuAyuda.add_command(label="Acerca de", command=ayuda)
@@ -254,7 +272,7 @@ CuerpoVida = Label(master=P5, text=VidaDavid, font="Helvetica 12",
 PieVida = Label(master=P5, text="Clic sobre la biografía para cambiar de autor",
                 font="Helvetica 8 italic", fg="blue")
 
-FotoAnimal=(Image.open("Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
+"""FotoAnimal=(Image.open("Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
 FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
 Foto1 =(Image.open("Imagenes/David/1.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto1 = ImageTk.PhotoImage(Foto1)
@@ -263,9 +281,9 @@ Foto2 = ImageTk.PhotoImage(Foto2)
 Foto3 =(Image.open("Imagenes/David/3.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto3 = ImageTk.PhotoImage(Foto3)
 Foto4 =(Image.open("Imagenes/David/4.jpg")).resize((200,200), Image.ANTIALIAS)
-Foto4 = ImageTk.PhotoImage(Foto4)
+Foto4 = ImageTk.PhotoImage(Foto4)"""
 
-LabelFotoAnimal = Label(master=P4, image=FotoAnimal, borderwidth=5, relief="ridge")
+"""LabelFotoAnimal = Label(master=P4, image=FotoAnimal, borderwidth=5, relief="ridge")
 LabelFoto1 = Label(master=P6, image=Foto1, borderwidth=5, relief="ridge")
 LabelFoto1.grid(column=0, row=0, padx=3, pady=3)
 LabelFoto2 = Label(master=P6, image=Foto2, borderwidth=5, relief="ridge")
@@ -273,7 +291,7 @@ LabelFoto2.grid(column=1, row=0, padx=3, pady=3)
 LabelFoto3 = Label(master=P6, image=Foto3, borderwidth=5, relief="ridge")
 LabelFoto3.grid(column=0, row=1, padx=3, pady=3)
 LabelFoto4 = Label(master=P6, image=Foto4, borderwidth=5, relief="ridge")
-LabelFoto4.grid(column=1, row=1, padx=3, pady=3)
+LabelFoto4.grid(column=1, row=1, padx=3, pady=3)"""
 
 ventanaInicio.pack()
 P1.pack(side=LEFT, fill=BOTH, padx=10, pady=10)
@@ -284,13 +302,13 @@ P5.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 P6.pack(side=BOTTOM, fill=BOTH, padx=10, pady=10)
 Saludo.pack(padx=10, pady=10)
 Ingreso.pack(side=BOTTOM, padx=10, pady=10)
-LabelFotoAnimal.pack(side=TOP, padx=10, pady=10)
+#LabelFotoAnimal.pack(side=TOP, padx=10, pady=10)
 TituloVida.pack(padx=10, pady=10)
 CuerpoVida.pack(padx=10, pady=10)
 PieVida.pack(padx=10, pady=10)
 
 CuerpoVida.bind("<Button-1>", cambiarVida)
-LabelFotoAnimal.bind("<Enter>", cambiarImagen)  
+#LabelFotoAnimal.bind("<Enter>", cambiarImagen)  
 
 # COMPONENTES DE LA VENTANA DEL USUARIO:
 
@@ -334,12 +352,12 @@ ventanaTraslado.pack_forget()
 
 # FUNCIONALIDAD DE GESTIÓN:
 
-ventanaGestion = Frame() # Gestion()
+ventanaGestion = Gestion()
 ventanaGestion.pack_forget()
 
 # OTRAS FUNCIONALIDADES:
 
-ventanaOtras = Frame() # Otras()
-ventanaOtras.pack_forget()
+ventanaDespedir = Despedir()
+ventanaDespedir.pack_forget()
 
 ventana.mainloop()

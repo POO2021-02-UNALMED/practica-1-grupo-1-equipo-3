@@ -5,7 +5,7 @@
 # que el cuidador tiene asignada. Además se definen los métodos get y set para ese atributo y los 
 # métodos necesarios para implementar las funcionalidades que requieran de algún cuidador. 
 
-from gestorAplicacion.empleado import Empleado
+from empleado import Empleado
 
 class Cuidador(Empleado):
 	
@@ -17,7 +17,7 @@ class Cuidador(Empleado):
 	# con el objeto único de tipo Administracion, esto a través de las listas que estas clases manejan y por medio
 	# de los métodos addCuidadorAsignado de la clase Especie y addCuidadores de la clase Administracion. 
     def __init__(self, nombre, sueldo, especieAsignada):
-        from gestorAplicacion.administracion import Administracion
+        from administracion import Administracion
         if len(Administracion.getCuidadores())==0:
             identificacion = 1
         else:
@@ -35,6 +35,7 @@ class Cuidador(Empleado):
 	# El método alimentarAnimal() simplemente cambia a true el estado del atributo "alimentado" del objeto tipo Animal 
 	# que se le pasa como parámetro.
     def alimentarAnimal(self, animal):
+        from animal import Animal
         animal.setAlimentado(True)
 	
 	#El método moverAnimal() recibe como primer parámetro el objeto tipo Animal que el cuidador debe mover y como 
@@ -42,6 +43,8 @@ class Cuidador(Empleado):
 	# de cortar la relación entre el animal y su anterior hábitat por medio del atributo de lista "animalesAsociados" 
 	# de la clase Habitat, para luego asignar al animal su nuevo hábitat, correspondiente al pasado como parámetro.
     def moverAnimal(self, animal, lugar):
+        from animal import Animal
+        from habitat import Habitat
         animal.getHabitat().removeAnimalesAsociados(animal)
         animal.setHabitat(lugar)
         lugar.addAnimalesAsociados(animal)
@@ -50,11 +53,13 @@ class Cuidador(Empleado):
 	# sobrecarga de métodos. La siguiente es la primera definición del método, que recibe como parámetro un objeto 
 	# tipo Animal y que en base a ese objeto retorna su atributo "estadoAnimo".
     def revisarAnimal(self, animal):
+        from animal import Animal
         return animal.isEstadoAnimo()
 	
 	# La siguiente es la segunda definición del método sobrecargado, que recibe como parámetro un objeto tipo Habitat 
 	# y que en base a ese objeto retorna su atributo "limpio".
     def revisarHabitat(self, habitat):
+        from habitat import Habitat
         return habitat.isLimpio()
 	
 	# El siguiente método limpiarHabitat() recibo como primer parámetro el objeto tipo Habitat a limpiar y como segundo
@@ -65,7 +70,7 @@ class Cuidador(Empleado):
 	# esto para cambiar el estado del atributo "limpio" del hábitat que se pasó como primer parámetro a true y regresar
 	# a los animales a dicho hábitat.
     def limpiarHabitat(self, habitat, jaulas):
-		
+        from habitat import Habitat
         for animal in habitat.getAnimalesAsociados():
             self.moverAnimal(animal, jaulas)   
         habitat.setLimpio(True)

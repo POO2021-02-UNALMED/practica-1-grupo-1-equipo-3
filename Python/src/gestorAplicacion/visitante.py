@@ -6,7 +6,7 @@ de visitantes que han ingresado el zoológico y el atributo pagado para saber si
 de la clase Administracion para no sumar varias veces el precio de la boleta de un mismo visitante)
 """
 
-from gestorAplicacion.entidad import Entidad
+from entidad import Entidad
 
 class Visitante(Entidad):
 
@@ -14,7 +14,7 @@ class Visitante(Entidad):
 #además asigana el precioBoleta y la identificacion dependiendo de unas condiciones
     _totalVisitantes=0
     def __init__(self,nombre,estrato,edad):
-        from gestorAplicacion.administracion import Administracion
+        from administracion import Administracion
         self._nombre=nombre
         self._estrato=estrato
         self._edad=edad
@@ -39,7 +39,7 @@ class Visitante(Entidad):
 #No tiene ningún retorno.
 
     def salidaVisitante(self):
-        from gestorAplicacion.administracion import Administracion
+        from administracion import Administracion
         if self._pagado==True:
             Administracion.removeVisitantes(self)
             self=None
