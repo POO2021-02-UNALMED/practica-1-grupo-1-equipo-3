@@ -1,8 +1,28 @@
+#CLASE CREADA POR MATEO CARVAJAL SÁNCHEZ
 
-class Animal():
+#La clase animal esta diseñada con el fin de definir los atributos y metodos de 
+# los objetos tipo animal que corresponderian a los animales del zoologico. 
+# En particular se define el metodo morir que elimina todos las referencias 
+# del objeto tipo animal de la aplicacion y el metodo getTotalAnimales que junto 
+# con el atributo totalAnimales nos permite tener una cuenta de cuantos 
+# animales hay en el sistema.
+
+from gestorAplicacion.entidad import Entidad
+
+#Se hereda de la interfaz entidad para sobreescribir el metodo info() de esta.
+class Animal(Entidad):
+    
     
     _totalAnimales = 0
-
+    
+    #Constructor de la clase Animal: Recibe como parametros los atributos especie, habitat, 
+	#genero, edad y peso que corresponden respectivamente a la especie, habitat, genero, 
+	#edad y peso del animal a crear. A los atributos estadoAnimo, estadoSalud, alimentado
+	#y identificacion se les asigna un valor automaticamente. El objeto creado va a ser 
+	#añadido a la lista de animales de la administracion mediante el medoto estatico 
+	#de la clase Adminsitracion addAnimalesAsociados(). Ademas se le sumara 1 al atributo
+	#totalAnimales para lleavr la cuenta de los animales que hay dentro del zoologico.*/
+   
     def __init__(self, especie, habitat, genero, edad, peso):
         from gestorAplicacion.administracion import Administracion
 
@@ -23,7 +43,7 @@ class Animal():
         Administracion.addAnimales(self)
         habitat.addAnimalesAsociados(self)
 
-    
+    #Metodo heredado de Entidad el cual permite imprimir informacion del animal en caso de que sea necesario en alguna funcionaldad.
     def info(self):
         cadena = ("Identificacion: " + str(self.getIdentificacion()) + "\nEspecie: " + self.getEspecie().getNombre() + 
         "\nHábitat: " + self.getHabitat().getNombre() + "(" + self.getHabitat().getAmbientacion() + ")" + "\nGénero: " + 
@@ -31,7 +51,7 @@ class Animal():
         
         return cadena
 
-
+    #METODOS SET Y GET 
     def setIdentificacion(self, id):
         self._identificacion = id
 
@@ -87,6 +107,7 @@ class Animal():
     def isAlimentado(self):
         return self._alimentado
 
+    #Metodo morir que elimina todas las referencias del objeto tipo animal que lo invoque.
     def morir(self):
         from gestorAplicacion.administracion import Administracion
         Animal._totalAnimales -= 1

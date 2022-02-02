@@ -1,3 +1,11 @@
+#CLASE CREADA POR MATEO CARVAJAL SÁNCHEZ
+
+#En esta clase se realiza la funcionalidad de mantenimeinto de habitat. el mantenimiento 
+# de un habitat corresponde a elegir un objeto tipo habitat que se quiera revisar , luego
+#dependiendo del habitat escogido se podra escoger de entre unos cuantos objetos tipo cuidador 
+#para que revisen el habitat.
+
+
 #from gestorAplicacion.animalesZoologico.animal import Animal
 from cgitb import text
 from email import message
@@ -49,15 +57,7 @@ class Mantenimiento(Frame):
 
     
     
-    #classmethod
-    #ef mantenimientoHabitat(cls):
-    #   habitatsDisponibles = cls.seleccionarHabitat()
-    #   if habitatsDisponibles:
-    #       cuidadoresDisponibles = cls.seleccionarCuidador
-    #       if cuidadoresDisponibles:
-    #           cls.limpiezaHabitat()
-    #   
-    #   Main.continuar()
+   
 
     @classmethod
     def habitatSeleccionado(cls, e):
@@ -123,113 +123,36 @@ class Mantenimiento(Frame):
     def borrar(cls):
         cls.dialogos.getComponente("ID Habitat").set("")
         cls.dialogos.getComponente("ID Cuidador").set("")
+        cls.dialogos.getComponente("Nombre Habitat").configure(state= NORMAL)
         cls.dialogos.getComponente("Nombre Habitat").delete(0, "end")
+        cls.dialogos.getComponente("Nombre Habitat").configure(state= DISABLED)
+        cls.dialogos.getComponente("Ambientacion").configure(state= NORMAL)
         cls.dialogos.getComponente("Ambientacion").delete(0, "end")
+        cls.dialogos.getComponente("Ambientacion").configure(state= DISABLED)
+        cls.dialogos.getComponente("Especie").configure(state= NORMAL)
         cls.dialogos.getComponente("Especie").delete(0, "end")
+        cls.dialogos.getComponente("Especie").configure(state= DISABLED)
+        cls.dialogos.getComponente("Nombre Cuidador").configure(state= NORMAL)
         cls.dialogos.getComponente("Nombre Cuidador").delete(0, "end")
+        cls.dialogos.getComponente("Nombre Cuidador").configure(state= DISABLED)
     
     classmethod
 
         
     
-    #@classmethod
-    #def seleccionarHabitat(cls):
-    #    habitats = 0
-    #    idHabitats= []
-        
-       #print("Elija primero el habitat que desee revisar, ingresando su identificación.\n")
-       #print("Identificacion; Nombre; Ambientacion; Especie del Habitat; Cantidad Animales; Capacidad Maxima")
-
-       #for habitat in Administracion.getHabitats():
-       #     if (len(habitat.getAnimalesAsociados()) != 0 ):
-       #        
-       #        cadena = (str(habitat.getIdentificacion()) + "; " + habitat.getNombre() + "; " + habitat.getAmbientacion() + 
-       #        "; " + habitat.getAnimalesAsociados()[0].getEspecie().getNombre() + "; " + str(habitat.cantidadAnimales()) + "; "
-       #        + str(habitat.getCapacidadMaxima()))
-       #        print(cadena)
-
-       #        habitats += 1
-       #        idHabitats.append(habitat.getIdentificacion())
-
-        #if habitats == 0:
-        #    print("\nNo se ha encontrado ningún hábitat para revisar.")
-        #    print("MANTENIMIENTO CANCELADO\n")
-        #    return False
-        
-        #else:
-        #    
-        #    print("\n¿Cuál hábitat elije? (Identificacion) ")
-        #    #id= int(input())
-        #    id= Main.leerOpcion()
-
-        #    while id not in idHabitats:
-        #        print("\nIDENTIFICACIÓN INCORRECTA: Ingrese una válida.")
-        #        print("\nPor favor seleccione un hábitat:  ")
-        #        #id= int(input())
-        #        id= Main.leerOpcion()
-            
-        #    for habitat in Administracion.getHabitats() :
-        #        if id == habitat.getIdentificacion():
-        #            print("\nHábitat seleccionado:\n")
-        #            print(habitat.info())
-        #            cls.habitatSeleccionado = habitat
-        #            break
-            
-        #    return True
-    
-    
-    #@classmethod
-    #def seleccionarCuidador(cls):
-    #    cuidadores = 0
-    #    idCuidadores= []
-
-    #    print("\nAhora elija el cuidador que desee que revise el hábitat, ingresando su identificación.\n")
-    #    print("Identificación; Nombre; Especie Asignada")
-
-    #    for cuidador in Administracion.getCuidadores():
-    #        if (cuidador.getEspecieAsignada().getNombre() == cls.habitatSeleccionado.getAnimalesAsociados()[0].getEspecie().getNombre()):
-    #            cadena = (str(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre())
-    #            print(cadena)
-    #            cuidadores += 1
-    #            idCuidadores.append(cuidador.getIdentificacion())
-    #    
-    #    if cuidadores == 0:
-    #        print("\nNo se ha encontrado ningún cuidador para que revise el hábitat.")
-    #        print("MANTENIMIENTO CANCELADO\n")
-    #        return False
-        
-        #else:
-        #    print("\n¿Cuál cuidador elige? (Identificación) ")
-        #    #id = int(input())
-        #    id= Main.leerOpcion()
-
-        #    while id not in idCuidadores:
-        #        print("\nIDENTIFICACIÓN INCORRECTA: Ingrese una válida.")
-        #        print("\n¿Cuál cuidador elije? (Identificación) ")
-        #        #id = int(input())
-        #        id = Main.leerOpcion() 
-        #    
-        #    for cuidador in Administracion.getCuidadores():
-        #        if  id == cuidador.getIdentificacion():
-        #            print("Cuidador seleccionado: \n") 
-        #            print(cuidador.info())
-        #            cls.cuidadorSeleccionado = cuidador
-        #           break
-        #   
-        #   return True
-    
+ 
     
     @classmethod
     def aceptar(cls):
-        idAnimalesTristes = []
-        
-        #print("\nCuidador " + cls.cuidadorSeleccionado().getNombre + " procede a revisar el habitat con identficacion " + str(cls.habitatSeleccionado.getIdentificacion()) + ".")
+        idAnimalesTristes = [] #Recogera los animales los cuales no hayan cambiado de estado animo al final del mantenimiento del habitat.
 
+        #Se llama al metodo revisarHabitat usando a el cuidador y el habitat escogidos previamente. Esto con el fin de revisar si el habitat
+        #necesita mantenimiento.
         if cls.cuidadorEscogido.revisarHabitat(cls.habitatEscogido) :
             messagebox.showinfo(title= "Mantenimiento", message= "El cuidador reviso este habitat y no requiere de mantenimiento")
         
         else:
-            #print("El cuidador " + cls.cuidadorSeleccionado.getNombre() + " decide sacar a todos los animales para hacer mantenimiento al habitat")
+            
             mensaje1 = "El cuidador " + cls.cuidadorEscogido.getNombre() + " decide sacar a todos los animales del habitat para hacer mantenimiento a este"
             messagebox.showinfo(title= "Traslado a otro habitat", message= mensaje1)
             cls.cuidadorEscogido.limpiarHabitat(cls.habitatEscogido, cls.jaula)
@@ -241,15 +164,11 @@ class Mantenimiento(Frame):
                 
             
             if not idAnimalesTristes :
-                #print("Hacerle mantenimiento al habitat ha dado buenos resultados, no hay animales tristes en este.")
+                
                 mensaje2 = "Hacerle mantenimiento al habitat ha dado buenos resultados, no hay animales tristes en este."
                 messagebox.showinfo(title= "MANTENIMIENTO EXITOSO", message= mensaje2)
             
             else:
-                #print("Los animales con los siguientes números de identificacion no han mejorado sus estados de ánimo: ")
-                #for id in idAnimalesTristes:
-                #    print(id)
-                #print("Puede solicitar alimentarlos o que los revise un veterinario")
                 
                 mensaje3 = ("Los animales con los siguientes números de identificacion no han mejorado sus estados de ánimo: " + 
                 str(idAnimalesTristes) + ".\nPuede solicitar alimentarlos o que los revise un veterinario mediante otros procesos" )
