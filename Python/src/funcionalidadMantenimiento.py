@@ -20,7 +20,7 @@ from tkinter import messagebox
 
 class Mantenimiento(Frame):
 
-    jaula = Habitat("jaula")
+    jaula = Habitat("Jaulas")
     cuidadorEscogido = None
     habitatEscogido = None
     dialogos= None

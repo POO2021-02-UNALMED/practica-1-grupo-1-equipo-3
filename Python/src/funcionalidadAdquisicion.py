@@ -38,51 +38,55 @@ debe especificar los atributos del animal a adquirir y este será asignado al h�
         botones = Frame(master=self)
         aceptar = Button(master=botones, text="Aceptar", font="Helvetica 12 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda:Adquisicion.aceptar(self.dialogos))
+                         command=self.aceptar)
         aceptar.pack(side=LEFT, padx=10, pady=10)
         borrar = Button(master=botones, text="Borrar", font="Helvetica 12 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda: Adquisicion.borrar(self.dialogos))
+                         command=self.borrar)
         borrar.pack(side=RIGHT, padx=10, pady=10)
         botones.pack(padx=10, pady=10)
         comboboxEspecie = self.dialogos.getComponente("Especie")
-        comboboxEspecie.bind("<<ComboboxSelected>>", lambda e: Adquisicion.especieSeleccionada(self.dialogos))
-        
-    @staticmethod
-    def especieSeleccionada(dialogos):
-        nombreEspecie = dialogos.getValue("Especie")
+        comboboxEspecie.bind("<<ComboboxSelected>>", lambda e: self.especieSeleccionada())
+            
+    def especieSeleccionada(self):
+        nombreEspecie = self.dialogos.getValue("Especie")
         for especie in Administracion.getEspecies():
             if especie.getNombre() == nombreEspecie:
-                dialogos.getComponente("Hábitat").configure(values=Adquisicion.habitats(especie))
+                especieSeleccionada = especie
+                self.dialogos.getComponente("Hábitat").configure(values=Adquisicion.habitats(especie))
                 break
+        self.dialogos.getComponente("Hábitat").set("")
     
-    @staticmethod
-    def aceptar(dialogos):
-        nombreEspecie = dialogos.getValue("Especie")
-        idHabitat = dialogos.getValue("Hábitat").split("-")[0].strip()
-        genero = dialogos.getValue("Género")
-        edad = dialogos.getValue("Edad (Años)")
+    def aceptar(self):
+        nombreEspecie = self.dialogos.getValue("Especie")
+        idHabitat = self.dialogos.getValue("Hábitat").split("-")[0].strip()
+        genero = self.dialogos.getValue("Género")
+        edad = self.dialogos.getValue("Edad (Años)")
         try:
             edad = int(edad)
             if(edad < 0):
                 error = "EDAD INCORRECTA: Ingrese un número que sea positivo!"
                 messagebox.showerror(title="Error",
                                      message=error)
+                self.dialogos.getComponente("Edad (Años)").delete(0,"end")
         except ValueError:
             error = "EDAD INCORRECTA: Ingrese un número!"
             messagebox.showerror(title="Error",
-                                 message=error)            
-        peso = dialogos.getValue("Peso (Kg)")
+                                 message=error)  
+            self.dialogos.getComponente("Edad (Años)").delete(0,"end")
+        peso = self.dialogos.getValue("Peso (Kg)")
         try:
             peso = float(peso)
             if(peso < 0.0):
                 error = "PESO INCORRECTO: Ingrese un número que sea positivo!"
                 messagebox.showerror(title="Error",
                                      message=error)
+                self.dialogos.getComponente("Peso (Kg)").delete(0,"end")
         except ValueError:
             error = "PESO INCORRECTO: Ingrese un número!"
             messagebox.showerror(title="Error",
-                                    message=error)            
+                                    message=error) 
+            self.dialogos.getComponente("Peso (Kg)").delete(0,"end")
         for elem in Administracion.getEspecies():
             if elem.getNombre() == nombreEspecie:
                 especie = elem
@@ -94,6 +98,7 @@ debe especificar los atributos del animal a adquirir y este será asignado al h�
                     break
             except ValueError:
                 break
+        print(especie, habitat.getNombre(), genero, edad, peso)
 		# Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
 		# en base a los atributos que el usuario eligió e ingresó.
         try:
@@ -103,15 +108,18 @@ debe especificar los atributos del animal a adquirir y este será asignado al h�
         except UnboundLocalError:
             error = "Todos los campos deben tener algún valor!"
             messagebox.showerror(title="Error",
-                                    message=error)  
+                                 message=error)
+        print(Administracion.getAnimales()[-1].getEspecie(),
+              Administracion.getAnimales()[-1].getHabitat().getNombre(),
+              Administracion.getAnimales()[-1].getEspecie(),
+              Administracion.getAnimales()[-1].getEspecie(),)
     
-    @staticmethod
-    def borrar(dialogos):
-        dialogos.getComponente("Especie").set("")
-        dialogos.getComponente("Hábitat").set("")
-        dialogos.getComponente("Género").set("")
-        dialogos.getComponente("Edad (Años)").delete(0,"end")
-        dialogos.getComponente("Peso (Kg)").delete(0,"end")
+    def borrar(self):
+        self.dialogos.getComponente("Especie").set("")
+        self.dialogos.getComponente("Hábitat").set("")
+        self.dialogos.getComponente("Género").set("")
+        self.dialogos.getComponente("Edad (Años)").delete(0,"end")
+        self.dialogos.getComponente("Peso (Kg)").delete(0,"end")
     
 	# A través del método especies() se obtienen los nombres de las especies disponibles.
     @staticmethod
@@ -129,17 +137,27 @@ debe especificar los atributos del animal a adquirir y este será asignado al h�
         if especie==None:
     		# Con el siguiente for se obtienen cada uno de los hábitats almacenandos en la lista de habitats de la clase Administración.
             for habitat in Administracion.getHabitats():
-                if habitat.getEspecie() != None and habitat.cantidadAnimales() < habitat.getCapacidadMaxima():
+                if habitat.getNombre() == "Veterinaria":
+                    continue
+                elif habitat.getNombre() == "Jaulas":
+                    continue
+                elif habitat.getEspecie() != None and habitat.cantidadAnimales() < habitat.getCapacidadMaxima():
                     habitats.append(str(habitat.getIdentificacion()) + " - " + habitat.getAmbientacion() + " " + habitat.getNombre() + " (" + habitat.getEspecie().getNombre() + ")")
                 elif habitat.getEspecie() == None:
                     habitats.append(str(habitat.getIdentificacion()) + " - " + habitat.getAmbientacion() + " " + habitat.getNombre() + " (Sin Especie)")
         else:
     		# Con el siguiente for se obtienen cada uno de los hábitats almacenandos en la lista de habitats de la clase Administración.
             for habitat in Administracion.getHabitats():
+                if habitat.getNombre() == "Veterinaria":
+                    continue
+                elif habitat.getNombre() == "Jaulas":
+                    continue
                 # Esto se hace para buscar de manera efectiva los hábitats que puedan contener la especie del animal que se va a adquirir,
                 # para listar los datos de cada uno de estos hábitats para que el usuario seleccione uno.
-                if habitat.getEspecie() == especie.getNombre() and habitat.cantidadAnimales() < habitat.getCapacidadMaxima():
+                if habitat.getEspecie() == especie and habitat.cantidadAnimales() < habitat.getCapacidadMaxima():
                     habitats.append(str(habitat.getIdentificacion()) + " - " + habitat.getAmbientacion() + " " + habitat.getNombre() + " (" + habitat.getEspecie().getNombre() + ")")
+                elif habitat.getEspecie() == None and habitat.cantidadAnimales() < habitat.getCapacidadMaxima():
+                    habitats.append(str(habitat.getIdentificacion()) + " - " + habitat.getAmbientacion() + " " + habitat.getNombre() + " (Sin Especie)")
             # En caso que no haya ni un hábitat para depositar al animal, se le informa al usuario.
         if(habitats == []):
             messagebox.showwarning(title="Advertencia",

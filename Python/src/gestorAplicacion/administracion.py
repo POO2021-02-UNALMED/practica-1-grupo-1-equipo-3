@@ -54,14 +54,16 @@ class Administracion:
 #hace que el animal deje de existir, queda con apuntador a null, y el mismo se elimina de las listas donde estaba
 #asociado. Eso mismo lo hace el método morir de la clase Animal, por tanto se invoca este método.
 #No posee retorno.
-    
+
+    @classmethod
     def trasladarAnimal(self,animal):
         animal.morir() #Invoca el método morir de la clase animal
 	
 #Este método tiene como parámetros una identificación, la especie, el hábitat de la especie, el género, la edad y el peso
 #del animal que se queiere adquirir y su función es la de crear un objeto animal con las anteriores características.
 #No posee retorno. 
-    
+
+    @classmethod
     def adquirirAnimal(self,especie,habitatEspecie,genero,edad,peso):
         from gestorAplicacion.animal import Animal
         Animal(especie,habitatEspecie,genero,edad,peso) #Crea un objeto animal
