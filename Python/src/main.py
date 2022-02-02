@@ -86,9 +86,7 @@ def ocultarTodo():
     ventanaConstruir.pack_forget()
     ventanaTrabajador.pack_forget()
     ventanaAnimales.pack_forget()
-<<<<<<< Updated upstream
     ventanaHabitats.pack_forget()
-=======
     
 def borrarTodo():
     #ventanaMantenimiento.borrar()
@@ -102,7 +100,6 @@ def borrarTodo():
     #ventanaConstruir.borrar()
     #ventanaTrabajador.borrar()
     #ventanaAnimales.borrar()
->>>>>>> Stashed changes
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
