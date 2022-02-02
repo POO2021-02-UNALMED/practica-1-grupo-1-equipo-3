@@ -45,7 +45,7 @@ class Animal(Entidad):
 
     #Metodo heredado de Entidad el cual permite imprimir informacion del animal en caso de que sea necesario en alguna funcionaldad.
     def info(self):
-        cadena = ("Identificacion: " + str(self.getIdentificacion()) + "\nEspecie: " + self.getEspecie().getNombre() + 
+        cadena = ("\nIdentificacion: " + str(self.getIdentificacion()) + "\nEspecie: " + self.getEspecie().getNombre() + 
         "\nHábitat: " + self.getHabitat().getNombre() + "(" + self.getHabitat().getAmbientacion() + ")" + "\nGénero: " + 
         self.getGenero() + "\nEdad: " + str(self.getEdad()) + "años" + "\nPeso: " + str(self.getPeso()))
         

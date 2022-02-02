@@ -30,7 +30,7 @@ class Cuidador(Empleado):
 	# usado para imprimir por consola los datos del cuidador en caso de ser requeridos en alguna de las funcionalidades 
 	# de la aplicación.
     def info(self):
-        return ("Tipo de empleado: CUIDADOR" + "\nIdentificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre() + "\nSueldo: " + str(self.getSueldo()) + "\nEspecie asignada: " + self.getEspecieAsignada().getNombre());
+        return ("\nTipo de empleado: CUIDADOR" + "\nIdentificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre() + "\nSueldo: " + str(self.getSueldo()) + "\nEspecie asignada: " + self.getEspecieAsignada().getNombre());
 	
 	# El método alimentarAnimal() simplemente cambia a true el estado del atributo "alimentado" del objeto tipo Animal 
 	# que se le pasa como parámetro.

@@ -33,7 +33,7 @@ empleados, será necesario que despida a uno de estos para así recuperarnos eco
 
     @staticmethod
     def ganancias():
-        continue
+        print("Hola")
 
 """    @classmethod
     def sumaBoletas(cls):

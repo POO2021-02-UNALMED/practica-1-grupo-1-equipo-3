@@ -11,6 +11,8 @@ from funcionalidadGestion import Gestion
 from funcionalidadDespedir import Despedir
 from funcionalidadContratar import Contratar
 from funcionalidadConstruir import Construir
+from funcionalidadDatosTrabajadores import Trabajador
+from funcionalidadDatosAnimales import Animales
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.animal import Animal
 from gestorAplicacion.cuidador import Cuidador
@@ -81,6 +83,8 @@ def ocultarTodo():
     ventanaDespedir.pack_forget()
     ventanaContratar.pack_forget()
     ventanaConstruir.pack_forget()
+    ventanaTrabajador.pack_forget()
+    ventanaAnimales.pack_forget()
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
@@ -187,6 +191,14 @@ def construir():
     ocultarTodo()
     ventanaConstruir.pack()
 
+def trabajador():
+    ocultarTodo()
+    ventanaTrabajador.pack()
+
+def animales():
+    ocultarTodo()
+    ventanaAnimales.pack()
+
 def consultar():
     ocultarTodo()
  
@@ -250,8 +262,8 @@ menuOtras.add_command(label="Despedir un empleado",command=despedir)
 menuOtras.add_command(label="Construir un habitat", command=construir)
 menuConsultas= Menu(menuOtras, font="Helvetica 12")
 menuOtras.add_cascade(menu=menuConsultas, label="Consultar datos del zoológico")
-menuConsultas.add_command(label="Nómina de trabajores", command=consultar)
-menuConsultas.add_command(label="Animales actuales", command=consultar)
+menuConsultas.add_command(label="Nómina de empleados", command=trabajador)
+menuConsultas.add_command(label="Animales actuales", command=animales)
 menuConsultas.add_command(label="Hábitats actuales", command=consultar)
 menuConsultas.add_command(label="Visitantes recibidos", command=consultar)
 
@@ -377,5 +389,11 @@ ventanaContratar.pack_forget()
 
 ventanaConstruir = Construir()
 ventanaConstruir.pack_forget()
+
+ventanaTrabajador = Trabajador()
+ventanaTrabajador.pack_forget()
+
+ventanaAnimales = Animales()
+ventanaAnimales.pack_forget()
 
 ventana.mainloop()

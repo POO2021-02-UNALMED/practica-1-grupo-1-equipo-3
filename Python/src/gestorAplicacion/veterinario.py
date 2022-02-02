@@ -37,7 +37,7 @@ class Veterinario(Empleado):
 	de la aplicación.
     """
     def info(self):
-        return ("Tipo de empleado: VETERINARIO" + 
+        return ("\nTipo de empleado: VETERINARIO" + 
                 "\nIdentificación: " + str(self.getIdentificacion()) + 
                 "\nNombre: " + self.getNombre() + 
                 "\nSueldo: " + str(self.getSueldo()) + 
