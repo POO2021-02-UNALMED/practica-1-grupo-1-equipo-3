@@ -96,7 +96,7 @@ def borrarTodo():
     #ventanaCurar.borrar()
     #ventanaCuidar.borrar()
     ventanaAdquision.borrar()
-    #ventanaTraslado.borrar()
+    ventanaTraslado.borrar()
     #ventanaGestion.borrar()
     #ventanaDespedir.borrar()
     #ventanaContratar.borrar()

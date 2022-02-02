@@ -30,32 +30,34 @@ class Traslado(Frame):
         botones = Frame(master=self)
         aceptar = Button(master=botones, text="Aceptar", font="Helvetica 12 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda: Traslado.aceptar(self.dialogos))
+                         command=self.aceptar)
         aceptar.pack(side=LEFT, padx=10, pady=10)
         borrar = Button(master=botones, text="Borrar", font="Helvetica 12 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda: Traslado.borrar(self.dialogos))
+                         command=self.borrar)
         borrar.pack(side=RIGHT, padx=10, pady=10)
         botones.pack(padx=10, pady=10)
-        self.dialogos.getComponente("Especie").bind("<<ComboboxSelected>>", lambda e: Traslado.especieSeleccionada(self.dialogos))
-        self.dialogos.getComponente("Identificación").bind("<<ComboboxSelected>>", lambda e: Traslado.animalSeleccionado(self.dialogos))
+        comboboxEspecie = self.dialogos.getComponente("Especie")
+        comboboxEspecie.bind("<<ComboboxSelected>>", lambda e: self.especieSeleccionada())
+        comboboxAnimal = self.dialogos.getComponente("Identificación")
+        comboboxAnimal.bind("<<ComboboxSelected>>", lambda e: self.animalSeleccionado())
  
-    @staticmethod
-    def especieSeleccionada(dialogos):
-        nombreEspecie = dialogos.getValue("Especie")
+    def especieSeleccionada(self):
+        nombreEspecie = self.dialogos.getValue("Especie")
+        self.borrar()
         for especie in Administracion.getEspecies():
             if especie.getNombre() == nombreEspecie:
-                dialogos.getComponente("Identificación").configure(values=Traslado.animales(especie))
+                self.dialogos.getComponente("Identificación").configure(values=Traslado.animales(especie))
                 break
+        self.dialogos.getComponente("Especie").set(nombreEspecie)
             
-    @staticmethod
-    def animalSeleccionado(dialogos):
-        identificacion = dialogos.getValue("Identificación").split("(")[0].strip()
+    def animalSeleccionado(self):
+        identificacion = self.dialogos.getValue("Identificación").split("(")[0].strip()
         identificacion = int(identificacion)
-        habitat = dialogos.getComponente("Hábitat")
-        genero = dialogos.getComponente("Género")
-        edad = dialogos.getComponente("Edad")
-        peso = dialogos.getComponente("Peso")
+        habitat = self.dialogos.getComponente("Hábitat")
+        genero = self.dialogos.getComponente("Género")
+        edad = self.dialogos.getComponente("Edad")
+        peso = self.dialogos.getComponente("Peso")
         for animal in Administracion.getAnimales():
             if animal.getIdentificacion() == identificacion:
                 habitat.configure(state=NORMAL)
@@ -76,41 +78,44 @@ class Traslado(Frame):
                 peso.configure(state=DISABLED)
                 break
     
-    @staticmethod
-    def aceptar(dialogos):
-        identificacion = dialogos.getValue("Identificación")
+    def aceptar(self):
+        identificacion = self.dialogos.getValue("Identificación").split("(")[0].strip()
         for elem in Administracion.getAnimales():
-            if elem.getIdentificacion() == identificacion:
-                animalSeleccionado = elem
-                break   
+            try:
+                if elem.getIdentificacion() == int(identificacion):
+                    animalSeleccionado = elem
+                    break   
+            except ValueError:
+                break
     	# Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
     	# en base a los atributos que el usuario eligió e ingresó.
         try:
             Administracion.trasladarAnimal(animalSeleccionado)
             messagebox.showinfo(title="Información",
                                 message="ANIMAL TRASLADADO EXITOSAMENTE!")
+            self.borrar()
+            self.dialogos.getComponente("Identificación").configure(values=Traslado.animales())
         except UnboundLocalError:
-            error = "Todos los campos deben tener algún valor!"
+            error = "Debe seleccionar como mínimo la identificación del animal!"
             messagebox.showerror(title="Error",
                                     message=error)  
     
-    @staticmethod
-    def borrar(dialogos):
-        dialogos.getComponente("Especie").set("")
-        dialogos.getComponente("Identificación").set("")
-        habitat = dialogos.getComponente("Hábitat")
+    def borrar(self):
+        self.dialogos.getComponente("Especie").set("")
+        self.dialogos.getComponente("Identificación").set("")
+        habitat = self.dialogos.getComponente("Hábitat")
         habitat.configure(state=NORMAL)
         habitat.delete(0,"end")
         habitat.configure(state=DISABLED)
-        genero = dialogos.getComponente("Género")
+        genero = self.dialogos.getComponente("Género")
         genero.configure(state=NORMAL)
         genero.delete(0,"end")
         genero.configure(state=DISABLED)
-        edad = dialogos.getComponente("Edad")
+        edad = self.dialogos.getComponente("Edad")
         edad.configure(state=NORMAL)
         edad.delete(0,"end")
         edad.configure(state=DISABLED)
-        peso = dialogos.getComponente("Peso")
+        peso = self.dialogos.getComponente("Peso")
         peso.configure(state=NORMAL)
         peso.delete(0,"end")
         peso.configure(state=DISABLED)
@@ -143,5 +148,5 @@ class Traslado(Frame):
     		# En caso que no haya ni un solo animal de la especie seleccionada, se le informa al usuario.
             if(animales == []):
                 messagebox.showwarning(title="Advertencia",
-                                       message="No se ha encontrado ningún animal disponible para trasladar.")
+                                       message="No se ha encontrado ningún animal de esta especie que esté disponible para trasladar.")
         return animales
