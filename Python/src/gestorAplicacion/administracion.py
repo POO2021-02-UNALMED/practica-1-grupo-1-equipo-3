@@ -12,6 +12,7 @@ pues la aplicación está diseñada para la administración de un solo zoológic
 from gestorAplicacion.especie import Especie
 
 class Administracion:
+    _ganancias=False
     _caja=None #Es el dinero con el que cuenta el zoologico en el banco
     _animales=[] #Es una lista de todos los animales que tiene el zoológico
     _cuidadores=[] #Es una lista de todos los cuidadores que tiene el zoológico
@@ -46,6 +47,7 @@ class Administracion:
                 pago+=empleado.getSueldo(); #Se emplea ligadura dinámica. Entra por método de Veterinario y Cuidador y no por el de Empleado.
                 empleado.setPagado(True) #Se le suma al valor del sueldo, lo que se le debe pagar al empleado y se cambia el atributo pagado
         cls._caja-=pago #Se le quita a la caja el valor que debe pagar a los empleados
+        Administracion._ganancias=True
         return pago #Retorna el monto total a pagar
     
 #Este método recibe como parámetro un animal y su función es trasladar el animal afuera del zoológico, por lo que
@@ -234,6 +236,10 @@ class Administracion:
     @classmethod
     def getCuidadores(cls):
         return cls._cuidadores
+    
+    @classmethod
+    def getGanancias(cls):
+        return cls._ganancias
 
     @classmethod
     def setCaja(cls,nuevo):
@@ -258,3 +264,7 @@ class Administracion:
     @classmethod
     def setCuidadores(cls,nuevo):
         cls._cuidadores=nuevo
+
+    @classmethod
+    def setGanancias(cls,nuevo):
+        cls._ganancias=nuevo
