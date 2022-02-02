@@ -32,7 +32,7 @@ class Visitante(Entidad):
 #de la aplicación.
 
     def info(self):
-        return ("Identificacion: "+str(self._identificacion)+"\nNombre: "+self._nombre+"\nEstrato: "+str(self._estrato)+"\nEdad: "+str(self._edad)+"\nPrecio de boleta: "+str(self._precioBoleta))
+        return ("\nIdentificacion: "+str(self._identificacion)+"\nNombre: "+self._nombre+"\nEstrato: "+str(self._estrato)+"\nEdad: "+str(self._edad)+"\nPrecio de boleta: "+str(self._precioBoleta)+"$")
 
 #Este método no recibe parámetros y su función es la destrucción del objeto visitante que lo invocó con el proposito de indicar que salió
 #del zoológico. Elimina a ese objeto de la lista de visitantes solo cuando halla pagado el precio de su boleta.
@@ -53,11 +53,11 @@ class Visitante(Entidad):
         if (self._edad<15):
             self._precioBoleta=10000
             if (self._estrato<=3):
-                self._precioBoleta=self._precioBoleta*0.7
+                self._precioBoleta=int(self._precioBoleta*0.7)
         else:
             self._precioBoleta=20000
             if (self._estrato<=3)		:
-                self._precioBoleta=self._precioBoleta*0.8
+                self._precioBoleta=int(self._precioBoleta*0.8)
         return self._precioBoleta
 	
 #DE ACÁ PARA ABAJO ESÁN LOS MÉTODOS GET Y SET

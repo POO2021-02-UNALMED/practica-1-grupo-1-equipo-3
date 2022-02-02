@@ -14,6 +14,7 @@ from funcionalidadConstruir import Construir
 from funcionalidadDatosTrabajadores import Trabajador
 from funcionalidadDatosAnimales import Animales
 from funcionalidadDatosHabitats import Habitats
+from funcionalidadDatosVisitantes import Visitantes
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.animal import Animal
 from gestorAplicacion.cuidador import Cuidador
@@ -87,6 +88,7 @@ def ocultarTodo():
     ventanaTrabajador.pack_forget()
     ventanaAnimales.pack_forget()
     ventanaHabitats.pack_forget()
+    ventanaVisitantes.pack_forget()
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
@@ -205,8 +207,9 @@ def habitats():
     ocultarTodo()
     ventanaHabitats.pack()
 
-def consultar():
+def visitantes():
     ocultarTodo()
+    ventanaVisitantes.pack()
  
 def aplicacion():
     descripcion = "En el sistema gestor de zoológico podrá administrar todo lo que tiene que ver con su zoológico: Calcular las ganancias del día; pagar a sus empleados; llevar conteo de los visitantes, de los animales, de los empleados, de las especies, y de los hábitats."
@@ -271,7 +274,7 @@ menuOtras.add_cascade(menu=menuConsultas, label="Consultar datos del zoológico"
 menuConsultas.add_command(label="Nómina de empleados", command=trabajador)
 menuConsultas.add_command(label="Animales actuales", command=animales)
 menuConsultas.add_command(label="Hábitats actuales", command=habitats)
-menuConsultas.add_command(label="Visitantes recibidos", command=consultar)
+menuConsultas.add_command(label="Visitantes recibidos", command=visitantes)
 
 
 
@@ -405,5 +408,7 @@ ventanaAnimales.pack_forget()
 ventanaHabitats = Habitats()
 ventanaHabitats.pack_forget()
 
+ventanaVisitantes = Visitantes()
+ventanaVisitantes.pack_forget()
 
 ventana.mainloop()

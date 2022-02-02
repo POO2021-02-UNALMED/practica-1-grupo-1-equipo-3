@@ -25,4 +25,4 @@ en pantalla los datos de los diferentes hábitats del zoológico"""
         mensaje="Actualmente el zoológico cuenta con "+str(n_habitats)+" HÁBITATS.\nEstos son los datos de los hábitats:"
         for an in Administracion.getHabitats():
             mensaje=mensaje+"\n"+an.info()
-        messagebox.showinfo(title="Información",message=mensaje,)
+        messagebox.showinfo(title="Información",message=mensaje)

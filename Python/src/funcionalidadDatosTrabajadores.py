@@ -26,7 +26,7 @@ en pantalla los datos de los diferentes empleados activos del zoológico"""
         mensaje="Actualmente el zoológico cuenta con "+str(n_veterinarios)+" VETERINARIOS\ny "+str(n_cuidadores)+" CUIDADORES. Estos son los datos de nuestros VETERINARIOS:"
         for vet in Administracion.getVeterinarios():
             mensaje=mensaje+"\n"+vet.info()
-        mensaje=mensaje+"\n\n\nAhora mostraremos los datos de nuestros CUIDADORES:"
+        mensaje=mensaje+"\n\nAhora mostraremos los datos de nuestros CUIDADORES:"
         for cui in Administracion.getCuidadores():
             mensaje=mensaje+"\n"+cui.info()
-        messagebox.showinfo(title="Información",message=mensaje,)
+        messagebox.showinfo(title="Información",message=mensaje)
