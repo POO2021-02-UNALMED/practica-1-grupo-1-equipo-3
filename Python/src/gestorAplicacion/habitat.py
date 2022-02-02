@@ -21,11 +21,11 @@ class Habitat:
     
     def info(self):
         if(not self._animalesAsociados):
-            cadena = ("Identificación: " + str(self.getIdentificacion()) + "\nNombre" + self.getNombre() + "\nAmbientación: " + self.getAmbientacion() + 
-            "\nCantidad de Animales actual: " + str(self.cantidadAnimales()) + "\nCapacidad máxima: " + str(self.getCapacidadMaxima() + "animales"))
+            cadena = ("Identificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre() + "\nAmbientación: " + self.getAmbientacion() + 
+            "\nCantidad de Animales actual: " + str(self.cantidadAnimales()) + "\nCapacidad máxima: " + str(self.getCapacidadMaxima()) + " animales")
         else:
-            cadena = ("Identificación: " + str(self.getIdentificacion()) + "\nNombre" + self.getNombre()  +"\nAmbientación: " + self.getAmbientacion() + 
-            "\nCantidad de Animales actual: " + str(self.cantidadAnimales()) + "\nCapacidad máxima: " + str(self.getCapacidadMaxima() + "animales" + 
+            cadena = ("Identificación: " + str(self.getIdentificacion()) + "\nNombre: " + self.getNombre()  +"\nAmbientación: " + self.getAmbientacion() + 
+            "\nCantidad de Animales actual: " + str(self.cantidadAnimales()) + "\nCapacidad máxima: " + str(self.getCapacidadMaxima() + " animales" + 
             "\nEspecie que lo habita: " + self.getAnimalesAsociados()[0].getEspecie().getNombre()))
         
         return cadena

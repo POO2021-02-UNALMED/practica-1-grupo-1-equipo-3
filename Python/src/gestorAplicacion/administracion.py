@@ -129,7 +129,8 @@ class Administracion:
 #de un objeto hábitat.
 #Tiene como retorno el objeto hábitat creado.
     
-    def construirHabitat(self,nombre,ambientacion,capacidad):
+    @classmethod
+    def construirHabitat(cls,nombre,ambientacion,capacidad):
         from gestorAplicacion.habitat import Habitat
         return Habitat(nombre,ambientacion,capacidad)
 
