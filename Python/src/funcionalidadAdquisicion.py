@@ -98,7 +98,6 @@ debe especificar los atributos del animal a adquirir y este será asignado al h�
                     break
             except ValueError:
                 break
-        print(especie, habitat.getNombre(), genero, edad, peso)
 		# Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
 		# en base a los atributos que el usuario eligió e ingresó.
         try:
@@ -106,7 +105,7 @@ debe especificar los atributos del animal a adquirir y este será asignado al h�
             messagebox.showinfo(title="Información",
                                 message="ANIMAL ADQUIRIDO EXITOSAMENTE!")
             self.borrar()
-            identificacion = dialogos.getComponente("Identificación")
+            identificacion = self.dialogos.getComponente("Identificación")
             identificacion.configure(state=NORMAL)
             identificacion.delete(0,"end")
             identificacion.insert(0, Administracion.getAnimales()[-1].getIdentificacion() + 1)
