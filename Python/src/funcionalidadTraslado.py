@@ -3,7 +3,7 @@
 # En esta clase se realiza la funcionalidad del traslado de animales. Trasladar un animal corresponde a 
 # eliminar del sistema el objeto tipo Animal que especifique el usuario.
 # 
-# Son necesarias las clases Especie, Animal y Administración.
+# Son usadas las clases Especie, Animal y Administración.
 
 from tkinter import *
 from tkinter import messagebox
@@ -15,8 +15,7 @@ class Traslado(Frame):
     def __init__(self):
         super().__init__()
         nombre = Label(master=self, text="Traslado de animales", font="Helvetica 12 bold")
-        info = """Para el traslado, se eliminará del sistema al objeto tipo Animal que se haya especificado.
-        """
+        info = "Para el traslado, se eliminará del sistema al objeto tipo Animal que se haya especificado."
         descripcion = Label(master=self, text=info, font="Helvetica 11")
         nombre.pack(fill=BOTH, padx=10, pady=10)
         descripcion.pack(fill=BOTH, padx=10, pady=10)
@@ -77,29 +76,7 @@ class Traslado(Frame):
                 peso.insert(0, str(animal.getPeso()))
                 peso.configure(state=DISABLED)
                 break
-    
-    def aceptar(self):
-        identificacion = self.dialogos.getValue("Identificación").split("(")[0].strip()
-        for elem in Administracion.getAnimales():
-            try:
-                if elem.getIdentificacion() == int(identificacion):
-                    animalSeleccionado = elem
-                    break   
-            except ValueError:
-                break
-    	# Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
-    	# en base a los atributos que el usuario eligió e ingresó.
-        try:
-            Administracion.trasladarAnimal(animalSeleccionado)
-            messagebox.showinfo(title="Información",
-                                message="ANIMAL TRASLADADO EXITOSAMENTE!")
-            self.borrar()
-            self.dialogos.getComponente("Identificación").configure(values=Traslado.animales())
-        except UnboundLocalError:
-            error = "Debe seleccionar como mínimo la identificación del animal!"
-            messagebox.showerror(title="Error",
-                                    message=error)  
-    
+
     def borrar(self):
         self.dialogos.getComponente("Especie").set("")
         self.dialogos.getComponente("Identificación").set("")
@@ -119,6 +96,28 @@ class Traslado(Frame):
         peso.configure(state=NORMAL)
         peso.delete(0,"end")
         peso.configure(state=DISABLED)
+    
+    def aceptar(self):
+        identificacion = self.dialogos.getValue("Identificación").split("(")[0].strip()
+        for elem in Administracion.getAnimales():
+            try:
+                if elem.getIdentificacion() == int(identificacion):
+                    animalSeleccionado = elem
+                    break   
+            except ValueError:
+                break
+    	# Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
+    	# en base a los atributos que el usuario eligió e ingresó.
+        try:
+            Administracion.trasladarAnimal(animalSeleccionado)
+            messagebox.showinfo(title="Resultado",
+                                message="Animal trasladado exitosamente!")
+            self.borrar()
+            self.dialogos.getComponente("Identificación").configure(values=Traslado.animales())
+        except UnboundLocalError:
+            error = "Debe seleccionar como mínimo la identificación del animal"
+            messagebox.showerror(title="Error",
+                                    message=error)
  
 	# A través del método especies() se obtienen los nombres de las especies disponibles.
     @staticmethod
@@ -129,12 +128,13 @@ class Traslado(Frame):
             especies.append(especie.getNombre())
         return especies    
  
-	# A través del método animal() se obtiene el animal que será trasladado.
+	# A través del método animales(...) se obtiene el animal que será trasladado.
     @staticmethod
     def animales(especie=None):
         animales = []
 
         if especie==None:
+            # Con el siguiente for se obtienen cada uno de los animales almacenandos en la lista de animales de la clase Administración.
             for animal in Administracion.getAnimales():
                 animales.append(str(animal.getIdentificacion()) + " (" + animal.getEspecie().getNombre() + ")")
         else:

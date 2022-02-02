@@ -4,7 +4,7 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 from funcionalidadMantenimiento import Mantenimiento
 #from funcionalidadCurar import Curar
-#from funcionalidadCuidar import Cuidar
+from funcionalidadCuidar import Cuidar
 from funcionalidadAdquisicion import Adquisicion
 from funcionalidadTraslado import Traslado
 from funcionalidadGestion import Gestion
@@ -94,11 +94,11 @@ def ocultarTodo():
 def borrarTodo():
     #ventanaMantenimiento.borrar()
     #ventanaCurar.borrar()
-    #ventanaCuidar.borrar()
+    ventanaCuidar.borrar()
     ventanaAdquision.borrar()
     ventanaTraslado.borrar()
     #ventanaGestion.borrar()
-    ventanaDespedir.borrar()
+    #ventanaDespedir.borrar()
     #ventanaContratar.borrar()
     #ventanaConstruir.borrar()
 
@@ -397,7 +397,7 @@ ventanaCurar.pack_forget()
 
 # FUNCIONALIDAD DE CUIDAR:
 
-ventanaCuidar = Frame() # Cuidar()
+ventanaCuidar = Cuidar()
 ventanaCuidar.pack_forget()
 
 # FUNCIONALIDAD DE ADQUISICIÓN Y TRASLADO:

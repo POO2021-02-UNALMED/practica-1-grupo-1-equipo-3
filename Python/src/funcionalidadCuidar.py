@@ -5,165 +5,214 @@
 # alimentara. Si al alimentar al animal su estado de ánimo no mejora, se le informará al usuario para que tome por si mismo
 # la decisión de qué otra funcionalidad evaluar.
 # 
-# Son necesarias las clases Animal, Cuidador y Administración.
+# Son usadas las clases Animal, Cuidador y Administración.
 
-from main import Main
-from ..gestorAplicacion.gestionZoologico.administracion import Adminstracion
-from ..gestorAplicacion.gestionZoologico.cuidador import Cuidador
-from ..gestorAplicacion.animalesZoologico.animal import Animal
+from tkinter import *
+from tkinter import messagebox
+from fieldFrame import FieldFrame
+from funcionalidadTraslado import Traslado
+from gestorAplicacion.administracion import Administracion
 
-class Cuidar:
-    animalSeleccionado=None
-    cuidadorSeleccionado=None
+class Cuidar(Frame):
 	
-	# El método cuidarAnimal() es el método a llamar desde la clase Main. Desde este método es donde se controla la ejecución de esta funcionalidad.
-    @classmethod
-    def cuidarAnimal():
-		# Por medio de la variable "animalesDisponibles" se verifica si hay por lo menos un animal para revisar.
-		# En caso que no haya tan siquiera uno se cancela la revisión del animal.
-        animalesDisponibles = Cuidar.seleccionarAnimal()
-        if(animalesDisponibles):
-			# Por medio de la variable "cuidadoresDisponibles" se verifica si hay por lo menos un cuidar que pueda revisar al animal, pues depende
-			# de la especie del animal y la especialidad de los cuidadores. En caso que no haya tan siquiera uno se cancela la revisión del animal.
-            cuidadoresDisponibles = Cuidar.seleccionarCuidador()
-            if(cuidadoresDisponibles):
-                Cuidar.animoAnimal()
-                
-        print()
-		# El método continuar() de la clase Main es usado para que el usuario tenga tiempo de leer las salidas proporcionadas por la funcionalidad
-		# Este método evita que se repita inmediatamente el ciclo de elegir la funcionalidad a realizar, esto por medio de esperar la acción del usuario.
-        Main.continuar()
-	
-	# A través del método seleccionarAnimal() se obtiene el animal que será revisado.
-    @classmethod
-    def seleccionarAnimal():
-        id = 0
-		# Con la variable "animales" se contará, como ya se dijo, si hay por lo menos un animal para revisar.
-        animales = 0
-		# En la variable "identificaciones" se almacenarán las identificaciones de los animales listados, esto para verificar que el usuario
-		# eligió una identificación válida. */
-        identificaciones = []
-        print("Elija primero el animal que desee revisar, ingresando su identificación.\n")
-        print("Identificación; Especie; Hábitat; Género; Edad; Peso")
-		
-		# Con el siguiente for se obtienen cada uno de los animales almacenandos en la lista de animales de la clase Administración.
+    def __init__(self):
+        super().__init__()
+        nombre = Label(master=self, text="Cuidado de animales", font="Helvetica 12 bold")
+        info = """Para realizar el cuidado, deberá elegir un animal y un cuidador. Luego dicho cuidador
+revisará el estado de ánimo del animal elegido. En caso que el animal se encuentre con
+mal estado de ánimo el cuidador lo alimentará. Si al alimentar al animal su estado de 
+ánimo no mejora, se le informará para que tome por si mismo la decisión de qué otro 
+proceso realizar: Si el de curar al animal o el de hacer mantenimiento a su hábitat.
+"""
+        descripcion = Label(master=self, text=info, font="Helvetica 11")
+        nombre.pack(fill=BOTH, padx=10, pady=10)
+        descripcion.pack(fill=BOTH, padx=10, pady=10)
+
+        self.criterios = ["Especie", "Identificación", "Hábitat", "Género", "Edad", "Peso", "Cuidador revisor"]
+        self.valores = [False, False, "", "", "", "", False]
+        self.habilitados = [True, True, False, False, False, False, True]
+        self.combobox = [Cuidar.especies(), Cuidar.animales(), False, False, False, False, Cuidar.cuidadores()]
+        self.dialogos = FieldFrame(self, "Criterios", self.criterios, "Valores", self.valores, self.habilitados, self.combobox)
+        self.dialogos.pack(padx=10, pady=10)
+        botones = Frame(master=self)
+        aceptar = Button(master=botones, text="Revisar", font="Helvetica 12 bold", 
+                         bg="grey", fg="white", borderwidth=3, relief="raised",
+                         command=self.revisarAnimal)
+        aceptar.pack(side=LEFT, padx=10, pady=10)
+        borrar = Button(master=botones, text="Borrar", font="Helvetica 12 bold", 
+                         bg="grey", fg="white", borderwidth=3, relief="raised",
+                         command=self.borrar)
+        borrar.pack(side=RIGHT, padx=10, pady=10)
+        botones.pack(padx=10, pady=10)
+        comboboxEspecie = self.dialogos.getComponente("Especie")
+        comboboxEspecie.bind("<<ComboboxSelected>>", lambda e: self.especieSeleccionada())
+        comboboxAnimal = self.dialogos.getComponente("Identificación")
+        comboboxAnimal.bind("<<ComboboxSelected>>", lambda e: self.animalSeleccionado())
+    
+    def especieSeleccionada(self):
+        nombreEspecie = self.dialogos.getValue("Especie")
+        self.borrar()
+        for especie in Administracion.getEspecies():
+            if especie.getNombre() == nombreEspecie:
+                self.dialogos.getComponente("Identificación").configure(values=Cuidar.animales(especie))
+                break
+        self.dialogos.getComponente("Especie").set(nombreEspecie)
+            
+    def animalSeleccionado(self):
+        identificacion = self.dialogos.getValue("Identificación").split("(")[0].strip()
+        identificacion = int(identificacion)
+        habitat = self.dialogos.getComponente("Hábitat")
+        genero = self.dialogos.getComponente("Género")
+        edad = self.dialogos.getComponente("Edad")
+        peso = self.dialogos.getComponente("Peso")
+        cuidador = self.dialogos.getComponente("Cuidador revisor")
+        cuidador.set("")
         for animal in Administracion.getAnimales():
-			# Esto se hace para imprimir los datos de cada uno de los animales por pantalla para que el usuario seleccione uno para revisar.
-            print(str(animal.getIdentificacion()) + "; " + animal.getEspecie().getNombre() + "; " + animal.getHabitat().getNombre() + "; " + animal.getGenero() + "; " + str(animal.getEdad()) + "; " + str(animal.getPeso()));
-			# Como se dijo, se van contando los animales que son listados, además de almacenar sus identificaciones.
-            animales += 1
-            identificaciones.append(animal.getIdentificacion())
-		
-		# En caso que no haya ni un solo animal para revisar, se le informa al usuario y la revisión queda cancelada.
-        if(animales == 0):
-            print("\nNo se ha encontrado ningún animal para revisar.")
-            print("REVISIÓN CANCELADA\n")
-			# Se retorna false para la verificación en la clase cuidarAnimal(), como se dijo anteriormente.
-            return False
-		# En caso que haya por lo menos un animal para revisar, se le solicitará al usuario que elija el animal de
-		# acuerdo a la identificación de este. Recordar que los animales ya fueron listados con el for anterior.
-        else:
-            id = int(input("\n¿Cuál animal elije? (Identificación): "))
-			
-            estado = True
-			# A través del siguiente while se le solicita al usuario la identificación tantas veces como sea necesario hasta que esta sea correcta.
-            while(estado):
-                if(id in identificaciones == False):
-                    print("\nIDENTIFICACIÓN INCORRECTA: Ingrese una válida.")
-                    id = int(input("\n¿Cuál animal elije? (Identificación): "))
-                else:
-					# Con el siguiente for se vuelve a recorrer el listado de todos los animales.
-                    for animal in Administracion.getAnimales():
-						# En caso que la identificación de un animal corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
-						# del animal seleccionado y se asigna dicho animal al atributo estático "animalSeleccionado", necesario para la revisión.
-                        if(animal.getIdentificacion() == id):
-                            print("\nAnimal seleccionado:\n")
-                            print(animal.info())
-                            Cuidar.animalSeleccionado = animal
-                            estado = False
-                            break
-			# Se retorna true para la verificación en la clase cuidarAnimal(), como se dijo anteriormente.
-            return True
-	
-	# A través del método seleccionarCuidador() se obtiene el cuidador que revisará al animal.
-    @classmethod
-    def seleccionarCuidador():
-        id = 0
-		# Con la variable "cuidadores" se contará, como ya se dijo, si hay por lo menos un cuidador especializado en la especie del animal
-		# seleccionado por el usuario para revisar a animal.
-        cuidadores = 0
-		# En la variable "identificaciones" se almacenarán las identificaciones de los animales listados, esto para verificar que el usuario
-		# eligió una identificación válida.
-        identificaciones = []
-        print("\nAhora elija el cuidador que desee que revise al animal, ingresando su identificación.\n")
-        print("Identificación; Nombre; Especie asignada")
-		
-		# Con el siguiente for se obtienen cada uno de los cuidadores almacenandos en la lista de cuidadores de la clase Administracion.
-        for cuidador in Administracion.getCuidadores():
-			# Con el if se buscan los cuidadores que puedan revisar al animal de acuerdo a su especie, esto para imprimir los datos de cada 
-			# uno de estos cuidadores por pantalla para que el usuario seleccione el que va a revisar al animal.
-            if(cuidador.getEspecieAsignada() == Cuidar.animalSeleccionado.getEspecie()):
-                print(str(cuidador.getIdentificacion()) + "; " + cuidador.getNombre() + "; " + cuidador.getEspecieAsignada().getNombre())
-				# Como se dijo, se van contando los cuidadores que son listados, además de almacenar sus identificaciones.
-                cuidadores += 1
-                identificaciones.append(cuidador.getIdentificacion())
-		
-		# En caso que no haya ni un solo cuidadores que pueda revisar al animal, se le informa al usuario y la revisión queda cancelada.
-        if(cuidadores == 0):
-            print("\nNo se ha encontrado ningún cuidador para revisar al animal.")
-            print("REVISIÓN CANCELADA\n")
-			# Se retorna false para la verificación en la clase cuidarAnimal(), como se dijo anteriormente.
-            return False
-		# En caso que haya por lo menos un cuidador para revisar al animal, se le solicitará al usuario que elija el cuidador de
-		# acuerdo a la identificación de este. Recordar que los cuidadores ya fueron listados con el for anterior.
-        else:
-            id = int(input("\n¿Cuál cuidador elije? (Identificación) "))
-			
-            estado = True
-			# A través del siguiente while se le solicita al usuario la identificación tantas veces como sea necesario hasta que esta sea correcta.
-            while(estado):
-                if(id in identificaciones == False):
-                    print("\nIDENTIFICACIÓN INCORRECTA: Ingrese una válida.")
-                    id = int(input("\n¿Cuál cuidador elije? (Identificación) "))
-                else:
-					# Con el siguiente for se vuelve a recorrer el listado de todos los cuidadores en la lista de cuidadores de la clase Administracion.
-                    for cuidador in Administracion.getCuidadores():
-						# En caso que la identificación de un cuidador corresponda a la identificación que seleccionó el usuario, se imprimen los datos 
-						# del cuidador seleccionado y se asigna dicho cuidador al atributo estático "cuidadorSeleccionado", necesario para la revisión.
-                        if(cuidador.getIdentificacion() == id):
-                            print("\nCuidador seleccionado:\n")
-                            print(cuidador.info())
-                            Cuidar.cuidadorSeleccionado = cuidador
-                            estado = False
-                            break
-			# Se retorna true para la verificación en la clase cuidarAnimal(), como se dijo anteriormente.
-            return True
-	
-	# A través del método animoAnimal() se hace el proceso de revisar el estado de ánimo del animal seleccionado desde el cuidador seleccionado.
-    @classmethod
-    def animoAnimal():
-        print("\nCuidador " + Cuidar.cuidadorSeleccionado.getNombre() + " procede a revisar al animal con identificación " + str(Cuidar.animalSeleccionado.getIdentificacion()) + ".");
-		
-		# En caso que el animal esté con buen estado de ánimo (revisar(...) retorna true), se le informará al usuario y se termina la funcionalidad. 
-        if(Cuidar.cuidadorSeleccionado.revisar(Cuidar.animalSeleccionado)):
-            print("RESULTADO: El animal se encuentra con buen estado de ánimo.\n")
-		# En caso que el animal esté con mal estado de ánimo, se le informará al usuario y el cuidador seleccionado procederá a alimentar al animal
-		# a través del método animentarAnimal(...).
-        else:
-            print("RESULTADO: El animal se encuentra con mal estado de ánimo.\n")
-            print("El cuidador " + Cuidar.cuidadorSeleccionado.getNombre() + " decide alimentar al animal para mejorar su estado de ánimo.")
-            Cuidar.cuidadorSeleccionado.alimentarAnimal(Cuidar.animalSeleccionado)
-			
-            # El estado de ánimo depende de su alimentación, su estado de salud y de la limpieza de su hábitat. El siguiente if cambia el estado
-			# de ánimo del animal a bueno (true) en caso que estos tres factores también sean buenos (true). */
-            if(Cuidar.animalSeleccionado.isAlimentado() and Cuidar.animalSeleccionado.isEstadoSalud() and Cuidar.animalSeleccionado.getHabitat().isLimpio()):
-                Cuidar.animalSeleccionado.setEstadoAnimo(True)
-                
-			# Si luego de haber sido alimentado, el estado de ánimo del animal mejoró, se le informa al usuario y se termina la funcionalidad.
-            if(Cuidar.cuidadorSeleccionado.revisar(Cuidar.animalSeleccionado)):
-                print("Alimentar al animal ha dado buen resultado y este ahora se encuentra con buen estado de ánimo.")
-			# En caso que el animal continúe con mal estado de ánimo, se le informará al usuario que alimentarlo no ha sido de ayuda. Además, se le
-			# indicará al usuario que puede probar con la funcionalidad de mantenimiento y la de curar para así mejorar el estado de ánimo del animal. */
+            if animal.getIdentificacion() == identificacion:
+                habitat.configure(state=NORMAL)
+                habitat.delete(0,"end")
+                habitat.insert(0, animal.getHabitat().getNombre())
+                habitat.configure(state=DISABLED)
+                genero.configure(state=NORMAL)
+                genero.delete(0,"end")
+                genero.insert(0, animal.getGenero())
+                genero.configure(state=DISABLED)
+                edad.configure(state=NORMAL)
+                edad.delete(0,"end")
+                edad.insert(0, str(animal.getEdad()))
+                edad.configure(state=DISABLED)
+                peso.configure(state=NORMAL)
+                peso.delete(0,"end")
+                peso.insert(0, str(animal.getPeso()))
+                peso.configure(state=DISABLED)
+                cuidador.configure(values=Cuidar.cuidadores(animal))
+                break
+    
+    def borrar(self):
+       self.dialogos.getComponente("Especie").set("")
+       self.dialogos.getComponente("Identificación").set("")
+       habitat = self.dialogos.getComponente("Hábitat")
+       habitat.configure(state=NORMAL)
+       habitat.delete(0,"end")
+       habitat.configure(state=DISABLED)
+       genero = self.dialogos.getComponente("Género")
+       genero.configure(state=NORMAL)
+       genero.delete(0,"end")
+       genero.configure(state=DISABLED)
+       edad = self.dialogos.getComponente("Edad")
+       edad.configure(state=NORMAL)
+       edad.delete(0,"end")
+       edad.configure(state=DISABLED)
+       peso = self.dialogos.getComponente("Peso")
+       peso.configure(state=NORMAL)
+       peso.delete(0,"end")
+       peso.configure(state=DISABLED)
+       self.dialogos.getComponente("Cuidador revisor").set("")
+    
+	# A través del método revisarAnimal() se hace el proceso de revisar el estado de ánimo del animal seleccionado desde el cuidador seleccionado.
+    def revisarAnimal(self):
+        idAnimal = self.dialogos.getValue("Identificación").split("(")[0].strip()
+        idCuidador = self.dialogos.getValue("Cuidador revisor").split("-")[0].strip()
+        for elem in Administracion.getAnimales():
+            try:
+                if elem.getIdentificacion() == int(idAnimal):
+                    animalSeleccionado = elem
+                    break   
+            except ValueError:
+                break
+        for elem in Administracion.getCuidadores():
+            try:
+                if elem.getIdentificacion() == int(idCuidador):
+                    cuidadorSeleccionado = elem
+                    break   
+            except ValueError:
+                break
+        try:
+            
+            # En caso que el animal esté con buen estado de ánimo se le informará al usuario. 
+            if(cuidadorSeleccionado.revisar(animalSeleccionado)):
+                messagebox.showinfo(title="Resultado",
+                                    message="El animal se encuentra con buen estado de ánimo.")
+            # En caso que el animal esté con mal estado de ánimo, se le informará al usuario y el cuidador seleccionado procederá a alimentar al animal
+            # a través del método animentarAnimal(...).
             else:
-                print("Alimentar al animal no ha mejorado su estado de ánimo.")
-                print("Puede solicitar que se haga mantenimiento a su hábitat o hacerlo revisar con un veterinario para mejorar su estado.")
+                mensaje = "El animal se encuentra con mal estado de ánimo.\nEl cuidador decide entonces alimentar al animal para mejorar su estado de ánimo."
+                messagebox.showinfo(title="Resultado",
+                                    message=mensaje)
+                cuidadorSeleccionado.alimentarAnimal(animalSeleccionado)
+			
+                # El estado de ánimo depende de su alimentación, su estado de salud y de la limpieza de su hábitat. El siguiente if cambia el estado
+                # de ánimo del animal a bueno (true) en caso que estos tres factores también sean buenos (true).
+                if(animalSeleccionado.isAlimentado() and animalSeleccionado.isEstadoSalud() and animalSeleccionado.getHabitat().isLimpio()):
+                    animalSeleccionado.setEstadoAnimo(True)
+                
+                # Si luego de haber sido alimentado, el estado de ánimo del animal mejoró, se le informa al usuario y se termina la funcionalidad.
+                if(cuidadorSeleccionado.revisar(animalSeleccionado)):
+                    messagebox.showinfo(title="Resultado",
+                                        message="Alimentar al animal ha dado buen resultado y este ahora se encuentra con buen estado de ánimo.")
+                # En caso que el animal continúe con mal estado de ánimo, se le informará al usuario que alimentarlo no ha sido de ayuda. Además, se le    
+                # indicará al usuario que puede probar con la funcionalidad de mantenimiento y la de curar para así mejorar el estado de ánimo del animal.
+                else:
+                    mensaje = "Alimentar al animal no ha mejorado su estado de ánimo.\nPuede hacer mantenimiento a su hábitat o revisarlo con un veterinario para mejorar su estado."
+                    messagebox.showinfo(title="Resultado",
+                                        message=mensaje)
+                self.borrar()
+        except UnboundLocalError:
+            error = "Debe seleccionar como mínimo la identificación del animal y la identificación del cuidador"
+            messagebox.showerror(title="Error",
+                                 message=error)  
+        
+	# A través del método especies() se obtienen los nombres de las especies disponibles.
+    @staticmethod
+    def especies():
+        especies = []
+		# El siguiente for obtiene el nombre de cada objeto de Especie almacenado en la lista de especies de Administración
+        for especie in Administracion.getEspecies():
+            especies.append(especie.getNombre())
+        return especies    
+ 
+	# A través del método animales(...) se obtiene el animal que será trasladado.
+    @staticmethod
+    def animales(especie=None):
+        animales = []
+
+        if especie==None:
+            # Con el siguiente for se obtienen cada uno de los animales almacenandos en la lista de animales de la clase Administración.
+            for animal in Administracion.getAnimales():
+                animales.append(str(animal.getIdentificacion()) + " (" + animal.getEspecie().getNombre() + ")")
+        else:
+            # Con el siguiente for se obtienen cada uno de los animales almacenandos en la lista de animales de la clase Administración.
+            for animal in Administracion.getAnimales():
+                # Esto se hace para buscar los animales correspondientes a la especie del animal que se va a trasladar, para luego listar 
+                # las identificaciones de cada uno de estos animales para que el usuario seleccione uno para trasladar.
+                if(animal.getEspecie() == especie):
+                    animales.append(str(animal.getIdentificacion()) + " (" + animal.getEspecie().getNombre() + ")")
+		
+    		# En caso que no haya ni un solo animal de la especie seleccionada, se le informa al usuario.
+            if(animales == []):
+                messagebox.showwarning(title="Advertencia",
+                                       message="No se ha encontrado ningún animal de esta especie que esté disponible ser revisado.")
+        return animales
+
+	# A través del método cuidadores(...) se obtiene el cuidador que revisará al animal.
+    @staticmethod
+    def cuidadores(animal=None):
+        cuidadores = []
+
+        if animal==None:
+            # Con el siguiente for se obtienen cada uno de los cuidadores almacenandos en la lista de animales de la clase Administración.
+            for cuidador in Administracion.getCuidadores():
+                cuidadores.append(str(cuidador.getIdentificacion()) + " - " + cuidador.getNombre() + " (Revisa: " + cuidador.getEspecieAsignada().getNombre() + ")")
+        else:
+            # Con el siguiente for se obtienen cada uno de los cuidadores almacenandos en la lista de animales de la clase Administración.
+            for cuidador in Administracion.getCuidadores():
+                # Esto se hace para buscar los cuidadores correspondientes a la especie del animal que va a ser revisado, para luego listar 
+                # las identificaciones de cada uno de estos cuidadores para que el usuario seleccione uno para que revise al animal.
+                if(cuidador.getEspecieAsignada() == animal.getEspecie()):
+                    cuidadores.append(str(cuidador.getIdentificacion()) + " - " + cuidador.getNombre() + " (Revisa: " + cuidador.getEspecieAsignada().getNombre() + ")")
+		
+    		# En caso que no haya ni un solo cuidador para la especie del animal, se le informa al usuario.
+            if(cuidadores == []):
+                messagebox.showwarning(title="Advertencia",
+                                       message="No se ha encontrado ningún cuidador que esté disponible para revisar a la especie del animal.")
+        return cuidadores

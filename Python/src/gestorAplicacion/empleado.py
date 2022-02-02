@@ -16,9 +16,9 @@ class Empleado(Entidad):
 	# y sueldo, los cuales respectivamente corresponden a la identificación única, nombre y sueldo 
 	# del empleado a ser creado. 
     def __init__(self, identificacion, nombre, sueldo, pagado = False):
-        self.identificacion = identificacion
-        self.nombre = nombre
-        self.sueldo = sueldo
+        self._identificacion = identificacion
+        self._nombre = nombre
+        self._sueldo = sueldo
 	
 	# Método abstracto declarado para ser definido por las clases Cuidador y Veterinario, que lo heredan.
     def revisar(self, animal):
@@ -29,25 +29,25 @@ class Empleado(Entidad):
 	
 	# DE ACÁ PARA ABAJO ESTÁN LOS MÉTODOS GET Y SET
     def getIdentificacion(self):
-        return self.identificacion
+        return self._identificacion
 	
     def setIdentificacion(self, identificacion):
-        self.identificacion = identificacion
+        self._identificacion = identificacion
 	
     def getNombre(self):
-        return self.nombre
+        return self._nombre
 	
     def setNombre(self, nombre):
-        self.nombre = nombre
+        self._nombre = nombre
 	
     def getSueldo(self):
-        return self.sueldo
+        return self._sueldo
 	
     def setSueldo(self, sueldo):
-        self.sueldo = sueldo
+        self._sueldo = sueldo
 	
     def isPagado(self):
-        return self.pagado
+        return self._pagado
 	
     def setPagado(self, estado):
-        self.pagado=estado
+        self._pagado=estado
