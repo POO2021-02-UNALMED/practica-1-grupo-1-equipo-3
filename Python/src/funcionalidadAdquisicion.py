@@ -105,14 +105,18 @@ debe especificar los atributos del animal a adquirir y este será asignado al h�
             Administracion.adquirirAnimal(especie, habitat, genero, edad, peso);
             messagebox.showinfo(title="Información",
                                 message="ANIMAL ADQUIRIDO EXITOSAMENTE!")
+            self.borrar()
+            identificacion = dialogos.getComponente("Identificación")
+            identificacion.configure(state=NORMAL)
+            identificacion.delete(0,"end")
+            identificacion.insert(0, Administracion.getAnimales()[-1].getIdentificacion() + 1)
+            identificacion.configure(state=DISABLED)
+            
         except UnboundLocalError:
             error = "Todos los campos deben tener algún valor!"
             messagebox.showerror(title="Error",
                                  message=error)
-        print(Administracion.getAnimales()[-1].getEspecie(),
-              Administracion.getAnimales()[-1].getHabitat().getNombre(),
-              Administracion.getAnimales()[-1].getEspecie(),
-              Administracion.getAnimales()[-1].getEspecie(),)
+        
     
     def borrar(self):
         self.dialogos.getComponente("Especie").set("")

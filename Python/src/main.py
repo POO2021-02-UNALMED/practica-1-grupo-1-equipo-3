@@ -86,7 +86,23 @@ def ocultarTodo():
     ventanaConstruir.pack_forget()
     ventanaTrabajador.pack_forget()
     ventanaAnimales.pack_forget()
+<<<<<<< Updated upstream
     ventanaHabitats.pack_forget()
+=======
+    
+def borrarTodo():
+    #ventanaMantenimiento.borrar()
+    #ventanaCurar.borrar()
+    #ventanaCuidar.borrar()
+    ventanaAdquision.borrar()
+    #ventanaTraslado.borrar()
+    #ventanaGestion.borrar()
+    #ventanaDespedir.borrar()
+    #ventanaContratar.borrar()
+    #ventanaConstruir.borrar()
+    #ventanaTrabajador.borrar()
+    #ventanaAnimales.borrar()
+>>>>>>> Stashed changes
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
@@ -152,6 +168,7 @@ def salirInicio():
 
 def ingresar():
     ocultarTodo()
+    borrarTodo()
     ventanaUsuario.pack()
     ventana["menu"] = menuVentanaUsuario
 
@@ -159,46 +176,57 @@ def ingresar():
 
 def mantenimiento():
     ocultarTodo()
+    borrarTodo()
     ventanaMantenimiento.pack()
 
 def curar():
     ocultarTodo()
+    borrarTodo()
     ventanaCurar.pack()
 
 def cuidar():
     ocultarTodo()
+    borrarTodo()
     ventanaCuidar.pack()
 
 def adquisicion():
     ocultarTodo()
+    borrarTodo()
     ventanaAdquision.pack()
 
 def traslado():
     ocultarTodo()
+    borrarTodo()
     ventanaTraslado.pack()
 
 def gestion():
     ocultarTodo()
+    borrarTodo()
     ventanaGestion.pack()
     
 def despedir():
     ocultarTodo()
+    borrarTodo()
     ventanaDespedir.pack()
 
 def contratar():
     ocultarTodo()
+    borrarTodo()
     ventanaContratar.pack()
 
 def construir():
     ocultarTodo()
+    borrarTodo()
     ventanaConstruir.pack()
 
 def trabajador():
     ocultarTodo()
+    borrarTodo()
     ventanaTrabajador.pack()
 
 def animales():
     ocultarTodo()
+    borrarTodo()
     ventanaAnimales.pack()
 
 def habitats():
@@ -207,6 +235,7 @@ def habitats():
 
 def consultar():
     ocultarTodo()
+    borrarTodo()
  
 def aplicacion():
     descripcion = "En el sistema gestor de zoológico podrá administrar todo lo que tiene que ver con su zoológico: Calcular las ganancias del día; pagar a sus empleados; llevar conteo de los visitantes, de los animales, de los empleados, de las especies, y de los hábitats."
