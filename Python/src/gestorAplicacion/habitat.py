@@ -3,8 +3,7 @@ class Habitat:
     _totalHabitats = 0
 
     def __init__(self, nombre, ambientacion = "Ninguna", capacidadMaxima = 999):
-        from administracion import Administracion
-        from animal import Animal
+        from gestorAplicacion.administracion import Administracion
         if(not Administracion.getHabitats()):
             self._identificacion = 1 
         else:
@@ -21,7 +20,6 @@ class Habitat:
 
     
     def info(self):
-        from especie import Especie
         if(not self._animalesAsociados):
             cadena = ("Identificación: " + str(self.getIdentificacion()) + "\nNombre" + self.getNombre() + "\nAmbientación: " + self.getAmbientacion() + 
             "\nCantidad de Animales actual: " + str(self.cantidadAnimales()) + "\nCapacidad máxima: " + str(self.getCapacidadMaxima() + "animales"))
@@ -67,20 +65,16 @@ class Habitat:
         return self._animalesAsociados
     
     def getEspecie(self):
-        from especie import Especie
         if self.getAnimalesAsociados() == []:
             return None
         else:
             return self.getAnimalesAsociados()[0].getEspecie()
     
     def cantidadAnimales(self):
-        from animal import Animal
         return len(self._animalesAsociados)
     
     def addAnimalesAsociados(self, animal):
-        from animal import Animal
         self._animalesAsociados.append(animal)
     
     def removeAnimalesAsociados(self,animal):
-        from animal import Animal
         self._animalesAsociados.remove(animal)

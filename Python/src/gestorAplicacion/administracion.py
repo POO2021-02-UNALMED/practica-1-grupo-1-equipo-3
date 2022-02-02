@@ -9,14 +9,7 @@ los veterinarios con los que cuenta el zoológico), y cuidadores (Nómina de tod
 los que cuenta el zoológico). Hay que tener en cuenta que solo puede exisir un objeto de esta clase
 pues la aplicación está diseñada para la administración de un solo zoológico."""
 
-from especie import *
-from animal import *
-from habitat import *
-from empleado import *
-from veterinario import *
-from cuidador import *
-from visitante import *
-
+from gestorAplicacion.especie import Especie
 
 class Administracion:
     _caja=None #Es el dinero con el que cuenta el zoologico en el banco

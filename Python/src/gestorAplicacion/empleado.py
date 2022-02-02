@@ -7,7 +7,7 @@
 # La clase es definida como abstracta pues define el método abstracto toString(), método necesario
 # para visualizar los datos del empleado. 
 
-from entidad import Entidad
+from gestorAplicacion.entidad import Entidad
 
 class Empleado(Entidad):
 	
