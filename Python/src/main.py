@@ -242,12 +242,18 @@ menuAdquisicionTraslado.add_command(label="Adquirir animales", command=adquisici
 menuAdquisicionTraslado.add_command(label="Trasladar animales", command=traslado)
 menuProcesos.add_command(label="Gestión administrativa", command=gestion)
 
+
 menuOtras = Menu(menuProcesos, font="Helvetica 12")
 menuProcesos.add_cascade(menu=menuOtras, label="Otras funcionalidades")
 menuOtras.add_command(label="Contratar un empleado", command=contratar)
 menuOtras.add_command(label="Despedir un empleado",command=despedir)
 menuOtras.add_command(label="Construir un habitat", command=construir)
-menuOtras.add_command(label="Consultar datos del zoológico", command=consultar)
+menuConsultas= Menu(menuOtras, font="Helvetica 12")
+menuOtras.add_cascade(menu=menuConsultas, label="Consultar datos del zoológico")
+menuConsultas.add_command(label="Nómina de trabajores", command=consultar)
+menuConsultas.add_command(label="Animales actuales", command=consultar)
+menuConsultas.add_command(label="Hábitats actuales", command=consultar)
+menuConsultas.add_command(label="Visitantes recibidos", command=consultar)
 
 
 

@@ -31,6 +31,9 @@ empleados, será necesario que despida a uno de estos para así recuperarnos eco
         descripcion.pack(fill=BOTH, padx=10, pady=10)
 
 
+    @staticmethod
+    def ganancias():
+        continue
 
 """    @classmethod
     def sumaBoletas(cls):

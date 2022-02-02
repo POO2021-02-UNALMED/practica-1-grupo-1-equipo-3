@@ -1,6 +1,6 @@
 #CLASE CREAD POR MATEO CARVAJAL SÁNCHEZ
 
-from entidad import Entidad
+from gestorAplicacion.entidad import Entidad
 
 
 #Clase HabItat diseñada con el fin de definir los atributos y los metodos de los objetos tipo habitat,
