@@ -9,6 +9,7 @@ from funcionalidadAdquisicion import Adquisicion
 from funcionalidadTraslado import Traslado
 from funcionalidadGestion import Gestion
 from funcionalidadDespedir import Despedir
+from funcionalidadContratar import Contratar
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.animal import Animal
 from gestorAplicacion.cuidador import Cuidador
@@ -77,6 +78,7 @@ def ocultarTodo():
     ventanaTraslado.pack_forget()
     ventanaGestion.pack_forget()
     ventanaDespedir.pack_forget()
+    ventanaContratar.pack_forget()
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
@@ -177,6 +179,10 @@ def contratar():
 def despedir():
     ocultarTodo()
     ventanaDespedir.pack()
+
+def contratar():
+    ocultarTodo()
+    ventanaContratar.pack()
 
 def construir():
     ocultarTodo()
@@ -359,5 +365,8 @@ ventanaGestion.pack_forget()
 
 ventanaDespedir = Despedir()
 ventanaDespedir.pack_forget()
+
+ventanaContratar = Contratar()
+ventanaContratar.pack_forget()
 
 ventana.mainloop()

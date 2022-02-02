@@ -1,5 +1,3 @@
-import imp
-from locale import normalize
 from tkinter import *
 from fieldFrame import FieldFrame
 from tkinter import messagebox
@@ -13,7 +11,7 @@ class Despedir(Frame):
         super().__init__()
         nombre = Label(master=self, text="Despedir un empleado", font="Helvetica 12 bold")
         info = """Seleccionando la profesión y posteriormente la identificación de alguno 
-de nuestros empleados, este será despedido."""
+de nuestros empleados. Este será despedido."""
         descripcion = Label(master=self, text=info, font="Helvetica 10")
         nombre.pack(fill=BOTH, padx=10, pady=10)
         descripcion.pack(fill=BOTH, padx=10, pady=10)

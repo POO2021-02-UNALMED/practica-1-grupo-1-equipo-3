@@ -9,8 +9,9 @@ from administracion import Administracion
 
 if __name__=="__main__":
     ad=Administracion(0)
-    ve1=Veterinario("Amy",123,Especie.MAMIFERO)
-    ve2=Veterinario("Paulina",4334,Especie.AVE)
-    ad.despedirVeterinario("a")
-    print(ad.getVeterinarios())
+    cu1=Cuidador("Amy",3000000,Especie.ANFIBIO)
+    cu2=Cuidador("Paulina",3000000,Especie.AVE)
+    for cui in ad.getCuidadores():
+        print(cui.info())
+
 

@@ -84,7 +84,8 @@ class Administracion:
 #contratar y su función es la creación de un objeto cuidador con las características de los parámetros.
 #Tiene como retorno el objeto Cuidador creado.*/
     
-    def contratarCuidador(self,nombre,sueldo,especieAsignada):
+    @classmethod
+    def contratarCuidador(cls,nombre,sueldo,especieAsignada):
         from gestorAplicacion.cuidador import Cuidador
         return Cuidador(nombre,sueldo,especieAsignada)
 	
@@ -93,7 +94,8 @@ class Administracion:
 #parámetros.
 #Tiene como retorno el objeto veterinario creado.
 	
-    def contratarVeterinario(self,nombre,sueldo,especialidad):
+    @classmethod
+    def contratarVeterinario(cls,nombre,sueldo,especialidad):
         from gestorAplicacion.veterinario import Veterinario
         return Veterinario(nombre,sueldo,especialidad)
 
