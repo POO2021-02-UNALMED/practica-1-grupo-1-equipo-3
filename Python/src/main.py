@@ -101,8 +101,8 @@ def cambiarImagen(e):
         posicionImagen = 1
     FotoAnimal=(Image.open("Imagenes/Animales/" + str(posicionImagen) + ".jpg")).resize((400,400), Image.ANTIALIAS)
     FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
-    LabelFotoAnimal.configure(image=FotoAnimal)
-    LabelFotoAnimal.image=FotoAnimal
+    """LabelFotoAnimal.configure(image=FotoAnimal)
+    LabelFotoAnimal.image=FotoAnimal"""
 
 posicionVida=0
 def cambiarVida(e):
@@ -119,14 +119,14 @@ def cambiarVida(e):
     Foto3 = ImageTk.PhotoImage(Foto3)
     Foto4 =(Image.open("Imagenes/" + ListaFotos[posicionVida] + "/4.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto4 = ImageTk.PhotoImage(Foto4)
-    LabelFoto1.configure(image=Foto1)
+    """LabelFoto1.configure(image=Foto1)
     LabelFoto1.image=Foto1
     LabelFoto2.configure(image=Foto2)
     LabelFoto2.image=Foto2
     LabelFoto3.configure(image=Foto3)
     LabelFoto3.image=Foto3
     LabelFoto4.configure(image=Foto4)
-    LabelFoto4.image=Foto4
+    LabelFoto4.image=Foto4"""
     if posicionVida==0:
         CuerpoVida.config(text=VidaDavid)
     elif posicionVida==1:
@@ -296,7 +296,7 @@ CuerpoVida = Label(master=P5, text=VidaDavid, font="Helvetica 12",
 PieVida = Label(master=P5, text="Clic sobre la biografía para cambiar de autor",
                 font="Helvetica 8 italic", fg="blue")
 
-FotoAnimal=(Image.open("Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
+"""FotoAnimal=(Image.open("Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
 FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
 Foto1 =(Image.open("Imagenes/David/1.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto1 = ImageTk.PhotoImage(Foto1)
@@ -315,7 +315,7 @@ LabelFoto2.grid(column=1, row=0, padx=3, pady=3)
 LabelFoto3 = Label(master=P6, image=Foto3, borderwidth=5, relief="ridge")
 LabelFoto3.grid(column=0, row=1, padx=3, pady=3)
 LabelFoto4 = Label(master=P6, image=Foto4, borderwidth=5, relief="ridge")
-LabelFoto4.grid(column=1, row=1, padx=3, pady=3)
+LabelFoto4.grid(column=1, row=1, padx=3, pady=3)"""
 
 ventanaInicio.pack()
 P1.pack(side=LEFT, fill=BOTH, padx=10, pady=10)
@@ -326,13 +326,13 @@ P5.pack(side=TOP, fill=BOTH, padx=10, pady=10)
 P6.pack(side=BOTTOM, fill=BOTH, padx=10, pady=10)
 Saludo.pack(padx=10, pady=10)
 Ingreso.pack(side=BOTTOM, padx=10, pady=10)
-LabelFotoAnimal.pack(side=TOP, padx=10, pady=10)
+#LabelFotoAnimal.pack(side=TOP, padx=10, pady=10)
 TituloVida.pack(padx=10, pady=10)
 CuerpoVida.pack(padx=10, pady=10)
 PieVida.pack(padx=10, pady=10)
 
 CuerpoVida.bind("<Button-1>", cambiarVida)
-LabelFotoAnimal.bind("<Enter>", cambiarImagen)  
+#LabelFotoAnimal.bind("<Enter>", cambiarImagen)  
 
 # COMPONENTES DE LA VENTANA DEL USUARIO:
 
