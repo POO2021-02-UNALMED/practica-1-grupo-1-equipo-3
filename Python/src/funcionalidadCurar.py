@@ -15,6 +15,7 @@ from tkinter import messagebox
 from fieldFrame import FieldFrame
 from funcionalidadTraslado import Traslado
 from gestorAplicacion.administracion import Administracion
+from gestorAplicacion.veterinario import Veterinario
 
 class Curar(Frame):
 
@@ -161,6 +162,7 @@ class Curar(Frame):
        peso.delete(0,"end")
        peso.configure(state=DISABLED)
        self.dialogos.getComponente("Cuidador revisor").set("")
+       self.dialogos.getComponente("Veterinario encargado").set("")
 
     def especieSeleccionada(self):
         nombreEspecie = self.dialogos.getValue("Especie")
@@ -212,7 +214,7 @@ class Curar(Frame):
                     break   
             except ValueError:
                 break
-        for elem in Administracion.getVeterinarios:
+        for elem in Administracion.getVeterinarios():
             try:
                 if elem.getIdentificacion() == int(idVeterinario):
                     veterinarioSeleccionado = elem
@@ -222,7 +224,7 @@ class Curar(Frame):
         try:
             
             # En caso que el animal esté con buen estado de ánimo se le informará al usuario. 
-            if(veterinarioSeleccionado.revisarAnimal(animalSeleccionado)):
+            if(veterinarioSeleccionado.revisar(animalSeleccionado)):
                 messagebox.showinfo(title="Resultado",
                                     message="El animal se encuentra con buen estado de salud.")
             # En caso que el animal esté con mal estado de salud, se le informará al usuario y el veterinario seleccionado procederá a curar al animal
@@ -231,7 +233,8 @@ class Curar(Frame):
                 mensaje = "El animal se encuentra con mal estado de salud.\nEl veterinario decide entonces curar al animal para mejorar su estado de ánimo."
                 messagebox.showinfo(title="Resultado",
                                     message=mensaje)
-                veterinarioSeleccionado.curarAnimal(animalSeleccionado)
+                Veterinario.curarAnimal(animalSeleccionado)
+                #veterinarioSeleccionado.curarAnimal(animalSeleccionado)
 			
                 # El estado de ánimo depende de su alimentación, su estado de salud y de la limpieza de su hábitat. El siguiente if cambia el estado
                 # de ánimo del animal a bueno (true) en caso que estos tres factores también sean buenos (true).
