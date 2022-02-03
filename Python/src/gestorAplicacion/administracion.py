@@ -81,7 +81,7 @@ class Administracion:
             if visitante.isPagado()==False:
                 ganancias+=visitante.getPrecioBoleta()
                 visitante.setPagado(True)
-        cls.caja+=ganancias
+        cls._caja+=ganancias
         return ganancias
 
 #Este método recibe como parámetros la identificación, el nombre, el sueldo y la especie del cuidador que se quiere
@@ -240,7 +240,7 @@ class Administracion:
         return cls._cuidadores
     
     @classmethod
-    def getGanancias(cls):
+    def isGanancias(cls):
         return cls._ganancias
 
     @classmethod

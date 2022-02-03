@@ -19,6 +19,7 @@ class Empleado(Entidad):
         self._identificacion = identificacion
         self._nombre = nombre
         self._sueldo = sueldo
+        self._pagado=pagado
 	
 	# Método abstracto declarado para ser definido por las clases Cuidador y Veterinario, que lo heredan.
     def revisar(self, animal):
