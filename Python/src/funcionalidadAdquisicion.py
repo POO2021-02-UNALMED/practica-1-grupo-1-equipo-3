@@ -65,19 +65,23 @@ animal a adquirir y este será asignado al hábitat elegido.
         self.dialogos.getComponente("Género").set("")
         self.dialogos.getComponente("Edad (Años)").delete(0,"end")
         self.dialogos.getComponente("Peso (Kg)").delete(0,"end")  
-  
+    
+    
+    
     def aceptar(self):
         nombreEspecie = self.dialogos.getValue("Especie")
         idHabitat = self.dialogos.getValue("Hábitat").split("-")[0].strip()
+        identificacion = self.dialogos.getValue("Identificación")
         genero = self.dialogos.getValue("Género")
         edad = self.dialogos.getValue("Edad (Años)")
         peso = self.dialogos.getValue("Peso (Kg)")
-        valores = [nombreEspecie, idHabitat, genero, edad, peso]
-        
+        valores = [nombreEspecie, idHabitat, identificacion, genero, edad, peso]
         try:
-            pass
-        except ExcepcionPresenciaDatos(self.criterios, valores) as ex:
-            ex.mostrarAdvertencia()
+            ExcepcionPresenciaDatos.presenciaDatos(self.criterios, valores)
+        except ExcepcionPresenciaDatos as ex:
+            messagebox.showwarning(title="Advertencia",
+                                   message=ExcepcionPresenciaDatos.advertencia)
+            return
         
         """try:
             edad = int(edad)

@@ -1,24 +1,24 @@
 from excepciones.excepcionPresencia import ExcepcionPresencia
-from tkinter import messagebox
 
 class ExcepcionPresenciaDatos(ExcepcionPresencia):
+    advertencia = ""
     
-    def __init__(self, criterios, valores):
-        self._criterios = criterios
-        self._valores = valores
-        self._mensaje = "Tipo de elemento: Dato\nDatos faltantes: "
-        self._advertencia = "Por favor llene todos los campos. Los siguientes campos no tienen ningún valor:\n\n"
-        self._faltantes = 0
-        for i in range(len(self._valores)):
-            if self._valores[i] == "":
-                self._mensaje = self._mensaje + self._criterios[i] + " "
-                self._advertencia = self._advertencia + self._criterios[i] + "\n"
-                self._faltantes += 1
-        if self._faltantes > 0:
-            raise ExcepcionPresenciaDatos(self._criterios, self._valores)
+    def __init__(self, faltantes):
+        self._faltantes = faltantes
+        super().__init__("Tipo de elemento: Dato\nDatos faltantes: " + self._faltantes)
         
-        super().__init__(self._mensaje)
-        
-    def mostrarAdvertencia(self):
-        messagebox.showwarning(title="Advertencia",
-                               message=self._advertencia)
+    @classmethod
+    def presenciaDatos(cls, criterios, valores):
+        mensaje = ""
+        cls.advertencia = "Por favor llene todos los campos.\nLos siguientes campos faltan por llenar:\n\n"
+        faltantes = 0
+        for i in range(len(valores)):
+            if valores[i] == "":
+                if i == len(valores)-1:
+                    mensaje += criterios[i]
+                else:
+                    mensaje += criterios[i] + ", "
+                cls.advertencia += criterios[i] + "\n"
+                faltantes += 1
+        if faltantes > 0:
+            raise ExcepcionPresenciaDatos(mensaje)
