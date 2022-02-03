@@ -130,7 +130,7 @@ proceso realizar: Si el de curar al animal o el de hacer mantenimiento a su háb
         try:
             
             # En caso que el animal esté con buen estado de ánimo se le informará al usuario. 
-            if(cuidadorSeleccionado.revisar(animalSeleccionado)):
+            if(cuidadorSeleccionado.revisarAnimal(animalSeleccionado)):
                 messagebox.showinfo(title="Resultado",
                                     message="El animal se encuentra con buen estado de ánimo.")
             # En caso que el animal esté con mal estado de ánimo, se le informará al usuario y el cuidador seleccionado procederá a alimentar al animal
@@ -147,7 +147,7 @@ proceso realizar: Si el de curar al animal o el de hacer mantenimiento a su háb
                     animalSeleccionado.setEstadoAnimo(True)
                 
                 # Si luego de haber sido alimentado, el estado de ánimo del animal mejoró, se le informa al usuario y se termina la funcionalidad.
-                if(cuidadorSeleccionado.revisar(animalSeleccionado)):
+                if(cuidadorSeleccionado.revisarAnimal(animalSeleccionado)):
                     messagebox.showinfo(title="Resultado",
                                         message="Alimentar al animal ha dado buen resultado y este ahora se encuentra con buen estado de ánimo.")
                 # En caso que el animal continúe con mal estado de ánimo, se le informará al usuario que alimentarlo no ha sido de ayuda. Además, se le    

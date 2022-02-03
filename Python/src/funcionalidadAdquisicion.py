@@ -10,6 +10,7 @@ from tkinter import *
 from tkinter import messagebox
 from fieldFrame import FieldFrame
 from gestorAplicacion.administracion import Administracion
+from excepciones.excepcionPresenciaDatos import ExcepcionPresenciaDatos
 
 class Adquisicion(Frame):
     
@@ -70,7 +71,15 @@ animal a adquirir y este será asignado al hábitat elegido.
         idHabitat = self.dialogos.getValue("Hábitat").split("-")[0].strip()
         genero = self.dialogos.getValue("Género")
         edad = self.dialogos.getValue("Edad (Años)")
+        peso = self.dialogos.getValue("Peso (Kg)")
+        valores = [nombreEspecie, idHabitat, genero, edad, peso]
+        
         try:
+            pass
+        except ExcepcionPresenciaDatos(self.criterios, valores) as ex:
+            ex.mostrarAdvertencia()
+        
+        """try:
             edad = int(edad)
             if(edad < 0):
                 error = "EDAD INCORRECTA: Ingrese un número que sea positivo!"
@@ -82,7 +91,6 @@ animal a adquirir y este será asignado al hábitat elegido.
             messagebox.showerror(title="Error",
                                  message=error)  
             self.dialogos.getComponente("Edad (Años)").delete(0,"end")
-        peso = self.dialogos.getValue("Peso (Kg)")
         try:
             peso = float(peso)
             if(peso < 0.0):
@@ -122,7 +130,7 @@ animal a adquirir y este será asignado al hábitat elegido.
         except UnboundLocalError:
             error = "Todos los campos deben tener algún valor!"
             messagebox.showerror(title="Error",
-                                 message=error)
+                                 message=error)"""
     
 	# A través del método especies() se obtienen los nombres de las especies disponibles.
     @staticmethod
