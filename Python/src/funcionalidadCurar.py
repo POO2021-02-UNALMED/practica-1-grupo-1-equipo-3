@@ -130,6 +130,7 @@ class Curar(Frame):
             if(animales == []):
                 messagebox.showwarning(title="Advertencia",
                                        message="No se ha encontrado ningún animal de esta especie que esté disponible ser revisado.")
+                Curar.borrar
         return animales
 
     # A través del método especies() se obtienen los nombres de las especies disponibles.
