@@ -22,9 +22,12 @@ from gestorAplicacion.especie import Especie
 from gestorAplicacion.habitat import Habitat
 from gestorAplicacion.veterinario import Veterinario
 from gestorAplicacion.visitante import Visitante
+from baseDatos.deserializador import *
+from baseDatos.serializador import *
 
 #A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
-admin = Administracion()
+deserializar()
+"""admin = Administracion()
 a = Habitat("H1", "Pradera", 2)
 b = Habitat("H2", "Jungla", 1)
 c= Habitat("H3", "Pantano", 3)
@@ -61,7 +64,7 @@ v1 = Veterinario("Elva",10000,Especie.ANFIBIO)
 v2 = Veterinario("Francisco",12000,Especie.PEZ)
 vi1 = Visitante("Jose",3,15)
 vi2 = Visitante("Diego",5,30)
-vi3 = Visitante("Valeria",6,30)
+vi3 = Visitante("Valeria",6,30)"""
 
 ventana = Tk()
 ventana.title("Sistema gestor de zoológico")
