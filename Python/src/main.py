@@ -67,7 +67,7 @@ vi3 = Visitante("Valeria",6,30)
 
 ventana = Tk()
 ventana.title("Sistema gestor de zoológico")
-ventana.geometry("+50+50")
+ventana.geometry("+10+10")
 ventana.resizable(False, False)
 ventana.option_add("*tearOff", FALSE)
 #ventana.iconbitmap("../Imagenes/Z.ico")
@@ -99,10 +99,13 @@ def borrarTodo():
     ventanaAdquision.borrar()
     ventanaTraslado.borrar()
     #ventanaGestion.borrar()
-    ventanaAnimales.ocultarTabla()
     #ventanaDespedir.borrar()
     #ventanaContratar.borrar()
     #ventanaConstruir.borrar()
+    ventanaTrabajador.ocultarTabla()
+    ventanaAnimales.ocultarTabla()
+    ventanaHabitats.ocultarTabla()
+    ventanaVisitantes.ocultarTabla()
 
 
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
