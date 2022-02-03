@@ -34,7 +34,7 @@ class FieldFrame(Frame):
                     if not habilitado[i-1]:
                         entryValor.configure(state=DISABLED)
             else:
-                comboboxValor = ttk.Combobox(master=self, values=combobox[i-1], font="Helvetica 10", state="readonly", width=28)
+                comboboxValor = ttk.Combobox(master=self, values=combobox[i-1], font="Helvetica 10", state="readonly", width=29)
                 comboboxValor.grid(column=1, row=i, padx=20, pady=10, sticky=E)
                 self.componentes.append(comboboxValor)
     
