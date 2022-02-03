@@ -11,6 +11,8 @@ from tkinter import messagebox
 from fieldFrame import FieldFrame
 from gestorAplicacion.administracion import Administracion
 from excepciones.excepcionPresenciaDatos import ExcepcionPresenciaDatos
+from excepciones.excepcionTipoInt import ExcepcionTipoInt
+from excepciones.excepcionTipoFloat import ExcepcionTipoFloat
 
 class Adquisicion(Frame):
     
@@ -78,63 +80,40 @@ animal a adquirir y este será asignado al hábitat elegido.
         valores = [nombreEspecie, idHabitat, identificacion, genero, edad, peso]
         try:
             ExcepcionPresenciaDatos.presenciaDatos(self.criterios, valores)
-        except ExcepcionPresenciaDatos as ex:
-            messagebox.showwarning(title="Advertencia",
-                                   message=ExcepcionPresenciaDatos.advertencia)
+        except ExcepcionPresenciaDatos:
             return
         
-        """try:
-            edad = int(edad)
-            if(edad < 0):
-                error = "EDAD INCORRECTA: Ingrese un número que sea positivo!"
-                messagebox.showerror(title="Error",
-                                     message=error)
-                self.dialogos.getComponente("Edad (Años)").delete(0,"end")
-        except ValueError:
-            error = "EDAD INCORRECTA: Ingrese un número!"
-            messagebox.showerror(title="Error",
-                                 message=error)  
-            self.dialogos.getComponente("Edad (Años)").delete(0,"end")
         try:
-            peso = float(peso)
-            if(peso < 0.0):
-                error = "PESO INCORRECTO: Ingrese un número que sea positivo!"
-                messagebox.showerror(title="Error",
-                                     message=error)
-                self.dialogos.getComponente("Peso (Kg)").delete(0,"end")
-        except ValueError:
-            error = "PESO INCORRECTO: Ingrese un número!"
-            messagebox.showerror(title="Error",
-                                    message=error) 
-            self.dialogos.getComponente("Peso (Kg)").delete(0,"end")
+            ExcepcionTipoInt.tipoInt(["Hábitat", "Identificación", "Edad (Años)"], 
+                                     [idHabitat, identificacion, edad])
+            ExcepcionTipoFloat.tipoFloat(["Peso (Kg)"], [peso])
+        except ExcepcionTipoInt:
+            return
+        except ExcepcionTipoFloat:
+            return
+        
+        edad = int(edad)
+        peso = float(peso)
         for elem in Administracion.getEspecies():
             if elem.getNombre() == nombreEspecie:
                 especie = elem
-                break   
+                break  
         for elem in Administracion.getHabitats():
-            try:
-                if elem.getIdentificacion() == int(idHabitat):
-                    habitat = elem
-                    break
-            except ValueError:
-                break
+            if elem.getIdentificacion() == int(idHabitat):
+                habitat = elem
+                break    
 		# Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
 		# en base a los atributos que el usuario eligió e ingresó.
-        try:
-            Administracion.adquirirAnimal(especie, habitat, genero, edad, peso);
-            messagebox.showinfo(title="Resultado",
-                                message="Animal adquirido exitosamente")
-            self.borrar()
-            identificacion = self.dialogos.getComponente("Identificación")
-            identificacion.configure(state=NORMAL)
-            identificacion.delete(0,"end")
-            identificacion.insert(0, Administracion.getAnimales()[-1].getIdentificacion() + 1)
-            identificacion.configure(state=DISABLED)
+        Administracion.adquirirAnimal(especie, habitat, genero, edad, peso);
+        messagebox.showinfo(title="Resultado",
+                            message="Animal adquirido exitosamente")
+        self.borrar()
+        identificacion = self.dialogos.getComponente("Identificación")
+        identificacion.configure(state=NORMAL)
+        identificacion.delete(0,"end")
+        identificacion.insert(0, Administracion.getAnimales()[-1].getIdentificacion() + 1)
+        identificacion.configure(state=DISABLED)
             
-        except UnboundLocalError:
-            error = "Todos los campos deben tener algún valor!"
-            messagebox.showerror(title="Error",
-                                 message=error)"""
     
 	# A través del método especies() se obtienen los nombres de las especies disponibles.
     @staticmethod
