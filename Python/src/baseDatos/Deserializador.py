@@ -5,29 +5,43 @@ from gestorAplicacion.habitat import Habitat
 from gestorAplicacion.veterinario import Veterinario
 from gestorAplicacion.visitante import Visitante
 import pickle
+import os
+import pathlib
 
-class Deserializador():
-    def deserializar():
-        """fichero_administracion=open("administracion","rb")
-        admin=pickle.load(fichero_administracion)
-        fichero_administracion.close()"""
+def deserializar():
+    #deserializarAdministracion()
+    deserializarAnimales()
+    deserializarCuidadores()
+    deserializarHabitats()
+    deserializarVeterinarios()
+    deserializarVisitantes()
 
-        fichero_animales=open("animales","rb")
-        animales=pickle.load(fichero_animales)
-        fichero_animales.close()
+def deserializarAdministracion():
+    fichero_administracion=open(pathlib.Path(__file__).parent.absolute(), "temp\\administracion","rb")
+    admi=pickle.load(fichero_administracion)
+    fichero_administracion.close()
 
-        fichero_cuidadores=open("cuidadores","rb")
-        cuidadores=pickle.load(fichero_cuidadores)
-        fichero_cuidadores.close()
+def deserializarAnimales():
+    fichero_animales=open(os.path.join(pathlib.Path(__file__).parent.absolute(), "temp\\animales"),"rb")
+    Administracion.setAnimales(pickle.load(fichero_animales))
+    fichero_animales.close()
 
-        fichero_habitats=open("habitats","rb")
-        habitats=pickle.load(fichero_habitats)
-        fichero_habitats.close()
+def deserializarCuidadores():
+    fichero_cuidadores=open(os.path.join(pathlib.Path(__file__).parent.absolute(), "temp\\cuidadores"),"rb")
+    Administracion.setCuidadores(pickle.load(fichero_cuidadores))
+    fichero_cuidadores.close()
 
-        fichero_veterinarios=open("veterinarios","rb")
-        veterinarios=pickle.load(fichero_veterinarios)
-        fichero_veterinarios.close()
+def deserializarHabitats():
+    fichero_habitats=open(os.path.join(pathlib.Path(__file__).parent.absolute(), "temp\\habitats"),"rb")
+    Administracion.setHabitats(pickle.load(fichero_habitats))
+    fichero_habitats.close()
 
-        fichero_visitantes=open("visitantes","rb")
-        visitantes=pickle.load(fichero_visitantes)
-        fichero_visitantes.close()
+def deserializarVeterinarios():
+    fichero_veterinarios=open(os.path.join(pathlib.Path(__file__).parent.absolute(), "temp\\veterinarios"),"rb")
+    Administracion.setVeterinarios(pickle.load(fichero_veterinarios))
+    fichero_veterinarios.close()
+
+def deserializarVisitantes():
+    fichero_visitantes=open(os.path.join(pathlib.Path(__file__).parent.absolute(), "temp\\visitantes"),"rb")
+    Administracion.setVisitantes(pickle.load(fichero_visitantes))
+    fichero_visitantes.close()

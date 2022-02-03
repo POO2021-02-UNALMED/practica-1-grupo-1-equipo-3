@@ -7,10 +7,9 @@ from gestorAplicacion.especie import Especie
 from gestorAplicacion.habitat import Habitat
 from gestorAplicacion.veterinario import Veterinario
 from gestorAplicacion.visitante import Visitante
-from seria import *
+from baseDatos.serializador import *
 
 if __name__=="__main__":
-    admin = Administracion()
     a = Habitat("H1", "Pradera", 2)
     b = Habitat("H2", "Jungla", 1)
     c= Habitat("H3", "Pantano", 3)
