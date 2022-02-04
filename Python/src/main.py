@@ -32,7 +32,7 @@ from excepciones.excepcionPresenciaArchivo import ExcepcionPresenciaArchivos
 def inicio():
     try:
         ExcepcionPresenciaArchivos.presenciaArchivos(["baseDatos\\temp\\administracion", "baseDatos\\temp\\animales", 
-        "baseDatos\\temp\\cuidadores","baseDatos\\temp\\habitats", "baseDatos\\temp\\veterinarios", "baseDatos\\temp\\visitantes"], )
+        "baseDatos\\temp\\cuidadores","baseDatos\\temp\\habitats", "baseDatos\\temp\\veterinarios", "baseDatos\\temp\\visitantes"] )
         deserializar()
     except ExcepcionPresenciaArchivos:
         return
