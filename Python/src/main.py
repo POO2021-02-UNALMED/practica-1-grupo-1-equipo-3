@@ -31,7 +31,7 @@ from excepciones.excepcionPresenciaImagenes import ExcepcionPresenciaImagenes
 
 # Funcion inicio que verifica que existan los archivos donde va a actuar el deserializador y serializador
 deserializar()
-"""def inicio():
+def inicio():
     a = ["Imagenes/Animales/1.jpg", "Imagenes/Animales/2.jpg", "Imagenes/Animales/3.jpg", "Imagenes/Animales/4.jpg", "Imagenes/Animales/5.jpg"]
     b = ["Imagenes/David/1.jpg", "Imagenes/David/2.jpg", "Imagenes/David/3.jpg", "Imagenes/David/4.jpg"]
     c = ["Imagenes/Jose/1.jpg", "Imagenes/Jose/2.jpg", "Imagenes/Jose/3.jpg", "Imagenes/Jose/4.jpg"]
@@ -48,7 +48,7 @@ deserializar()
     except ExcepcionPresenciaImagenes:
         return
 
-inicio()"""
+inicio()
 
 # A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
 
@@ -136,10 +136,22 @@ def borrarTodo():
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
 # Con estas variables se define la hoja de vida de los autores de la aplicación que será mostrada en la ventana de Inicio.
-VidaDavid="""Nombre: David Mateo García Vallejo"""
-VidaJose="""Nombre: José David Cardona Soto"""
-VidaJuan="""Nombre: Estudiante de ingeniería de sistemas e informática de la Universidad Nacional de Colombia. Soy una persona muy organizada, analítica, pragmática y lógica a la hora de solucionar problemas. Con buenos conocimientos en estadística, probabilidad y programación."""
-VidaMateo="""Nombre: Mateo Carvajal Sánchez"""
+
+VidaDavid="""Nombre: David Mateo García Vallejo.
+Fecha de nacimiento: 23 de mayo de 2001.
+Gustos: Le gusta jugar videojuego y la música clásica."""
+VidaJose="""Nombre: José David Cardona Soto
+Fecha de nacimiento: 22 de octubre de 2001.
+Gustos: Le gusta jugar videojuegos, y tiene pensado trabajar 
+como desarrollador de videojuegos"""
+VidaJuan="""Nombre: Juan José Monsalve Marín.
+Fecha de nacimiento: 14 de abril de 1998.
+Descripción personal: Soy una persona muy organizada, analítica, 
+pragmática y lógica a la hora de solucionar problemas. Con buenos 
+conocimientos en estadística, probabilidad y programación."""
+VidaMateo="""Nombre: Mateo Carvajal Sánchez.
+Fecha de nacimiento: 19 de septiembre de 2001.
+Gustos: Le gusta jugar videojuegos y practica tenis"""
 
 # Por medio de la siguiente función se cambia la imagen relativa al sistema (Imágenes de animales).
 posicionImagen=1
@@ -150,8 +162,8 @@ def cambiarImagen(e):
         posicionImagen = 1
     FotoAnimal=(Image.open("Imagenes/Animales/" + str(posicionImagen) + ".jpg")).resize((400,400), Image.ANTIALIAS)
     FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
-    """LabelFotoAnimal.configure(image=FotoAnimal)
-    LabelFotoAnimal.image=FotoAnimal"""
+    LabelFotoAnimal.configure(image=FotoAnimal)
+    LabelFotoAnimal.image=FotoAnimal
 
 # Por medio de la siguiente función se cambia la hoja de vida y las imágenes asociadas a cada autor de la aplicación.
 posicionVida=0
@@ -169,14 +181,14 @@ def cambiarVida(e):
     Foto3 = ImageTk.PhotoImage(Foto3)
     Foto4 =(Image.open("Imagenes/" + ListaFotos[posicionVida] + "/4.jpg")).resize((200,200), Image.ANTIALIAS)
     Foto4 = ImageTk.PhotoImage(Foto4)
-    """LabelFoto1.configure(image=Foto1)
+    LabelFoto1.configure(image=Foto1)
     LabelFoto1.image=Foto1
     LabelFoto2.configure(image=Foto2)
     LabelFoto2.image=Foto2
     LabelFoto3.configure(image=Foto3)
     LabelFoto3.image=Foto3
     LabelFoto4.configure(image=Foto4)
-    LabelFoto4.image=Foto4"""
+    LabelFoto4.image=Foto4
     if posicionVida==0:
         CuerpoVida.config(text=VidaDavid)
     elif posicionVida==1:
@@ -396,7 +408,7 @@ PieVida = Label(master=P5, text="Clic sobre la biografía para cambiar de autor"
                 font="Helvetica 8 italic", fg="blue")
 
 # Se localizan las imágenes iniciales para las relacionadas con la aplicación y para las de hojas de vida de los autores.
-"""FotoAnimal=(Image.open("Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
+FotoAnimal=(Image.open("Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
 FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
 Foto1 =(Image.open("Imagenes/David/1.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto1 = ImageTk.PhotoImage(Foto1)
@@ -416,7 +428,7 @@ LabelFoto2.grid(column=1, row=0, padx=3, pady=3)
 LabelFoto3 = Label(master=P6, image=Foto3, borderwidth=5, relief="ridge")
 LabelFoto3.grid(column=0, row=1, padx=3, pady=3)
 LabelFoto4 = Label(master=P6, image=Foto4, borderwidth=5, relief="ridge")
-LabelFoto4.grid(column=1, row=1, padx=3, pady=3)"""
+LabelFoto4.grid(column=1, row=1, padx=3, pady=3)
 
 # Se visualizan todos los elementos anteriormente creados.
 ventanaInicio.pack()
@@ -428,14 +440,14 @@ P5.pack(side=TOP, fill=BOTH, padx=5, pady=5)
 P6.pack(side=BOTTOM, fill=BOTH, padx=5, pady=5)
 Saludo.pack(padx=5, pady=5)
 Ingreso.pack(side=BOTTOM, padx=5, pady=5)
-#LabelFotoAnimal.pack(side=TOP, padx=10, pady=10)
+LabelFotoAnimal.pack(side=TOP, padx=10, pady=10)
 TituloVida.pack(padx=5, pady=5)
 CuerpoVida.pack(padx=5, pady=5)
 PieVida.pack(padx=5, pady=5)
 
 # Se asignan los comandos para cambiar de hoja de vida y de imagen relacionada a la aplicación.
 CuerpoVida.bind("<Button-1>", cambiarVida)
-#LabelFotoAnimal.bind("<Enter>", cambiarImagen)  
+LabelFotoAnimal.bind("<Enter>", cambiarImagen)  
 
 # COMPONENTES DE LA VENTANA DEL USUARIO:
 
