@@ -57,12 +57,12 @@ animal a adquirir y este será asignado al hábitat elegido.
                          command=self.borrar)
         borrar.pack(side=RIGHT, padx=5, pady=5)
         botones.pack(padx=5, pady=5)
-        # Por último para la creación de la ventana de la funcionalidad, se asigna el comando para el combobox de Especie.
+        # Por último, se asigna el comando para el combobox de Especie.
         comboboxEspecie = self.dialogos.getComponente("Especie")
         comboboxEspecie.bind("<<ComboboxSelected>>", lambda e: self.especieSeleccionada())
      
     # Por medio del método especieSeleccionada(), cuando se elije una especie de las disponibles por medio de su combobox,
-    # el combobox se Hábitat listará los hábitats solo para dicha especie, esto a través del método estático habitats(especie).
+    # el combobox de Hábitat listará los hábitats solo para dicha especie, esto a través del método estático habitats(especie).
     def especieSeleccionada(self):
         nombreEspecie = self.dialogos.getValue("Especie")
         for especie in Administracion.getEspecies():
@@ -70,6 +70,7 @@ animal a adquirir y este será asignado al hábitat elegido.
                 especieSeleccionada = especie
                 self.dialogos.getComponente("Hábitat").configure(values=Adquisicion.habitats(especie))
                 break
+        # Además, por cada vez que se cambie la especie seleccionada, se limpiará el valor del hábitat seleccionado.
         self.dialogos.getComponente("Hábitat").set("")
   
     # Por medio del método borrar() se limpian todos los campos del FieldFrame, tanto combobox como entry.
@@ -108,8 +109,7 @@ animal a adquirir y este será asignado al hábitat elegido.
         except ExcepcionTipoFloat:
             return
         
-        # Una vez hechas todas las comprobaciones y enviadas las advertencias al usuario, se puede proceder a convertir
-        # y obtener los datos necesarios para adquirir al animal.
+        # Una vez hechas todas las comprobaciones, se puede proceder a convertir y obtener los datos necesarios para adquirir al animal.
         edad = int(edad)
         peso = float(peso)
         for elem in Administracion.getEspecies():
