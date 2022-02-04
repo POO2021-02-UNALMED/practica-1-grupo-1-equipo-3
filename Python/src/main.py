@@ -26,6 +26,7 @@ from baseDatos.Deserializador import *
 from baseDatos.Serializador import *
 from excepciones.excepcionPresenciaArchivo import ExcepcionPresenciaArchivos
 
+#funcion inicio que verifica que existan los archivos donde va a ctuar el deserializador y serializador
 def inicio():
     try:
         ExcepcionPresenciaArchivos.presenciaArchivos(["baseDatos/temp/administracion", "baseDatos/temp/animales", 
