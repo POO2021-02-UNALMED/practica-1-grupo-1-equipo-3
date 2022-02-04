@@ -108,15 +108,15 @@ def ocultarTodo():
 # Con la siguiente función se borran los campos de FieldFrame para todas las funcionalidades, además que se ocultan
 # todas las tablas Treeview de las funcionalidades de consulta.
 def borrarTodo():
-    #ventanaMantenimiento.borrar()
-    #ventanaCurar.borrar()
+    ventanaMantenimiento.borrar()
+    ventanaCurar.borrar()
     ventanaCuidar.borrar()
     ventanaAdquision.borrar()
     ventanaTraslado.borrar()
-    #ventanaGestion.borrar()
-    #ventanaDespedir.borrar()
-    #ventanaContratar.borrar()
-    #ventanaConstruir.borrar()
+    ventanaGestion.borrar()
+    ventanaDespedir.borrar()
+    ventanaContratar.borrar()
+    ventanaConstruir.borrar()
     ventanaTrabajador.ocultarTabla()
     ventanaAnimales.ocultarTabla()
     ventanaHabitats.ocultarTabla()
