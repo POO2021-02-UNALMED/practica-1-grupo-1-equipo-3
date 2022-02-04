@@ -11,5 +11,3 @@ from baseDatos.serializador import *
 from baseDatos.deserializador import *
 
 deserializar()
-print(Administracion.getCaja())
-print(Administracion.getEspecies())
