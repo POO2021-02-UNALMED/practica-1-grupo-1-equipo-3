@@ -9,6 +9,8 @@ from tkinter import *
 from tkinter import messagebox
 from fieldFrame import FieldFrame
 from gestorAplicacion.administracion import Administracion
+from excepciones.excepcionPresenciaDatos import ExcepcionPresenciaDatos
+from excepciones.excepcionTipoInt import ExcepcionTipoInt
 
 class Traslado(Frame):
     

@@ -119,12 +119,10 @@ class Curar(Frame):
                 # las identificaciones de cada uno de estos animales para que el usuario seleccione uno para trasladar.
                 if(animal.getEspecie() == especie):
                     animales.append(str(animal.getIdentificacion()) + " (" + animal.getEspecie().getNombre() + ")")
-		
     		# En caso que no haya ni un solo animal de la especie seleccionada, se le informa al usuario.
             if(animales == []):
                 messagebox.showwarning(title="Advertencia",
                                        message="No se ha encontrado ningún animal de esta especie que esté disponible ser revisado.")
-                Curar.borrar
         return animales
 
     # A través del método especies() se obtienen los nombres de las especies disponibles.
@@ -136,7 +134,7 @@ class Curar(Frame):
             especies.append(especie.getNombre())
         return especies
 
-
+    # Por medio del método borrar() se limpian todos los campos del FieldFrame, tanto combobox como entry.
     def borrar(self):
        self.dialogos.getComponente("Especie").set("")
        self.dialogos.getComponente("Identificación").set("")
@@ -158,16 +156,24 @@ class Curar(Frame):
        peso.configure(state=DISABLED)
        self.dialogos.getComponente("Cuidador revisor").set("")
        self.dialogos.getComponente("Veterinario encargado").set("")
-
+    
+    # Por medio del método especieSeleccionada(), cuando se elije una especie de las disponibles por medio de su combobox,
+    # el combobox de Identificación listará las identificaciones de los animales que sean solo de dicha especie, 
+    # esto a través del método estático animales(especie).
     def especieSeleccionada(self):
         nombreEspecie = self.dialogos.getValue("Especie")
+        # Cada vez que se cambia la especie se borrarán todos los campos.
         self.borrar()
         for especie in Administracion.getEspecies():
             if especie.getNombre() == nombreEspecie:
                 self.dialogos.getComponente("Identificación").configure(values=Curar.animales(especie))
                 break
+        # Además, por cada vez que se cambie la especie seleccionada, como ya se limpiaron todos los demás campos, se vuelve a
+        # establecer el combobox de especie con la especie que fue selecionada.
         self.dialogos.getComponente("Especie").set(nombreEspecie)
-
+    
+    # Por medio del método animalSeleccionado(), cuando se elije una identificación de las disponibles por medio de su combobox,
+    # los campos de Hábitat, Género, Edad y Peso serán llenados con los valores de los atributos del animal seleccionado.  
     def animalSeleccionado(self):
         identificacion = self.dialogos.getValue("Identificación").split("(")[0].strip()
         identificacion = int(identificacion)
@@ -177,6 +183,8 @@ class Curar(Frame):
         peso = self.dialogos.getComponente("Peso")
         cuidador = self.dialogos.getComponente("Cuidador revisor")
         cuidador.set("")
+        veterinario = self.dialogos.getComponente("Veterinario encargado")
+        veterinario.set("")
         for animal in Administracion.getAnimales():
             if animal.getIdentificacion() == identificacion:
                 habitat.configure(state=NORMAL)
@@ -195,7 +203,12 @@ class Curar(Frame):
                 peso.delete(0,"end")
                 peso.insert(0, str(animal.getPeso()))
                 peso.configure(state=DISABLED)
+                # También se establece el combobox de "Cuidador revisor" con la lista de cuidadores que pueden revisar a
+                # la especie del animal seleccionado por el usuario.
                 cuidador.configure(values=Curar.cuidadores(animal))
+                # También se establece el combobox de "Veterinario encargado" con la lista de veterinarios que pueden revisar a
+                # la especie del animal seleccionado por el usuario.
+                veterinario.configure(values=Curar.veterinarios(animal))
                 break
     
     # A traves del metodo saludAnimal() se hace el proceso de revisar el estado de salud del animal seleccionado desde el cuidador seleccionado y veterinario seleccionado.

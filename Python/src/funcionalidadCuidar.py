@@ -101,7 +101,7 @@ proceso realizar: Si el de curar al animal o el de hacer mantenimiento a su háb
                 peso.insert(0, str(animal.getPeso()))
                 peso.configure(state=DISABLED)
                 # También se establece el combobox de "Cuidador revisor" con la lista de cuidadores que pueden revisar a
-                # especie del animal seleccionado por el usuario.
+                # la especie del animal seleccionado por el usuario.
                 cuidador.configure(values=Cuidar.cuidadores(animal))
                 break
     
