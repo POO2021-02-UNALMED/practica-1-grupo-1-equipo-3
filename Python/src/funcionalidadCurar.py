@@ -12,6 +12,9 @@
 
 from tkinter import *
 from tkinter import messagebox
+from excepciones.excepcionPresenciaArchivo import ExcepcionPresenciaArchivos
+from excepciones.excepcionPresenciaDatos import ExcepcionPresenciaDatos
+from excepciones.excepcionTipoInt import ExcepcionTipoInt
 from fieldFrame import FieldFrame
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.veterinario import Veterinario
@@ -92,7 +95,7 @@ class Curar(Frame):
                 veterinarios.append(str(veterinario.getIdentificacion()) + " - " + veterinario.getNombre() + " (Revisa: " + veterinario.getEspecieAsignada().getNombre() + ")")
         else:
             # Con el siguiente for se obtienen cada uno de los veterinarios almacenandos en la lista de animales de la clase Administración.
-            for veterinario in Administracion.getVeterinarios:
+            for veterinario in Administracion.getVeterinarios():
                 # Esto se hace para buscar los veterinarios correspondientes a la especie del animal que va a ser revisado, para luego listar 
                 # las identificaciones de cada uno de estos veterinarios para que el usuario seleccione uno para que revise al animal.
                 if(veterinario.getEspecieAsignada() == animal.getEspecie()):
@@ -220,7 +223,7 @@ class Curar(Frame):
         # esten llenos (Si ID del animal corresponde a un valor y si ID del veterinario encargado corresponde a un valor).
         try:
             ExcepcionPresenciaDatos.presenciaDatos(["Identificación", "Veterinario encargado"], [idAnimal, idVeterinario])
-        except ExcepcionPresenciaDatos:
+        except ExcepcionPresenciaArchivos:
             return
         
         # Y por medio de las otra excepcion sugerida para verificar el tipo de dato se comprueba si la identificación
