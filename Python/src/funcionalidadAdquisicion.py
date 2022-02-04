@@ -173,7 +173,7 @@ animal a adquirir y este será asignado al hábitat elegido.
                 elif habitat.getEspecie() == None and habitat.cantidadAnimales() < habitat.getCapacidadMaxima():
                     habitats.append(str(habitat.getIdentificacion()) + " - " + habitat.getAmbientacion() + " " + habitat.getNombre() + " (Sin Especie)")
             # En caso que no haya ni un hábitat para depositar al animal, se le informa al usuario.
-        if(habitats == []):
-            messagebox.showwarning(title="Advertencia",
-                                   message="No se ha encontrado ningún hábitat disponible para depositar al animal.")
+            if(habitats == []):
+                messagebox.showwarning(title="Advertencia",
+                                       message="No se ha encontrado ningún hábitat disponible para depositar al animal.")
         return habitats
