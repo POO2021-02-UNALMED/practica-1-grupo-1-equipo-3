@@ -7,35 +7,34 @@ from gestorAplicacion.especie import Especie
 class Construir(Frame):
     def __init__(self):
         super().__init__()
-        nombre = Label(master=self, text="Construir un nuevo hábitat", font="Helvetica 12 bold")
+        nombre = Label(master=self, text="Construir un nuevo hábitat", font="Helvetica 11 bold")
         info = """Para construir un nuevo hábitat ingrese el nombre, la ambientación y la capacidad
 máxima del hábitat"""
         descripcion = Label(master=self, text=info, font="Helvetica 10")
-        nombre.pack(fill=BOTH, padx=10, pady=10)
-        descripcion.pack(fill=BOTH, padx=10, pady=10)
+        nombre.pack(fill=BOTH, padx=5, pady=5)
+        descripcion.pack(fill=BOTH, padx=5, pady=5)
 
         self.criterios = ["Nombre", "Ambientación", "Capacidad máxima"]
         self.valores = ["", "", ""]
         self.habilitados = [True, True, True]
         self.combobox = [False, False, False]
         self.dialogos = FieldFrame(self, "Criterios", self.criterios, "Valores", self.valores, self.habilitados, self.combobox)
-        self.dialogos.pack(padx=10, pady=10)
+        self.dialogos.pack(padx=5, pady=5)
         botones = Frame(master=self)
-        aceptar = Button(master=botones, text="Aceptar", font="Helvetica 12 bold", 
+        aceptar = Button(master=botones, text="Aceptar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda:Construir.aceptar(self.dialogos))
-        aceptar.pack(side=LEFT, padx=10, pady=10)
-        borrar = Button(master=botones, text="Borrar", font="Helvetica 12 bold", 
+                         command=lambda:self.aceptar)
+        aceptar.pack(side=LEFT, padx=5, pady=5)
+        borrar = Button(master=botones, text="Borrar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda: Construir.borrar(self.dialogos))
-        borrar.pack(side=RIGHT, padx=10, pady=10)
-        botones.pack(padx=10, pady=10)
+                         command=lambda: self.borrar)
+        borrar.pack(side=RIGHT, padx=5, pady=5)
+        botones.pack(padx=5, pady=5)
         
-    @staticmethod
-    def aceptar(dialogos):
-        nombre = dialogos.getValue("Nombre")
-        ambientacion=dialogos.getValue("Ambientación")
-        capacidad=dialogos.getValue("Capacidad máxima")
+    def aceptar(self):
+        nombre = self.dialogos.getValue("Nombre")
+        ambientacion=self.dialogos.getValue("Ambientación")
+        capacidad=self.dialogos.getValue("Capacidad máxima")
         try:
             capacidad = int(capacidad)
             if(capacidad < 0):
@@ -52,16 +51,13 @@ máxima del hábitat"""
             "\nEste posee las siguientes características: \n"+"\n"+nuevo.info())
             messagebox.showinfo(title="Información",
                             message=mensaje)
-            Construir.borrar(dialogos)
+            self.borrar()
         except UnboundLocalError:
             error = "Todos los campos deben tener algún valor!"
             messagebox.showerror(title="Error",
                                 message=error)  
 
-        
-    
-    @staticmethod
-    def borrar(dialogos):
-        dialogos.getComponente("Nombre").delete(0,"end")
-        dialogos.getComponente("Ambientación").delete(0,"end")
-        dialogos.getComponente("Capacidad máxima").delete(0,"end")
+    def borrar(self):
+        self.dialogos.getComponente("Nombre").delete(0,"end")
+        self.dialogos.getComponente("Ambientación").delete(0,"end")
+        self.dialogos.getComponente("Capacidad máxima").delete(0,"end")

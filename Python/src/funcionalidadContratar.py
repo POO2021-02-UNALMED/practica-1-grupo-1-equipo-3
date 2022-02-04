@@ -8,30 +8,30 @@ class Contratar(Frame):
     
     def __init__(self):
         super().__init__()
-        nombre = Label(master=self, text="Contratar un empleado", font="Helvetica 12 bold")
+        nombre = Label(master=self, text="Contratar un empleado", font="Helvetica 11 bold")
         info = """Para contratar a un empleado, deberá elegir inicialmente el tipo de profesión. 
 Posteriormente llene el formulario con los datos del nuevo empleado."""
         descripcion = Label(master=self, text=info, font="Helvetica 10")
-        nombre.pack(fill=BOTH, padx=10, pady=10)
-        descripcion.pack(fill=BOTH, padx=10, pady=10)
+        nombre.pack(fill=BOTH, padx=5, pady=5)
+        descripcion.pack(fill=BOTH, padx=5, pady=5)
 
         self.criterios = ["Profesión", "Identificación", "Nombre", "Sueldo", "Especie asignada"]
         self.valores = [False, "" , "", "", False]
         self.habilitados = [True, False, True, True, True]
         self.combobox = [["Cuidador","Veterinario"], False, False, False, Contratar.especies()]
         self.dialogos = FieldFrame(self, "Criterios", self.criterios, "Valores", self.valores, self.habilitados, self.combobox)
-        self.dialogos.pack(padx=10, pady=10)
+        self.dialogos.pack(padx=5, pady=5)
         botones = Frame(master=self)
-        aceptar = Button(master=botones, text="Aceptar", font="Helvetica 12 bold", 
+        aceptar = Button(master=botones, text="Aceptar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda:Contratar.aceptar(self.dialogos))
-        aceptar.pack(side=LEFT, padx=10, pady=10)
-        borrar = Button(master=botones, text="Borrar", font="Helvetica 12 bold", 
+                         command=self.aceptar)
+        aceptar.pack(side=LEFT, padx=5, pady=5)
+        borrar = Button(master=botones, text="Borrar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda: Contratar.borrar(self.dialogos))
-        borrar.pack(side=RIGHT, padx=10, pady=10)
-        botones.pack(padx=10, pady=10)
-        self.dialogos.getComponente("Profesión").bind("<<ComboboxSelected>>", lambda e: Contratar.profesionSeleccionada(self.dialogos))
+                         command=self.borrar)
+        borrar.pack(side=RIGHT, padx=5, pady=5)
+        botones.pack(padx=5, pady=5)
+        self.dialogos.getComponente("Profesión").bind("<<ComboboxSelected>>", lambda e: self.profesionSeleccionada())
 
 
     # A través del método especies() se obtienen los nombres de las especies disponibles.
@@ -43,11 +43,9 @@ Posteriormente llene el formulario con los datos del nuevo empleado."""
             especies.append(especie.getNombre())
         return especies
 
-    
-    @staticmethod
-    def profesionSeleccionada(dialogos):
-        profesion=dialogos.getValue("Profesión")
-        identificacion=dialogos.getComponente("Identificación")
+    def profesionSeleccionada(self):
+        profesion=self.dialogos.getValue("Profesión")
+        identificacion=self.dialogos.getComponente("Identificación")
         if profesion=="Veterinario":
             if len(Administracion.getVeterinarios())==0:
                 identificacion.configure(state=NORMAL)
@@ -71,14 +69,12 @@ Posteriormente llene el formulario con los datos del nuevo empleado."""
                 identificacion.insert(0, Administracion.getCuidadores()[-1].getIdentificacion() + 1)
                 identificacion.configure(state=DISABLED)
 
-
-    @staticmethod
-    def aceptar(dialogos):
-        profesion = dialogos.getValue("Profesión")
-        identificacion=dialogos.getValue("Identificación")
-        nombre=dialogos.getValue("Nombre")
-        sueldo=dialogos.getValue("Sueldo")
-        especie=dialogos.getValue("Especie asignada")
+    def aceptar(self):
+        profesion = self.dialogos.getValue("Profesión")
+        identificacion=self.dialogos.getValue("Identificación")
+        nombre=self.dialogos.getValue("Nombre")
+        sueldo=self.dialogos.getValue("Sueldo")
+        especie=self.dialogos.getValue("Especie asignada")
         try:
             sueldo = int(sueldo)
             if(sueldo < 0):
@@ -102,7 +98,7 @@ Posteriormente llene el formulario con los datos del nuevo empleado."""
                 "\nEstos son los datos del nuevo veterinario: \n"+nuevo.info())
                 messagebox.showinfo(title="Información",
                                 message=mensaje)
-                Contratar.borrar(dialogos)
+                self.borrar()
             except UnboundLocalError:
                 error = "Todos los campos deben tener algún valor!"
                 messagebox.showerror(title="Error",
@@ -114,21 +110,18 @@ Posteriormente llene el formulario con los datos del nuevo empleado."""
                 "\nEstos son los datos del nuevo cuidador: \n"+nuevo.info())
                 messagebox.showinfo(title="Información",
                                 message=mensaje)
-                Contratar.borrar(dialogos)
+                self.borrar()
             except UnboundLocalError:
                 error = "Todos los campos deben tener algún valor!"
                 messagebox.showerror(title="Error",
                                     message=error)  
 
-        
-    
-    @staticmethod
-    def borrar(dialogos):
-        dialogos.getComponente("Profesión").set("")
-        identificacion=dialogos.getComponente("Identificación")
+    def borrar(self):
+        self.dialogos.getComponente("Profesión").set("")
+        identificacion=self.dialogos.getComponente("Identificación")
         identificacion.configure(state=NORMAL)
         identificacion.delete(0,"end")
         identificacion.configure(state=DISABLED)
-        dialogos.getComponente("Nombre").delete(0,"end")
-        dialogos.getComponente("Sueldo").delete(0,"end")
-        dialogos.getComponente("Especie asignada").set("")
+        self.dialogos.getComponente("Nombre").delete(0,"end")
+        self.dialogos.getComponente("Sueldo").delete(0,"end")
+        self.dialogos.getComponente("Especie asignada").set("")
