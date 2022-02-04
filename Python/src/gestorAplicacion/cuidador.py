@@ -74,7 +74,7 @@ class Cuidador(Empleado):
 			# atributos de esta clase necesarios para este cambio se encuentren en true, o sea, "alimentado" y "estadoSalud".
 			# Otro atributo requerido para esto es el atributo "limpio" relacionado con el hábitat con que dicho animal está
 			# asociado, que en este caso se asume como true pues el hábitat acabe de ser limpiado.
-            if animal.isAlimentado() and animal.isEstadoSalud():
+            if (animal.isAlimentado()==True) and (animal.isEstadoSalud()==True):
                 animal.setEstadoAnimo(True)  
             self.moverAnimal(animal, habitat)
 	
