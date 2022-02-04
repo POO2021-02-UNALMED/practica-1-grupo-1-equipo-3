@@ -144,6 +144,8 @@ al habitat """
                 mensaje3 = ("Los animales con los siguientes números de identificacion no han mejorado sus estados de ánimo: " + 
                 str(idAnimalesTristes) + ".\nPuede solicitar alimentarlos o que los revise un veterinario mediante otros procesos" )
                 messagebox.showinfo(title= "MANTENIMIENTO EXITOSO", message= mensaje3)
+        
+        self.borrar()
 
 
 

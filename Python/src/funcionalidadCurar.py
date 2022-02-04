@@ -13,7 +13,6 @@
 from tkinter import *
 from tkinter import messagebox
 from fieldFrame import FieldFrame
-from funcionalidadTraslado import Traslado
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.veterinario import Veterinario
 
@@ -21,48 +20,39 @@ class Curar(Frame):
 
     def __init__(self):
         super().__init__()
-        nombre = Label(master=self, text="Curar animales", font="Helvetica 12 bold")
+        nombre = Label(master=self, text="Curar animales", font="Helvetica 11 bold")
         info = """Para curar un animal primero seleccione el animal enfermo, luego seleccionar el ID del cuidador que 
                   trasladara el animal y luego podra elegir el id del veterinario que va a revisar el animal. 
                   La eleccion del cuidador y veterinario depende de la especie """
         
-        descripcion = Label(master=self, text=info, font="Helvetica 11")
-        nombre.pack(fill=BOTH, padx=10, pady=10)
-        descripcion.pack(fill=BOTH, padx=10, pady=10)
+        descripcion = Label(master=self, text=info, font="Helvetica 10")
+        nombre.pack(fill=BOTH, padx=5, pady=5)
+        descripcion.pack(fill=BOTH, padx=5, pady=5)
 
         self.criterios = ["Especie", "Identificación", "Hábitat", "Género", "Edad", "Peso", "Cuidador revisor", "Veterinario encargado"]
         self.valores = [False, False, "", "", "", "", False, False]
         self.habilitados = [True, True, False, False, False, False, True, True]
         self.combobox = [Curar.especies(), Curar.animales(), False, False, False, False, Curar.cuidadores(), Curar.veterinarios()]
         self.dialogos = FieldFrame(self, "Criterios", self.criterios, "Valores", self.valores, self.habilitados, self.combobox)
-        self.dialogos.pack(padx=10, pady=10)
+        self.dialogos.pack(padx=5, pady=5)
         botones = Frame(master=self)
 
-        aceptar = Button(master=botones, text="Revisar", font="Helvetica 12 bold", 
+        aceptar = Button(master=botones, text="Revisar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
                          command=self.saludAnimal)
-        aceptar.pack(side=LEFT, padx=10, pady=10)
+        aceptar.pack(side=LEFT, padx=5, pady=5)
 
-        borrar = Button(master=botones, text="Borrar", font="Helvetica 12 bold", 
+        borrar = Button(master=botones, text="Borrar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
                          command=self.borrar)
-        borrar.pack(side=RIGHT, padx=10, pady=10)
+        borrar.pack(side=RIGHT, padx=5, pady=5)
 
-        botones.pack(padx=10, pady=10)
+        botones.pack(padx=5, pady=5)
 
         comboboxEspecie = self.dialogos.getComponente("Especie")
         comboboxEspecie.bind("<<ComboboxSelected>>", lambda e: self.especieSeleccionada())
         comboboxAnimal = self.dialogos.getComponente("Identificación")
         comboboxAnimal.bind("<<ComboboxSelected>>", lambda e: self.animalSeleccionado())
-
-
-
-
-
-
-
-
-
 
     # A través del método cuidadores(...) se obtiene el cuidador que revisará al animal.
     @staticmethod
@@ -208,57 +198,57 @@ class Curar(Frame):
     def saludAnimal(self):
         idAnimal = self.dialogos.getValue("Identificación").split("(")[0].strip()
         idVeterinario = self.dialogos.getValue("Veterinario encargado").split("-")[0].strip()
-        for elem in Administracion.getAnimales():
-            try:
-                if elem.getIdentificacion() == int(idAnimal):
-                    animalSeleccionado = elem
-                    break   
-            except ValueError:
-                break
-        for elem in Administracion.getVeterinarios():
-            try:
-                if elem.getIdentificacion() == int(idVeterinario):
-                    veterinarioSeleccionado = elem
-                    break   
-            except ValueError:
-                break
+        
+        # Se hace uso de la excepción sugerida para verificar si el campo de la identificación para el animal y el campo del veterinario encargado
+        # esten llenos (Si ID del animal corresponde a un valor y si ID del veterinario encargado corresponde a un valor).
         try:
-            
-            # En caso que el animal esté con buen estado de ánimo se le informará al usuario. 
+            ExcepcionPresenciaDatos.presenciaDatos(["Identificación", "Veterinario encargado"], [idAnimal, idVeterinario])
+        except ExcepcionPresenciaDatos:
+            return
+        
+        # Y por medio de las otra excepcion sugerida para verificar el tipo de dato se comprueba si la identificación
+        # para el animal o la identificación para el veterinario no corresponden al tipo de dato que deberían.
+        try:
+            ExcepcionTipoInt.tipoInt(["Identificación", "Veterinario encargado"], [idAnimal, idVeterinario])
+        except ExcepcionTipoInt:
+            return
+        
+        # Una vez hechas todas las comprobaciones, se puede proceder a obtener el objeto tipo Animal a revisar y el objeto tipo veterinario que revisará.
+        for elem in Administracion.getAnimales():
+            if elem.getIdentificacion() == int(idAnimal):
+                animalSeleccionado = elem
+                break   
+        for elem in Administracion.getVeterinarios():
+            if elem.getIdentificacion() == int(idVeterinario):
+                veterinarioSeleccionado = elem
+                break   
+
+        # En caso que el animal esté con buen estado de ánimo se le informará al usuario. 
+        if(veterinarioSeleccionado.revisar(animalSeleccionado)):
+            messagebox.showinfo(title="Resultado",
+                                message="El animal se encuentra con buen estado de salud.")
+        # En caso que el animal esté con mal estado de salud, se le informará al usuario y el veterinario seleccionado procederá a curar al animal
+        # a través del método animentarAnimal(...).
+        else:
+            mensaje = "El animal se encuentra con mal estado de salud.\nEl veterinario decide entonces curar al animal para mejorar su estado de ánimo."
+            messagebox.showinfo(title="Resultado",
+                                message=mensaje)
+            Veterinario.curarAnimal(animalSeleccionado)
+            #veterinarioSeleccionado.curarAnimal(animalSeleccionado)
+			
+            # El estado de ánimo depende de su alimentación, su estado de salud y de la limpieza de su hábitat. El siguiente if cambia el estado
+            # de ánimo del animal a bueno (true) en caso que estos tres factores también sean buenos (true).
+            if(animalSeleccionado.isAlimentado() and animalSeleccionado.isEstadoSalud() and animalSeleccionado.getHabitat().isLimpio()):
+                animalSeleccionado.setEstadoAnimo(True)
+                
+            # Si luego de haber sido curado, el estado de ánimo del animal mejoró, se le informa al usuario y se termina la funcionalidad.
             if(veterinarioSeleccionado.revisar(animalSeleccionado)):
                 messagebox.showinfo(title="Resultado",
-                                    message="El animal se encuentra con buen estado de salud.")
-            # En caso que el animal esté con mal estado de salud, se le informará al usuario y el veterinario seleccionado procederá a curar al animal
-            # a través del método animentarAnimal(...).
+                                    message="Curar al animal ha dado buen resultado y este ahora se encuentra con buen estado de ánimo.")
+            # En caso que el animal continúe con mal estado de ánimo, se le informará al usuario que alimentarlo no ha sido de ayuda. Además, se le    
+            # indicará al usuario que puede probar con la funcionalidad de mantenimiento y alimentar para así mejorar el estado de ánimo del animal.
             else:
-                mensaje = "El animal se encuentra con mal estado de salud.\nEl veterinario decide entonces curar al animal para mejorar su estado de ánimo."
+                mensaje = "Curar al animal no ha mejorado su estado de ánimo.\nPuede hacer mantenimiento a su hábitat o alimentarlo para mejorar su estado."
                 messagebox.showinfo(title="Resultado",
                                     message=mensaje)
-                Veterinario.curarAnimal(animalSeleccionado)
-                #veterinarioSeleccionado.curarAnimal(animalSeleccionado)
-			
-                # El estado de ánimo depende de su alimentación, su estado de salud y de la limpieza de su hábitat. El siguiente if cambia el estado
-                # de ánimo del animal a bueno (true) en caso que estos tres factores también sean buenos (true).
-                if(animalSeleccionado.isAlimentado() and animalSeleccionado.isEstadoSalud() and animalSeleccionado.getHabitat().isLimpio()):
-                    animalSeleccionado.setEstadoAnimo(True)
-                
-                # Si luego de haber sido curado, el estado de ánimo del animal mejoró, se le informa al usuario y se termina la funcionalidad.
-                if(veterinarioSeleccionado.revisar(animalSeleccionado)):
-                    messagebox.showinfo(title="Resultado",
-                                        message="Curar al animal ha dado buen resultado y este ahora se encuentra con buen estado de ánimo.")
-                # En caso que el animal continúe con mal estado de ánimo, se le informará al usuario que alimentarlo no ha sido de ayuda. Además, se le    
-                # indicará al usuario que puede probar con la funcionalidad de mantenimiento y alimentar para así mejorar el estado de ánimo del animal.
-                else:
-                    mensaje = "Curar al animal no ha mejorado su estado de ánimo.\nPuede hacer mantenimiento a su hábitat o alimentarlo para mejorar su estado."
-                    messagebox.showinfo(title="Resultado",
-                                        message=mensaje)
-                self.borrar()
-        except UnboundLocalError:
-            error = "Debe seleccionar como mínimo la identificación del animal, la identificación del cuidador y la la identificación del veterinario"
-            messagebox.showerror(title="Error",
-                                 message=error)
-
-
-
-
-
+        self.borrar()

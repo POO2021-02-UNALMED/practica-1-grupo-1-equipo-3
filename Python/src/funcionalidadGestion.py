@@ -21,7 +21,7 @@ class Gestion(Frame):
 
     def __init__(self):
         super().__init__()
-        nombre = Label(master=self, text="Gestión administrativa", font="Helvetica 12 bold")
+        nombre = Label(master=self, text="Gestión administrativa", font="Helvetica 11 bold")
         info = """Nos encargaremos de pagarle a cada uno de nuestros empleados, su respectivo sueldo. Para ello 
 calcularemos las ganancias que hemos generado el día de hoy, y se lo sumaremos al presupuesto 
 que posee el zoológico en el banco. Usa el botón pagar para hacer todo esto.
@@ -30,16 +30,16 @@ En caso de que no tengamos dinero suficiente para pagarle a los empleados, será
 que despida a uno de estos para así recuperarnos económicamente, y para ello se habilitará 
 el botón despedir."""
         descripcion = Label(master=self, text=info, font="Helvetica 10")
-        nombre.pack(fill=BOTH, padx=10, pady=10)
-        descripcion.pack(fill=BOTH, padx=10, pady=10)
+        nombre.pack(fill=BOTH, padx=5, pady=5)
+        descripcion.pack(fill=BOTH, padx=5, pady=5)
 
         botones = Frame(master=self)
-        pagar = Button(master=botones, text="Pagar a empleados", font="Helvetica 12 bold", 
+        pagar = Button(master=botones, text="Pagar a empleados", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
                          command=self.pagar)
-        pagar.pack(side=LEFT, padx=10, pady=10)
+        pagar.pack(side=LEFT, padx=5, pady=5)
         
-        botones.pack(padx=10, pady=10)
+        botones.pack(padx=5, pady=5)
 
     """@staticmethod"""
     def pagar(self):
