@@ -138,7 +138,7 @@ def borrarTodo():
 # Con estas variables se define la hoja de vida de los autores de la aplicación que será mostrada en la ventana de Inicio.
 VidaDavid="""Nombre: David Mateo García Vallejo"""
 VidaJose="""Nombre: José David Cardona Soto"""
-VidaJuan="""Nombre: Juan José Monsalve Marín"""
+VidaJuan="""Nombre: Estudiante de ingeniería de sistemas e informática de la Universidad Nacional de Colombia. Soy una persona muy organizada, analítica, pragmática y lógica a la hora de solucionar problemas. Con buenos conocimientos en estadística, probabilidad y programación."""
 VidaMateo="""Nombre: Mateo Carvajal Sánchez"""
 
 # Por medio de la siguiente función se cambia la imagen relativa al sistema (Imágenes de animales).
