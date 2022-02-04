@@ -13,7 +13,7 @@ from gestorAplicacion.especie import Especie
 
 class Administracion:
     _ganancias=False
-    _caja=None #Es el dinero con el que cuenta el zoologico en el banco
+    _caja=0 #Es el dinero con el que cuenta el zoologico en el banco
     _animales=[] #Es una lista de todos los animales que tiene el zoológico
     _cuidadores=[] #Es una lista de todos los cuidadores que tiene el zoológico
     _especies=[Especie.MAMIFERO, Especie.AVE, Especie.REPTIL, Especie.PEZ, Especie.ANFIBIO] #Es una lista de todas las especies que tiene el zoológico
@@ -27,6 +27,7 @@ class Administracion:
      
     def __init__(self,caja=0):
         Administracion._caja=caja
+
 
 #Este método no recibe parámetros y su función es la de calcular el pago total para todos los empleados
 #del zoológico. Esto lo hace recorriendo las listas de trabajadores que hay (veterinarios, cuidadores) luego

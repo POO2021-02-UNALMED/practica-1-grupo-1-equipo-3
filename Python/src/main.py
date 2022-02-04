@@ -25,8 +25,10 @@ from gestorAplicacion.visitante import Visitante
 from baseDatos.deserializador import *
 from baseDatos.serializador import *
 
-#A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
 deserializar()
+
+#A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
+
 """admin = Administracion()
 a = Habitat("H1", "Pradera", 2)
 b = Habitat("H2", "Jungla", 1)
@@ -170,6 +172,7 @@ def salirInicio():
                                 detail="Clic en Sí para salir")
     if salir:
         ventana.destroy()
+        serializar()
 
 def ingresar():
     ocultarTodo()
