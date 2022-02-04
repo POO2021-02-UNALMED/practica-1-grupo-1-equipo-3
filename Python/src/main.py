@@ -314,8 +314,8 @@ def ayuda():
 
 # COMPONENTES DEL MENÚ DE LA VENTANA DE INICIO:
 
-menuVentanaInicio = Menu(ventana, font="Helvetica 12 bold", fg="red")
-menuInicio = Menu(menuVentanaInicio, font="Helvetica 12",)
+menuVentanaInicio = Menu(ventana, font="Helvetica 11 bold", fg="red")
+menuInicio = Menu(menuVentanaInicio, font="Helvetica 11",)
 menuVentanaInicio.add_cascade(menu=menuInicio, label="Inicio")
 menuInicio.add_command(label="Descripción", command=descripcion)
 menuInicio.add_command(label="Salir", command=salirInicio)
@@ -323,35 +323,35 @@ ventana["menu"] = menuVentanaInicio
 
 # COMPONENTES DEL MENÚ DE LA VENTANA DEL USUARIO:
 
-menuVentanaUsuario = Menu(ventana, font="Helvetica 12 bold")
-menuArchivo = Menu(menuVentanaUsuario, font="Helvetica 12")
+menuVentanaUsuario = Menu(ventana, font="Helvetica 11 bold")
+menuArchivo = Menu(menuVentanaUsuario, font="Helvetica 11")
 menuVentanaUsuario.add_cascade(menu=menuArchivo, label="Archivo")
 menuArchivo.add_command(label="Aplicación", command=aplicacion)
 menuArchivo.add_command(label="Salir", command=salirUsuario)
-menuProcesos = Menu(menuVentanaUsuario, font="Helvetica 12")
+menuProcesos = Menu(menuVentanaUsuario, font="Helvetica 11")
 menuVentanaUsuario.add_cascade(menu=menuProcesos, label="Procesos y consultas")
 menuProcesos.add_command(label="Mantenimiento de hábitats", command=mantenimiento)
 menuProcesos.add_command(label="Curar animales", command=curar)
 menuProcesos.add_command(label="Cuidar animales", command=cuidar)
-menuAdquisicionTraslado = Menu(menuProcesos, font="Helvetica 12")
+menuAdquisicionTraslado = Menu(menuProcesos, font="Helvetica 11")
 menuProcesos.add_cascade(menu=menuAdquisicionTraslado, label="Adquisición y traslado de animales")
 menuAdquisicionTraslado.add_command(label="Adquirir animales", command=adquisicion)
 menuAdquisicionTraslado.add_command(label="Trasladar animales", command=traslado)
 menuProcesos.add_command(label="Gestión administrativa", command=gestion)
 
-menuOtras = Menu(menuProcesos, font="Helvetica 12")
+menuOtras = Menu(menuProcesos, font="Helvetica 11")
 menuProcesos.add_cascade(menu=menuOtras, label="Otras funcionalidades")
 menuOtras.add_command(label="Contratar un empleado", command=contratar)
 menuOtras.add_command(label="Despedir un empleado",command=despedir)
 menuOtras.add_command(label="Construir un habitat", command=construir)
-menuConsultas= Menu(menuOtras, font="Helvetica 12")
+menuConsultas= Menu(menuOtras, font="Helvetica 11")
 menuOtras.add_cascade(menu=menuConsultas, label="Consultar datos del zoológico")
 menuConsultas.add_command(label="Nómina de empleados", command=trabajador)
 menuConsultas.add_command(label="Animales actuales", command=animales)
 menuConsultas.add_command(label="Hábitats actuales", command=habitats)
 menuConsultas.add_command(label="Visitantes recibidos", command=visitantes)
 
-menuAyuda = Menu(menuVentanaUsuario, font="Helvetica 12")
+menuAyuda = Menu(menuVentanaUsuario, font="Helvetica 11")
 menuVentanaUsuario.add_cascade(menu=menuAyuda, label="Ayuda")
 menuAyuda.add_command(label="Acerca de", command=ayuda)
 
@@ -368,17 +368,17 @@ P6 = Frame(master=P2, highlightbackground="black", highlightthickness=2)
 
 # Se crea el Label de bienvenida a la aplicación.
 Saludo = Label(master=P3, text="""Bienvenido al sistema de gestion de zoológico, que lo ayudará 
-a administrar facilmente todo lo que tiene que ver con este.""", font="Helvetica 12")
+a administrar facilmente todo lo que tiene que ver con este.""", font="Helvetica 11")
 # Se crea el botón "Ingresar", que al ser presionado permitirá al usuario acceder a las funcionalidades.
-Ingreso = Button(master=P4, text="Ingresar", font="Helvetica 14 bold", 
+Ingreso = Button(master=P4, text="Ingresar", font="Helvetica 11 bold", 
                  bg="grey", fg="white", borderwidth=5, relief="groove",
                  command=ingresar)
 
 # Se crea el título para las hojas de vida de los autores.
 TituloVida = Label(master=P5, text="Breve biografía de los autores", 
-                   font="Helvetica 14 bold")
+                   font="Helvetica 11 bold")
 # Se crea el Label para el texto de las hojas de vida de los autores.
-CuerpoVida = Label(master=P5, text=VidaDavid, font="Helvetica 12", 
+CuerpoVida = Label(master=P5, text=VidaDavid, font="Helvetica 10", 
                    anchor=W)
 # Se crea el Label que contendrá las instrucciones para cambiar entre hojas de vida de los autores.
 PieVida = Label(master=P5, text="Clic sobre la biografía para cambiar de autor",
@@ -409,18 +409,18 @@ LabelFoto4.grid(column=1, row=1, padx=3, pady=3)"""
 
 # Se visualizan todos los elementos anteriormente creados.
 ventanaInicio.pack()
-P1.pack(side=LEFT, fill=BOTH, padx=10, pady=10)
-P2.pack(side=RIGHT, fill=BOTH, padx=10, pady=10)
-P3.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-P4.pack(side=BOTTOM, fill=BOTH, padx=10, pady=10)
-P5.pack(side=TOP, fill=BOTH, padx=10, pady=10)
-P6.pack(side=BOTTOM, fill=BOTH, padx=10, pady=10)
-Saludo.pack(padx=10, pady=10)
-Ingreso.pack(side=BOTTOM, padx=10, pady=10)
+P1.pack(side=LEFT, fill=BOTH, padx=5, pady=5)
+P2.pack(side=RIGHT, fill=BOTH, padx=5, pady=5)
+P3.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+P4.pack(side=BOTTOM, fill=BOTH, padx=5, pady=5)
+P5.pack(side=TOP, fill=BOTH, padx=5, pady=5)
+P6.pack(side=BOTTOM, fill=BOTH, padx=5, pady=5)
+Saludo.pack(padx=5, pady=5)
+Ingreso.pack(side=BOTTOM, padx=5, pady=5)
 #LabelFotoAnimal.pack(side=TOP, padx=10, pady=10)
-TituloVida.pack(padx=10, pady=10)
-CuerpoVida.pack(padx=10, pady=10)
-PieVida.pack(padx=10, pady=10)
+TituloVida.pack(padx=5, pady=5)
+CuerpoVida.pack(padx=5, pady=5)
+PieVida.pack(padx=5, pady=5)
 
 # Se asignan los comandos para cambiar de hoja de vida y de imagen relacionada a la aplicación.
 CuerpoVida.bind("<Button-1>", cambiarVida)
@@ -440,10 +440,10 @@ sed urna leo. Nulla facilisi.
 
 # Se crea la ventana de usuario, así como la sección de qué se puede hacer con la aplicación.
 ventanaUsuario = Frame()
-tituloInfo = Label(master=ventanaUsuario, text="¿Cómo usar esta aplicación y qué puede hacer con ella?", font="Helvetica 12 bold")
-info = Label(master=ventanaUsuario, text=tutorial, font="Helvetica 11")
-tituloInfo.pack(fill=BOTH, padx=10, pady=10)
-info.pack(fill=BOTH, padx=10, pady=10)
+tituloInfo = Label(master=ventanaUsuario, text="¿Cómo usar esta aplicación y qué puede hacer con ella?", font="Helvetica 11 bold")
+info = Label(master=ventanaUsuario, text=tutorial, font="Helvetica 10")
+tituloInfo.pack(fill=BOTH, padx=5, pady=5)
+info.pack(fill=BOTH, padx=5, pady=5)
 
 # FUNCIONALIDAD DE MANTENIMIENTO:
 

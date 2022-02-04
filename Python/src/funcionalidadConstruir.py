@@ -23,11 +23,11 @@ máxima del hábitat"""
         botones = Frame(master=self)
         aceptar = Button(master=botones, text="Aceptar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda:self.aceptar)
+                         command=self.aceptar)
         aceptar.pack(side=LEFT, padx=5, pady=5)
         borrar = Button(master=botones, text="Borrar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
-                         command=lambda: self.borrar)
+                         command=self.borrar)
         borrar.pack(side=RIGHT, padx=5, pady=5)
         botones.pack(padx=5, pady=5)
         
