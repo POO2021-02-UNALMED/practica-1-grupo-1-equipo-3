@@ -18,40 +18,51 @@ class Adquisicion(Frame):
     
     def __init__(self):
         super().__init__()
-        nombre = Label(master=self, text="Adquisición de animales", font="Helvetica 12 bold")
+        # Se establece el nombre de la funcionalidad y su descripción para ser ambos mostrados en la GUI.
+        nombre = Label(master=self, text="Adquisición de animales", font="Helvetica 11 bold")
         info = """Para la adquisición deberá elegir la Especie de la que se desea adquirir el Animal.
 Luego para elegir el hábitat se le presentarán en listado solo los hábitats en los que
 habita la especie que se va a adquirir y en los que la cantidad de animales de dicho 
 hábitat sea menor a su capacidad máxima. Luego debe especificar los atributos del 
 animal a adquirir y este será asignado al hábitat elegido.
         """
-        descripcion = Label(master=self, text=info, font="Helvetica 11")
-        nombre.pack(fill=BOTH, padx=10, pady=10)
-        descripcion.pack(fill=BOTH, padx=10, pady=10)
-
+        descripcion = Label(master=self, text=info, font="Helvetica 10")
+        nombre.pack(fill=BOTH, padx=5, pady=5)
+        descripcion.pack(fill=BOTH, padx=5, pady=5)
+        
+        # Se especifican los nombres de los criterios que tendrá el FieldFrame de esta funcionalidad.
         self.criterios = ["Especie", "Hábitat", "Identificación", "Género", "Edad (Años)", "Peso (Kg)"]
-        if (not Administracion.getAnimales()):
+        # Se establece el número de identificación de la especie a adquirir de acuerdo al último número de identificación existente.
+        if (Administracion.getAnimales() == []):
             valorID = 1
         else:
             valorID = Administracion.getAnimales()[-1].getIdentificacion() + 1
+        # Se especifican los valores que tendrá el FieldFrame de esta funcionalidad para los criterios anteriormente especificados.
         self.valores = [False, False, valorID, False, "", ""]
+        # Igualmente, se especifican los valores que estarán habilitados para ser editados por el usuario.
         self.habilitados = [True, True, False, True, True, True]
+        # Ahora, se especifican las listas de selección que usa la GUI para que el usuario elija entre los valores de la lista.
         self.combobox = [Adquisicion.especies(), Adquisicion.habitats(), False, ["Macho","Hembra"], False, False]
+        # Se crea el FieldFrame para esta funcionalidad con los parámetros anteriormente especificados.
         self.dialogos = FieldFrame(self, "Criterios", self.criterios, "Valores", self.valores, self.habilitados, self.combobox)
-        self.dialogos.pack(padx=10, pady=10)
+        self.dialogos.pack(padx=5, pady=5)
+        # Se crean además, y debajo del FieldFrame, los botones de Aceptar y Borrar.
         botones = Frame(master=self)
-        aceptar = Button(master=botones, text="Aceptar", font="Helvetica 12 bold", 
+        aceptar = Button(master=botones, text="Aceptar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
                          command=self.aceptar)
-        aceptar.pack(side=LEFT, padx=10, pady=10)
-        borrar = Button(master=botones, text="Borrar", font="Helvetica 12 bold", 
+        aceptar.pack(side=LEFT, padx=5, pady=5)
+        borrar = Button(master=botones, text="Borrar", font="Helvetica 11 bold", 
                          bg="grey", fg="white", borderwidth=3, relief="raised",
                          command=self.borrar)
-        borrar.pack(side=RIGHT, padx=10, pady=10)
-        botones.pack(padx=10, pady=10)
+        borrar.pack(side=RIGHT, padx=5, pady=5)
+        botones.pack(padx=5, pady=5)
+        # Por último para la creación de la ventana de la funcionalidad, se asigna el comando para el combobox de Especie.
         comboboxEspecie = self.dialogos.getComponente("Especie")
         comboboxEspecie.bind("<<ComboboxSelected>>", lambda e: self.especieSeleccionada())
-            
+     
+    # Por medio del método especieSeleccionada(), cuando se elije una especie de las disponibles por medio de su combobox,
+    # el combobox se Hábitat listará los hábitats solo para dicha especie, esto a través del método estático habitats(especie).
     def especieSeleccionada(self):
         nombreEspecie = self.dialogos.getValue("Especie")
         for especie in Administracion.getEspecies():
@@ -61,6 +72,7 @@ animal a adquirir y este será asignado al hábitat elegido.
                 break
         self.dialogos.getComponente("Hábitat").set("")
   
+    # Por medio del método borrar() se limpian todos los campos del FieldFrame, tanto combobox como entry.
     def borrar(self):
         self.dialogos.getComponente("Especie").set("")
         self.dialogos.getComponente("Hábitat").set("")
@@ -68,8 +80,8 @@ animal a adquirir y este será asignado al hábitat elegido.
         self.dialogos.getComponente("Edad (Años)").delete(0,"end")
         self.dialogos.getComponente("Peso (Kg)").delete(0,"end")  
     
-    
-    
+    # Por medio del método aceptar() es que se obtienen los valores actuales de los campos del FieldFrame, para adquirir
+    # luego un animal con los atributos elegidos por el usuario.
     def aceptar(self):
         nombreEspecie = self.dialogos.getValue("Especie")
         idHabitat = self.dialogos.getValue("Hábitat").split("-")[0].strip()
@@ -77,12 +89,16 @@ animal a adquirir y este será asignado al hábitat elegido.
         genero = self.dialogos.getValue("Género")
         edad = self.dialogos.getValue("Edad (Años)")
         peso = self.dialogos.getValue("Peso (Kg)")
+        # La lista de valores almacena los valores obtenidos de los campos del FieldFrame para verificar luego que todos
+        # los campos se encuentren con algún valor por medio de la excepción sugerida implementada.
         valores = [nombreEspecie, idHabitat, identificacion, genero, edad, peso]
         try:
             ExcepcionPresenciaDatos.presenciaDatos(self.criterios, valores)
         except ExcepcionPresenciaDatos:
             return
         
+        # Y por medio de las otras excepciones sugeridas para verificar el tipo de dato se comprueba si alguno de los
+        # valores ingresados en alguno de los campos no corresponde al tipo de dato que debería.
         try:
             ExcepcionTipoInt.tipoInt(["Hábitat", "Identificación", "Edad (Años)"], 
                                      [idHabitat, identificacion, edad])
@@ -92,6 +108,8 @@ animal a adquirir y este será asignado al hábitat elegido.
         except ExcepcionTipoFloat:
             return
         
+        # Una vez hechas todas las comprobaciones y enviadas las advertencias al usuario, se puede proceder a convertir
+        # y obtener los datos necesarios para adquirir al animal.
         edad = int(edad)
         peso = float(peso)
         for elem in Administracion.getEspecies():
@@ -107,6 +125,8 @@ animal a adquirir y este será asignado al hábitat elegido.
         Administracion.adquirirAnimal(especie, habitat, genero, edad, peso);
         messagebox.showinfo(title="Resultado",
                             message="Animal adquirido exitosamente")
+        # Y una vez adquirido el animal se borran todos los campos del FieldFrame y se cambia la identificación del siguiente animal a
+        # adquirir, para que no se repita y corresponda al orden que se lleva, de acuerdo al ID del último animal adquirido.
         self.borrar()
         identificacion = self.dialogos.getComponente("Identificación")
         identificacion.configure(state=NORMAL)

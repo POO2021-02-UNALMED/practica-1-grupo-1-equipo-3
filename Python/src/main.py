@@ -1,5 +1,6 @@
 # main.py
 from tkinter import *
+from tkinter import ttk
 from tkinter import messagebox
 from PIL import Image, ImageTk
 from funcionalidadMantenimiento import Mantenimiento
@@ -22,11 +23,11 @@ from gestorAplicacion.especie import Especie
 from gestorAplicacion.habitat import Habitat
 from gestorAplicacion.veterinario import Veterinario
 from gestorAplicacion.visitante import Visitante
-from baseDatos.Deserializador import *
-from baseDatos.Serializador import *
+from baseDatos.deserializador import *
+from baseDatos.serializador import *
 from excepciones.excepcionPresenciaArchivo import ExcepcionPresenciaArchivos
 
-#funcion inicio que verifica que existan los archivos donde va a ctuar el deserializador y serializador
+# Funcion inicio que verifica que existan los archivos donde va a actuar el deserializador y serializador
 def inicio():
     try:
         ExcepcionPresenciaArchivos.presenciaArchivos(["baseDatos/temp/administracion", "baseDatos/temp/animales", 
@@ -36,8 +37,8 @@ def inicio():
         return
 
 inicio()
-#A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
-#deserializar()
+
+# A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
 """admin = Administracion()
 a = Habitat("H1", "Pradera", 2)
 b = Habitat("H2", "Jungla", 1)
@@ -86,6 +87,7 @@ ventana.option_add("*tearOff", FALSE)
 ventana.grid_columnconfigure(0, weight=1)
 ventana.grid_columnconfigure(1, weight=1)
 
+# Con la siguiente función se ocultan todos los frames de la aplicación, esto para la correcta transición entre menús.
 def ocultarTodo():
     ventanaInicio.pack_forget()
     ventanaUsuario.pack_forget()
@@ -103,7 +105,8 @@ def ocultarTodo():
     ventanaHabitats.pack_forget()
     ventanaVisitantes.pack_forget()
 
-    
+# Con la siguiente función se borran los campos de FieldFrame para todas las funcionalidades, además que se ocultan
+# todas las tablas Treeview de las funcionalidades de consulta.
 def borrarTodo():
     #ventanaMantenimiento.borrar()
     #ventanaCurar.borrar()
@@ -119,14 +122,15 @@ def borrarTodo():
     ventanaHabitats.ocultarTabla()
     ventanaVisitantes.ocultarTabla()
 
-
 # COMANDOS RELATIVOS A LA VENTANA DE INICIO:
 
+# Con estas variables se define la hoja de vida de los autores de la aplicación que será mostrada en la ventana de Inicio.
 VidaDavid="""Nombre: David Mateo García Vallejo"""
 VidaJose="""Nombre: José David Cardona Soto"""
 VidaJuan="""Nombre: Juan José Monsalve Marín"""
 VidaMateo="""Nombre: Mateo Carvajal Sánchez"""
 
+# Por medio de la siguiente función se cambia la imagen relativa al sistema (Imágenes de animales).
 posicionImagen=1
 def cambiarImagen(e):
     global posicionImagen
@@ -138,6 +142,7 @@ def cambiarImagen(e):
     """LabelFotoAnimal.configure(image=FotoAnimal)
     LabelFotoAnimal.image=FotoAnimal"""
 
+# Por medio de la siguiente función se cambia la hoja de vida y las imágenes asociadas a cada autor de la aplicación.
 posicionVida=0
 def cambiarVida(e):
     global posicionVida
@@ -170,18 +175,25 @@ def cambiarVida(e):
     elif posicionVida==3:
         CuerpoVida.config(text=VidaMateo)
 
+# La siguiente función es llamada cuando se accede al menú de "Descripción" de la ventana de Inicio. Por medio de esta
+# se muestra al usuario la descripción de la aplicación.
 def descripcion():
     descripcion = "En el sistema gestor de zoológico podrá administrar todo lo que tiene que ver con su zoológico: Calcular las ganancias del día; pagar a sus empleados; llevar conteo de los visitantes, de los animales, de los empleados, de las especies, y de los hábitats."
     messagebox.showinfo(title="Descripción de la aplicación",
                         message=descripcion)
 
+# La siguiente función es llamada cuando se accede al menú de "Salir" de la ventana de Inicio. Por medio de esta es que
+# antes de cerrarse la ventana se serializan los objetos.
 def salirInicio():
     salir = messagebox.askyesno(title="Salir",
                                 message="¿Confirma que desea salir de la aplicación?",
                                 detail="Clic en Sí para salir")
     if salir:
+        serializar()
         ventana.destroy()
 
+# La siguiente función es llamada cuando se presiona el botón Ingresar de la ventana de Inicio. Por medio de esta
+# el usuario puede acceder a la ventana de Usuario, desde donde puede hacer uso de las distintas funcionalidades.
 def ingresar():
     ocultarTodo()
     borrarTodo()
@@ -190,74 +202,93 @@ def ingresar():
 
 # COMANDOS RELATIVOS A LA VENTANA DEL USUARIO:
 
+# La función mantenimiento() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad.
 def mantenimiento():
     ocultarTodo()
     borrarTodo()
     ventanaMantenimiento.pack()
 
+# La función curar() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad.
 def curar():
     ocultarTodo()
     borrarTodo()
     ventanaCurar.pack()
 
+# La función cuidar() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad.
 def cuidar():
     ocultarTodo()
     borrarTodo()
     ventanaCuidar.pack()
 
+# La función adquisicion() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad.
 def adquisicion():
     ocultarTodo()
     borrarTodo()
     ventanaAdquision.pack()
 
+# La función traslado() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad.
 def traslado():
     ocultarTodo()
     borrarTodo()
     ventanaTraslado.pack()
 
+# La función gestion() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad.
 def gestion():
     ocultarTodo()
     borrarTodo()
     ventanaGestion.pack()
-    
+
+# La función despedir() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad.
 def despedir():
     ocultarTodo()
     borrarTodo()
     ventanaDespedir.pack()
 
+# La función contratar() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad (Crear Empleados).
 def contratar():
     ocultarTodo()
     borrarTodo()
     ventanaContratar.pack()
 
+# La función construir() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad (Crear Hábitat).
 def construir():
     ocultarTodo()
     borrarTodo()
     ventanaConstruir.pack()
 
+# La función trabajador() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad (Consultar Empleados).
 def trabajador():
     ocultarTodo()
     borrarTodo()
     ventanaTrabajador.pack()
 
+# La función animales() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad (Consultar Animales).
 def animales():
     ocultarTodo()
     borrarTodo()
     ventanaAnimales.pack()
 
+# La función habitats() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad (Consultar Hábitats).
 def habitats():
     ocultarTodo()
+    borrarTodo()
     ventanaHabitats.pack()
 
+# La función visitantes() sirve para hacer la transición desde el menú a la ventana de dicha funcionalidad (Consultar Visitantes).
 def visitantes():
     ocultarTodo()
+    borrarTodo()
     ventanaVisitantes.pack()
- 
+
+# La siguiente función es llamada cuando se accede al menú de "Aplicación" de la ventana de Usuario. Por medio de esta
+# se muestra al usuario NUEVAMENTE la descripción de la aplicación.
 def aplicacion():
     descripcion = "En el sistema gestor de zoológico podrá administrar todo lo que tiene que ver con su zoológico: Calcular las ganancias del día; pagar a sus empleados; llevar conteo de los visitantes, de los animales, de los empleados, de las especies, y de los hábitats."
     messagebox.showinfo(title="Información básica de la aplicación",
                         message=descripcion)
 
+# La siguiente función es llamada cuando se accede al menú de "Salir" de la ventana de Usuario. Por medio de esta
+# se regresa a la ventana de Inicio.
 def salirUsuario():
     salir = messagebox.askyesno(title="Salir",
                                 message="¿Confirma que desea regresar a la ventana de inicio?",
@@ -267,6 +298,8 @@ def salirUsuario():
         ventanaInicio.pack()
         ventana["menu"] = menuVentanaInicio
 
+# La siguiente función es llamada cuando se accede al menú de "Acerca De" de la ventana de Usuario. Por medio de esta
+# se muestra al usuario los autores de la aplicación.
 def ayuda():
     autores = """Autores:
 
@@ -305,7 +338,6 @@ menuAdquisicionTraslado.add_command(label="Adquirir animales", command=adquisici
 menuAdquisicionTraslado.add_command(label="Trasladar animales", command=traslado)
 menuProcesos.add_command(label="Gestión administrativa", command=gestion)
 
-
 menuOtras = Menu(menuProcesos, font="Helvetica 12")
 menuProcesos.add_cascade(menu=menuOtras, label="Otras funcionalidades")
 menuOtras.add_command(label="Contratar un empleado", command=contratar)
@@ -318,14 +350,13 @@ menuConsultas.add_command(label="Animales actuales", command=animales)
 menuConsultas.add_command(label="Hábitats actuales", command=habitats)
 menuConsultas.add_command(label="Visitantes recibidos", command=visitantes)
 
-
-
 menuAyuda = Menu(menuVentanaUsuario, font="Helvetica 12")
 menuVentanaUsuario.add_cascade(menu=menuAyuda, label="Ayuda")
 menuAyuda.add_command(label="Acerca de", command=ayuda)
 
 # COMPONENTES DE LA VENTANA DE INICIO:
 
+# Se crean cada uno de los frames especificados para la ventana de Inicio.
 ventanaInicio = Frame()
 P1 = Frame(master=ventanaInicio, highlightbackground="black", highlightthickness=2)
 P2 = Frame(master=ventanaInicio, highlightbackground="black", highlightthickness=2)
@@ -334,19 +365,25 @@ P4 = Frame(master=P1, highlightbackground="black", highlightthickness=2)
 P5 = Frame(master=P2, highlightbackground="black", highlightthickness=2)
 P6 = Frame(master=P2, highlightbackground="black", highlightthickness=2)
 
+# Se crea el Label de bienvenida a la aplicación.
 Saludo = Label(master=P3, text="""Bienvenido al sistema de gestion de zoológico, que lo ayudará 
 a administrar facilmente todo lo que tiene que ver con este.""", font="Helvetica 12")
+# Se crea el botón "Ingresar", que al ser presionado permitirá al usuario acceder a las funcionalidades.
 Ingreso = Button(master=P4, text="Ingresar", font="Helvetica 14 bold", 
                  bg="grey", fg="white", borderwidth=5, relief="groove",
                  command=ingresar)
 
+# Se crea el título para las hojas de vida de los autores.
 TituloVida = Label(master=P5, text="Breve biografía de los autores", 
                    font="Helvetica 14 bold")
+# Se crea el Label para el texto de las hojas de vida de los autores.
 CuerpoVida = Label(master=P5, text=VidaDavid, font="Helvetica 12", 
                    anchor=W)
+# Se crea el Label que contendrá las instrucciones para cambiar entre hojas de vida de los autores.
 PieVida = Label(master=P5, text="Clic sobre la biografía para cambiar de autor",
                 font="Helvetica 8 italic", fg="blue")
 
+# Se localizan las imágenes iniciales para las relacionadas con la aplicación y para las de hojas de vida de los autores.
 """FotoAnimal=(Image.open("Imagenes/Animales/1.jpg")).resize((400,400), Image.ANTIALIAS)
 FotoAnimal = ImageTk.PhotoImage(FotoAnimal)
 Foto1 =(Image.open("Imagenes/David/1.jpg")).resize((200,200), Image.ANTIALIAS)
@@ -358,6 +395,7 @@ Foto3 = ImageTk.PhotoImage(Foto3)
 Foto4 =(Image.open("Imagenes/David/4.jpg")).resize((200,200), Image.ANTIALIAS)
 Foto4 = ImageTk.PhotoImage(Foto4)
 
+# Se crean los Label para las imágenes relacionadas con la aplicación y para las de hojas de vida de los autores.
 LabelFotoAnimal = Label(master=P4, image=FotoAnimal, borderwidth=5, relief="ridge")
 LabelFoto1 = Label(master=P6, image=Foto1, borderwidth=5, relief="ridge")
 LabelFoto1.grid(column=0, row=0, padx=3, pady=3)
@@ -368,6 +406,7 @@ LabelFoto3.grid(column=0, row=1, padx=3, pady=3)
 LabelFoto4 = Label(master=P6, image=Foto4, borderwidth=5, relief="ridge")
 LabelFoto4.grid(column=1, row=1, padx=3, pady=3)"""
 
+# Se visualizan todos los elementos anteriormente creados.
 ventanaInicio.pack()
 P1.pack(side=LEFT, fill=BOTH, padx=10, pady=10)
 P2.pack(side=RIGHT, fill=BOTH, padx=10, pady=10)
@@ -382,11 +421,13 @@ TituloVida.pack(padx=10, pady=10)
 CuerpoVida.pack(padx=10, pady=10)
 PieVida.pack(padx=10, pady=10)
 
+# Se asignan los comandos para cambiar de hoja de vida y de imagen relacionada a la aplicación.
 CuerpoVida.bind("<Button-1>", cambiarVida)
 #LabelFotoAnimal.bind("<Enter>", cambiarImagen)  
 
 # COMPONENTES DE LA VENTANA DEL USUARIO:
 
+# Se define el mensaje que aparecerá cuando se accede a la ventana de Usuario desde la ventana de Inicio.
 tutorial = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis nisl sit amet diam convallis, 
 vitae malesuada est sodales. In at lectus eget orci pellentesque euismod. Curabitur justo lacus, volutpat 
 nec arcu eget, placerat porttitor enim. In lorem arcu, malesuada sed vulputate at, tempus sit amet felis. 
@@ -396,6 +437,7 @@ tortor eu orci posuere porta. Praesent at dictum est. Aliquam a mauris diam. Don
 sed urna leo. Nulla facilisi.
 """    
 
+# Se crea la ventana de usuario, así como la sección de qué se puede hacer con la aplicación.
 ventanaUsuario = Frame()
 tituloInfo = Label(master=ventanaUsuario, text="¿Cómo usar esta aplicación y qué puede hacer con ella?", font="Helvetica 12 bold")
 info = Label(master=ventanaUsuario, text=tutorial, font="Helvetica 11")
@@ -452,5 +494,12 @@ ventanaHabitats.pack_forget()
 
 ventanaVisitantes = Visitantes()
 ventanaVisitantes.pack_forget()
+
+# Las siguiente líneas son para definir el estilo para ciertos elementos y tablas que usa la aplicación.
+style = ttk.Style()
+style.theme_use("default")
+style.map("Treeview")
+style.configure("Treeview.Heading", font="Helvetica 10 bold")
+style.configure("Treeview", font="Helvetica 10")
 
 ventana.mainloop()
