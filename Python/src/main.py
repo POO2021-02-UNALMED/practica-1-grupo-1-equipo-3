@@ -22,11 +22,21 @@ from gestorAplicacion.especie import Especie
 from gestorAplicacion.habitat import Habitat
 from gestorAplicacion.veterinario import Veterinario
 from gestorAplicacion.visitante import Visitante
-from baseDatos.deserializador import *
-from baseDatos.serializador import *
+from baseDatos.Deserializador import *
+from baseDatos.Serializador import *
+from excepciones.excepcionPresenciaArchivo import ExcepcionPresenciaArchivos
 
+def inicio():
+    try:
+        ExcepcionPresenciaArchivos.presenciaArchivos(["baseDatos/temp/administracion", "baseDatos/temp/animales", 
+        "baseDatos/temp/cuidadores","baseDatos/temp/habitats", "baseDatos/temp/veterinarios", "baseDatos/temp/visitantes"], )
+        deserializar()
+    except ExcepcionPresenciaArchivos:
+        return
+
+inicio()
 #A continuación se encuentran los objetos que fueron guardados originalmente en la persistencia inicial.
-deserializar()
+#deserializar()
 """admin = Administracion()
 a = Habitat("H1", "Pradera", 2)
 b = Habitat("H2", "Jungla", 1)
