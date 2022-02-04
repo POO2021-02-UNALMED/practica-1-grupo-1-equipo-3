@@ -21,7 +21,7 @@ class ExcepcionPresenciaArchivos(ExcepcionPresencia):
                 else: 
                     mensaje += direcciones[i] + ","
                 
-                advertencia +=  direcciones[i].split("/")[-1] + "\n"
+                advertencia +=  direcciones[i].split("\\")[-1] + "\n"
                 faltantes += 1
                    
         if faltantes > 0 :

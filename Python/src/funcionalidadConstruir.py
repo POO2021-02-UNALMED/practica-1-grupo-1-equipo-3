@@ -3,6 +3,9 @@ from tkinter import messagebox
 from fieldFrame import FieldFrame
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.especie import Especie
+from excepciones.excepcionPresenciaDatos import ExcepcionPresenciaDatos
+from excepciones.excepcionTipoInt import ExcepcionTipoInt
+from excepciones.excepcionTipoString import ExcepcionTipoString
 
 class Construir(Frame):
     def __init__(self):
@@ -35,27 +38,65 @@ máxima del hábitat"""
         nombre = self.dialogos.getValue("Nombre")
         ambientacion=self.dialogos.getValue("Ambientación")
         capacidad=self.dialogos.getValue("Capacidad máxima")
-        try:
-            capacidad = int(capacidad)
-            if(capacidad < 0):
-                error = "CAPACIDAD MÁXIMA INCORRECTA: Ingrese un número que sea positivo!"
-                messagebox.showerror(title="Error",
+        valores= [nombre, ambientacion, capacidad]
+
+        try:   
+            ExcepcionPresenciaDatos.presenciaDatos(self.criterios, valores)
+        except ExcepcionPresenciaDatos:
+            return
+        finally:
+            try:
+                capacidad= int(capacidad)
+                ExcepcionTipoInt.tipoInt(["Capacidad máxima"], [capacidad])
+            except ValueError:
+                error = "CAPACIDAD MÁXIMA INCORRECTA: Ingrese un número!"
+                messagebox.showerror(title="Error", 
                                      message=error)
-        except ValueError:
-            error = "CAPACIDAD MÁXIMA INCORRECTA: Ingrese un número!"
-            messagebox.showerror(title="Error",
-                                 message=error)            
-        try:
-            nuevo=Administracion.construirHabitat(nombre,ambientacion,capacidad)
-            mensaje=str("¡Se ha construido el nuevo hábitat!\n"+
-            "\nEste posee las siguientes características: \n"+"\n"+nuevo.info())
-            messagebox.showinfo(title="Información",
-                            message=mensaje)
-            self.borrar()
-        except UnboundLocalError:
-            error = "Todos los campos deben tener algún valor!"
-            messagebox.showerror(title="Error",
-                                message=error)  
+            except ExcepcionTipoInt:
+                return
+            finally:
+                try:
+                    ExcepcionTipoString.tipoString(["Nombre", "Ambientación"], [nombre, ambientacion])
+                except ExcepcionTipoString: 
+                    return
+                
+                   
+        nuevo=Administracion.construirHabitat(nombre,ambientacion,capacidad)
+        mensaje=str("¡Se ha construido el nuevo hábitat!\n"+
+        "\nEste posee las siguientes características: \n"+"\n"+nuevo.info())
+        messagebox.showinfo(title="Información",
+                        message=mensaje)
+        self.borrar()
+        
+        
+        
+        
+        
+        
+        
+        
+
+       #try:
+       #    capacidad = int(capacidad)
+       #    if(capacidad < 0):
+       #        error = "CAPACIDAD MÁXIMA INCORRECTA: Ingrese un número que sea positivo!"
+       #        messagebox.showerror(title="Error",
+       #                             message=error)
+       #except ValueError:
+       #    error = "CAPACIDAD MÁXIMA INCORRECTA: Ingrese un número!"
+       #    messagebox.showerror(title="Error",
+       #                         message=error)            
+       #try:
+       #    nuevo=Administracion.construirHabitat(nombre,ambientacion,capacidad)
+       #    mensaje=str("¡Se ha construido el nuevo hábitat!\n"+
+       #    "\nEste posee las siguientes características: \n"+"\n"+nuevo.info())
+       #    messagebox.showinfo(title="Información",
+       #                    message=mensaje)
+       #    
+       #except UnboundLocalError:
+       #    error = "Todos los campos deben tener algún valor!"
+       #    messagebox.showerror(title="Error",
+       #                        message=error)  
 
     def borrar(self):
         self.dialogos.getComponente("Nombre").delete(0,"end")
