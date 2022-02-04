@@ -1,4 +1,4 @@
-class ErrorAplicacion(Exception):
+class ErrorAplicacion(Exception): #Excepcion que maneja las excepciones inventadas, en la aplicacion
     
     def __init__(self, mensaje):
         self._mensaje = mensaje

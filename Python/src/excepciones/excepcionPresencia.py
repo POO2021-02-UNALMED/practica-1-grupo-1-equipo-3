@@ -1,6 +1,6 @@
-from excepciones.errorAplicacion import ErrorAplicacion
+from excepciones.errorAplicacion import ErrorAplicacion 
 
-class ExcepcionPresencia(ErrorAplicacion):
+class ExcepcionPresencia(ErrorAplicacion): #Excepcion que maneja la presencia o no de datos, imagene, etc. Dentro de la aplicación
     
     def __init__(self, mensaje):
         self._mensaje = mensaje

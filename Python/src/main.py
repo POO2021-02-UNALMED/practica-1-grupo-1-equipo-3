@@ -26,16 +26,26 @@ from gestorAplicacion.visitante import Visitante
 from baseDatos.deserializador import *
 from baseDatos.serializador import *
 from excepciones.excepcionPresenciaArchivo import ExcepcionPresenciaArchivos
+from excepciones.excepcionPresenciaImagenes import ExcepcionPresenciaImagenes
 
 
 # Funcion inicio que verifica que existan los archivos donde va a actuar el deserializador y serializador
 deserializar()
 """def inicio():
+    a = ["Imagenes/Animales/1.jpg", "Imagenes/Animales/2.jpg", "Imagenes/Animales/3.jpg", "Imagenes/Animales/4.jpg", "Imagenes/Animales/5.jpg"]
+    b = ["Imagenes/David/1.jpg", "Imagenes/David/2.jpg", "Imagenes/David/3.jpg", "Imagenes/David/4.jpg"]
+    c = ["Imagenes/Jose/1.jpg", "Imagenes/Jose/2.jpg", "Imagenes/Jose/3.jpg", "Imagenes/Jose/4.jpg"]
+    d = ["Imagenes/Juan/1.jpg", "Imagenes/Juan/2.jpg", "Imagenes/Juan/3.jpg", "Imagenes/Juan/4.jpg"]
+    e = ["Imagenes/Mateo/1.jpg", "Imagenes/Mateo/2.jpg", "Imagenes/Mateo/3.jpg", "Imagenes/Mateo/4.jpg"]
+    dir = a + b + c + d + e
     try:
         ExcepcionPresenciaArchivos.presenciaArchivos(["baseDatos/temp/administracion", "baseDatos/temp/animales", 
-        "baseDatos/temp/cuidadores","baseDatos/temp/habitats", "baseDatos/temp/veterinarios", "baseDatos/temp/visitantes"] )
+        "baseDatos/temp/cuidadores","baseDatos/temp/habitats", "baseDatos/temp/veterinarios", "baseDatos/temp/visitantes"])
+        ExcepcionPresenciaImagenes.presenciaImagenes(dir)
         deserializar()
     except ExcepcionPresenciaArchivos:
+        return
+    except ExcepcionPresenciaImagenes:
         return
 
 inicio()"""

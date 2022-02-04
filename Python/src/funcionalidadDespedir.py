@@ -5,6 +5,7 @@ from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.cuidador import Cuidador
 from gestorAplicacion.veterinario import Veterinario
 from gestorAplicacion.especie import Especie
+from excepciones.excepcionPresenciaDatos import ExcepcionPresenciaDatos
  
 class Despedir(Frame):
     def __init__(self):
@@ -85,7 +86,16 @@ de nuestros empleados. Este será despedido."""
     def aceptar(self):
         profesion=self.dialogos.getValue("Profesión")
         identificacion = self.dialogos.getValue("Identificación")
-        nombre = self.dialogos.getValue("Nombre") 
+        nombre = self.dialogos.getValue("Nombre")
+        sueldo = self.dialogos.getValue("Sueldo")
+        especie = self.dialogos.getValue("Especie asignada") 
+        valores= [profesion, identificacion, nombre, sueldo, especie]
+
+        try:
+            ExcepcionPresenciaDatos.presenciaDatos(self.criterios, valores)
+        except ExcepcionPresenciaDatos:
+            return
+
         if profesion=="Veterinario":
             try:
                 Administracion.despedirVeterinario(int(identificacion))

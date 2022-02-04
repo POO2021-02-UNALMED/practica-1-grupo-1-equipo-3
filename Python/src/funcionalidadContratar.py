@@ -1,5 +1,9 @@
+from mailbox import NoSuchMailboxError
 from tkinter import *
 from tkinter import messagebox
+from excepciones.excepcionPresenciaDatos import ExcepcionPresenciaDatos
+from excepciones.excepcionTipoInt import ExcepcionTipoInt
+from excepciones.excepcionTipoString import ExcepcionTipoString
 from fieldFrame import FieldFrame
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.especie import Especie
@@ -75,21 +79,33 @@ Posteriormente llene el formulario con los datos del nuevo empleado."""
         nombre=self.dialogos.getValue("Nombre")
         sueldo=self.dialogos.getValue("Sueldo")
         especie=self.dialogos.getValue("Especie asignada")
+        valores= [profesion, identificacion, nombre, sueldo, especie]
         try:
-            sueldo = int(sueldo)
-            if(sueldo < 0):
-                error = "SUELDO INCORRECTO: Ingrese un número que sea positivo!"
+            ExcepcionPresenciaDatos.presenciaDatos(self.criterios, valores)
+        except ExcepcionPresenciaDatos:
+            return
+        finally:
+            try:
+                sueldo = int(sueldo)
+                ExcepcionTipoInt.tipoInt(["Sueldo"], [sueldo])
+            except ValueError:
+                error = "SUELDO INCORRECTO: Ingrese un número!"
                 messagebox.showerror(title="Error",
                                      message=error)
-        except ValueError:
-            error = "SUELDO INCORRECTO: Ingrese un número!"
-            messagebox.showerror(title="Error",
-                                 message=error)            
+                return
+            except ExcepcionTipoInt:
+                return
+            finally:
+                try:
+                    ExcepcionTipoString.tipoString(["Nombre"],[nombre]) 
+                except ExcepcionTipoString:
+                    return            
+                    
         for elem in Administracion.getEspecies():
             if elem.getNombre() == especie:
                 especie = elem
                 break   
-		# Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
+		#Se llama al método adquirirAnimal(...) de la clase Administracion, pues este método se encarga de crear el objeto tipo Animal
 		# en base a los atributos que el usuario eligió e ingresó.
         if profesion=="Veterinario":
             try:

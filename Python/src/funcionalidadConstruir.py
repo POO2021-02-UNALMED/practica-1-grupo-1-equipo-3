@@ -52,6 +52,7 @@ máxima del hábitat"""
                 error = "CAPACIDAD MÁXIMA INCORRECTA: Ingrese un número!"
                 messagebox.showerror(title="Error", 
                                      message=error)
+                return                     
             except ExcepcionTipoInt:
                 return
             finally:
