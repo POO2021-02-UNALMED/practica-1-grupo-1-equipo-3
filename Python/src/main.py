@@ -295,7 +295,7 @@ def visitantes():
 # La siguiente función es llamada cuando se accede al menú de "Aplicación" de la ventana de Usuario. Por medio de esta
 # se muestra al usuario NUEVAMENTE la descripción de la aplicación.
 def aplicacion():
-    descripcion = "En el sistema gestor de zoológico podrá administrar todo lo que tiene que ver con su zoológico: Calcular las ganancias del día; pagar a sus empleados; llevar conteo de los visitantes, de los animales, de los empleados, de las especies, y de los hábitats."
+    descripcion = "En el sistema gestor de zoológico podrá administrar todo lo que tiene que ver con su zoológico: Calcular las ganancias del día; pagar a sus empleados; llevar conteo de los visitantes, de los animales, de los empleados, de las especies, y de los hábitats; Cuidar y curar a los animales; Enviar personal a alimentar a los animales; Enviar personal a limpiar los hábitats "
     messagebox.showinfo(title="Información básica de la aplicación",
                         message=descripcion)
 
@@ -440,13 +440,38 @@ CuerpoVida.bind("<Button-1>", cambiarVida)
 # COMPONENTES DE LA VENTANA DEL USUARIO:
 
 # Se define el mensaje que aparecerá cuando se accede a la ventana de Usuario desde la ventana de Inicio.
-tutorial = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris convallis nisl sit amet diam convallis, 
-vitae malesuada est sodales. In at lectus eget orci pellentesque euismod. Curabitur justo lacus, volutpat 
-nec arcu eget, placerat porttitor enim. In lorem arcu, malesuada sed vulputate at, tempus sit amet felis. 
-Etiam sed odio sed erat ornare auctor non non enim. Pellentesque non eros ut sapien ornare maximus. Ut et 
-venenatis orci, sit amet congue est. Duis sit amet tincidunt purus. Ut ac scelerisque risus. Etiam scelerisque 
-tortor eu orci posuere porta. Praesent at dictum est. Aliquam a mauris diam. Donec euismod mi leo. Phasellus 
-sed urna leo. Nulla facilisi.
+tutorial = """¡BIENVENIDO AL SISTEMA GESTOR DE ZOOLÓGICO!
+
+En la parte superior de nuestra aplicación pora ver la barra de menúes. Entrando en el menú de archivo podrá:
+
+    - Escoger aplicación: Muestra información básica de lo que puede hacer en la plaicación
+    - Escoger salir: Se cerrará la ventana de usuario y volverá a la de incio. Volviendo a escoger esta 
+    opción desde inicio, se cerrará toda la aplicación
+
+Entrando en procesos y consultas, podrá escoger entre las diferentes funcionalidades que ofrecemos para la 
+gestión de su zoológico. Podrá escoger entre:
+    
+    - Mantenimiento de hábitats: Haciendo selección de un hábitat, y posteriormente de un cuidador, se limpiará
+    el hábitat. Si un animal está triste solo por esta razón, cambiará su estado de triste a feliz
+    - Curar animales: Seleccionando una especie, un animal de esa especie (por identificación), un cuidador
+    y un veterinario, pordrá revisar si el animal está enfermo y en caso tal, se curará
+    - Cuidar animal: Seleccionando una especie, un animal de esa especie (por identificación), un cuidador
+    podrá inicalmente ver el estado de ánimo del animal. Si el animal se encuentra triste, procederá a alimentarlo.
+    Si después de eso continua triste, tendrá que invocar la funcionalidad de mantenimiento de hábitats o de curar animal
+    - Adquisición y traslado de animales: Usando adquisición podrá adquirir un nuevo animal al zoológico, ingresando
+    la especie, el hábitat donde va a estar el animal y demás datos necesarios que va a tener el animal. A través
+    de la funcionalidad traslado, seleccionando la especie e identificación de un animal, este ya no hará parte del zoológico
+    - Gestión administrativa: Con esta funcionalidad se calcularán las ganancias generadas en el día, y posteriormente
+    se hará pago a la nómina de empleados del zoológico.
+    -Otras funcionalidades: Puede realiza algunas otras funciones como contratar nuevos empleados, despedir empleados,
+    construir hábitats y consultar datos del zoológico como lo son los hábitats, los animales, los empleados, 
+    los visitantes, que tiene el zoológico.
+
+Entrando en ayuda:
+
+    -Escogiendo acerca de: Podrá ver el nombre de las personas encargadas del desarrollo de la aplicación
+
+¡ESPERAMOS DISFRUTE DEL USO DE LA APLICACIÓN!
 """    
 
 # Se crea la ventana de usuario, así como la sección de qué se puede hacer con la aplicación.

@@ -12,7 +12,7 @@ from baseDatos.serializador import *
 if __name__=="__main__":
     a = Habitat("H1", "Pradera", 2)
     b = Habitat("H2", "Jungla", 1)
-    c= Habitat("H3", "Pantano", 3)
+    c= Habitat("H3", "Pantano", 2)
     d= Habitat("H5", "Rio", 3)
     e= Habitat("H6","Pantano",2)
     a1 = Animal(Especie.REPTIL, c, "Macho", 5, 70.0)

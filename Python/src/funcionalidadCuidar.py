@@ -11,6 +11,8 @@ from tkinter import *
 from tkinter import messagebox
 from fieldFrame import FieldFrame
 from gestorAplicacion.administracion import Administracion
+from excepciones.excepcionPresenciaDatos import *
+from excepciones.excepcionTipoInt import *
 
 class Cuidar(Frame):
 	

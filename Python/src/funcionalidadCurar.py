@@ -18,7 +18,8 @@ from excepciones.excepcionTipoInt import ExcepcionTipoInt
 from fieldFrame import FieldFrame
 from gestorAplicacion.administracion import Administracion
 from gestorAplicacion.veterinario import Veterinario
-
+from excepciones.excepcionTipoInt import *
+from excepciones.excepcionPresenciaDatos import *
 class Curar(Frame):
 
     def __init__(self):
